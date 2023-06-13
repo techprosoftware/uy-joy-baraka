@@ -10,9 +10,9 @@ export default defineConfig({
          '@': resolve('src'),
          '@components': resolve('src', 'components'),
          '@pages': resolve('src', 'pages'),
-         '@images': resolve('src', 'assets', 'images'),
+         '@images': resolve('public', 'assets', 'images'),
          '@api': resolve('src', 'api'),
-         '@apps': resolve('src')
+         '@apps': resolve('src', 'apps')
        }
      }
 })
