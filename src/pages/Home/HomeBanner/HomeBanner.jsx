@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import buttonPhone from '../../../../public/assets/images/home-phone.svg'
 import './HomeBanner.scss';
 
 export const HomeBanner = () => {
@@ -44,7 +45,7 @@ export const HomeBanner = () => {
                   <h1 className='banner-title'>Uy-joy e’lonlaringizni bizning saytga joylashtiring</h1>
 										
                   <button className='banner-btn' href='#'>
-                    Biz bilan bog’lanish
+                   <img src={buttonPhone} alt="buton-phone" /> Biz bilan bog’lanish
 										</button>
 									</div>
 								</div>
@@ -59,7 +60,7 @@ export const HomeBanner = () => {
                   <h1 className='banner-title'>Uy-joy e’lonlaringizni bizning saytga joylashtiring</h1>
 										
 										<button className='banner-btn' href='#'>
-                    Biz bilan bog’lanish
+                    <img src={buttonPhone} alt="buton-phone" /> Biz bilan bog’lanish
 										</button>
 									</div>
 								</div>
@@ -74,7 +75,7 @@ export const HomeBanner = () => {
                   <h1 className='banner-title'>Uy-joy e’lonlaringizni bizning saytga joylashtiring</h1>
 										
 										<button className='banner-btn' href='#'>
-                    Biz bilan bog’lanish
+                    <img src={buttonPhone} alt="buton-phone" /> Biz bilan bog’lanish
 										</button>
 									</div>
 								</div>
@@ -89,7 +90,7 @@ export const HomeBanner = () => {
 										<h1 className='banner-title'>Uy-joy e’lonlaringizni bizning saytga joylashtiring</h1>
 										
 										<button className='banner-btn' href='#'>
-                    Biz bilan bog’lanish
+                    <img src={buttonPhone} alt="buton-phone" /> Biz bilan bog’lanish
 										</button>
 									</div>
 								</div>
