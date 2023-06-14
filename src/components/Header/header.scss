@@ -1,0 +1,156 @@
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.site-header {
+  padding: 9px 15px;
+  background-color: #008B51;
+}
+
+.site-haeder__inner {
+  display: flex;
+  align-items: center;
+}
+
+.nav {
+  margin-left: auto;
+}
+
+.nav__list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+
+.nav__link {
+  text-decoration: none;
+}
+
+.new-poster {
+  margin-right: 63px;
+  
+  a {
+    padding: 7px 25px;
+    font-family: 'Gilroy';
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    color: #008B51;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+  }
+}
+
+.chat-icon {
+  margin-right: 30px;
+}
+
+.heart-icon {
+  margin-right: 30px;
+  border: none;
+}
+
+.lang-icon {
+  & button {
+    margin-right: 33px;
+    background-color: transparent;
+    border: none;
+  }
+}
+
+.user-icon {
+  position: relative;
+
+  & button {
+    background-color: transparent;
+    border: none;
+  }
+}
+
+
+// drop down
+.drop {
+  position: absolute;
+  z-index: 10;
+  top: 45px;
+  right: 0px;
+  width: 194px;
+  background-color: #FFFFFF;
+}
+
+.drop__info {
+  display: flex;
+  align-items: center;
+  padding: 7px 23px 6px 15px;
+  font-family: 'Gilroy';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #565656;
+  background-color: #008b5126;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    margin-right: 11px;
+    width: 22px;
+    height: 22px;
+    background-image: url('@images/drop-user-img.svg');
+    background-repeat: no-repeat;
+  }
+}
+
+.drop__list {
+  margin: 12px 12px 15px 23px;
+  padding: 0;
+  list-style-type: none;
+}
+
+.drop__item + .drop__item {
+  margin-top: 7px;
+}
+
+.drop__link {
+  display: flex;
+  align-items: center;
+  font-family: 'Gilroy';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #565656;
+  text-decoration: none;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    margin-right: 8px;
+    width: 6px;
+    height: 12px;
+    background-image: url('@images/drop-right-arrow.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+}
+
+.logout-btn {
+  color: #F90000;
+ 
+  &::before {
+    content: '';
+    display: inline-block;
+    margin-right: 8px;
+    width: 6px;
+    height: 12px;
+    background-image: url('@images/drop-right-arrow-red.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+}
