@@ -1,3 +1,4 @@
+
 .home-banner {
 	background-image: url('../../../../public/assets/images/home-banner.png');
 	background-size: cover;
@@ -17,46 +18,26 @@
 }
 
 .banner-title {
-	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 42px;
-	line-height: 51px;
-	display: flex;
-	align-items: center;
-	text-transform: uppercase;
-	margin: 0;
-	margin-bottom: 20px;
-	color: #ffffff;
+	font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 46px;
+    line-height: 56px;
+    color: #FFFFFF;
 }
 
-.banner-desc {
-	width: 100%;
-	max-width: 347px;
-	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 600;
-	font-size: 16px;
-	line-height: 134%;
-	margin: 0;
-	margin-bottom: 30px;
-	display: flex;
-	align-items: center;
-	color: #ffffff;
-}
 
 .banner-btn {
-	background: #ffffff;
-	border: 1px solid #ffffff;
-	border-radius: 16px;
-	padding: 12px 18px;
-	color: #3996f7;
-	margin-bottom: 63px;
-	font-family: 'Inter';
-	font-style: normal;
-	font-weight: 700;
-	font-size: 16px;
-	line-height: 24px;
+	font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27px;
+    color: #FFFFFF;
+    background: #008B51;
+    border-radius: 6px;
+    border: none;
+    padding: 16px 9px 16px;
 }
 
 .carousel-indicators {
