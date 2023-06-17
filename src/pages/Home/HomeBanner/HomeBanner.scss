@@ -42,29 +42,32 @@
 }
 
 .carousel-indicators {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	left: 0;
+	position: absolute !important;
+//   top: 50% !important;
+	// right: 0 !important;
+	left: 50% !important;
+	bottom: 0% !important;
+	transform: translate(-50%, -50%) !important;
 	z-index: 2;
 	display: flex;
 	justify-content: start !important;
 	padding: 0;
-	margin-right: 15%;
-	margin-bottom: 2rem;
-	margin-left: 10% !important;
+	margin-right: 0 !important;
+	margin-bottom: 0 !important;
+	margin-left: 0 !important;
 }
 
 .carousel-indicators [data-bs-target] {
 	width: 20px !important;
 	background: #ffffff !important;
 	border-radius: 50% !important;
-    // opacity: 1;
+    opacity: 1 !important;
 }
 
 .carousel-indicators .active {
     opacity: 1;
-    background: #fff;
+    background: #FF8D08 !important;
+	color: #FF8D08;
 }
 @media only screen and (max-width: 992px) {
 	.banner-title {

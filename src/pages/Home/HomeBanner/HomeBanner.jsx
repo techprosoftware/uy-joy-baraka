@@ -29,12 +29,7 @@ export const HomeBanner = () => {
 						data-bs-slide-to={2}
 						aria-label='Slide 3'
 					/>
-                    <button
-						type='button'
-						data-bs-target='#carouselExampleIndicators'
-						data-bs-slide-to={3}
-						aria-label='Slide 4'
-					/>
+                    
 				</div>
 				<div className='carousel-inner'>
 					<div className='carousel-item active'>
@@ -82,21 +77,7 @@ export const HomeBanner = () => {
 							</div>
 						</div>
 					</div>
-                    <div className='carousel-item'>
-						<div className='home-banner'>
-							<div className='container'>
-								<div className='home-banner-wrap'>
-									<div className='banner-wrapper'>
-										<h1 className='banner-title'>Uy-joy e’lonlaringizni bizning saytga joylashtiring</h1>
-										
-										<button className='banner-btn' href='#'>
-                    <img src={buttonPhone} alt="buton-phone" /> Biz bilan bog’lanish
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+                    
 				</div>
 			
 			</div>
