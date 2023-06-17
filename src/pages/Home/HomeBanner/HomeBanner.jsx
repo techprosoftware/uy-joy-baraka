@@ -2,10 +2,12 @@
 import React from 'react';
 import buttonPhone from '../../../../public/assets/images/home-phone.svg'
 import './HomeBanner.scss';
+import { HomeSearch } from './HomeSearch/HomeSearch';
 
 export const HomeBanner = () => {
 	return (
 		<>
+		<HomeSearch/>
 			{' '}
 			<div id='carouselExampleIndicators' className='carousel slide'>
 				<div className='carousel-indicators'>
