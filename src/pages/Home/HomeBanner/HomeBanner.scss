@@ -28,6 +28,9 @@
 
 
 .banner-btn {
+	display: flex;
+	align-items: center;
+	gap: 10px;
 	font-family: 'Gilroy';
     font-style: normal;
     font-weight: 500;
@@ -38,19 +41,17 @@
     border-radius: 6px;
     margin-top: 16px;
     border: none;
-    padding: 16px 9px 16px;
+    padding: 16px 9px 16px 18px;
 }
 
 .carousel-indicators {
 	position: absolute !important;
-//   top: 50% !important;
-	// right: 0 !important;
 	left: 50% !important;
-	bottom: 0% !important;
+	bottom: 20px !important;
 	transform: translate(-50%, -50%) !important;
 	z-index: 2;
 	display: flex;
-	justify-content: start !important;
+	justify-content: center !important;
 	padding: 0;
 	margin-right: 0 !important;
 	margin-bottom: 0 !important;
@@ -69,11 +70,13 @@
     background: #FF8D08 !important;
 	color: #FF8D08;
 }
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 993px) {
+	.home-banner-wrap {
+		padding: 44px 0 206px 0;
+	}
 	.banner-title {
 		font-size: 35px;
 		margin-bottom: 17px;
-	
 	}
 	
 	.banner-desc {
@@ -83,48 +86,72 @@
 	
 	.banner-btn {
 		padding: 10px 15px;
-		color: #3996f7;
+		color: #fff;
 		margin-bottom: 53px;
 		font-size: 14px;
 	}
 
-	.carousel-indicators {
-		margin-left: 5% !important;
+	
+}
+
+@media only screen and (max-width: 769px) {
+	.home-banner-wrap {
+		padding: 44px 0 110px 0;
+	}
+
+	.banner-title {
+		font-size: 35px;
+		margin-bottom: 17px;
+	}
+		
+	.banner-btn {
+		display: block;
+		padding: 8px 13px;
+		color: #fff;
+		margin-bottom: 53px;
+		font-size: 13px;
+	}
+
+	.banner-btn img {
+		width: 100%;
+		max-width: 25px;
 	}
 }
 
-@media only screen and (max-width: 768px) {
-
-	.banner-wrapper {
-		margin: 0 auto;
-	}
+@media only screen and (max-width: 600px) {
 
 	.banner-title {
-		font-size: 35px;
-		margin-bottom: 17px;
-		text-align: center;
-	
+		line-height: 46px;
 	}
-	
-	.banner-desc {
-		font-size: 14px;
-		margin: auto;
-		margin-bottom: 25px;
-		text-align: center;
 
-	}
-	
 	.banner-btn {
 		display: block;
-		padding: 10px 15px;
-		color: #3996f7;
-		margin: 0 auto;
+		padding: 7px 12px;
+		color: #fff;
 		margin-bottom: 53px;
-		font-size: 14px;
-		
+		font-size: 11px;
 	}
 
-	.carousel-indicators {
-		margin-left: 5% !important;
+	.banner-btn img {
+		width: 100%;
+		max-width: 20px;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.home-banner-wrap {
+		padding: 44px 0 106px 0;
+	}
+
+	.banner-btn {
+		display: block;
+		padding: 5px 10px;
+		color: #fff;
+		margin-bottom: 53px;
+		font-size: 10px;
+	}
+	.banner-title {
+		font-size: 24px;
+		line-height: 36px;
 	}
 }
