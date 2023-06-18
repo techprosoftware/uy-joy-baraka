@@ -1,16 +1,16 @@
 export default [
   {
     id: 1,
-    img: "@images/mock-img.png",
+    img: ".../../../../../public/assets/images/mock-img.png",
     city: "Tashkent",
-    view: 120,
+    view: 1220,
     likes: true,
     body: "Olmazor tumanida joylashgan2x kvartira ijaraga beriladi",
     price: "2250000",
   },
   {
     id: 2,
-    img: "@images/mock-img.png",
+    img: ".../../../../../public/assets/images/mock-img.png",
     city: "Tashkent",
     view: 120,
     likes: true,
@@ -19,7 +19,7 @@ export default [
   },
   {
     id: 3,
-    img: "@images/mock-img.png",
+    img: ".../../../../../public/assets/images/mock-img.png",
     city: "Tashkent",
     view: 120,
     likes: false,
@@ -28,7 +28,7 @@ export default [
   },
   {
     id: 4,
-    img: "@images/mock-img.png",
+    img: ".../../../../../public/assets/images/mock-img.png",
     city: "Tashkent",
     view: 120,
     likes: false,
@@ -37,7 +37,7 @@ export default [
   },
   {
     id: 5,
-    img: "@images/mock-img.png",
+    img: ".../../../../../public/assets/images/mock-img.png",
     city: "Tashkent",
     view: 120,
     likes: false,
@@ -46,7 +46,7 @@ export default [
   },
   {
     id: 6,
-    img: "@images/mock-img.png",
+    img: ".../../../../../public/assets/images/mock-img.png",
     city: "Tashkent",
     view: 120,
     likes: false,
@@ -55,7 +55,7 @@ export default [
   },
   {
     id: 7,
-    img: "@images/mock-img.png",
+    img: ".../../../../../public/assets/images/mock-img.png",
     city: "Tashkent",
     view: 120,
     likes: true,
@@ -64,7 +64,7 @@ export default [
   },
   {
     id: 8,
-    img: "@images/mock-img.png",
+    img: ".../../../../../public/assets/images/mock-img.png",
     city: "Tashkent",
     view: 120,
     likes: true,
@@ -73,7 +73,7 @@ export default [
   },
   {
     id: 9,
-    img: "@images/mock-img.png",
+    img: ".../../../../../public/assets/images/mock-img.png",
     city: "Tashkent",
     view: 120,
     likes: true,
@@ -82,9 +82,9 @@ export default [
   },
   {
     id: 10,
-    img: "@images/mock-img.png",
+    img: ".../../../../../public/assets/images/mock-img.png",
     city: "Tashkent",
-    view: 120,
+    view: 1220,
     likes: false,
     body: "Olmazor tumanida joylashgan2x kvartira ijaraga beriladi",
     price: "2250000",
