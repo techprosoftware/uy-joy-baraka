@@ -65,8 +65,15 @@
     padding: 15px 0;
 }
 
+.register__form div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .register__form a {
     text-align: end;
     margin-top: 20px;
     display: block;
+    text-decoration: none;
 }
