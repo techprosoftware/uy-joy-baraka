@@ -28,7 +28,8 @@ export const HomeSearch = () => {
                         <option value="samarqand">Samarqand</option>
                         <option value="sirdaryo">Sirdaryo</option>
                         <option value="surxondaryo">Surxondaryo</option>
-                        <option value="toshkent">Toshkent</option>
+                        <option value="toshkent">Toshkent shahri</option>
+                        <option value="toshkent-obl">Toshkent viloyati</option>
                         <option value="xorazm">Xorazm</option>
                     </select>
                    
