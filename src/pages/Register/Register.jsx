@@ -1,13 +1,36 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useRef } from 'react'
 import './Register.scss'
-import { useForm } from 'react-hook-form';
 
 export const Register = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
-    console.log(errors);
+   
+    const name = useRef()
+    const phone = useRef()
+
+    const handleSubmit = (e) => {
+            e.preventDefault()
+            console.log(phone.current.value);
+
+            var phoneNumber = phone.current.value;
+            function formatPhoneNumber(phoneNumber) {
+                
+                phoneNumber = phoneNumber.replace(/\D/g, '');
+              
+             
+                var formattedNumber = phoneNumber.replace(/(\d{5})(\d{3})(\d{2})(\d{2})/, "+$1...$3 $4");
+              
+                return formattedNumber;
+              }
+              
+              var formattedPhoneNumber = formatPhoneNumber(phoneNumber);
+              console.log(formattedPhoneNumber);
+              
+              
+    }
+
+        
+    
   return (
     <>
     <div className="register__inner ">
@@ -16,13 +39,13 @@ export const Register = () => {
                 <h3>Ro’yxatdan o’tish</h3>
                 <p>Saytimizdan foydalanish uchun iltimos oldin ro’yxatdan o’ting</p>
 
-                <form className='register__form' onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" placeholder="Ismingiz" {...register("First name", {required: true, maxLength: 80})} />
-                <input type="tel" placeholder="Telefon raqamingiz" {...register("Mobile number", {required: true, minLength: 6, maxLength: 12})} />
+                <form className='register__form' onSubmit={handleSubmit}>
+                    <input type="text" placeholder="Ismingiz" required  ref={name} />
+                    <input type="tel" placeholder="Telefon raqamingiz" required ref={phone} />
 
-                <button type="submit">Ro'yxahtdan o'tish</button>
-                
-                <a href="/login">Ro’yxatdan o’tganmisiz?</a>
+                    <button type="submit">Ro'yxatdan o'tish</button>
+                    
+                    <a href="/login">Ro’yxatdan o’tganmisiz?</a>
                 </form>
   
             </div>

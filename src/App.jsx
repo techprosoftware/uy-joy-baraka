@@ -6,6 +6,8 @@ import 'bootstrap/dist/js/bootstrap.js'
 import { Public } from './pages/Public/Public';
 import { Register } from './pages/Register/Register';
 import { Login } from './pages/Login/Login';
+import { SmsPage } from './pages/smsPage/smsPage';
+
 
 function App() {
 	return (
@@ -15,6 +17,7 @@ function App() {
 				<Route path='/' element={<Public />} />
 				<Route path='/register' element={<Register/>}/>
 				<Route path='/login' element={<Login/>}/>
+				<Route path='/sms' element={<SmsPage/>}/>
 				
 			</Routes>
 		
