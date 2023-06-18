@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-
-export const CardCarousel = () => {
+import './Private.scss'
+export const Private = () => {
   return (
-    <div>HomeCard</div>
+    <div>Private</div>
   )
 }

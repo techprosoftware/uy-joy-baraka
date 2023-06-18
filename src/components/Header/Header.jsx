@@ -12,12 +12,13 @@ import UserIcon from '@images/user-icon.svg'
 
 export const Header = () => {
   const [drop, setDrop] = useState(false)
-  console.log(drop);
+  const [burger, setBurger] = useState(false)
+ 
   return (
     <div className='site-header'>
       <div className="container">
         <div className="site-haeder__inner">
-          <Link to='/'><img src={SiteLogo} width={133} height={59} alt="Site logo" /></Link>
+          <Link to='/'><img className='site-logo' src={SiteLogo} width={133} height={59} alt="Site logo" /></Link>
           <nav className='nav'>
             <ul className='nav__list'>
               <li className='nav__item new-poster'>
@@ -25,12 +26,12 @@ export const Header = () => {
               </li>
               <li className='nav__item chat-icon'>
                 <Link className='nav__link' to={'#'}>
-                  <img className='nav__img' src={ChatIcon} width={48} height={48} alt='Chat icon'/>
+                  <img className='nav__img' src={ChatIcon} width={30} height={30} alt='Chat icon'/>
                 </Link>
               </li>
               <li className='nav__item heart-icon'>
                 <Link className='nav__link' to={'#'}>
-                  <img className='nav__img' src={HeartIcon} width={48} height={48} alt='Liked products icon'/>
+                  <img className='nav__img' src={HeartIcon} width={30} height={30} alt='Liked products icon'/>
                 </Link>
               </li>
               <li className='nav__item lang-icon'>
@@ -61,7 +62,36 @@ export const Header = () => {
                   </div>
               </li>
             </ul>
+            <button className={`burger ${burger ? 'burger-click' : ''}`} onClick={() => setBurger(!burger)}>
+              <span className='burger__top'></span>
+              <span className='burger__mid'></span>
+              <span className='burger__bot'></span>
+            </button>
           </nav>
+          <div className={`model ${burger ? 'model-open' : ''}`}>
+            <div className='model__inner'>
+              <ul className='nav__list'>
+                  <li className='nav__item new-poster'>
+                    <Link className='nav__link' to={'#'}>+ E’lon joylash</Link>
+                  </li>
+                  <li className='nav__item chat-icon'>
+                    <Link className='nav__link' to={'#'}>
+                      <img className='nav__img' src={ChatIcon} width={48} height={48} alt='Chat icon'/>
+                    </Link>
+                  </li>
+                  <li className='nav__item heart-icon'>
+                    <Link className='nav__link' to={'#'}>
+                      <img className='nav__img' src={HeartIcon} width={48} height={48} alt='Liked products icon'/>
+                    </Link>
+                  </li>
+                  <li className='nav__item lang-icon'>
+                    <button className='nav__link'>
+                      <img className='nav__img' src={LangUzbIcon} width={74} height={27} alt='Language switch icon'/>
+                    </button>
+                  </li>
+                </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

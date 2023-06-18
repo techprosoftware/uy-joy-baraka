@@ -1,0 +1,79 @@
+
+.register__inner {
+    padding: 100px 0;
+}
+
+.register__wrapper {
+    text-align: center;
+    // position: absolute;
+    width: 100%;
+   
+
+}
+
+.register__wrapper h3 {
+    margin: 0;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    color: #000000;
+}
+
+.register__wrapper p {
+    margin: 0;
+    margin-bottom: 31px;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
+
+.register__form {
+    width: 100%;
+    max-width:550px;
+    display: block;
+    margin: 0 auto;
+}
+
+.register__form input {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px 0 15px 19px;
+    border: 1px solid #008B51;
+    border-radius: 9px;
+    outline: none;
+}
+
+.register__form button {
+    background: #008B51;
+    border-radius: 9px;
+    outline: none;
+    width: 100%;
+    margin-top: 12px;
+    border: none;
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    padding: 15px 0;
+}
+
+.register__form div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.register__form a {
+    text-align: end;
+    margin-top: 20px;
+    display: block;
+    text-decoration: none;
+}
