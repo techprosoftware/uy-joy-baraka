@@ -14,7 +14,7 @@ export const Login = () => {
         <div className="container">
             <div className="login__wrapper">
                 <h3>Kirish</h3>
-                <p>Saytimizga kirish uchun ismingiz va raqamingizni kiriting</p>
+                <p className='mt-2'>Saytimizga kirish uchun ismingiz va raqamingizni kiriting</p>
 
                 <form className='login__form' onSubmit={handleSubmit(onSubmit)}>
                 <input type="tel" placeholder="Telefon raqamingiz" {...register("Mobile number", {required: true, minLength: 6, maxLength: 12})} />
