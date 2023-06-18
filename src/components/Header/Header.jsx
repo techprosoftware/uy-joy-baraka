@@ -26,12 +26,12 @@ export const Header = () => {
               </li>
               <li className='nav__item chat-icon'>
                 <Link className='nav__link' to={'#'}>
-                  <img className='nav__img' src={ChatIcon} width={48} height={48} alt='Chat icon'/>
+                  <img className='nav__img' src={ChatIcon} width={30} height={30} alt='Chat icon'/>
                 </Link>
               </li>
               <li className='nav__item heart-icon'>
                 <Link className='nav__link' to={'#'}>
-                  <img className='nav__img' src={HeartIcon} width={48} height={48} alt='Liked products icon'/>
+                  <img className='nav__img' src={HeartIcon} width={30} height={30} alt='Liked products icon'/>
                 </Link>
               </li>
               <li className='nav__item lang-icon'>
