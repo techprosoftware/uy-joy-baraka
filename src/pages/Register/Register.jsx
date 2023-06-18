@@ -2,16 +2,21 @@
 /* eslint-disable no-unused-vars */
 import React, { useRef } from 'react'
 import './Register.scss'
+import { useDispatch } from 'react-redux'
+import { setPhone } from '../../redux/phoneNumber/phoneAction'
+import { useNavigate } from 'react-router'
 
 export const Register = () => {
    
     const name = useRef()
     const phone = useRef()
+    const password = useRef()
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
             e.preventDefault()
-            console.log(phone.current.value);
 
+            
             var phoneNumber = phone.current.value;
             function formatPhoneNumber(phoneNumber) {
                 
@@ -24,8 +29,8 @@ export const Register = () => {
               }
               
               var formattedPhoneNumber = formatPhoneNumber(phoneNumber);
-              console.log(formattedPhoneNumber);
-              
+              window.localStorage.setItem('phone', formattedPhoneNumber)
+              navigate('/sms')             
               
     }
 
@@ -37,10 +42,11 @@ export const Register = () => {
         <div className="container">
             <div className="register__wrapper">
                 <h3>Ro’yxatdan o’tish</h3>
-                <p>Saytimizdan foydalanish uchun iltimos oldin ro’yxatdan o’ting</p>
+                <p className='mt-2'>Saytimizdan foydalanish uchun iltimos oldin ro’yxatdan o’ting</p>
 
                 <form className='register__form' onSubmit={handleSubmit}>
                     <input type="text" placeholder="Ismingiz" required  ref={name} />
+                    <input type="text" placeholder="Parolingiz" required  ref={password} />
                     <input type="tel" placeholder="Telefon raqamingiz" required ref={phone} />
 
                     <button type="submit">Ro'yxatdan o'tish</button>
