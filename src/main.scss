@@ -1,14 +1,27 @@
-@import 'fonts.scss';
+@import "fonts.scss";
 
 body {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .container {
-	width: 100% !important;
-	max-width: 1210px !important;
-	padding: 0 20px !important;
-	margin: 0 auto !important;
+  width: 100% !important;
+  max-width: 1210px !important;
+  padding: 0 20px !important;
+  margin: 0 auto !important;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+
+  & li {
+    list-style: none;
+  }
+}
+
+a {
+  text-decoration: none;
 }

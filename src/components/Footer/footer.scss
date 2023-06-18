@@ -1,0 +1,247 @@
+//* Footer wrapper as SCSS
+.upper-footer {
+  // Custom styles
+  background-color: #00cb76;
+}
+
+.pre-footer {
+  // Margin, paddings
+  margin: 70px 0 0 0;
+
+  // Custom properties
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .pre-footer__inner:nth-child(2) {
+    width: 100%;
+    max-width: 451px;
+  }
+
+  .pre-footer__inner .pre-footer__text {
+    // Fonts
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 29px;
+    color: #ffffff;
+  }
+
+  .pre-footer__bg {
+    margin-top: -70px;
+  }
+
+  // Pre footer links
+  .pre-footer__button {
+    box-shadow: 14px 51px 127px 45px rgba(183, 255, 223, 0.64);
+    -webkit-box-shadow: 14px 35px 127px 40px rgba(183, 255, 223, 0.64);
+    -moz-box-shadow: 14px 51px 127px 45px rgba(183, 255, 223, 0.64);
+  }
+
+  .pre-footer__links:nth-child(2) {
+    margin-top: 20px;
+  }
+}
+
+//* Pre-footer responsiveness
+// ✅ 1033px
+@media only screen and (max-width: 1033px) {
+  .pre-footer {
+    .pre-footer__inner:nth-child(2) {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .pre-footer__button img {
+      width: 100%;
+    }
+
+    .pre-footer__bg {
+      width: 100%;
+    }
+
+    .pre-footer__inner .pre-footer__text {
+      font-size: 20px;
+    }
+  }
+}
+
+// ✅ 611px
+@media only screen and (max-width: 611px) {
+  .pre-footer {
+    .pre-footer__inner .pre-footer__text {
+      font-size: 16px;
+    }
+  }
+}
+
+// ✅ 497px
+@media only screen and (max-width: 497px) {
+  .pre-footer {
+    .pre-footer__inner:nth-child(2) {
+      width: 100%;
+      max-width: 197px;
+    }
+
+    .pre-footer__inner .pre-footer__text {
+      font-size: 14px;
+    }
+  }
+}
+//* Pre-footer responsiveness
+
+//* Footer
+.footer {
+  // Margin, paddings
+  padding: 37px 0 20px 0;
+
+  background-color: #008b51;
+
+  .footer-inner {
+    // Custom properties
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 0 15px 0;
+    border-top: 0.5px solid #ffffff;
+
+    // Footer items
+    & .footer__items {
+      display: flex;
+
+      .footer__aboutLink {
+        // Margin, paddings
+        margin-right: 28px;
+
+        font-family: "Gilroy";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 27px;
+        font-feature-settings: "pnum" on, "lnum" on, "liga" off;
+        color: #ffffff;
+      }
+
+      & a {
+        font-family: "Inter", sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 17px;
+        color: #ffffff;
+      }
+
+      // Footer lists
+
+      .footer__list {
+        display: flex;
+      }
+
+      .links a {
+        margin-right: 49px;
+      }
+
+      .social_links a {
+        margin-left: 13px;
+      }
+    }
+  }
+
+  .footer__innerTitle {
+    width: 100%;
+    max-width: 1110px;
+
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #ffffff;
+  }
+}
+
+//* Footer responsiveness
+// ✅ 920px
+@media only screen and (max-width: 920px) {
+  .footer {
+    .footer-inner {
+      flex-direction: column;
+      row-gap: 20px;
+      & .footer__items {
+        .footer__aboutLink {
+          font-size: 19px;
+        }
+
+        & a {
+          font-size: 13px;
+        }
+
+        .links a {
+          margin-right: 30px;
+        }
+      }
+    }
+  }
+}
+
+// ✅ 500px
+@media only screen and (max-width: 560px) {
+  .footer {
+    text-align: center;
+    .footer-inner {
+      & .footer__items {
+        .footer__aboutLink {
+          font-size: 18px;
+        }
+
+        & a {
+          font-size: 13px;
+        }
+
+        .links a {
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .footer__innerTitle {
+      line-height: 19px;
+      text-align: center;
+    }
+  }
+}
+
+// ✅ 427px
+@media only screen and (max-width: 427px) {
+  .footer {
+    .footer-inner {
+      & .footer__items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .footer__aboutLink {
+          margin-right: 15px;
+
+          font-size: 20px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+
+        & a {
+          font-size: 14px;
+        }
+
+        .links {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+      }
+    }
+  }
+}
+
+//* Footer responsiveness

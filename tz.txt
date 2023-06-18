@@ -1,1 +1,6 @@
+⚠RULES
+1. Do not extract images without compressing.
+2. Do not review or change other's code.
+3. Work with comments, when needed.
+
 1. /Register - Token-Redux, cookie-get
