@@ -1,26 +1,20 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
-import "./HomeCard.scss";
-import data from "../../../components/Cards/data";
-import { Card } from "../../../components/Cards/Cards";
+
+import React from 'react'
+import './HomeCard.scss'
+import { CardList } from '@components/CardList/CardList'
+import { MoreBtn } from '../../../components/MoreBtn/MoreBtn'
 
 export const HomeCards = () => {
-  const [card, setCard] = useState();
-  useEffect(() => {
-    data.forEach((item) => {
-      setCard(item);
-      console.log(item);
-    });
-  }, []);
-  // console.log(card);
 
   return (
     <>
-      <div className="home__card__inner">
-        <div className="container">
-          <Card card={card} />
-        </div>
+    <div className="home__card__inner">
+      <div className="container">
+        <CardList/>
+        <MoreBtn/>
       </div>
+    </div>
     </>
   );
 };
