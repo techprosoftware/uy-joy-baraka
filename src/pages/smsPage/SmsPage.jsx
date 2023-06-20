@@ -7,17 +7,32 @@ import './smsPage.scss'
 export const SmsPage = () => {
     const phone = window.localStorage.getItem('phone') 
 
+    const [time, setTime] = useState(9);
 
+    useEffect(() => {
+      const interval = setInterval(() => {
+        if (time > 0) {
+          setTime(time - 1);
+        }else {
+          clearInterval(interval)
+        }
+        
+      }, 1000);
+  
+      return () => {
+        clearInterval(interval);
+      };
+    }, [time]);
   return (
     <>
-    <div className="register__inner ">
+    <div className="sms__inner ">
         <div className="container">
-            <div className="register__wrapper">
+            <div className="sms__wrapper">
                 <h3>Kodni kiriting</h3>
                 <p className='mt-2'>Quyidagi telefon raqamga kod yuborildi {phone ? phone : ''}</p>
 
-                <form className='register__form' >
-                <input type="number" placeholder="Kodni Kiriting" />
+                <form className='sms__form' >
+               <div className='d-flex align-items-center'> <input type="number" placeholder="Kodni Kiriting" /> <span className='second'>{time} sek</span></div>
 
                 <button type="submit">Yuborish</button>
                 
