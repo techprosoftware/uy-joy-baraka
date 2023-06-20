@@ -14,7 +14,7 @@ function App() {
 		<>
 	
 			<Routes>
-				<Route path='/' element={<Public />} />
+				<Route path='/*' element={<Public />} />
 				<Route path='/register' element={<Register/>}/>
 				<Route path='/login' element={<Login/>}/>
 				<Route path='/sms' element={<SmsPage/>}/>
