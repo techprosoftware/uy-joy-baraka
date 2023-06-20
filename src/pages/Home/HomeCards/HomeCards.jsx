@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 import React from 'react'
 import './HomeCard.scss'
 import { CardList } from '@components/CardList/CardList'
@@ -15,5 +16,5 @@ export const HomeCards = () => {
       </div>
     </div>
     </>
-  )
-}
+  );
+};

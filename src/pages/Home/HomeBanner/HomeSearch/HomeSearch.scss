@@ -1,5 +1,3 @@
-
-
 .search__inner {
     padding: 20px 0;
 }
@@ -19,14 +17,14 @@
 }
 
 .select__sale {
-    padding: 9px 0 9px 9px ;
+    padding: 9px 0 9px 9px;
     border: none;
     outline: none;
     width: 100%;
     max-width: 700px;
-    border: 1px solid #008B51;
+    border: 1px solid #008b51;
     border-radius: 6px;
-    font-family: 'Gilroy';
+    font-family: "Gilroy";
     font-style: normal;
     font-weight: 400;
     font-size: 22px;
@@ -35,25 +33,26 @@
     cursor: pointer;
 }
 
-.select__region {max-width: 251px;}
+.select__region {
+    max-width: 251px;
+}
 
 .search__btn a {
     text-decoration: none;
-    background: #008B51;
+    background: #008b51;
     border-radius: 6px;
-    font-family: 'Gilroy';
+    font-family: "Gilroy";
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 32px;
     padding: 9px 40px;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 @media only screen and (max-width: 600px) {
-	
-	.select__sale {
-        padding: 8px 0 8px 8px ;
+    .select__sale {
+        padding: 8px 0 8px 8px;
         font-size: 16px;
         line-height: 26px;
     }
@@ -62,6 +61,5 @@
         font-size: 16px;
         line-height: 32px;
         padding: 9px 30px;
-     ;
     }
 }
