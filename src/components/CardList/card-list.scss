@@ -1,0 +1,28 @@
+.card-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 15px;
+  row-gap: 37px;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+//******************//
+//***   MOBILE   ***//
+//******************//
+
+@media only screen and (max-width: 576px) {
+  .card-list {
+    column-gap: 10px;
+    row-gap: 16px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .card-list {
+    column-gap: 7px;
+  }
+}
