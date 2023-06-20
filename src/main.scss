@@ -25,3 +25,13 @@ ul {
 a {
   text-decoration: none;
 }
+
+//******************//
+//***   MOBILE   ***//
+//******************//
+
+@media only screen and (max-width: 576px) {
+  .container {
+    padding: 0 16px !important;
+  }
+}
