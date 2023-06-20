@@ -17,8 +17,27 @@
   &:hover {
     opacity: 0.8;
   }
-  
+
   &:active {
     opacity: 0.6;
+  }
+}
+
+//******************//
+//***   MOBILE   ***//
+//******************//
+
+@media only screen and (max-width: 576px) {
+  .more-btn {
+    padding: 11px 33px;
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .more-btn {
+    padding: 11px 33px;
+    font-size: 12px;
+    line-height: 100%;
   }
 }
