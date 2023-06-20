@@ -1,6 +1,7 @@
-import "back-button.scss"
-import { Link } from "react-router-dom"
+import "./back-button.scss"
+import { useNavigate } from "react-router-dom"
 
-export const BackButton = (to) => {
-  return <Link className="back-link" to={to}>Orqaga</Link>
+export const BackButton = () => {
+  const navigate = useNavigate()
+  return <button className="back-link" onClick={() => navigate(-1)}>Orqaga</button>
 }

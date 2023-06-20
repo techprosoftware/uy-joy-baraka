@@ -1,6 +1,7 @@
 .back-link {
   display: flex;
   align-items: center;
+  margin-top: 20px;
   padding: 10px 34px 9px 19px;
   font-family: "Gilroy";
   font-weight: 500;
@@ -32,6 +33,7 @@
 
 @media only screen and (max-width: 576px) {
   .back-link {
+    margin-top: 17px;
     padding: 9px 16px;
     font-size: 14px;
     line-height: 17px;
