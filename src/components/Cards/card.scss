@@ -1,7 +1,7 @@
 .card {
   max-width: 222px;
   width: 100%;
-  background: #FFFFFF;
+  background-color: #ffffff;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
   border-radius: 5px;
 
@@ -34,7 +34,7 @@
 }
 
 .card__view {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -80,5 +80,26 @@
 
 .card__wrap {
   padding: 3px 10px 19px 16px;
+}
 
+//******************//
+//***   MOBILE   ***//
+//******************//
+
+@media only screen and (max-width: 576px) {
+  .card {
+    max-width: 192px;
+  }
+
+  .card__view {
+    display: none;
+  }
+
+  .card__wrap {
+    padding: 0 3px 16px 6px;
+  }
+
+  .card__price {
+    margin: 24px 0 0 0;
+  }
 }
