@@ -8,7 +8,7 @@ export const Card = (card) => {
   const customPrice = card.card?.price.toLocaleString().replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, '$1 ');
 
   return (
-    <div className="card">
+    <li className="card">
       <img
         className="card__img"
         src={`../../../public/assets/images${card.card?.img}`}
@@ -33,6 +33,6 @@ export const Card = (card) => {
       <h3 className="card__body">{card.card?.body}</h3>
       <p className="card__price">{customPrice} {"s'om"}</p>
      </div>
-    </div>
+    </li>
   )
 }
