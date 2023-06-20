@@ -27,7 +27,7 @@ export const CardSingle = () => {
               </div>
               <div className="card-single__content">
                 <div className="card-single__top">
-                  <div className="d-flex">
+                  <div className="d-flex card-single__date">
                     <time className="card-single__time">
                       {data.cretated_at}
                     </time>
@@ -57,7 +57,7 @@ export const CardSingle = () => {
                   >
                     Uy egasiga yozish
                   </textarea>
-                  <div className="d-flex justify-content-between">
+                  <div className="d-flex justify-content-between card-single__btns">
                     <a
                       className="card-single__call-btn"
                       href={"tel:+" + data.user.phone}
