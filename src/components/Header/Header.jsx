@@ -22,7 +22,7 @@ export const Header = () => {
           <nav className='nav'>
             <ul className='nav__list'>
               <li className='nav__item new-poster'>
-                <Link className='nav__link' to={'#'}>+ E’lon joylash</Link>
+                <Link className='nav__link' to={'/upload'}>+ E’lon joylash</Link>
               </li>
               <li className='nav__item chat-icon'>
                 <Link className='nav__link' to={'#'}>
