@@ -1,0 +1,182 @@
+.card-single {
+  display: flex;
+  column-gap: 34px;
+  margin-top: 32px;
+}
+
+.card-sigle__pics {
+  display: flex;
+  max-width: 666px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.card-single__content {
+  max-width: 470px;
+  width: 100%;
+}
+
+.card-single__top {
+  display: flex;
+  align-items: center;
+}
+
+.card-single__time {
+  display: inline-block;
+  margin-right: 14px;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #666666;
+}
+
+.card-single__view {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #666666;
+}
+
+.card-single__view::before {
+  content: "";
+  display: inline-block;
+  margin-right: 2px;
+  width: 13px;
+  height: 8px;
+  background-image: url("@images/card-view-icon.svg");
+  background-repeat: no-repeat;
+}
+
+.card-single__share-btn {
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+  padding: 3px 7px 2px 10px;
+  background-color: #008b51;
+  border: none;
+  border-radius: 5px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ffffff;
+}
+
+.card-single__share-btn::before {
+  content: "";
+  display: inline-block;
+  margin-right: 7px;
+  width: 23px;
+  height: 23px;
+  background-image: url("@images/card-single-share-icon.svg");
+  background-repeat: no-repeat;
+}
+
+.card-single__user-info {
+  display: flex;
+  align-items: center;
+  margin-left: 88px;
+
+  & span {
+    margin-left: 10px;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #666666;
+  }
+}
+
+.card-single__title {
+  margin: 15px 0 0;
+  padding: 0;
+  font-family: "Gilroy";
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 100%;
+  color: #000000;
+}
+
+.card-single__text {
+  margin: 10px 0 0;
+  padding: 0;
+  font-family: "Gilroy";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #666666;
+}
+
+.card-single__area {
+  max-width: 470px;
+  width: 100%;
+  margin: 10px 0;
+  padding: 7px 8px;
+  background-color: #f1f1f1;
+  font-family: "Gilroy";
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 16px;
+  color: #ababab;
+  border: none;
+  outline: none;
+
+  &:focus {
+    border: 1px solid #ababab;
+  }
+}
+
+.card-single__call-btn {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #008b51;
+  border-radius: 6px;
+  font-family: "Gilroy";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 24px;
+    background-image: url("@images/card-call-icon.svg");
+    background-repeat: no-repeat;
+  }
+}
+
+.card-single__send-btn {
+  padding: 11px 68px;
+  font-family: "Gilroy";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+  background-color: #ff8d08;
+  border-radius: 6px;
+  border: none;
+}
+
+.suggestion {
+  margin-top: 60px;
+}
+
+.suggestion__title {
+  margin-bottom: 37px;
+  padding: 0;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 59px;
+  color: #008b51;
+}
