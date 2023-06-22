@@ -43,10 +43,17 @@
 input[type="file"] {
   display: none;
 }
-
-.upload__img {
+.upload__wrap {
   width: 100%;
   max-width: 570px;
+  position: relative;
+}
+
+.upload__wrap + .upload__wrap {
+  margin-top: 40px;
+}
+
+.upload__img {
   justify-content: center;
   gap: 35px;
   display: flex;
@@ -62,4 +69,127 @@ input[type="file"] {
   color: #008b51;
   padding: 35px 0;
   cursor: pointer;
+}
+
+.upload__wrap p {
+  position: absolute;
+  left: -26%;
+  top: 40%;
+  margin: 0;
+}
+
+.upload__region {
+  width: 100%;
+  padding: 18px 28px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: #fff;
+  color: rgba(39, 39, 39, 0.5);
+  font-size: 20px;
+  font-family: Gilroy;
+  font-weight: 300;
+  line-height: 100%;
+  cursor: pointer;
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
+}
+
+.address__input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 18px 28px;
+  color: rgba(39, 39, 39, 0.5);
+  font-size: 20px;
+  font-family: Gilroy;
+  font-weight: 300;
+  line-height: 100%;
+  background: #fff;
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
+}
+
+.upload__title__area {
+  width: 100%;
+  border-radius: 5px;
+  padding: 18px 28px;
+
+  background: #fff;
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+.upload__price {
+  display: flex;
+  gap: 15px;
+}
+
+.price__input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 18px 28px;
+  color: rgba(39, 39, 39, 0.5);
+  font-size: 20px;
+  font-family: Gilroy;
+  font-weight: 300;
+  line-height: 100%;
+  background: #fff;
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
+}
+
+.phone__input {
+  width: 50%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 18px 28px;
+  color: rgba(39, 39, 39, 0.5);
+  font-size: 20px;
+  font-family: Gilroy;
+  font-weight: 300;
+  line-height: 100%;
+  background: #fff;
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
+}
+
+.upload__btn {
+  display: block;
+  width: 100%;
+  max-width: 570px;
+  border: none;
+  outline: none;
+  margin-top: 40px;
+  color: #fff;
+  font-size: 20px;
+  font-family: Gilroy;
+  font-weight: 500;
+  line-height: 100%;
+  padding: 15px 0;
+  background: var(--brand-color, #008b51);
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 915px) {
+  .upload__wrap p {
+    position: relative;
+    left: 0;
+    top: 0;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  // .upload__price {
+  //   display: block;
+  //   gap: 0;
+  // }
+
+ 
+
+  .phone__input {
+    width: 100%;
+  }
 }

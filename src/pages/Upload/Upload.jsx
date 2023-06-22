@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React from "react";
 import "./Upload.scss";
@@ -15,11 +16,91 @@ export const Upload = () => {
         <h2 className="upload__title">E’lon joylash</h2>
 
         <form className="upload__form">
-          <p>Uy rasmini yuklang:</p>
+
+          <div className="upload__wrap">
+            <p>Uy rasmini yuklang:</p>
           <label className="upload__img" htmlFor="upload">
             <img src={plus} alt="" /> Rasm yuklang
+            <input type="file" id="upload" visibility="hidden" />
           </label>
-          <input type="file" id="upload" visibility="hidden" />
+          
+          </div>
+
+          <div className="upload__wrap">
+            <p>Shaharni tanlang:</p>
+            <select className="upload__region">
+              <option disabled selected value="def">Viloyat tanlang</option>
+              <option value="toshkent">Toshkent shahri</option>
+              <option value="andijon">Andijon</option>
+              <option value="buxoro">Buxoro</option>
+              <option value="fargona">Farg`ona</option>
+              <option value="jizzax">Jizzax</option>
+              <option value="xorazm">Xorazm</option>
+              <option value="namangan">Namangan</option>
+              <option value="navoiy">Navoiy</option>
+              <option value="qashqadaryo">Qashqadaryo</option>
+              <option value="samarqand">Samarqand</option>
+              <option value="sirdaryo">Sirdaryo</option>
+              <option value="surxondaryo">Surxondaryo</option>
+              <option value="toshkent-obl">Toshkent viloyati</option>
+              <option value="xorazm">Xorazm</option>
+            </select>
+            <select className="upload__region mt-2">
+              <option disabled selected value="def" >Tuman tanlang</option>
+              <option value="toshkent">Chilonzor</option>
+              <option value="andijon">Andijon</option>
+              <option value="buxoro">Buxoro</option>
+              <option value="fargona">Farg`ona</option>
+              <option value="jizzax">Jizzax</option>
+              <option value="xorazm">Xorazm</option>
+              <option value="namangan">Namangan</option>
+              <option value="navoiy">Navoiy</option>
+              <option value="qashqadaryo">Qashqadaryo</option>
+              <option value="samarqand">Samarqand</option>
+              <option value="sirdaryo">Sirdaryo</option>
+              <option value="surxondaryo">Surxondaryo</option>
+              <option value="toshkent-obl">Toshkent viloyati</option>
+              <option value="xorazm">Xorazm</option>
+            </select>
+          </div>
+
+          <div className="upload__wrap">
+            <p>Manzil:</p>
+           <input className="address__input" type="text" placeholder="Manzil" />
+           <select className="upload__region mt-2">
+            <option disabled selected value="def">Ijara yoki sotuv</option>
+              <option value="toshkent">Sotuv</option>
+              <option value="andijon">Ijara</option>
+            </select>
+          </div>
+
+          <div className="upload__wrap">
+            <p>Sarlavha kiriting:</p>
+            <textarea className="upload__title__area" placeholder="Sarlavha" rows="5"></textarea>
+          </div>
+
+          <div className="upload__wrap">
+            <p>Uy haqida ma’lumot:</p>
+            <textarea className="upload__title__area" placeholder="Uy haqida ma’lumot" rows="6"></textarea>
+          </div>
+
+          <div className="upload__wrap ">
+            <p>Narx Kiriting:</p>
+            <div className="upload__price">
+            <input className="price__input" type="text" placeholder="123" />
+            <select className="upload__region">
+              <option value="som">So'm</option>
+              <option value="dollar">Dollar</option>
+            </select>
+            </div>
+          </div>
+
+          <div className="upload__wrap">
+            <p>Telefon raqam:</p>
+           <input className="phone__input" type="text" placeholder="+998" />
+          </div>
+
+          <button type="submit" className="upload__btn">Saqlash</button>
         </form>
       </div>
     </div>
