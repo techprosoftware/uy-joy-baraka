@@ -173,6 +173,17 @@ input[type="file"] {
   box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
 }
 
+.images__wrap {
+  width: 100%;
+  max-width: 570px;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.images__wrap img {
+  width: 50%;
+}
+
 @media only screen and (max-width: 915px) {
   .upload__wrap p {
     position: relative;

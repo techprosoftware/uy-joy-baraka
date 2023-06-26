@@ -1,10 +1,13 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import buttonPhone from "../../../../public/assets/images/home-phone.svg";
 import "./HomeBanner.scss";
-import { HomeSearch } from "./HomeSearch/HomeSearch";
+import { HomeSearch } from "../../../components/HomeSearch/HomeSearch";
 
 export const HomeBanner = () => {
+
+ 
+
   return (
     <>
       <HomeSearch />{" "}
