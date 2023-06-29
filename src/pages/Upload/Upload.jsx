@@ -38,6 +38,7 @@ export const Upload = () => {
   };
 
   const removeImage = (index) => {
+    // e.preventDefault()
     const updatedImages = [...selectedImages];
     updatedImages.splice(index, 1);
     setSelectedImages(updatedImages);
@@ -69,12 +70,12 @@ export const Upload = () => {
       ))}
         </div> */}
 
-          {selectedImages.map((image, index) => (
-            <div key={index}>
-              <img width={570} src={image} alt={`Selected Image ${index}`} />
-              <button onClick={() => removeImage(index)}>O'chirish</button>
+          <div className="row img__wrapper">{selectedImages.map((image, index) => (
+            <div className="position-relative col-md-6 mb-3" key={index}>
+              <img  className="img-fluid rounded-2" src={image} alt={`Selected Image ${index}`} />
+              <button  className="delete__img__btn btn btn-primary"  onClick={(e) => removeImage(index)}>O'chirish</button>
             </div>
-          ))}
+          ))}</div>
 
           <div className="upload__wrap">
             <p>Uy rasmini yuklang:</p>
