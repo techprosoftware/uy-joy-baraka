@@ -5,6 +5,7 @@ import "./Upload.scss";
 import arrow from "../../../public/assets/images/left-arrow.svg";
 import { Link } from "react-router-dom";
 import plus from "../../../public/assets/images/plus-upload.svg";
+import close from '../../../public/assets/images/close.png'
 
 export const Upload = () => {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -72,8 +73,8 @@ export const Upload = () => {
 
           <div className="row img__wrapper">{selectedImages.map((image, index) => (
             <div className="position-relative col-md-6 mb-3" key={index}>
-              <img  className="img-fluid rounded-2" src={image} alt={`Selected Image ${index}`} />
-              <button  className="delete__img__btn btn btn-primary"  onClick={(e) => removeImage(index)}>O'chirish</button>
+              <img  className="img-fluid rounded-2 img__item" src={image} alt={`Selected Image ${index}`} />
+              <img  className="delete__img__btn " src={close} onClick={(e) => removeImage(index)} />
             </div>
           ))}</div>
 
