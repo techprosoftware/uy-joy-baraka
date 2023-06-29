@@ -209,8 +209,9 @@ input[type="file"] {
   position: absolute;
   top: 5px;
   right: 15px;
-  width: 70px;
-  padding: 0;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }
 
 
@@ -221,7 +222,7 @@ input[type="file"] {
   margin-bottom: 20px;
 }
 
-.img__wrapper img {
+.img__item {
   min-height: 146.8px;
   max-height: 146.8px;
 }
