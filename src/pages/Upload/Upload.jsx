@@ -72,7 +72,7 @@ export const Upload = () => {
         </div> */}
 
           <div className="row img__wrapper">{selectedImages.map((image, index) => (
-            <div className="position-relative col-md-6 mb-3" key={index}>
+            <div className="position-relative col-6 col-sm-6 col-md-6 mb-3" key={index}>
               <img  className="img-fluid rounded-2 img__item" src={image} alt={`Selected Image ${index}`} />
               <img  className="delete__img__btn " src={close} onClick={(e) => removeImage(index)} />
             </div>

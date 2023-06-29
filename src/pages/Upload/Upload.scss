@@ -225,4 +225,6 @@ input[type="file"] {
 .img__item {
   min-height: 146.8px;
   max-height: 146.8px;
+  object-fit: cover;
+  object-position: center;
 }
