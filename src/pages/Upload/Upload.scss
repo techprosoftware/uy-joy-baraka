@@ -204,3 +204,27 @@ input[type="file"] {
     width: 100%;
   }
 }
+
+.delete__img__btn {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+
+.img__wrapper {
+  width: 100%;
+  max-width: 570px;
+  padding: 0 !important;
+  margin-bottom: 20px;
+}
+
+.img__item {
+  min-height: 146.8px;
+  max-height: 146.8px;
+  object-fit: cover;
+  object-position: center;
+}

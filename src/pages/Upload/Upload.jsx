@@ -5,6 +5,7 @@ import "./Upload.scss";
 import arrow from "../../../public/assets/images/left-arrow.svg";
 import { Link } from "react-router-dom";
 import plus from "../../../public/assets/images/plus-upload.svg";
+import close from '../../../public/assets/images/close.png'
 
 export const Upload = () => {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -38,6 +39,7 @@ export const Upload = () => {
   };
 
   const removeImage = (index) => {
+    // e.preventDefault()
     const updatedImages = [...selectedImages];
     updatedImages.splice(index, 1);
     setSelectedImages(updatedImages);
@@ -69,12 +71,12 @@ export const Upload = () => {
       ))}
         </div> */}
 
-          {selectedImages.map((image, index) => (
-            <div key={index}>
-              <img width={570} src={image} alt={`Selected Image ${index}`} />
-              <button onClick={() => removeImage(index)}>O'chirish</button>
+          <div className="row img__wrapper">{selectedImages.map((image, index) => (
+            <div className="position-relative col-6 col-sm-6 col-md-6 mb-3" key={index}>
+              <img  className="img-fluid rounded-2 img__item" src={image} alt={`Selected Image ${index}`} />
+              <img  className="delete__img__btn " src={close} onClick={(e) => removeImage(index)} />
             </div>
-          ))}
+          ))}</div>
 
           <div className="upload__wrap">
             <p>Uy rasmini yuklang:</p>
