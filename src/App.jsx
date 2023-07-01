@@ -8,24 +8,34 @@ import { Register } from './pages/Register/Register';
 import { Login } from './pages/Login/Login';
 import { SmsPage } from './pages/smsPage/smsPage';
 import { CardSingle } from './components/CardSingle/CardSingle'
+import { Messaging } from './pages/Messaging/Messaging'
 
 
 function App() {
 	return (
-		<>
-	
-			<Routes>
-				<Route path='/*' element={<Public />} />
-				<Route path='/register' element={<Register/>}/>
-				<Route path='/login' element={<Login/>}/>
-				<Route path='/sms' element={<SmsPage/>}/>
-				<Route path='/card' element={<CardSingle/>}/>
-				
-			</Routes>
-		
-			
-		</>
-	);
+    <>
+      <Routes>
+        <Route path="/*" element={<Public />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sms" element={<SmsPage />} />
+        <Route path="/card" element={<CardSingle />} />
+        <Route path="/messaging" element={<Messaging />} />
+      </Routes>
+
+      {/* <Routes>
+        <Route path="/*" element={<Public />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sms" element={<SmsPage />} />
+        <Route path="/card" element={<CardSingle />} />
+        <Route path="/messaging" element={<Messaging />}>
+          <Route path="sell" element={<SellMessaging />} />
+          <Route path="buy" element={<BuyMessaging />} />
+        </Route>
+      </Routes> */}
+    </>
+  );
 }
 
 export default App;
