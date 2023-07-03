@@ -1,17 +1,42 @@
 .card {
-  max-width: 222px;
-  width: 100%;
-  background-color: #ffffff;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
-  border-radius: 5px;
+  max-width: 222px !important;
+  width: 100% !important;
+  background-color: #ffffff !important;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12) !important;
+  border-radius: 5px !important;
 
   &:hover {
-    border: 1px solid #008b51;
+    border: 1px solid #008b51 !important;
   }
+}
+
+@media only screen  and (max-width: 495px){
+  .card {
+    max-width: 200px !important;
+  }
+}
+
+@media only screen  and (max-width: 440px){
+  .card {
+    max-width: 100% !important;
+   }
+  
+}
+
+@media only screen  and (max-width: 365px){
+  .card {
+    max-width: 100% !important;
+   }
+  
 }
 
 .card__img {
   width: 100%;
+}
+
+.card__like-img {
+  object-fit: cover;
+  object-position: center;
 }
 
 .card__inner {

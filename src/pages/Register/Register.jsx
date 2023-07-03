@@ -5,6 +5,7 @@ import "./Register.scss";
 import { useDispatch } from "react-redux";
 import { setPhone } from "../../redux/phoneNumber/phoneAction";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 export const Register = () => {
   const name = useRef();
@@ -59,7 +60,7 @@ export const Register = () => {
 
               <button type="submit">Ro'yxatdan o'tish</button>
 
-              <a href="/login">Ro’yxatdan o’tganmisiz?</a>
+              <Link to="/login">Ro’yxatdan o’tganmisiz?</Link>
             </form>
           </div>
         </div>

@@ -6,10 +6,10 @@ import 'bootstrap/dist/js/bootstrap.js'
 import { Public } from './pages/Public/Public';
 import { Register } from './pages/Register/Register';
 import { Login } from './pages/Login/Login';
-import { SmsPage } from './pages/smsPage/smsPage';
+import { SmsPage } from './pages/smsPage/SmsPage';
 import { CardSingle } from './components/CardSingle/CardSingle'
+import { NotFoundError } from './pages/404/404';
 import { Messaging } from './pages/Messaging/Messaging'
-
 
 function App() {
 	return (

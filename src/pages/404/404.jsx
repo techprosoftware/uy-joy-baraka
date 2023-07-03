@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 
-export const Ads = () => {
+export const NotFoundError = () => {
   return (
-    <div>Ads</div>
+    <div>404</div>
   )
 }

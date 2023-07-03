@@ -15,7 +15,7 @@ export default [
     view: 120,
     likes: true,
     body: "Olmazor tumanida joylashgan2x kvartira ijaraga beriladi",
-    price: "2,250,000",
+    price: "2250000",
   },
   {
     id: 3,
