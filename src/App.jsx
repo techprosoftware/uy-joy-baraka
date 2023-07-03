@@ -8,11 +8,16 @@ import { Register } from './pages/Register/Register';
 import { Login } from './pages/Login/Login';
 import { SmsPage } from './pages/smsPage/SmsPage';
 import { CardSingle } from './components/CardSingle/CardSingle'
+<<<<<<< HEAD
 import { NotFoundError } from './pages/404/404';
+=======
+import { Messaging } from './pages/Messaging/Messaging'
+>>>>>>> 3275e23feb884e78e787928942460ddfbb9ceee3
 
 
 function App() {
 	return (
+<<<<<<< HEAD
 		<>
 	
 			<Routes>
@@ -27,6 +32,31 @@ function App() {
 			
 		</>
 	);
+=======
+    <>
+      <Routes>
+        <Route path="/*" element={<Public />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sms" element={<SmsPage />} />
+        <Route path="/card" element={<CardSingle />} />
+        <Route path="/messaging" element={<Messaging />} />
+      </Routes>
+
+      {/* <Routes>
+        <Route path="/*" element={<Public />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sms" element={<SmsPage />} />
+        <Route path="/card" element={<CardSingle />} />
+        <Route path="/messaging" element={<Messaging />}>
+          <Route path="sell" element={<SellMessaging />} />
+          <Route path="buy" element={<BuyMessaging />} />
+        </Route>
+      </Routes> */}
+    </>
+  );
+>>>>>>> 3275e23feb884e78e787928942460ddfbb9ceee3
 }
 
 export default App;
