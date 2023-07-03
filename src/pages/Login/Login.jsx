@@ -3,6 +3,7 @@
 import React from "react";
 import "./Login.scss";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
   const {
@@ -40,7 +41,7 @@ export const Login = () => {
 
               <button type="submit">Kirish</button>
 
-              <a href="/register">Ro’yxatdan o’tmaganmisiz?</a>
+              <Link to="/register">Ro’yxatdan o’tmaganmisiz?</Link>
             </form>
           </div>
         </div>

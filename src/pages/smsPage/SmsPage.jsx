@@ -3,11 +3,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "./smsPage.scss";
+import { Link } from "react-router-dom";
 
 export const SmsPage = () => {
   const phone = window.localStorage.getItem("phone");
 
-  const [time, setTime] = useState(9);
+  const [time, setTime] = useState(59);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,6 +23,7 @@ export const SmsPage = () => {
       clearInterval(interval);
     };
   }, [time]);
+  
   return (
     <>
       <div className="sms__inner ">
@@ -42,8 +44,8 @@ export const SmsPage = () => {
               <button type="submit">Yuborish</button>
 
               <div>
-                <a href="/register">Telefon raqamni almashtirish?</a>
-                <a href="/login">Ro’yxatdan o’tganmisiz?</a>
+                <Link to="/register">Telefon raqamni almashtirish?</Link>
+                <Link to="/login">Ro’yxatdan o’tganmisiz?</Link>
               </div>
             </form>
           </div>

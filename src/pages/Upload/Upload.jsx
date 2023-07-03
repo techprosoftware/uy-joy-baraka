@@ -5,7 +5,8 @@ import "./Upload.scss";
 import arrow from "../../../public/assets/images/left-arrow.svg";
 import { Link } from "react-router-dom";
 import plus from "../../../public/assets/images/plus-upload.svg";
-import close from '../../../public/assets/images/close.png'
+import close from "../../../public/assets/images/close.png";
+import ImageCompressor from 'image-compressor.js';
 
 export const Upload = () => {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -17,15 +18,21 @@ export const Upload = () => {
 
     const imagePromises = imageFiles.map((file) => {
       return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-
-        reader.onload = () => {
-          resolve(reader.result);
-        };
-
-        reader.onerror = reject;
-
-        reader.readAsDataURL(file);
+        const compressor = new ImageCompressor();
+        compressor.compress(file, {
+          quality: 0.3,
+          success(result) {
+            const reader = new FileReader();
+            reader.onload = () => {
+              resolve(reader.result);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(result);
+          },
+          error(error) {
+            reject(error);
+          },
+        });
       });
     });
 
@@ -39,7 +46,6 @@ export const Upload = () => {
   };
 
   const removeImage = (index) => {
-    // e.preventDefault()
     const updatedImages = [...selectedImages];
     updatedImages.splice(index, 1);
     setSelectedImages(updatedImages);
@@ -65,18 +71,25 @@ export const Upload = () => {
         <h2 className="upload__title">E’lon joylash</h2>
 
         <form className="upload__form">
-          {/* <div className="images__wrap">
-        { selectedImages.map((image, index) => (
-        <img key={index} src={image} alt={`Selected Image ${index}`} />
-      ))}
-        </div> */}
-
-          <div className="row img__wrapper">{selectedImages.map((image, index) => (
-            <div className="position-relative col-6 col-sm-6 col-md-6 mb-3" key={index}>
-              <img  className="img-fluid rounded-2 img__item" src={image} alt={`Selected Image ${index}`} />
-              <img  className="delete__img__btn " src={close} onClick={(e) => removeImage(index)} />
-            </div>
-          ))}</div>
+          <div className="row img__wrapper">
+            {selectedImages.map((image, index) => (
+              <div
+                className="position-relative col-6 col-sm-6 col-md-6 mb-3"
+                key={index}
+              >
+                <img
+                  className="img-fluid rounded-2 img__item"
+                  src={image}
+                  alt={`Selected Image ${index}`}
+                />
+                <img
+                  className="delete__img__btn "
+                  src={close}
+                  onClick={(e) => removeImage(index)}
+                />
+              </div>
+            ))}
+          </div>
 
           <div className="upload__wrap">
             <p>Uy rasmini yuklang:</p>
@@ -186,6 +199,7 @@ export const Upload = () => {
           <button type="submit" className="upload__btn">
             Saqlash
           </button>
+          
         </form>
       </div>
     </div>

@@ -6,8 +6,9 @@ import 'bootstrap/dist/js/bootstrap.js'
 import { Public } from './pages/Public/Public';
 import { Register } from './pages/Register/Register';
 import { Login } from './pages/Login/Login';
-import { SmsPage } from './pages/smsPage/smsPage';
+import { SmsPage } from './pages/smsPage/SmsPage';
 import { CardSingle } from './components/CardSingle/CardSingle'
+import { NotFoundError } from './pages/404/404';
 
 
 function App() {
@@ -15,12 +16,12 @@ function App() {
 		<>
 	
 			<Routes>
-				<Route path='/*' element={<Public />} />
+				<Route path='/' element={<Public />} />
 				<Route path='/register' element={<Register/>}/>
 				<Route path='/login' element={<Login/>}/>
 				<Route path='/sms' element={<SmsPage/>}/>
 				<Route path='/card' element={<CardSingle/>}/>
-				
+
 			</Routes>
 		
 			
