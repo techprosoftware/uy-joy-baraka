@@ -2,11 +2,11 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "./Upload.scss";
-import arrow from "../../../public/assets/images/left-arrow.svg";
 import { Link } from "react-router-dom";
 import plus from "../../../public/assets/images/plus-upload.svg";
 import close from "../../../public/assets/images/close.png";
 import ImageCompressor from 'image-compressor.js';
+import {BackButton} from '@components/BackButton/BackButton'
 
 export const Upload = () => {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -65,9 +65,7 @@ export const Upload = () => {
   return (
     <div className="upload__inner">
       <div className="container">
-        <Link to="/" className="arrow__btn">
-          <img src={arrow} alt="" /> Orqaga
-        </Link>
+        <BackButton/>
         <h2 className="upload__title">E’lon joylash</h2>
 
         <form className="upload__form">

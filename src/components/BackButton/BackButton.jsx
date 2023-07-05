@@ -1,7 +1,11 @@
 import "./back-button.scss"
-import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
+import arrow from "../../../public/assets/images/left-arrow.svg";
+
 
 export const BackButton = () => {
-  const navigate = useNavigate()
-  return <button className="back-link" onClick={() => navigate(-1)}>Orqaga</button>
+  
+  return <><Link to="/" className="arrow__btn">
+  <img src={arrow} alt="" /> Orqaga
+</Link></>
 }

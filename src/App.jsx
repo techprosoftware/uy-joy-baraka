@@ -21,6 +21,7 @@ function App() {
         <Route path="/sms" element={<SmsPage />} />
         <Route path="/card" element={<CardSingle />} />
         <Route path="/messaging" element={<Messaging />} />
+       
       </Routes>
 
       {/* <Routes>
