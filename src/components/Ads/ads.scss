@@ -1,0 +1,91 @@
+.ads {
+  margin: 70px 0;
+  padding: 100px 0;
+  background-image: url("@images/ads-bgi.png");
+  background-repeat: no-repeat;
+  background-position: calc(50%);
+  background-size: cover;
+}
+
+.ads__title {
+  max-width: 622px;
+  width: 100%;
+  & h2 {
+    margin: 0;
+    padding: 0;
+    color: #008b51;
+    font-family: Gilroy;
+    font-size: 59px;
+    font-weight: 700;
+    line-height: 59px;
+    letter-spacing: 0em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+}
+
+.ads__btn {
+  margin-top: 70px;
+  margin-bottom: 0;
+}
+
+//******************//
+//***   TABLET   ***//
+//******************//
+
+@media only screen and (max-width: 769px) {
+  .ads {
+    padding: 60px 0;
+  }
+
+  .ads__title {
+    & h2 {
+      font-size: 35px;
+      font-weight: 700;
+      line-height: 36px;
+    }
+  }
+}
+
+@media only screen and (max-width: 630px) {
+}
+
+//******************//
+//***   MOBILE   ***//
+//******************//
+
+@media only screen and (max-width: 576px) {
+  .ads {
+    padding: 50px 0;
+  }
+
+  .ads__title {
+    max-width: 306px;
+
+    & h2 {
+      font-size: 29px;
+      font-weight: 700;
+      line-height: 29px;
+    }
+  }
+
+  .ads__btn {
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .ads {
+    padding: 50px 0;
+  }
+
+  .ads__title {
+    max-width: 250px;
+
+    & h2 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 25px;
+    }
+  }
+}
