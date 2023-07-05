@@ -7,6 +7,7 @@ import { Home } from '../Home/Home';
 import './Public.scss'
 import { Upload } from '../Upload/Upload';
 import { NotFoundError } from '../404/404';
+import { Announ } from '../Announ/Announ';
 export const Public = () => {
   return (
     <>
@@ -14,6 +15,7 @@ export const Public = () => {
     <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/upload' element={<Upload/>}/>
+        <Route path='/announ' element={<Announ/>} />
 				<Route path='*' element={<NotFoundError/>} />
 
     </Routes>

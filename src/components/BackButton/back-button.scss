@@ -1,51 +1,22 @@
-.back-link {
+.arrow__btn {
+  width: 100%;
+  max-width: 165px;
   display: flex;
   align-items: center;
-  margin-top: 20px;
-  padding: 10px 34px 9px 19px;
-  font-family: "Gilroy";
-  font-weight: 500;
-  font-size: 26px;
-  line-height: 32px;
-  color: #008b51;
+  gap: 15px;
+  padding: 6px 20px 6px 19px;
+  background-color: transparent;
   text-decoration: none;
   border: 1px solid #008b51;
   border-radius: 6px;
-
-  &:hover {
-    opacity: 0.8;
-  }
-  &:active {
-    opacity: 0.6;
-  }
-
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  color: #008b51;
 }
 
-.back-link::before {
-  content: "";
-  display: inline-block;
-  margin-right: 27px;
+.arrow__btn img {
   width: 10px;
-  height: 28px;
-  background-image: url("@images/link-left-arrow.svg");
-  background-repeat: no-repeat;
-}
-
-//******************//
-//***   MOBILE   ***//
-//******************//
-
-@media only screen and (max-width: 576px) {
-  .back-link {
-    margin-top: 17px;
-    padding: 9px 16px;
-    font-size: 14px;
-    line-height: 17px;
-  }
-}
-
-@media only screen and (max-width: 450px) {
-  .back-link {
-    padding: 5px 12px;
-  }
 }
