@@ -3,6 +3,6 @@ import React from 'react'
 
 export const NotFoundError = () => {
   return (
-    <div>404</div>
+    <div>Page Not Found</div>
   )
 }
