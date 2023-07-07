@@ -88,7 +88,7 @@ export const Header = () => {
                       </Link>
                     </li>
                     <li className="drop__item">
-                      <Link className="drop__link" to={"#"}>
+                      <Link className="drop__link" to={"/announ/active"}>
                         E’lonlarim
                       </Link>
                     </li>

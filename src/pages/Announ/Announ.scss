@@ -13,6 +13,14 @@
   color: #008b51;
 }
 
+@media only screen and (max-width: 768px) {
+  .announ__active {
+    font-size: 30px;
+  font-weight: 500;
+  padding: 9px 0;
+  }
+}
+
 .announ__wrap {
   display: flex;
   justify-content: space-between;
@@ -25,11 +33,11 @@
   background: #EDEDED;
   text-align: center;
   color: #008B51;
-  font-size: 40px;
-  padding: 12px 0;
+  font-size: 30px;
+  padding: 10px 0;
   font-family: Gilroy;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   line-height: normal;
 }
 
