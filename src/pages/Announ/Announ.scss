@@ -12,3 +12,37 @@
   line-height: 59px;
   color: #008b51;
 }
+
+@media only screen and (max-width: 768px) {
+  .announ__active {
+    font-size: 30px;
+  font-weight: 500;
+  padding: 9px 0;
+  }
+}
+
+.announ__wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.announ__active {
+  width: 100%;
+  max-width: 585px;
+  background: #EDEDED;
+  text-align: center;
+  color: #008B51;
+  font-size: 30px;
+  padding: 10px 0;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.active {
+  background-color: #008B51;
+  color: #fff;
+}
+
