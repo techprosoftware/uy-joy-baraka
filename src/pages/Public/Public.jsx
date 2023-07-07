@@ -15,7 +15,7 @@ export const Public = () => {
     <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/upload' element={<Upload/>}/>
-        <Route path='/announ' element={<Announ/>} />
+        <Route path='/announ/*' element={<Announ/>} />
 				<Route path='*' element={<NotFoundError/>} />
 
     </Routes>

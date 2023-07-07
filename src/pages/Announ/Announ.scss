@@ -12,3 +12,29 @@
   line-height: 59px;
   color: #008b51;
 }
+
+.announ__wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.announ__active {
+  width: 100%;
+  max-width: 585px;
+  background: #EDEDED;
+  text-align: center;
+  color: #008B51;
+  font-size: 40px;
+  padding: 12px 0;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.active {
+  background-color: #008B51;
+  color: #fff;
+}
+
