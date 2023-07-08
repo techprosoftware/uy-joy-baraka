@@ -1,0 +1,27 @@
+.about__title {
+  margin: 65px 0 0;
+  padding: 0;
+  color: #008b51;
+  font-family: Gilroy;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.about__text {
+  & p {
+    margin: 25px 0 0;
+    padding: 0;
+    color: #000;
+    font-family: Gilroy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+  }
+}
+
+.about__text + .about__text {
+  margin-top: 65px;
+}
