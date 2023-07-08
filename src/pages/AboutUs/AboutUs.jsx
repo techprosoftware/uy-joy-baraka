@@ -32,7 +32,7 @@ export const AboutUs = () => {
               </p>
             </div>
             <Social />
-            <div className="about__text">
+            <div className="about__text bottom-text">
               <p>
                 Интернет-магазин «Ваша Лампа» - это полноценный online-shop. Мы
                 работаем без выходных, 24 часа в сутки и непрерывно расширяем и
