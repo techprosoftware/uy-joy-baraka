@@ -128,8 +128,8 @@ export const Header = () => {
                     <img
                       className="nav__img"
                       src={ChatIcon}
-                      width={48}
-                      height={48}
+                      width={40}
+                      height={40}
                       alt="Chat icon"
                     />
                   </Link>

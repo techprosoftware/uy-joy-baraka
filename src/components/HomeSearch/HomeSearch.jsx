@@ -34,10 +34,10 @@ export const HomeSearch = () => {
               <option value="xorazm">Xorazm</option>
             </select>
 
-            <select className="select__sale select__money">
+            {/* <select className="select__sale select__money">
               <option value="andijon">So'm</option>
               <option value="buxoro">Dollar</option>
-            </select>
+            </select> */}
           </div>
           <div className="search__btn">
             <a href="#">Izlash</a>

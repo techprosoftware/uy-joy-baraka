@@ -23,6 +23,7 @@
   width: 100%;
   max-width: 700px;
   border: 1px solid #008b51;
+  background-color: #fff;
   border-radius: 6px;
   font-family: "Gilroy";
   font-style: normal;
@@ -56,15 +57,15 @@
 
 @media only screen and (max-width: 769px) {
   .select__sale {
-    padding: 8px 0 8px 8px;
-    font-size: 14px;
+    padding: 10px 0 10px 8px;
+    font-size: 16px;
     line-height: 26px;
   }
 
   .search__btn a {
     font-size: 16px;
     line-height: 32px;
-    padding: 8px 25px;
+    padding: 10px 25px;
   }
 
   .search__select {
@@ -74,18 +75,20 @@
 
 @media only screen and (max-width: 600px) {
   .select__sale {
-    padding: 6px 0 6px 6px;
-    font-size: 12px;
+    padding: 10px 0 10px 6px;
+    font-size: 15px;
     line-height: 26px;
   }
 
   .search__btn a {
     font-size: 16px;
     line-height: 32px;
-    padding: 6px 25px;
+    padding: 10px 25px;
   }
 
   .search__select {
     gap: 5px;
   }
 }
+
+
