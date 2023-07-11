@@ -29,7 +29,7 @@ export const Header = () => {
               alt="Site logo"
             />
           </Link>
-          <nav className="nav">
+          <nav className="nav d-flex align-items-center">
             <ul className="nav__list">
               
               <li className="nav__item new-poster">
