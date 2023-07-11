@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 
 import { useState } from "react";
@@ -8,7 +9,7 @@ import ChatIcon from "@images/chat-icon.svg";
 import HeartIcon from "@images/saved-heart.svg";
 import LangUzbIcon from "@images/lang-uz.svg";
 import UserIcon from "@images/user-icon.svg";
-import { FaComment, FaRegComment } from "react-icons/fa";
+import { FaComment, FaRegComment, FaWallet } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
 
 export const Header = () => {
@@ -30,10 +31,18 @@ export const Header = () => {
           </Link>
           <nav className="nav">
             <ul className="nav__list">
+              
               <li className="nav__item new-poster">
                 <Link className="nav__link" to={"/upload"}>
                   + E’lon joylash
                 </Link>
+              </li>
+              <li className="nav__item wallet-icon">
+                <FaWallet />
+                <select className="nav__select">
+                  <option value="usd">usd</option>
+                  <option value="som">uzs</option>
+                </select>
               </li>
               <li className="nav__item chat-icon">
                 <Link className="nav__link" to={"/messaging"}>

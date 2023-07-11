@@ -74,6 +74,18 @@
   color: #fff;
 }
 
+.wallet-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  font-size: 30px;
+}
+
+.wallet-icon svg {
+  // margin-bottom: 10px;
+  color: #fff;
+}
+
 .lang-icon {
   margin-right: 33px;
   & button {
@@ -333,4 +345,33 @@
   .chat-icon {
     margin-right: 5px;
   }
+}
+
+.nav__select {
+  padding: 9px 0 9px 5px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-radius: 6px;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.nav__select option {
+  background-color: #008b51;
+  border: 2px solid red;
+}
+
+.wallet__select option {
+  color: #fff;
+  font-size: 15px;
+}
+
+.wallet__select option:active {
+  background-color: transparent;
 }
