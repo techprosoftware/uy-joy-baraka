@@ -14,7 +14,9 @@ export const CardSingle = () => {
       <main>
         <section>
           <div className="container">
-            <BackButton />
+            <div className="mt-3">
+              <BackButton />
+            </div>
             <div className="card-single">
               <div className="card-sigle__pics">
                 {data.pics.map((img) => (
