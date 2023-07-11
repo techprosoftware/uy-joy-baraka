@@ -4,7 +4,6 @@ import CardLikeIcon from "@images/card-like-icon.svg"
 import CardULikeIcon from "@images/card-ulike-icon.svg"
 
 export const Card = (card) => {
-  console.log(card.card?.img);
   const customPrice = card.card?.price.toLocaleString().replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, '$1 ');
 
   return (
