@@ -81,4 +81,13 @@ export default [
     body: "Olmazor tumanida joylashgan2x kvartira ijaraga beriladi",
     price: "2250000",
   },
+  {
+    id: 10,
+    img: ".../../../../../public/assets/images/mock-img.png",
+    city: "Tashkent",
+    view: 1220,
+    likes: false,
+    body: "Olmazor tumanida joylashgan2x kvartira ijaraga beriladi",
+    price: "2250000",
+  },
 ]

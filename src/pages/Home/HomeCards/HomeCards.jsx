@@ -7,8 +7,9 @@ export const HomeCards = () => {
 
   return (
     <>
-    <div className="home__card__inner">
+    <div className="home__card-inner">
       <div className="container">
+       <h2 className="home__card-title">Sizga mos keladigan uylar</h2>
         <CardList/>
       </div>
     </div>
