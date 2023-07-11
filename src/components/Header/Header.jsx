@@ -8,6 +8,8 @@ import ChatIcon from "@images/chat-icon.svg";
 import HeartIcon from "@images/saved-heart.svg";
 import LangUzbIcon from "@images/lang-uz.svg";
 import UserIcon from "@images/user-icon.svg";
+import { FaComment, FaRegComment } from "react-icons/fa";
+import { AiFillHeart } from "react-icons/ai";
 
 export const Header = () => {
   const [drop, setDrop] = useState(false);
@@ -35,24 +37,12 @@ export const Header = () => {
               </li>
               <li className="nav__item chat-icon">
                 <Link className="nav__link" to={"/messaging"}>
-                  <img
-                    className="nav__img"
-                    src={ChatIcon}
-                    width={30}
-                    height={30}
-                    alt="Chat icon"
-                  />
+                  <FaComment />
                 </Link>
               </li>
               <li className="nav__item heart-icon">
                 <Link className="nav__link" to={"#"}>
-                  <img
-                    className="nav__img"
-                    src={HeartIcon}
-                    width={30}
-                    height={30}
-                    alt="Liked products icon"
-                  />
+                  <AiFillHeart />
                 </Link>
               </li>
               <li className="nav__item lang-icon">
@@ -125,13 +115,7 @@ export const Header = () => {
                 </li>
                 <li className="nav__item chat-icon">
                   <Link className="nav__link" to={"#"}>
-                    <img
-                      className="nav__img"
-                      src={ChatIcon}
-                      width={40}
-                      height={40}
-                      alt="Chat icon"
-                    />
+                    <FaRegComment />
                   </Link>
                 </li>
                 <li className="nav__item heart-icon">
