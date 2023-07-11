@@ -6,7 +6,7 @@ import "./Messaging.scss";
 // Icons
 import TrashIcon from "../../../public/assets/images/messaging-delete-icon.svg";
 import arrow from "../../../public/assets/images/left-arrow.svg";
-import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilonzor.svg";
+import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilonzor.webp";
 import ChatsendIcon from "../../../public/assets/images/chatbar-send-icon.svg";
 
 export const Messaging = () => {

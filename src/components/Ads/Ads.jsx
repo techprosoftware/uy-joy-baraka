@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react"
 import ButtonPhoneIcon from "@images/home-phone.svg"
-import AdsBgi from "@images/ads-bgi.png"
+import AdsBgi from "@images/ads-bgi.webp"
 import "./ads.scss"
 
 export const Ads = () => {
