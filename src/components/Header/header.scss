@@ -40,7 +40,7 @@
 }
 
 .new-poster {
-  margin-right: 63px;
+  margin-right: 43px;
   
   a {
     padding: 5px 20px;
@@ -247,6 +247,13 @@
   .chat-icon, .heart-icon, .lang-icon {
     margin-right: 20px;
   }
+
+  .chat-icon {
+    & .nav__img {
+      width: 25px !important;
+      height: 25px !important;
+    }
+  }
 }
 
 @media only screen and (max-width: 700px) {
@@ -278,8 +285,8 @@
 
   .chat-icon {
     & .nav__img {
-      width: 30px !important;
-      height: 30px !important;
+      width: 25px !important;
+      height: 25px !important;
     }
   }
 
@@ -288,10 +295,10 @@
   }
   
   .new-poster {
-    margin-right: 41px;
+    // margin-right: 41px;
     
     a {
-      padding: 10px 25px;
+      padding: 5px 15px;
       font-size: 14px;
       line-height: 17px;
     }
