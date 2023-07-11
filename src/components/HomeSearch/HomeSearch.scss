@@ -54,16 +54,38 @@
   color: #ffffff;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 769px) {
   .select__sale {
     padding: 8px 0 8px 8px;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 26px;
   }
 
   .search__btn a {
     font-size: 16px;
     line-height: 32px;
-    padding: 9px 30px;
+    padding: 8px 25px;
+  }
+
+  .search__select {
+    gap: 8px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .select__sale {
+    padding: 6px 0 6px 6px;
+    font-size: 12px;
+    line-height: 26px;
+  }
+
+  .search__btn a {
+    font-size: 16px;
+    line-height: 32px;
+    padding: 6px 25px;
+  }
+
+  .search__select {
+    gap: 5px;
   }
 }
