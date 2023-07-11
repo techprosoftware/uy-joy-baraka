@@ -1,0 +1,66 @@
+.about__title {
+  margin: 65px 0 0;
+  padding: 0;
+  color: #008b51;
+  font-family: Gilroy;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.about__text {
+  margin: 25px 0 0;
+
+  & p {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    font-family: Gilroy;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+  }
+}
+
+//******************//
+//***   TABLET   ***//
+//******************//
+
+@media only screen and (max-width: 769px) {
+  .about__title {
+    margin: 50px 0 0;
+    font-size: 36px;
+    line-height: 36px;
+  }
+
+  .bottom-text {
+    margin-top: 50px;
+  }
+}
+
+@media only screen and (max-width: 630px) {
+  .bottom-text {
+    margin-top: 30px;
+  }
+}
+
+//******************//
+//***   MOBILE   ***//
+//******************//
+
+@media only screen and (max-width: 576px) {
+  .about__title {
+    margin: 25px 0 0;
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  .about__text {
+    & p {
+      font-size: 12px;
+      line-height: 12px;
+    }
+  }
+}

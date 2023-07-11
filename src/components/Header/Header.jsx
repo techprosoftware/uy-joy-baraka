@@ -93,7 +93,7 @@ export const Header = () => {
                       </Link>
                     </li>
                     <li className="drop__item">
-                      <Link className="drop__link" to={"#"}>
+                      <Link className="drop__link" to={"/aboutus"}>
                         Biz haqimizda
                       </Link>
                     </li>

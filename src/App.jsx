@@ -10,6 +10,7 @@ import { SmsPage } from './pages/smsPage/SmsPage';
 import { CardSingle } from './components/CardSingle/CardSingle'
 import { NotFoundError } from './pages/404/404';
 import { Messaging } from './pages/Messaging/Messaging'
+import { AboutUs } from './pages/AboutUs/AboutUs'
 
 function App() {
 	return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/sms" element={<SmsPage />} />
         <Route path="/card" element={<CardSingle />} />
         <Route path="/messaging" element={<Messaging />} />
+        <Route path="/aboutus" element={<AboutUs />} />
        
       </Routes>
 

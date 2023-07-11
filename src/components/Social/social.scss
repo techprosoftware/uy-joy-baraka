@@ -75,7 +75,8 @@
 
 @media only screen and (max-width: 769px) {
   .social {
-    padding: 30px 0;
+    margin: 60px 0 0;
+    padding: 0;
   }
 
   .social__inner {
@@ -115,6 +116,9 @@
 //******************//
 
 @media only screen and (max-width: 576px) {
+  .social {
+    margin: 30px 0 0;
+  }
   .social__inner {
     padding: 0 5px;
   }

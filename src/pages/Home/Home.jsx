@@ -13,7 +13,9 @@ export const Home = () => {
       <HomeCards />
       <Ads />
       <HomeCards />
-      <Social/>
+      <div className="container">
+        <Social />
+      </div>
       <HomeCards />
       <MoreBtn />
     </>
