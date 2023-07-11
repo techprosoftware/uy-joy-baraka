@@ -11,6 +11,7 @@ import { CardSingle } from './components/CardSingle/CardSingle'
 import { NotFoundError } from './pages/404/404';
 import { Messaging } from './pages/Messaging/Messaging'
 import { AboutUs } from './pages/AboutUs/AboutUs'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 function App() {
 	return (
