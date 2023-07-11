@@ -1,5 +1,5 @@
 .card {
-  max-width: 250px !important;
+  max-width: 222px !important;
   width: 100% !important;
   background-color: #ffffff !important;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12) !important;
@@ -7,6 +7,32 @@
 
   &:hover {
     border: 1px solid #008b51 !important;
+  }
+}
+
+
+
+@media only screen  and (max-width: 740px){
+  .card {
+    max-width: 300px !important;
+  }
+}
+
+@media only screen  and (max-width: 653px){
+  .card {
+    max-width: 280px !important;
+  }
+}
+
+@media only screen  and (max-width: 605px){
+  .card {
+    max-width: 250px !important;
+  }
+}
+
+@media only screen  and (max-width: 546px){
+  .card {
+    max-width: 222px !important;
   }
 }
 
