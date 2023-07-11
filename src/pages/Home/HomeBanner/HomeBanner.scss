@@ -155,3 +155,7 @@
     line-height: 36px;
   }
 }
+
+.carousel-inner {
+  z-index: -1 !important;
+}
