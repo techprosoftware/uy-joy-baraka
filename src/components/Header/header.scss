@@ -9,8 +9,9 @@
 }
 
 .site-header {
-  padding: 9px 15px;
+  padding: 9px 0;
   background-color: #008b51;
+  position: relative;
 }
 
 .site-haeder__inner {
@@ -196,7 +197,7 @@
 .burger__bot {
   display: block;
   position: absolute;
-  width: 100%;
+  width: 80%;
   height: 3px;
   background-color: #fff;
   border-radius: 5px;
@@ -204,13 +205,13 @@
 }
 
 .burger__top {
-  top: 5px;
+  top: 7px;
 }
 .burger__mid {
   top: 15px;
 }
 .burger__bot {
-  top: 25px;
+  top: 23px;
 }
 
 .burger-click {
@@ -239,7 +240,6 @@
 
 .model {
   position: absolute;
-  // display: none;
 }
 
 .model__inner {
@@ -269,10 +269,6 @@
 
   .burger__bot {
     background-color: #111;
-  }
-
-  .burger-click {
-    margin-left: auto;
   }
 
   .model__inner {
@@ -492,18 +488,23 @@
     font-size: 20px;
   }
 
+  // .new-poster {
+  //   a {
+  //     padding: 5px 15px;
+  //     font-size: 14px;
+  //     line-height: 17px;
+  //   }
+  // }
   .new-poster {
-    // margin-right: 41px;
-
     a {
-      padding: 5px 15px;
-      font-size: 14px;
+      padding: 4px 7px;
+      font-size: 13px;
       line-height: 17px;
     }
   }
-
   .burger {
     display: block;
+    margin-right: 15px;
   }
 }
 
@@ -521,30 +522,23 @@
     margin-right: 5px;
   }
 
+  .user-icon img {
+    width: 25px;
+    height: 25px;
+  }
+
   .site-logo {
     width: 70px;
     height: 36px;
     src: url("@images/logo-mobile.svg");
   }
 
-  .burger {
-    width: 25px;
-  }
-
-  .burger__top,
-  .burger__mid,
-  .burger__bot {
-    height: 3px;
-  }
-
-  .burger__top {
-    top: 7px;
-  }
-  .burger__mid {
-    top: 15px;
-  }
-  .burger__bot {
-    top: 23px;
+  .new-poster {
+    a {
+      padding: 4px 7px;
+      font-size: 13px;
+      line-height: 17px;
+    }
   }
 }
 

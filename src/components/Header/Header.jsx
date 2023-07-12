@@ -23,6 +23,14 @@ export const Header = () => {
     <div className="site-header fixed-top">
       <div className="container">
         <div className="site-haeder__inner">
+        <button
+              className={` burger  ${burger ? "burger-click" : ""}`}
+              onClick={() => setBurger(!burger)}
+            >
+              <span className="burger__top"></span>
+              <span className="burger__mid"></span>
+              <span className="burger__bot"></span>
+            </button>
           <Link to="/">
             <img
               className="site-logo"
@@ -108,14 +116,7 @@ export const Header = () => {
                 </div>
               </li>
             </ul>
-            <button
-              className={` burger  ${burger ? "burger-click" : ""}`}
-              onClick={() => setBurger(!burger)}
-            >
-              <span className="burger__top"></span>
-              <span className="burger__mid"></span>
-              <span className="burger__bot"></span>
-            </button>
+            
           </nav>
           <div className={`model ${burger ? "model-open" : ""}`}>
 
