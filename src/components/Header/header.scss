@@ -86,6 +86,9 @@
   color: #fff;
 }
 
+
+// Langguage
+
 .lang-icon {
   margin-right: 33px;
   & button {
@@ -201,7 +204,7 @@
   height: 3px;
   background-color: #fff;
   border-radius: 5px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .burger__top {
@@ -225,7 +228,7 @@
 
   & .burger__top {
     transform: rotate(135deg) !important;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   }
 
   & .burger__mid {
@@ -234,7 +237,7 @@
 
   & .burger__bot {
     transform: rotate(-135deg) !important;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   }
 }
 
@@ -243,8 +246,8 @@
 }
 
 .model__inner {
-  transform: translateX(400%);
-  transition: all 0.5s ease;
+  transform: translateX(-400%);
+  transition: all 0.4s ease;
   background-color: #aeabab;
   position: fixed;
   width: 100%;
@@ -258,6 +261,40 @@
 
 .model-open {
   transition: all ease 1s;
+
+  .heart-icon {
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    p {
+      margin: 0;
+      font-size: .9rem;
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      line-height: .9em; 
+    }
+  }
+
+  .chat-icon {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    p {
+      margin: 0;
+      font-size: .9rem;
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+    }
+  }
+
+  .lang-icon {
+    display: flex;
+    align-items: center;
+  }
 
   .burger__top {
     background-color: #111;
@@ -308,17 +345,18 @@
   }
 
   .chat-icon svg {
-    margin-bottom: 10px;
+    margin-bottom: 0;
     color: #008b51;
   }
 
   .heart-icon svg {
-    margin-bottom: 10px;
+    margin-bottom: 0;
     color: #008b51;
   }
 
   .wallet-icon svg {
     color: #008b51;
+    font-size: 24px;
   }
 
   .nav__select {
@@ -326,17 +364,33 @@
   }
 
   .wallet-icon {
-    display: block;
+    display: flex;
+    gap: 5px;
     margin-right: 0;
   }
 
-  .chat-icon {
-    display: block;
+  .nav__list {
+    flex-direction: column;
+    align-items: start;
   }
 
-  .heart-icon,
-  .lang-icon {
-    display: block;
+  .nav__select {
+    margin: 0;
+    padding: 0;
+    font-size: .9rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+  }
+
+  .nav__select option {
+    background-color: #fff;
+  }
+  
+  .wallet__select option {
+    margin: 0;
+    font-size: .9rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
   }
 }
 
@@ -357,7 +411,6 @@
 
 .nav__select option {
   background-color: #008b51;
-  border: 2px solid red;
 }
 
 .wallet__select option {
@@ -369,6 +422,34 @@
   background-color: transparent;
 }
 
+
+.lang__btn {
+  background-color: transparent !important ;
+border: none !important;
+outline: none !important;
+padding: 0 !important;
+}
+
+.lang__select {
+display: flex;
+align-items: center; 
+  border-radius: 6px;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+  color: #fff;
+  cursor: pointer;
+}
+.lang__select p {
+  margin: 0;
+}
+
+.user-icon img {
+  width: 35px;
+  height: 35px;
+}
 //******************//
 //***   TABLET   ***//
 //******************//
@@ -387,6 +468,16 @@
 
   .chat-icon {
     margin-right: 10px;
+  }
+
+  .lang__select p {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .user-icon img {
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -433,6 +524,24 @@
 
   .wallet-icon {
     margin-right: 20px;
+    font-size: 20px;
+  }
+
+  .nav__select  {
+    font-size: 18px;
+  }
+
+  .chat-icon {
+    font-size: 20px;
+  }
+
+  .chat-icon svg {
+    margin-bottom: 5px;
+  }
+
+  .user-icon img {
+    width: 25px;
+    height: 25px;
   }
 }
 
@@ -445,6 +554,11 @@
       font-size: 16px;
       line-height: 18px;
     }
+  }
+
+  .lang__select p {
+    margin: 0;
+    font-size: 16px;
   }
 }
 
@@ -488,16 +602,9 @@
     font-size: 20px;
   }
 
-  // .new-poster {
-  //   a {
-  //     padding: 5px 15px;
-  //     font-size: 14px;
-  //     line-height: 17px;
-  //   }
-  // }
   .new-poster {
     a {
-      padding: 4px 7px;
+      padding: 4.8px 7px 4px 7px;
       font-size: 13px;
       line-height: 17px;
     }
@@ -509,15 +616,6 @@
 }
 
 @media only screen and (max-width: 415px) {
-  .new-poster {
-    margin-right: 10px;
-
-    a {
-      padding: 8px 10px;
-      font-size: 12px;
-      line-height: 15px;
-    }
-  }
   .chat-icon {
     margin-right: 5px;
   }
@@ -531,14 +629,6 @@
     width: 70px;
     height: 36px;
     src: url("@images/logo-mobile.svg");
-  }
-
-  .new-poster {
-    a {
-      padding: 4px 7px;
-      font-size: 13px;
-      line-height: 17px;
-    }
   }
 }
 
@@ -559,3 +649,5 @@
   width: 22px;
   height: 22px;
 }
+
+
