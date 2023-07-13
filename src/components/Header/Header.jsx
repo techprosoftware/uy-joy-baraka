@@ -35,7 +35,7 @@ export const Header = () => {
       ),
     }, //en
     {
-      value: "Rus",
+      value: "Ru",
       label: (
         // <div>
         <img src={deflag} width="30" alt="" />
@@ -80,17 +80,17 @@ export const Header = () => {
                   + E’lon joylash
                 </Link>
               </li>
-              <li className="nav__item wallet-icon">
+              <li className="nav__item lang-icon">
                 <div className="lang__select">
-                    <p>{lang}</p>
+                  <p>{lang}</p>
                   <Dropdown className="shadow-none" as={ButtonGroup}>
                     <Dropdown.Toggle
                       className="lang__btn  shadow-none"
                       id="lng-dropdown"
-                      >
+                    >
                       {langLabel}
                     </Dropdown.Toggle>
-                    
+
                     <Dropdown.Menu>
                       <Dropdown.Item onClick={() => handlclick(0)}>
                         {options[0].value}
@@ -103,12 +103,12 @@ export const Header = () => {
                 </div>
               </li>
               <li className="nav__item wallet-icon">
-                  <FaWallet />
-                  <select className="nav__select">
-                    <option value="usd">Usd</option>
-                    <option value="som">Uzs</option>
-                  </select>
-                </li>
+                <FaWallet />
+                <select className="nav__select">
+                  <option value="usd">Usd</option>
+                  <option value="som">Uzs</option>
+                </select>
+              </li>
               <li className="nav__item chat-icon">
                 <Link className="nav__link" to={"/messaging"}>
                   <FaComment />
@@ -119,7 +119,7 @@ export const Header = () => {
                   <AiFillHeart />
                 </Link>
               </li>
-              
+
               <li
                 className="nav__item user-icon"
                 onClick={() => setDrop(!drop)}
@@ -163,14 +163,19 @@ export const Header = () => {
             {/* Modal inner  */}
 
             <div className="model__inner">
-              <button
-                className={`burger ${burger ? "burger-click" : ""}`}
-                onClick={() => setBurger(!burger)}
-              >
-                <span className="burger__top"></span>
-                <span className="burger__mid"></span>
-                <span className="burger__bot"></span>
-              </button>
+              <div className="close__wrapper">
+                <button
+                  className={`burger ${burger ? "burger-click" : ""}`}
+                  onClick={() => setBurger(!burger)}
+                >
+                  <span className="burger__top"></span>
+                  <span className="burger__mid"></span>
+                  <span className="burger__bot"></span>
+                </button>
+                <div className="close__wrapper-register">
+                  <a href="#">Kirish</a> / <a href="#">Ro'yxatdan o'tish</a>
+                </div>
+              </div>
               <ul className="nav__list">
                 <li className="nav__item wallet-icon">
                   <BiWallet />
@@ -192,15 +197,26 @@ export const Header = () => {
                   <p>Saralangan</p>
                 </li>
                 <li className="nav__item lang-icon">
-                  <button className="nav__link">
-                    <img
-                      className="nav__img"
-                      src={LangUzbIcon}
-                      width={74}
-                      height={27}
-                      alt="Language switch icon"
-                    />
-                  </button>
+                  <div className="lang__select">
+                    <Dropdown className="shadow-none" as={ButtonGroup}>
+                      <Dropdown.Toggle
+                        className="lang__btn  shadow-none"
+                        id="lng-dropdown"
+                      >
+                        {langLabel}
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => handlclick(0)}>
+                          {options[0].value}
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={() => handlclick(1)}>
+                          {options[1].value}
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    <p>{lang}</p>
+                  </div>
                 </li>
               </ul>
               <div className="modal__items">
