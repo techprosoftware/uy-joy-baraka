@@ -56,30 +56,30 @@
 }
 
 .chat-icon {
-  margin-right: 30px;
-  font-size: 30px;
+  margin-right: 20px;
+  font-size: 25px;
 }
 
 .chat-icon svg {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   color: #fff;
 }
 
 .heart-icon {
-  margin-right: 30px;
-  font-size: 30px;
+  margin-right: 20px;
+  font-size: 25px;
 }
 
 .heart-icon svg {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   color: #fff;
 }
 
 .wallet-icon {
   display: flex;
   align-items: center;
-  margin-right: 30px;
-  font-size: 30px;
+  margin-right: 20px;
+  font-size: 25px;
 }
 
 .wallet-icon svg {
@@ -89,7 +89,7 @@
 // Langguage
 
 .lang-icon {
-  margin-right: 33px;
+  margin-right: 20px;
   & button {
     background-color: transparent;
     border: none;
@@ -200,7 +200,7 @@
   display: block;
   position: absolute;
   width: 80%;
-  height: 3px;
+  height: 2px;
   background-color: #fff;
   border-radius: 5px;
   transition: all 0.2s ease;
@@ -261,10 +261,37 @@
 .model-open {
   transition: all ease 1s;
 
+  .close__line {
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    height: 0.5px;
+    background-color: #212529;
+  }
+
+  .burger-click {
+    & .burger__top,
+    .burger__mid,
+    .burger__bot {
+      top: 15px;
+    }
+
+    
+  }
+
+  .container {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+  }
+
   .close__wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #fff;
+    padding: 10px 15px;
   }
 
   .close__wrapper-register a {
@@ -274,6 +301,7 @@
     font-family: "Inter", sans-serif;
     font-weight: 500;
     line-height: 0.9em;
+    color: #212529;
   }
 
   .heart-icon {
@@ -310,16 +338,15 @@
     align-items: center;
   }
 
-  .burger__top {
-    background-color: #111;
-  }
-
-  .burger__mid {
-    background-color: #111;
-  }
-
+  .burger__top,
   .burger__bot {
+    display: block;
+    position: absolute;
+    width: 70%;
+    height: 2px;
     background-color: #111;
+    border-radius: 5px;
+    transition: all 0.2s ease;
   }
 
   .model__inner {
@@ -329,9 +356,9 @@
     top: 0;
     left: 0;
     z-index: 999;
-    padding: 20px;
+    padding: 0;
     height: 100%;
-    background-color: #fff;
+    background-color: #f4f5f5;
   }
 
   .drop {
@@ -369,10 +396,12 @@
   }
 
   .nav__list {
+    background-color: #fff;
+    padding:20px 15px;
     flex-direction: column;
     align-items: start;
     gap: 7px;
-    margin-top: 20px;
+    margin-top: 15px;
   }
 
   .nav__select {
@@ -405,10 +434,15 @@
     font-weight: 500;
     color: #212529;
   }
+
+  .lang__btn img {
+    border-radius: 50%;
+    width: 27px;
+    height: 25px;
+  }
 }
 
 .nav__select {
-  // padding: 9px 0 9px 5px;
   border: none;
   outline: none;
   background-color: transparent;
@@ -416,7 +450,7 @@
   font-family: "Gilroy";
   font-style: normal;
   font-weight: 500;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 26px;
   color: #fff;
   cursor: pointer;

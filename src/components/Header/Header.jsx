@@ -14,12 +14,14 @@ import LangUzbIcon from "@images/flag_uz.png";
 import UserIcon from "@images/user-icon.svg";
 import { FaComment, FaRegComment, FaWallet } from "react-icons/fa";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { BiWallet } from "react-icons/bi";
+import { BiWallet, BiSupport } from "react-icons/bi";
+import {BsInfoCircle, BsPhone} from 'react-icons/bs'
+import {CiCircleMore} from 'react-icons/ci'
 
 import { Dropdown, ButtonGroup, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import ukflag from "@images/flag_uz.png";
-import deflag from "@images/flag_uz.png";
+import uzflag from "@images/flag_uz.png";
+import ruflag from "@images/flag_ru.png";
 
 export const Header = () => {
   const [drop, setDrop] = useState(false);
@@ -30,7 +32,7 @@ export const Header = () => {
       value: "O'z",
       label: (
         // <div>
-        <img src={ukflag} width="30" alt="" />
+        <img src={uzflag} width={30} alt="" />
         // </div>
       ),
     }, //en
@@ -38,7 +40,7 @@ export const Header = () => {
       value: "Ru",
       label: (
         // <div>
-        <img src={deflag} width="30" alt="" />
+        <img src={ruflag} width="30" alt="" />
         // </div>
       ),
     }, //de
@@ -80,6 +82,24 @@ export const Header = () => {
                   + E’lon joylash
                 </Link>
               </li>
+              
+              <li className="nav__item wallet-icon">
+                <FaWallet />
+                <select className="nav__select">
+                  <option value="usd">Usd</option>
+                  <option value="som">Uzs</option>
+                </select>
+              </li>
+              <li className="nav__item chat-icon">
+                <Link className="nav__link" to={"/messaging"}>
+                  <FaComment />
+                </Link>
+              </li>
+              <li className="nav__item heart-icon">
+                <Link className="nav__link" to={"#"}>
+                  <AiFillHeart />
+                </Link>
+              </li>
               <li className="nav__item lang-icon">
                 <div className="lang__select">
                   <p>{lang}</p>
@@ -102,24 +122,6 @@ export const Header = () => {
                   </Dropdown>
                 </div>
               </li>
-              <li className="nav__item wallet-icon">
-                <FaWallet />
-                <select className="nav__select">
-                  <option value="usd">Usd</option>
-                  <option value="som">Uzs</option>
-                </select>
-              </li>
-              <li className="nav__item chat-icon">
-                <Link className="nav__link" to={"/messaging"}>
-                  <FaComment />
-                </Link>
-              </li>
-              <li className="nav__item heart-icon">
-                <Link className="nav__link" to={"#"}>
-                  <AiFillHeart />
-                </Link>
-              </li>
-
               <li
                 className="nav__item user-icon"
                 onClick={() => setDrop(!drop)}
@@ -169,7 +171,6 @@ export const Header = () => {
                   onClick={() => setBurger(!burger)}
                 >
                   <span className="burger__top"></span>
-                  <span className="burger__mid"></span>
                   <span className="burger__bot"></span>
                 </button>
                 <div className="close__wrapper-register">
@@ -217,6 +218,25 @@ export const Header = () => {
                     </Dropdown>
                     <p>{lang}</p>
                   </div>
+                </li>
+                <span className="close__line"></span>
+                <li className="nav__item heart-icon">
+                  <Link className="nav__link" to={"#"}>
+                    <BiSupport />
+                  </Link>
+                  <p>Biz bilan bog'lanish</p>
+                </li>
+                <li className="nav__item heart-icon">
+                  <Link className="nav__link" to={"#"}>
+                    <BsInfoCircle />
+                  </Link>
+                  <p>Biz haqimizda</p>
+                </li>
+                <li className="nav__item heart-icon">
+                  <Link className="nav__link" to={"#"}>
+                    <BsPhone />
+                  </Link>
+                  <p>Ilovani yuklash</p>
                 </li>
               </ul>
               <div className="modal__items">
