@@ -4,11 +4,44 @@
   margin-top: 32px;
 }
 
-.card-sigle__pics {
+.card-single__pics {
   display: flex;
-  max-width: 666px;
-  flex-wrap: wrap;
+  // max-width: 666px;
+  // flex-wrap: wrap;
   width: 100%;
+  gap: 30px;
+}
+
+.img-display {
+  width: 100%;
+}
+
+.show-image {
+  max-width: 466px;
+  width: 100%;
+  background-size: cover;
+  object-fit: cover;
+  object-position: center;
+}
+
+.img-select {
+  max-width: 120px;
+  width: 100%;
+}
+
+.img-item + .img-item {
+  margin-top: 15px;
+}
+
+.img-showcase {
+  display: flex;
+  width: 100%;
+  transition: all 0.5s ease;
+}
+
+.img-item:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 .card-single__content {
@@ -181,11 +214,46 @@
   color: #008b51;
 }
 
+@media only screen and (max-width: 1100px) {
+  .card-single {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card-single__content {
+    max-width: 1100px;
+    width: 100%;
+    margin-top: 35px;
+  }
+
+  .show-image {
+    max-width: 100%;
+    max-height: 100%;
+    background-size: cover;
+  }
+
+  .card-single__user-info {
+    margin-left: auto;
+  }
+  .card-single__area {
+    max-width: 1100px;
+  }
+
+  .card-single__btns {
+    display: flex;
+    justify-content: center;
+  }
+}
+
 //******************//
 //***   TABLET   ***//
 //******************//
 
 @media only screen and (max-width: 769px) {
+  .card-single__pics {
+    gap: 15px;
+  }
+
   .card-single {
     flex-wrap: wrap;
     justify-content: center;
@@ -195,19 +263,6 @@
     max-width: 666px;
     width: 100%;
     margin-top: 35px;
-  }
-
-  .card-single__user-info {
-    margin-left: auto;
-  }
-
-  .card-single__area {
-    max-width: 666px;
-  }
-
-  .card-single__btns {
-    display: flex;
-    justify-content: center;
   }
 }
 
@@ -219,6 +274,25 @@
   .card-single__top {
     column-gap: 10px;
   }
+
+  .card-single__pics {
+    gap: 14px;
+  }
+
+  .img-select {
+    max-width: 90px;
+  }
+
+  .show-image {
+    max-width: 400px;
+    max-height: 410px;
+  }
+
+  .img-item {
+    max-width: 90px;
+    max-height: 90px;
+  }
+
   .card-single__date {
     display: inline-block !important;
     flex-wrap: wrap;
@@ -251,7 +325,21 @@
   }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 420px) {
+  .card-single__pics {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .img-select {
+    display: flex;
+  }
+
+  .show-image {
+    max-width: 400px;
+    max-height: 410px;
+  }
+
   .card-single__share-btn {
     margin-left: 10px;
   }

@@ -1,7 +1,7 @@
 export default {
   id: 1,
   pics: [
-    { id: 1, src: ".../../../../../public/assets/images/mock-img.png" },
+    { id: 1, src: ".../../../../../public/assets/images/mock1-img.png" },
     { id: 2, src: ".../../../../../public/assets/images/mock-img.png" },
     { id: 3, src: ".../../../../../public/assets/images/mock-img.png" },
     { id: 4, src: ".../../../../../public/assets/images/mock-img.png" },

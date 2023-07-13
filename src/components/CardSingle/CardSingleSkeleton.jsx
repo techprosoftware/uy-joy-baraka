@@ -22,9 +22,16 @@ export const CardSingleSkeleton = () => {
           </div>
           <Skeleton width={466} height={460}/>
         </div>
-        <div className="card-single__content">
-          <Skeleton/>
-          <Skeleton width={391} height={56}/>
+        <div className="card-single__content mt-3">
+          <div className="d-flex gap-5 align-content-center justify-content-between">
+            <Skeleton width={71}height={16}/>
+            <Skeleton width={100}height={28}/>
+            <div className="d-flex">
+              <Skeleton width={32} height={32} circle={true}/>
+              <Skeleton className="ms-2" width={67}height={32}/>
+            </div>
+          </div>
+          <Skeleton width={463} height={56}/>
           <Skeleton width={463} height={142}/>
         </div>
       </div>
