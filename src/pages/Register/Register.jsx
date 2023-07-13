@@ -2,10 +2,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useRef } from "react";
 import "./Register.scss";
-import { useDispatch } from "react-redux";
-import { setPhone } from "../../redux/phoneNumber/phoneAction";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import AuthService from "../../Api/auth.service";
+
 
 export const Register = () => {
   const name = useRef();
@@ -13,10 +13,28 @@ export const Register = () => {
   const password = useRef();
   const navigate = useNavigate();
 
+  const users = async (value) => {
+    const data = await AuthService.userRegister(value)
+
+    if(data.status === 201) {
+      console.log(data);
+      
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const value = {
+      name: name.current.value,
+      phone: phone.current.value,
+      password: password.current.value
+    }
+
+    users(value)
+
     var phoneNumber = phone.current.value;
+
     function formatPhoneNumber(phoneNumber) {
       phoneNumber = phoneNumber.replace(/\D/g, "");
 
@@ -30,7 +48,7 @@ export const Register = () => {
 
     var formattedPhoneNumber = formatPhoneNumber(phoneNumber);
     window.localStorage.setItem("phone", formattedPhoneNumber);
-    navigate("/sms");
+    // navigate("/sms");
   };
 
   return (
@@ -46,13 +64,13 @@ export const Register = () => {
             <form className="register__form" onSubmit={handleSubmit}>
               <input type="text" placeholder="Ismingiz" required ref={name} />
               <input
-                type="text"
+                type="password"
                 placeholder="Parolingiz"
                 required
                 ref={password}
               />
               <input
-                type="tel"
+                type="number"
                 placeholder="Telefon raqamingiz"
                 required
                 ref={phone}

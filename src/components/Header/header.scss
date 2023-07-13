@@ -61,12 +61,14 @@
 }
 
 .chat-icon svg {
-  margin-bottom: 6px;
+  min-width: 25 !important;
+  min-height: 25px !important;
+  margin-bottom: 5px;
   color: #fff;
 }
 
 .heart-icon {
-  margin-right: 20px;
+  margin-right: 15px;
   font-size: 25px;
 }
 
@@ -294,7 +296,7 @@
     padding: 10px 15px;
   }
 
-  .close__wrapper-register a {
+  .close__wrapper-register a ,p {
     text-decoration: underline;
     margin: 0;
     font-size: 0.9rem;
@@ -302,6 +304,11 @@
     font-weight: 500;
     line-height: 0.9em;
     color: #212529;
+      }
+
+  .close__wrapper-register p {
+    text-decoration: none;
+    line-height: 0;
   }
 
   .heart-icon {
@@ -316,6 +323,7 @@
       font-family: "Inter", sans-serif;
       font-weight: 500;
       line-height: 0.9em;
+      text-decoration: none;
     }
   }
 
@@ -330,6 +338,7 @@
       font-size: 0.9rem;
       font-family: "Inter", sans-serif;
       font-weight: 500;
+      text-decoration: none;
     }
   }
 
@@ -433,6 +442,7 @@
     font-family: "Inter", sans-serif;
     font-weight: 500;
     color: #212529;
+    text-decoration: none;
   }
 
   .lang__btn img {
@@ -499,8 +509,8 @@
 }
 
 .user-icon img {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
 }
 
 //******************//

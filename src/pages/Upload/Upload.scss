@@ -1,5 +1,12 @@
 .upload__inner {
-  padding: 30px 0 100px 0;
+  padding: 96px 0 100px 0;
+}
+
+
+@media only screen and (max-width: 769px) {
+  .upload__inner {
+    padding: 76px 0 100px 0;
+  }
 }
 
 
