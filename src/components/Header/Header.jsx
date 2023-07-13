@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./header.scss";
 import { Link } from "react-router-dom";
 import SiteLogo from "@images/logo.svg";
@@ -15,8 +15,8 @@ import UserIcon from "@images/user-icon.svg";
 import { FaComment, FaRegComment, FaWallet } from "react-icons/fa";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BiWallet, BiSupport } from "react-icons/bi";
-import {BsInfoCircle, BsPhone} from 'react-icons/bs'
-import {CiCircleMore} from 'react-icons/ci'
+import { BsInfoCircle, BsPhone } from "react-icons/bs";
+import { CiCircleMore, CiUser } from "react-icons/ci";
 
 import { Dropdown, ButtonGroup, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
@@ -26,6 +26,12 @@ import ruflag from "@images/flag_ru.png";
 export const Header = () => {
   const [drop, setDrop] = useState(false);
   const [burger, setBurger] = useState(false);
+
+  const token = localStorage.getItem("token");
+
+  
+
+  // if(!token) location.reload()
 
   const options = [
     {
@@ -49,10 +55,36 @@ export const Header = () => {
 
   const [langLabel, setLangLabel] = useState(options[0].label);
 
+
+  const optionsCourse = [
+    {
+      value: "Uzs",
+      
+    }, //en
+    {
+      value: "Usd",
+      
+    }, //de
+  ];
+
+  const [course, setCourse] = useState("Uzs");
+
+  const [courseLabel, setCourseLabel] = useState(options[0].label);
+
   function handlclick(n) {
     setLangLabel(options[n].label);
     setLang(options[n].value);
   }
+
+  function handlclickCourse(n) {
+    setCourseLabel(optionsCourse[n].label);
+    setCourse(optionsCourse[n].value);
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem("token")
+
+  };
 
   return (
     <div className="site-header fixed-top">
@@ -82,23 +114,28 @@ export const Header = () => {
                   + E’lon joylash
                 </Link>
               </li>
-              
-              <li className="nav__item wallet-icon">
-                <FaWallet />
-                <select className="nav__select">
-                  <option value="usd">Usd</option>
-                  <option value="som">Uzs</option>
-                </select>
-              </li>
-              <li className="nav__item chat-icon">
-                <Link className="nav__link" to={"/messaging"}>
-                  <FaComment />
-                </Link>
-              </li>
-              <li className="nav__item heart-icon">
-                <Link className="nav__link" to={"#"}>
-                  <AiFillHeart />
-                </Link>
+
+              <li className="nav__item lang-icon">
+                <div className="lang__select">
+                  <p>{course}</p>
+                  <Dropdown className="shadow-none" as={ButtonGroup}>
+                    <Dropdown.Toggle
+                      className="lang__btn  shadow-none"
+                      id="lng-dropdown"
+                    >
+                      <FaWallet/>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={() => handlclickCourse(0)}>
+                        {optionsCourse[0].value}
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={() => handlclickCourse(1)}>
+                        {optionsCourse[1].value}
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
               </li>
               <li className="nav__item lang-icon">
                 <div className="lang__select">
@@ -122,43 +159,68 @@ export const Header = () => {
                   </Dropdown>
                 </div>
               </li>
-              <li
-                className="nav__item user-icon"
-                onClick={() => setDrop(!drop)}
-              >
-                <button className="nav__link">
-                  <img
-                    className="nav__img"
-                    src={UserIcon}
-                    alt="User info icon"
-                  />
-                </button>
-                <div className={`drop ${drop ? "" : "visually-hidden"}`}>
-                  <p className="drop__info">Mironshoh Nasimov</p>
-                  <ul className="drop__list">
-                    <li className="drop__item">
-                      <Link className="drop__link" to={"#"}>
-                        Mening ma’lumotlarim
-                      </Link>
-                    </li>
-                    <li className="drop__item">
-                      <Link className="drop__link" to={"/announ/active"}>
-                        E’lonlarim
-                      </Link>
-                    </li>
-                    <li className="drop__item">
-                      <Link className="drop__link" to={"/aboutus"}>
-                        Biz haqimizda
-                      </Link>
-                    </li>
-                    <li className="drop__item">
-                      <Link className="drop__link logout-btn" to={"#"}>
-                        Chiqish
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
+              <li className="nav__item chat-icon">
+                <Link className="nav__link" to={"/messaging"}>
+                  <FaComment />
+                </Link>
               </li>
+              <li className="nav__item heart-icon">
+                <Link className="nav__link" to={"#"}>
+                  <AiFillHeart />
+                </Link>
+              </li>
+              
+
+              {!token ? (
+                <li className="nav__item user-icon">
+                  <Link className="nav__link" to={"/register"}>
+                    {" "}
+                    <img
+                      className="nav__img"
+                      src={UserIcon}
+                      alt="User info icon"
+                    />
+                  </Link>
+                </li>
+              ) : (
+                <li
+                  className="nav__item user-icon"
+                  onClick={() => setDrop(!drop)}
+                >
+                 
+                    <img
+                      className="nav__img"
+                      src={UserIcon}
+                      alt="User info icon"
+                    />
+                  
+                  <div className={`drop ${drop ? "" : "visually-hidden"}`}>
+                    <p className="drop__info">Bunyodbek</p>
+                    <ul className="drop__list">
+                      <li className="drop__item">
+                        <Link className="drop__link" to={"#"}>
+                          Mening ma’lumotlarim
+                        </Link>
+                      </li>
+                      <li className="drop__item">
+                        <Link className="drop__link" to={"/announ/active"}>
+                          E’lonlarim
+                        </Link>
+                      </li>
+                      <li className="drop__item">
+                        <Link className="drop__link" to={"/aboutus"}>
+                          Biz haqimizda
+                        </Link>
+                      </li>
+                      <li className="drop__item">
+                        <p style={{cursor: 'pointer'}} className="drop__link logout-btn" onClick={handleLogout}>
+                          Chiqish
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              )}
             </ul>
           </nav>
           <div className={`model ${burger ? "model-open" : ""}`}>
@@ -174,7 +236,17 @@ export const Header = () => {
                   <span className="burger__bot"></span>
                 </button>
                 <div className="close__wrapper-register">
-                  <a href="#">Kirish</a> / <a href="#">Ro'yxatdan o'tish</a>
+                  {token ? (
+                    <div className="d-flex align-items-center gap-1">
+                      {" "}
+                      <CiUser /> <p>Bunyodbek</p>
+                    </div>
+                  ) : (
+                    <>
+                      <Link to="/login">Kirish</Link> /{" "}
+                      <Link to="/register">Ro'yxatdan o'tish</Link>
+                    </>
+                  )}
                 </div>
               </div>
               <ul className="nav__list">
