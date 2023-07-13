@@ -33,7 +33,7 @@ export const HomeSearch = () => {
                     </select>
                   </a>
                 </li>
-                <ul className="d-flex justify-content-between">
+                <ul className="d-flex justify-content-between flex-column">
                   <li>
                     <a className="dropdown-item" href="#">
                       <select className="select__sale select__region">

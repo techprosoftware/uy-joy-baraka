@@ -140,7 +140,7 @@
 
 .dropdown-menu {
   inset: 16px auto auto 0px !important;
-  --bs-dropdown-min-width: 25rem;
+  --bs-dropdown-max-width: 25rem;
   --bs-dropdown-divider-bg: var(--bs-border-color-translucent);
   --bs-dropdown-divider-margin-y: 0.5rem;
   --bs-dropdown-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
@@ -155,7 +155,9 @@
   --bs-dropdown-header-color: #6c757d;
   --bs-dropdown-header-padding-x: 0;
   --bs-dropdown-header-padding-y: 0;
-  min-width: var(--bs-dropdown-min-width);
+  width: 100%;
+  max-width: var(--bs-dropdown-max-width);
+  
  
 }
 
