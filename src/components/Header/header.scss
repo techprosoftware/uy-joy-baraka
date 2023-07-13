@@ -86,7 +86,6 @@
   color: #fff;
 }
 
-
 // Langguage
 
 .lang-icon {
@@ -262,30 +261,45 @@
 .model-open {
   transition: all ease 1s;
 
+  .close__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .close__wrapper-register a {
+    text-decoration: underline;
+    margin: 0;
+    font-size: 0.9rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    line-height: 0.9em;
+  }
+
   .heart-icon {
-    font-size: 26px;
+    font-size: 20px;
     display: flex;
     align-items: center;
     gap: 7px;
 
     p {
       margin: 0;
-      font-size: .9rem;
+      font-size: 0.9rem;
       font-family: "Inter", sans-serif;
       font-weight: 500;
-      line-height: .9em; 
+      line-height: 0.9em;
     }
   }
 
   .chat-icon {
-    font-size: 24px;
+    font-size: 18px;
     display: flex;
     align-items: center;
     gap: 7px;
 
     p {
       margin: 0;
-      font-size: .9rem;
+      font-size: 0.9rem;
       font-family: "Inter", sans-serif;
       font-weight: 500;
     }
@@ -329,21 +343,6 @@
     background-color: #008b51;
   }
 
-  .new-poster {
-    margin-right: 43px;
-
-    a {
-      padding: 5px 20px;
-      font-family: "Gilroy";
-      font-weight: 600;
-      font-size: 22px;
-      line-height: 27px;
-      color: #fff;
-      background-color: #008b51;
-      border-radius: 6px;
-    }
-  }
-
   .chat-icon svg {
     margin-bottom: 0;
     color: #008b51;
@@ -356,7 +355,7 @@
 
   .wallet-icon svg {
     color: #008b51;
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .nav__select {
@@ -372,12 +371,14 @@
   .nav__list {
     flex-direction: column;
     align-items: start;
+    gap: 7px;
+    margin-top: 20px;
   }
 
   .nav__select {
     margin: 0;
     padding: 0;
-    font-size: .9rem;
+    font-size: 0.9rem;
     font-family: "Inter", sans-serif;
     font-weight: 500;
   }
@@ -385,17 +386,29 @@
   .nav__select option {
     background-color: #fff;
   }
-  
+
   .wallet__select option {
     margin: 0;
-    font-size: .9rem;
+    font-size: 0.9rem;
     font-family: "Inter", sans-serif;
     font-weight: 500;
+  }
+
+  .lang__select {
+    gap: 0;
+  }
+
+  .lang__select p {
+    margin: 0;
+    font-size: 0.9rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    color: #212529;
   }
 }
 
 .nav__select {
-  padding: 9px 0 9px 5px;
+  // padding: 9px 0 9px 5px;
   border: none;
   outline: none;
   background-color: transparent;
@@ -422,17 +435,21 @@
   background-color: transparent;
 }
 
-
 .lang__btn {
   background-color: transparent !important ;
-border: none !important;
-outline: none !important;
-padding: 0 !important;
+  border: none !important;
+  outline: none !important;
+  padding: 0 !important;
+}
+
+.lan img {
+  width: 25px !important;
 }
 
 .lang__select {
-display: flex;
-align-items: center; 
+  display: flex;
+  align-items: center;
+  gap: 5px;
   border-radius: 6px;
   font-family: "Gilroy";
   font-style: normal;
@@ -442,6 +459,7 @@ align-items: center;
   color: #fff;
   cursor: pointer;
 }
+
 .lang__select p {
   margin: 0;
 }
@@ -450,6 +468,7 @@ align-items: center;
   width: 35px;
   height: 35px;
 }
+
 //******************//
 //***   TABLET   ***//
 //******************//
@@ -506,13 +525,12 @@ align-items: center;
   .chat-icon,
   .heart-icon,
   .lang-icon {
-    margin-right: 20px;
+    margin-right: 10px;
   }
 }
 
 @media only screen and (max-width: 769px) {
-  .heart-icon,
-  .lang-icon {
+  .heart-icon {
     display: none;
   }
 
@@ -523,11 +541,11 @@ align-items: center;
   }
 
   .wallet-icon {
-    margin-right: 20px;
+    margin-right: 10px;
     font-size: 20px;
   }
 
-  .nav__select  {
+  .nav__select {
     font-size: 18px;
   }
 
@@ -560,6 +578,10 @@ align-items: center;
     margin: 0;
     font-size: 16px;
   }
+
+  .nav__select {
+    font-size: 16px;
+  }
 }
 
 @media only screen and (max-width: 493px) {
@@ -574,6 +596,10 @@ align-items: center;
   .wallet-icon {
     display: none;
     margin-right: 0;
+  }
+
+  .lang-icon {
+    display: none;
   }
 
   .site-logo {
@@ -649,5 +675,3 @@ align-items: center;
   width: 22px;
   height: 22px;
 }
-
-
