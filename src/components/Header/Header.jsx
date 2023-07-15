@@ -55,31 +55,15 @@ export const Header = () => {
 
   const [langLabel, setLangLabel] = useState(options[0].label);
 
-
-  const optionsCourse = [
-    {
-      value: "Uzs",
-      
-    }, //en
-    {
-      value: "Usd",
-      
-    }, //de
-  ];
-
   const [course, setCourse] = useState("Uzs");
 
-  const [courseLabel, setCourseLabel] = useState(options[0].label);
 
   function handlclick(n) {
     setLangLabel(options[n].label);
     setLang(options[n].value);
   }
 
-  function handlclickCourse(n) {
-    setCourseLabel(optionsCourse[n].label);
-    setCourse(optionsCourse[n].value);
-  }
+ 
 
   const handleLogout = () => {
     localStorage.removeItem("token")
@@ -113,29 +97,6 @@ export const Header = () => {
                 <Link className="nav__link" to={"/upload"}>
                   + E’lon joylash
                 </Link>
-              </li>
-
-              <li className="nav__item lang-icon">
-                <div className="lang__select">
-                  <p>{course}</p>
-                  <Dropdown className="shadow-none" as={ButtonGroup}>
-                    <Dropdown.Toggle
-                      className="lang__btn  shadow-none"
-                      id="lng-dropdown"
-                    >
-                      <FaWallet/>
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => handlclickCourse(0)}>
-                        {optionsCourse[0].value}
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={() => handlclickCourse(1)}>
-                        {optionsCourse[1].value}
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </div>
               </li>
               <li className="nav__item lang-icon">
                 <div className="lang__select">
@@ -250,13 +211,7 @@ export const Header = () => {
                 </div>
               </div>
               <ul className="nav__list">
-                <li className="nav__item wallet-icon">
-                  <BiWallet />
-                  <select className="nav__select">
-                    <option value="usd">Usd</option>
-                    <option value="som">Uzs</option>
-                  </select>
-                </li>
+                
                 <li className="nav__item chat-icon">
                   <Link className="nav__link" to={"/messaging"}>
                     <FaRegComment />

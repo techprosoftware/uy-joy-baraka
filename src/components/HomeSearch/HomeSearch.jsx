@@ -19,7 +19,7 @@ export const HomeSearch = () => {
                 data-mdb-toggle="dropdown"
                 aria-expanded="false"
               >
-                <BiFilter /> Filter
+                <BiFilter /> <span className="filter__btn">Filter</span>
               </a>
               <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li>
@@ -33,10 +33,13 @@ export const HomeSearch = () => {
                     </select>
                   </a>
                 </li>
-                <ul className="d-flex justify-content-between">
+                <ul className="d-flex justify-content-between flex-column">
                   <li>
                     <a className="dropdown-item" href="#">
                       <select className="select__sale select__region">
+                      <option selected disabled value="defregion">
+                        Viloyatlar
+                      </option>
                         <option value="toshkent">Toshkent shahri</option>
                         <option value="andijon">Andijon</option>
                         <option value="buxoro">Buxoro</option>
@@ -63,7 +66,7 @@ export const HomeSearch = () => {
                     </a>
                   </li>
                 </ul>
-                <li className="dropdown-item"><button className="btn btn-outline-success w-100" href="#">Filtrlash</button></li>
+                <li className="dropdown-item"><button className="send__button w-100" href="#">Filtrlash</button></li>
               </ul>
             </div>
             <input className="input__sale" type="text" placeholder="Qidirish" />
