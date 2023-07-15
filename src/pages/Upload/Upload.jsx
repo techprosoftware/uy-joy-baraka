@@ -95,6 +95,8 @@ export const Upload = () => {
               <img src={plus} alt="" /> Rasm yuklang
               <input
                 type="file"
+                className="upload-input"
+                // Has been edited and added classname,  because of not appearing in the DOM, also in CSS
                 onChange={handleImageChange}
                 id="upload"
                 visibility="hidden"

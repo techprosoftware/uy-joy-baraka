@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Header } from "@components/Header/Header";
 import axios from "axios";
 import "./Messaging.scss";
 // Icons
 import TrashIcon from "../../../public/assets/images/messaging-delete-icon.svg";
-import arrow from "../../../public/assets/images/left-arrow.svg";
+import { BackButton } from "../../components/BackButton/BackButton";
 import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilonzor.webp";
 import ChatsendIcon from "../../../public/assets/images/chatbar-send-icon.svg";
 
@@ -76,9 +75,6 @@ export const Messaging = () => {
   const [chats, setChats] = useState(mockData);
   const [activeChatId, setActiveChatId] = useState(null);
 
-  // Back button handling
-  const navigate = useNavigate();
-
   // Handle button active state change
   const handleButtonClick = () => {
     setIsActive(!isActive);
@@ -132,10 +128,8 @@ export const Messaging = () => {
       {/* Users bar */}
       <div className="users-bar">
         <div className="container">
-          <div className="arrow-btn__wrapper">
-            <button onClick={() => navigate(-1)} className="arrow__btn">
-              <img src={arrow} alt="" /> Orqaga
-            </button>
+          <div className="backButton">
+            <BackButton />
           </div>
           <div className="bar-wrapper">
             <div className="wrapper-sections">
@@ -198,7 +192,6 @@ export const Messaging = () => {
                 ))}
               </div>
             </div>
-
             {/* Chat section */}
             {selectedChat && (
               <div className="chatbar-section">
