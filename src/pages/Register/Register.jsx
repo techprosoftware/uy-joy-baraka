@@ -6,21 +6,25 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import AuthService from "../../Api/auth.service";
 
-
 export const Register = () => {
   const name = useRef();
   const phone = useRef();
   const password = useRef();
+  const password2 = useRef();
   const navigate = useNavigate();
 
   const users = async (value) => {
-    const data = await AuthService.userRegister(value)
+    const data = await AuthService.userRegister(value);
+    console.log(data);
+  };
 
-    if(data.status === 201) {
-      console.log(data);
-      
-    }
-  }
+  const sendCode = async (value) => {
+    const phone = value.phone;
+
+    const userPhone = await AuthService.SendCode(phone);
+    // navigate("/sms");
+    console.log(userPhone.data.code);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,10 +32,16 @@ export const Register = () => {
     const value = {
       name: name.current.value,
       phone: phone.current.value,
-      password: password.current.value
-    }
+      password: password.current.value,
+    };
 
-    users(value)
+    if (password.current.value == password2.current.value) {
+      users(value);
+      sendCode(value);
+      console.log("send");
+    } else {
+      console.log("error password");
+    }
 
     var phoneNumber = phone.current.value;
 
@@ -48,7 +58,6 @@ export const Register = () => {
 
     var formattedPhoneNumber = formatPhoneNumber(phoneNumber);
     window.localStorage.setItem("phone", formattedPhoneNumber);
-    // navigate("/sms");
   };
 
   return (
@@ -62,18 +71,25 @@ export const Register = () => {
             </p>
 
             <form className="register__form" onSubmit={handleSubmit}>
-              <input type="text" placeholder="Ismingiz" required ref={name} />
+              <input type="text" placeholder="Ism" required ref={name} />
+
+              <input
+                type="number"
+                placeholder="Telefon raqam"
+                required
+                ref={phone}
+              />
               <input
                 type="password"
-                placeholder="Parolingiz"
+                placeholder="Parol"
                 required
                 ref={password}
               />
               <input
-                type="number"
-                placeholder="Telefon raqamingiz"
+                type="password"
+                placeholder="Parolni takrorlang"
                 required
-                ref={phone}
+                ref={password2}
               />
 
               <button type="submit">Ro'yxatdan o'tish</button>

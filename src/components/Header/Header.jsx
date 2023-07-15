@@ -211,13 +211,7 @@ export const Header = () => {
                 </div>
               </div>
               <ul className="nav__list">
-                <li className="nav__item wallet-icon">
-                  <BiWallet />
-                  <select className="nav__select">
-                    <option value="usd">Usd</option>
-                    <option value="som">Uzs</option>
-                  </select>
-                </li>
+                
                 <li className="nav__item chat-icon">
                   <Link className="nav__link" to={"/messaging"}>
                     <FaRegComment />

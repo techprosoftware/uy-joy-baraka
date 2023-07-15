@@ -37,6 +37,9 @@ export const HomeSearch = () => {
                   <li>
                     <a className="dropdown-item" href="#">
                       <select className="select__sale select__region">
+                      <option selected disabled value="defregion">
+                        Viloyatlar
+                      </option>
                         <option value="toshkent">Toshkent shahri</option>
                         <option value="andijon">Andijon</option>
                         <option value="buxoro">Buxoro</option>

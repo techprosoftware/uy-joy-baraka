@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
@@ -10,6 +9,7 @@ export const SmsPage = () => {
 
   const [time, setTime] = useState(59);
 
+  
   useEffect(() => {
     const interval = setInterval(() => {
       if (time > 0) {
