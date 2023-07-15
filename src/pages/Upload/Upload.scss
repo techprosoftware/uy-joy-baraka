@@ -2,14 +2,11 @@
   padding: 96px 0 100px 0;
 }
 
-
 @media only screen and (max-width: 769px) {
   .upload__inner {
     padding: 76px 0 100px 0;
   }
 }
-
-
 
 .upload__title {
   margin: 0;
@@ -30,7 +27,7 @@
   flex-direction: column;
 }
 
-input[type="file"] {
+.upload-input {
   display: none;
 }
 .upload__wrap {
@@ -196,7 +193,6 @@ input[type="file"] {
   height: 30px;
   cursor: pointer;
 }
-
 
 .img__wrapper {
   width: 100%;
