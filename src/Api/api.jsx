@@ -1,6 +1,6 @@
 import axios from "axios";
-
-axios.defaults.baseURL = 'http://test.uyjoybaraka.uz/';
+export const BASE_URL = 'http://test.uyjoybaraka.uz/'
+axios.defaults.baseURL = BASE_URL;
 
 axios.interceptors.request.use({
   Headers: {}
