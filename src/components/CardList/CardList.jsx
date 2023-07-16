@@ -1,7 +1,8 @@
-// import { CardSkeleton } from "../Cards/CardSkeleton"
-import { Card } from "../Cards/Cards"
+import {Card} from "../Cards/Cards"
 import data from "../Cards/data"
 import "./card-list.scss"
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 export const CardList = () => {
   return (
