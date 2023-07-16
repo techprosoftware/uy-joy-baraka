@@ -82,6 +82,7 @@
 }
 
 .card-single__share-btn {
+  position: relative;
   display: flex;
   align-items: center;
   margin-left: 50px;
@@ -95,16 +96,26 @@
   font-size: 14px;
   line-height: 16px;
   color: #ffffff;
+  outline: none;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    margin-right: 7px;
+    width: 23px;
+    height: 23px;
+    background-image: url("@images/card-single-share-icon.svg");
+    background-repeat: no-repeat;
+  }
 }
 
-.card-single__share-btn::before {
-  content: "";
-  display: inline-block;
-  margin-right: 7px;
-  width: 23px;
-  height: 23px;
-  background-image: url("@images/card-single-share-icon.svg");
-  background-repeat: no-repeat;
+.share-btn {
+  position: absolute;
+  display: none;
+  bottom: -60px;
+  left: -100px;
+  padding: 10px;
+  background-color: #7ea596e4;
 }
 
 .card-single__user-info {
@@ -122,6 +133,10 @@
   }
 }
 
+.card-single__price {
+  margin-top: 16px !important;
+}
+
 .card-single__title {
   margin: 15px 0 0;
   padding: 0;
@@ -130,6 +145,7 @@
   font-size: 28px;
   line-height: 100%;
   color: #000000;
+  text-transform: capitalize;
 }
 
 .card-single__text {
@@ -140,6 +156,7 @@
   font-size: 14px;
   line-height: 17px;
   color: #666666;
+  text-transform: capitalize;
 }
 
 .card-single__area {
@@ -181,6 +198,10 @@
     margin-right: 24px;
     background-image: url("@images/card-call-icon.svg");
     background-repeat: no-repeat;
+  }
+
+  &:hover {
+    color: #ffffff;
   }
 }
 
@@ -393,7 +414,7 @@
   }
 
   .card-single__share-btn {
-    margin-left: auto ;
+    margin-left: auto;
   }
 
   .card-single__send-btn {
