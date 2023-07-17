@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import { cardReducer } from "./card/cardReducer";
-import { phoneReducer } from "./phoneNumber/phoneReducer";
+import { phoneIdReducer } from "./phoneId/phoneIdReducer";
 
 export const rootReducer = combineReducers({
   cards: cardReducer,
-  phone: phoneReducer
+  phoneId: phoneIdReducer
 });

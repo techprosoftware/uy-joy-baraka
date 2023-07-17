@@ -128,15 +128,16 @@
 }
 
 .dropdown-item {
-  padding: 5px 13px 5px 13px !important;
+  padding: 5px !important;
 }
 
 .send__button {
   font-size: 16px !important;
   border: 2px solid #008b51;
-  background-color: #fff;
+  background-color: #008b51;
   border-radius: 10px;
   outline: none;
+  color: #fff;
   font-size: 16px !important;
 }
 
@@ -154,6 +155,18 @@
   font-size: 22px;
   line-height: 0;
   color: #272727;
+}
+
+.filter__select {
+  width: 100%;
+  max-width: 245px;
+  background: #fff;
+  padding: 15px;
+  transition: all ease .51;
+  top: 115px;
+  position: absolute;
+  z-index: 999;
+  border-radius: 5px;
 }
 
 @media only screen and (max-width: 993px) {
