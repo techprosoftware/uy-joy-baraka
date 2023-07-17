@@ -30,18 +30,6 @@
     font-weight: 700;
     line-height: 24px;
   }
-
-  .user-current__ID {
-    // Margin, paddings
-    margin: 0;
-
-    // Custom styles for text
-    font-size: 16px;
-    color: black;
-    font-family: Arial, sans-serif;
-    font-weight: 400;
-    line-height: 24px;
-  }
 }
 
 //* User profile edit section
@@ -88,6 +76,10 @@
       font-family: "Gilroy";
       font-weight: 500;
       line-height: 24px;
+    }
+
+    .fileInputIcon {
+      margin-right: 5px;
     }
 
     .user-edit__input {
@@ -245,4 +237,40 @@
       margin-bottom: 20px;
     }
   }
+}
+
+:where(
+    .css-dev-only-do-not-override-1m62vyb
+  ).ant-upload-wrapper.ant-upload-picture-card-wrapper
+  .ant-upload.ant-upload-select,
+:where(
+    .css-dev-only-do-not-override-1m62vyb
+  ).ant-upload-wrapper.ant-upload-picture-circle-wrapper
+  .ant-upload.ant-upload-select {
+  width: 130px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  border: 3px solid white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 20px;
+}
+
+:where(
+    .css-dev-only-do-not-override-1m62vyb
+  ).ant-upload-wrapper.ant-upload-picture-card-wrapper
+  .ant-upload.ant-upload-select:not(.ant-upload-disabled):hover {
+  border-color: #ccc;
+}
+
+:where(.css-dev-only-do-not-override-1m62vyb).ant-upload-wrapper
+  .ant-upload-list.ant-upload-list-picture
+  .ant-upload-list-item,
+:where(.css-dev-only-do-not-override-1m62vyb).ant-upload-wrapper
+  .ant-upload-list.ant-upload-list-picture-card
+  .ant-upload-list-item,
+:where(.css-dev-only-do-not-override-1m62vyb).ant-upload-wrapper
+  .ant-upload-list.ant-upload-list-picture-circle
+  .ant-upload-list-item {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }

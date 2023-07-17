@@ -5,6 +5,10 @@ import { Footer } from "../../components/Footer/Footer";
 import { BackButton } from "../../components/BackButton/BackButton";
 import "./UserInfo.scss";
 import userPic from "../../../public/assets/images/user-info_pic.svg";
+import UploadIcon from "../../../public/assets/images/user-info_upload.png";
+// Ant design packs
+import { Upload } from "antd";
+import ImgCrop from "antd-img-crop";
 // import axios from "axios";
 
 export const UserInfo = () => {
@@ -91,6 +95,32 @@ export const UserInfo = () => {
       ? "user-edit__input classHandler"
       : "user-edit__input";
 
+  const [fileList, setFileList] = useState([
+    {
+      uid: "-1",
+      name: "image.png",
+      status: "done",
+      url: "https://preview.keenthemes.com/good/assets/media/avatars/300-1.jpg",
+    },
+  ]);
+  const onChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+  };
+  const onPreview = async (file) => {
+    let src = file.url;
+    if (!src) {
+      src = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file.originFileObj);
+        reader.onload = () => resolve(reader.result);
+      });
+    }
+    const image = new Image();
+    image.src = src;
+    const imgWindow = window.open(src);
+    imgWindow?.document.write(image.outerHTML);
+  };
+
   return (
     <>
       <Header />
@@ -102,7 +132,7 @@ export const UserInfo = () => {
           <div className="user-current">
             {isLoading ? (
               <div className="user-current__skeleton">
-                <Skeleton circle={true} height={80} width={80} />
+                <Skeleton circle={true} height={100} width={100} />
                 <Skeleton
                   width={120}
                   height={20}
@@ -120,7 +150,6 @@ export const UserInfo = () => {
                 />
                 <h3 className="user-current__name">Akbar Ahmadjonov</h3>
                 <p className="user-current__number">+99890 509 83 13</p>
-                <span className="user-current__ID">ID: 4024</span>
               </>
             )}
           </div>
@@ -131,15 +160,35 @@ export const UserInfo = () => {
                 <div className="user-edit__pic">
                   <h3 className="user-edit__title">Rasm: </h3>
                   {isLoading ? (
-                    <Skeleton width={120} height={20} />
+                    <Skeleton width={120} height={80} />
                   ) : (
-                    <input type="text" />
+                    <ImgCrop rotationSlider>
+                      <Upload
+                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                        listType="picture-card"
+                        fileList={fileList}
+                        onChange={onChange}
+                        onPreview={onPreview}
+                      >
+                        {fileList.length < 1 && (
+                          <div>
+                            <img
+                              className="fileInputIcon"
+                              src={UploadIcon}
+                              alt="edit pen"
+                              width={24}
+                            />
+                            <span>Rasm yuklang</span>
+                          </div>
+                        )}
+                      </Upload>
+                    </ImgCrop>
                   )}
                 </div>
                 <div className="user-edit__name">
                   <h3 className="user-edit__title">Ism: </h3>
                   {isLoading ? (
-                    <Skeleton width={200} height={20} />
+                    <Skeleton width={200} height={30} />
                   ) : (
                     <input
                       className="user-edit__input"
@@ -152,7 +201,7 @@ export const UserInfo = () => {
                 <div className="user-edit__number">
                   <h3 className="user-edit__title">Raqam: </h3>
                   {isLoading ? (
-                    <Skeleton width={220} height={20} />
+                    <Skeleton width={220} height={30} />
                   ) : (
                     <input
                       className={inputClassname}
