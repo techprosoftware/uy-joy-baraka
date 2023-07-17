@@ -15,7 +15,6 @@ export const HomeSearch = () => {
 
   const handleSelect = () => {
     setOpenSelect(!openSelect);
-    console.log(openSelect);
   };
 
   console.log(openSelect);

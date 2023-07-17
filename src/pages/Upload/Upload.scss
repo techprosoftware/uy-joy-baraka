@@ -67,7 +67,30 @@
 
 .upload__region {
   width: 100%;
-  padding: 18px 28px;
+  padding: 18px 0px;
+  border: none !important;
+  outline: none !important;
+  border-radius: 5px !important;
+  background: #fff !important;
+  color: rgba(39, 39, 39, 0.5) !important;
+  font-size: 20px !important;
+  font-family: Gilroy !important;
+  font-weight: 300 !important;
+  line-height: 100% !important;
+  cursor: pointer !important;
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1) !important;
+}
+
+.ant-space {
+  width: 100%;
+}
+
+.ant-select-focused {
+border-color: #fff !important;
+}
+
+.ant-space-item{
+  width: 100% !important;
   border: none;
   outline: none;
   border-radius: 5px;
@@ -81,14 +104,35 @@
   box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
 }
 
+.ant-select{
+  width: 100% !important;
+  padding: 10px 0px !important;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: #fff;
+  color: rgba(39, 39, 39, 0.5);
+  font-size: 20px;
+  font-family: Gilroy;
+  font-weight: 300;
+  line-height: 100%;
+  cursor: pointer;
+  box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
+}
+
+.ant-select-selector {
+  outline: none !important;
+  border:none !important;
+}
+
 .address__input {
   width: 100%;
   border: none;
   outline: none;
   border-radius: 5px;
-  padding: 18px 28px;
+  padding: 10px 10px;
   color: rgba(39, 39, 39, 0.5);
-  font-size: 20px;
+  font-size: 18px;
   font-family: Gilroy;
   font-weight: 300;
   line-height: 100%;
@@ -96,10 +140,24 @@
   box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
 }
 
+.ant-select-selection-item {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 10px 10px;
+  color: rgba(39, 39, 39, 0.5);
+  font-size: 18px;
+  font-family: Gilroy;
+  font-weight: 300;
+  line-height: 100%;
+  background: transparent;
+}
+
 .upload__title__area {
   width: 100%;
   border-radius: 5px;
-  padding: 18px 28px;
+  padding: 18px 10px;
 
   background: #fff;
   box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
@@ -118,7 +176,7 @@
   border: none;
   outline: none;
   border-radius: 5px;
-  padding: 18px 28px;
+  padding: 10px 10px;
   color: rgba(39, 39, 39, 0.5);
   font-size: 20px;
   font-family: Gilroy;
@@ -133,7 +191,7 @@
   border: none;
   outline: none;
   border-radius: 5px;
-  padding: 18px 28px;
+  padding: 10px 10px;
   color: rgba(39, 39, 39, 0.5);
   font-size: 20px;
   font-family: Gilroy;
