@@ -15,11 +15,22 @@ const AuthService = {
 
   SendCode: async (body) => {
     const data = await axios
-      .post("/api/users/send-code", {
-         phone: body 
-      })
+      .post("/api/users/send-code", body)
       .catch((err) => console.log(err));
     return data;
+  },
+
+  VerifyCode: async (phoneCode, phoneId) => {
+    try {
+      const data = await axios.post("/api/users/validate-code", phoneCode, {
+        headers: {
+          "code-validation-id": `${phoneId}`,
+        },
+      });
+      return data;
+    } catch (error) {
+      console.log(error?.response?.data?.message);
+    }
   },
 };
 

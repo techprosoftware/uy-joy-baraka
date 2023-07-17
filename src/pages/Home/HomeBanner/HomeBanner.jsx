@@ -11,7 +11,7 @@ export const HomeBanner = () => {
   return (
     <>
       <HomeSearch />{" "}
-      <div id="carouselExampleIndicators" className="carousel slide">
+      <div id="carouselExampleIndicators" className="carousel slide" data-mdb-ride="carousel">
         <div className="carousel-indicators">
           <button
             type="button"

@@ -1,10 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./Register.scss";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import AuthService from "../../Api/auth.service";
+import { useDispatch } from "react-redux";
+import { setPhoneId } from "../../redux/phoneId/phoneIdAction";
 
 export const Register = () => {
   const name = useRef();
@@ -13,31 +15,40 @@ export const Register = () => {
   const password2 = useRef();
   const navigate = useNavigate();
 
+  const [code, setCode] = useState([]);
+
+  const dispatch = useDispatch();
+
   const users = async (value) => {
     const data = await AuthService.userRegister(value);
-    console.log(data);
+    if (data.status === 201) {
+      const userPhone = await AuthService.SendCode({
+        phone: "998" + phone.current.value,
+      });
+      dispatch(setPhoneId(userPhone?.data?.codeValidationId));
+      alert(userPhone?.data?.code);
+      console.log(data);
+      navigate("/sms");
+    }
   };
 
-  const sendCode = async (value) => {
-    const phone = value.phone;
-
-    const userPhone = await AuthService.SendCode(phone);
-    // navigate("/sms");
-    console.log(userPhone.data.code);
-  };
+  // const sendCode = async () => {
+  //   const userPhone = await AuthService.SendCode(code);
+  //   dispatch(setPhoneId(userPhone?.data?.codeValidationId));
+  //   alert(userPhone?.data?.code);
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const value = {
       name: name.current.value,
-      phone: phone.current.value,
+      phone: "998" + phone.current.value,
       password: password.current.value,
     };
 
     if (password.current.value == password2.current.value) {
       users(value);
-      sendCode(value);
       console.log("send");
     } else {
       console.log("error password");
@@ -70,22 +81,55 @@ export const Register = () => {
               Saytimizdan foydalanish uchun iltimos oldin ro’yxatdan o’ting
             </p>
 
-            <form className="register__form" onSubmit={handleSubmit}>
-              <input type="text" placeholder="Ism" required ref={name} />
-
+            <form
+              autoComplete="off"
+              className="register__form"
+              onSubmit={handleSubmit}
+            >
+              <label className="register__label" htmlFor="name">
+                Ism
+              </label>
               <input
-                type="number"
-                placeholder="Telefon raqam"
+                type="text"
+                id="ism"
+                className="register__inputs"
+                placeholder="Ism"
                 required
-                ref={phone}
+                ref={name}
               />
+
+              <label className="register__label" htmlFor="number">
+                Nomer
+              </label>
+              <div className="default__phone">
+                <span>+998</span>
+                <input
+                  required
+                  id="phone"
+                  className="phone"
+                  type="number"
+                  placeholder="__ ___ __ __"
+                  ref={phone}
+                />
+              </div>
+              <label className="register__label" htmlFor="password">
+                Parol
+              </label>
               <input
+                className="register__inputs"
+                id="password"
                 type="password"
                 placeholder="Parol"
                 required
                 ref={password}
               />
+
+              <label className="register__label" htmlFor="pass2">
+                Parolni takrorlash
+              </label>
               <input
+                id="pass2"
+                className="register__inputs"
                 type="password"
                 placeholder="Parolni takrorlang"
                 required

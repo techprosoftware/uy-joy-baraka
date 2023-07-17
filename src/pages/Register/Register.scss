@@ -1,3 +1,15 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
 .register__inner {
   padding: 100px 0;
 }
@@ -36,7 +48,7 @@
   margin: 0 auto;
 }
 
-.register__form input {
+.register__form .register__inputs {
   display: block;
   width: 100%;
   margin-bottom: 20px;
@@ -45,6 +57,7 @@
   border-radius: 9px;
   outline: none;
 }
+
 
 .register__form button {
   background: #008b51;
@@ -66,4 +79,30 @@
   text-align: end;
   margin-top: 20px;
   display: block;
+}
+
+.register__label {
+  display: flex !important;
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-family: 'Inter' serif;
+}
+
+.register__form .phone {
+  width: 100%;
+  background: #fff !important;
+  border: none;
+  outline: none;
+}
+
+
+.default__phone {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 15px 0 15px 19px;
+  border: 1px solid #008B51;
+  border-radius: 9px;
+  outline: none;
 }

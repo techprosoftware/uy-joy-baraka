@@ -202,6 +202,8 @@
 }
 
 .img__item {
+  min-width: 260px;
+  max-width: 260px;
   min-height: 146.8px;
   max-height: 146.8px;
   object-fit: cover;
