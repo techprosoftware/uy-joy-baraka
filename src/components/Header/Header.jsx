@@ -29,8 +29,6 @@ export const Header = () => {
 
   const token = localStorage.getItem("token");
 
-  
-
   // if(!token) location.reload()
 
   const options = [
@@ -57,17 +55,13 @@ export const Header = () => {
 
   const [course, setCourse] = useState("Uzs");
 
-
   function handlclick(n) {
     setLangLabel(options[n].label);
     setLang(options[n].value);
   }
 
- 
-
   const handleLogout = () => {
-    localStorage.removeItem("token")
-
+    localStorage.removeItem("token");
   };
 
   return (
@@ -130,7 +124,6 @@ export const Header = () => {
                   <AiFillHeart />
                 </Link>
               </li>
-              
 
               {!token ? (
                 <li className="nav__item user-icon">
@@ -148,18 +141,17 @@ export const Header = () => {
                   className="nav__item user-icon"
                   onClick={() => setDrop(!drop)}
                 >
-                 
-                    <img
-                      className="nav__img"
-                      src={UserIcon}
-                      alt="User info icon"
-                    />
-                  
+                  <img
+                    className="nav__img"
+                    src={UserIcon}
+                    alt="User info icon"
+                  />
+
                   <div className={`drop ${drop ? "" : "visually-hidden"}`}>
                     <p className="drop__info">Bunyodbek</p>
                     <ul className="drop__list">
                       <li className="drop__item">
-                        <Link className="drop__link" to={"#"}>
+                        <Link className="drop__link" to={"/user-info"}>
                           Mening ma’lumotlarim
                         </Link>
                       </li>
@@ -174,7 +166,11 @@ export const Header = () => {
                         </Link>
                       </li>
                       <li className="drop__item">
-                        <p style={{cursor: 'pointer'}} className="drop__link logout-btn" onClick={handleLogout}>
+                        <p
+                          style={{ cursor: "pointer" }}
+                          className="drop__link logout-btn"
+                          onClick={handleLogout}
+                        >
                           Chiqish
                         </p>
                       </li>
@@ -211,7 +207,6 @@ export const Header = () => {
                 </div>
               </div>
               <ul className="nav__list">
-                
                 <li className="nav__item chat-icon">
                   <Link className="nav__link" to={"/messaging"}>
                     <FaRegComment />
