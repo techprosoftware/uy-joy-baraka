@@ -5,26 +5,11 @@ import { Footer } from "../../components/Footer/Footer";
 import { BackButton } from "../../components/BackButton/BackButton";
 import "./UserInfo.scss";
 import userPic from "../../../public/assets/images/user-info_pic.svg";
-import UserChecked from "../../../public/assets/images/user-edit__checked.svg";
 // import axios from "axios";
 
 export const UserInfo = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [selectedImage, setSelectedImage] = useState("");
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      setSelectedImage(reader.result);
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
 
   useEffect(() => {
     // Simulating loading data from an API
@@ -144,29 +129,11 @@ export const UserInfo = () => {
             <form className="form">
               <div className="user-edit__wrapper">
                 <div className="user-edit__pic">
-                  {selectedImage && (
-                    <div className="selected-image__wrapper">
-                      <h5 className="selected__title">
-                        <img src={UserChecked} alt="user selected image" />{" "}
-                        Tanlangan
-                      </h5>
-                      <img
-                        className="selected-image"
-                        src={selectedImage}
-                        alt="Selected"
-                      />
-                    </div>
-                  )}
                   <h3 className="user-edit__title">Rasm: </h3>
                   {isLoading ? (
                     <Skeleton width={120} height={20} />
                   ) : (
-                    <input
-                      className="user-edit__file"
-                      type="file"
-                      name="file"
-                      onChange={handleImageChange}
-                    />
+                    <input type="text" />
                   )}
                 </div>
                 <div className="user-edit__name">
