@@ -14,7 +14,7 @@ export const Announ = () => {
         <BackButton />
         <h2 className="announ__title">E’lonlarim</h2>
 
-        <div className="announ__wrap">
+        <div className="announ__wrap mb-4">
           <NavLink
             to="/announ/active"
             className={({ isActive }) =>

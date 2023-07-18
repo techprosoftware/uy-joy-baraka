@@ -278,8 +278,6 @@
     .burger__bot {
       top: 15px;
     }
-
-    
   }
 
   .container {
@@ -296,7 +294,8 @@
     padding: 10px 15px;
   }
 
-  .close__wrapper-register a ,p {
+  .close__wrapper-register a,
+  p {
     text-decoration: underline;
     margin: 0;
     font-size: 0.9rem;
@@ -304,7 +303,7 @@
     font-weight: 500;
     line-height: 0.9em;
     color: #212529;
-      }
+  }
 
   .close__wrapper-register p {
     text-decoration: none;
@@ -406,7 +405,7 @@
 
   .nav__list {
     background-color: #fff;
-    padding:20px 15px;
+    padding: 20px 15px;
     flex-direction: column;
     align-items: start;
     gap: 7px;
@@ -484,6 +483,12 @@
   border: none !important;
   outline: none !important;
   padding: 0 !important;
+}
+
+.lang__btn img {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }
 
 .lan img {
@@ -718,4 +723,8 @@
 .modal__list img {
   width: 22px;
   height: 22px;
+}
+
+.dropdown-toggle:after {
+  display: none !important;
 }

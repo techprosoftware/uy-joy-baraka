@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Upload.scss";
 import { Link } from "react-router-dom";
 import plus from "../../../public/assets/images/plus-upload.svg";
@@ -12,13 +12,13 @@ const provinceData = [
   "Toshkent",
   "Andijon",
   "Buxoro",
-  "Farg'ona",
+  "Fargona",
   "Jizzax",
   "Xorazm",
   "Namangan",
   "Navoiy",
   "Qashqadaryo",
-  "Qoraqalpog'iston",
+  "Qoraqalpogiston",
   "Samarqand",
   "Sirdaryo",
   "Surxondaryo",
@@ -26,213 +26,213 @@ const provinceData = [
 ];
 const cityData = {
   Toshkent: [
-    "Bektemir tumani",
-    "Chilonzor tumani",
-    "Mirzo Ulug'bek tumani",
-    "Mirobod tumani",
-    "Olmazor tumani",
-    "Sergeli tumani",
-    "Shayxontohur tumani",
-    "Uchtepa tumani",
-    "Yakkasaroy tumani",
-    "Yashnobod tumani",
-    "Yunusobod tumani",
-    "Akmal-Abad tumani",
-    "Bekabad tumani",
-    "Bo'ka tumani",
-    "Bo'stonliq tumani",
-    "Bo'zsu tumani",
-    "Chinoz tumani",
-    "Ohangaron tumani",
-    "Oqqo'rg'on tumani",
-    "Parkent tumani",
-    "Piskent tumani",
-    "Quyi Chirchiq tumani",
-    "O'rta Chirchiq tumani",
-    "Soh tumani",
-    "Yangiyo'l tumani",
-    "Yuqori Chirchiq tumani",
-    "Zangiota tumani",
+    "Bektemir ",
+    "Chilonzor ",
+    "Mirzo Ulug'bek ",
+    "Mirobod ",
+    "Olmazor ",
+    "Sergeli ",
+    "Shayxontohur ",
+    "Uchtepa ",
+    "Yakkasaroy ",
+    "Yashnobod ",
+    "Yunusobod ",
+    "Akmal-Abad ",
+    "Bekabad ",
+    "Bo'ka ",
+    "Bo'stonliq ",
+    "Bo'zsu ",
+    "Chinoz ",
+    "Ohangaron ",
+    "Oqqo'rg'on ",
+    "Parkent ",
+    "Piskent ",
+    "Quyi Chirchiq ",
+    "O'rta Chirchiq ",
+    "Soh ",
+    "Yangiyo'l ",
+    "Yuqori Chirchiq ",
+    "Zangiota ",
   ],
   Andijon: [
     "Andijon shahri",
-    "Asaka tumani",
-    "Baliqchi tumani",
-    "Boz suv tumani",
-    "Bulungur tumani",
-    "Izboskan tumani",
-    "Jalaquduq tumani",
-    "Markhamat tumani",
-    "Oltinko'l tumani",
-    "Paxtaobod tumani",
-    "Shahrixon tumani",
-    "Ulugnor tumani",
-    "Xo'jaobod tumani",
-    "Xonobod tumani",
-    "Qorasuv tumani",
+    "Asaka ",
+    "Baliqchi ",
+    "Boz suv ",
+    "Bulungur ",
+    "Izboskan ",
+    "Jalaquduq ",
+    "Markhamat ",
+    "Oltinko'l ",
+    "Paxtaobod ",
+    "Shahrixon ",
+    "Ulugnor ",
+    "Xo'jaobod ",
+    "Xonobod ",
+    "Qorasuv ",
   ],
   Namangan: [
-    "Chortoq tumani",
-    "Chust tumani",
-    "Kasansay tumani",
-    "Mingbuloq tumani",
+    "Chortoq ",
+    "Chust ",
+    "Kasansay ",
+    "Mingbuloq ",
     "Namangan shahri",
-    "Norin tumani",
-    "Pop tumani",
-    "To'rakurgon tumani",
-    "Uchqo'rg'on tumani",
-    "Uychi tumani",
-    "Yangiqo'rg'on tumani",
-    "Yangiobod tumani",
+    "Norin ",
+    "Pop ",
+    "To'rakurgon ",
+    "Uchqo'rg'on ",
+    "Uychi ",
+    "Yangiqo'rg'on ",
+    "Yangiobod ",
   ],
   Fargona: [
-    "Bog'dod tumani",
-    "Beshariq tumani",
-    "Dangara tumani",
+    "Bog'dod ",
+    "Beshariq ",
+    "Dangara ",
     "Farg'ona shahri",
-    "Farg'ona tumani",
-    "Furqat tumani",
-    "Quva tumani",
-    "Qo'shtepa tumani",
-    "Rishton tumani",
-    "So'x tumani",
-    "Toshloq tumani",
-    "Uchko'prik tumani",
-    "Yozyovon tumani",
+    "Farg'ona ",
+    "Furqat ",
+    "Quva ",
+    "Qo'shtepa ",
+    "Rishton ",
+    "So'x ",
+    "Toshloq ",
+    "Uchko'prik ",
+    "Yozyovon ",
   ],
   Sirdaryo: [
-    "Akaltyn tumani",
-    "Bayavut tumani",
-    "Boyovut tumani",
+    "Akaltyn ",
+    "Bayavut ",
+    "Boyovut ",
     "Guliston shahri",
-    "Guliston tumani",
-    "Mirzaobod tumani",
-    "Ohangaron tumani",
-    "Oqoltin tumani",
-    "Sardoba tumani",
+    "Guliston ",
+    "Mirzaobod ",
+    "Ohangaron ",
+    "Oqoltin ",
+    "Sardoba ",
     "Shirin shahri",
-    "Sirdaryo tumani",
-    "Xovos tumani",
+    "Sirdaryo ",
+    "Xovos ",
   ],
   Jizzax: [
-    "Arnasoy tumani",
-    "Baxmal tumani",
-    "Do'stlik tumani",
-    "Forish tumani",
-    "G'allaorol tumani",
-    "Gagarin tumani",
-    "Paxtakor tumani",
-    "Sharof Rashidov tumani",
-    "Yangiobod tumani",
-    "Zafarobod tumani",
-    "Zarbdor tumani",
-    "Zomin tumani",
+    "Arnasoy ",
+    "Baxmal ",
+    "Do'stlik ",
+    "Forish ",
+    "G'allaorol ",
+    "Gagarin ",
+    "Paxtakor ",
+    "Sharof Rashidov ",
+    "Yangiobod ",
+    "Zafarobod ",
+    "Zarbdor ",
+    "Zomin ",
   ],
   Samarqand: [
-    "Bulung'ur tumani",
-    "Ishtixon tumani",
-    "Jomboy tumani",
-    "Kattakurgon tumani",
-    "Kibray tumani",
-    "Narpay tumani",
-    "Nurobod tumani",
-    "Oqdaryo tumani",
-    "Pastdarg'om tumani",
-    "Payariq tumani",
+    "Bulung'ur ",
+    "Ishtixon ",
+    "Jomboy ",
+    "Kattakurgon ",
+    "Kibray ",
+    "Narpay ",
+    "Nurobod ",
+    "Oqdaryo ",
+    "Pastdarg'om ",
+    "Payariq ",
     "Samarqand shahri",
-    "Toyloq tumani",
-    "Urgut tumani",
-    "Xo'jaobod tumani",
+    "Toyloq ",
+    "Urgut ",
+    "Xo'jaobod ",
   ],
   Qashqadaryo: [
-    "Chiroqchi tumani",
-    "Dehqonobod tumani",
-    "G'uzor tumani",
-    "Kasbi tumani",
-    "Kitob tumani",
-    "Koson tumani",
-    "Mirishkor tumani",
-    "Muborak tumani",
-    "Nishon tumani",
-    "Qamashi tumani",
+    "Chiroqchi ",
+    "Dehqonobod ",
+    "G'uzor ",
+    "Kasbi ",
+    "Kitob ",
+    "Koson ",
+    "Mirishkor ",
+    "Muborak ",
+    "Nishon ",
+    "Qamashi ",
     "Qarshi shahri",
-    "Qarshi tumani",
-    "Shakhrisabz tumani",
-    "Yakkabog' tumani",
-    "Yarimobod tumani",
-    "Zomin tumani",
+    "Qarshi ",
+    "Shakhrisabz ",
+    "Yakkabog' ",
+    "Yarimobod ",
+    "Zomin ",
   ],
   Surxondaryo: [
-    "Angor tumani",
-    "Boysun tumani",
-    "Denov tumani",
-    "Jarqo'rg'on tumani",
-    "Qiziriq tumani",
-    "Qumqo'rg'on tumani",
-    "Sherobod tumani",
-    "Sho'rchi tumani",
-    "Muzrabot tumani",
+    "Angor ",
+    "Boysun ",
+    "Denov ",
+    "Jarqo'rg'on ",
+    "Qiziriq ",
+    "Qumqo'rg'on ",
+    "Sherobod ",
+    "Sho'rchi ",
+    "Muzrabot ",
     "Termiz shahri",
-    "Termiz tumani",
-    "Uzun tumani",
-    "Sariosiyo tumani",
+    "Termiz ",
+    "Uzun ",
+    "Sariosiyo ",
   ],
   Navoiy: [
-    "Karmana tumani",
-    "Khatirchi tumani",
-    "Konimex tumani",
-    "Navbahor tumani",
+    "Karmana ",
+    "Khatirchi ",
+    "Konimex ",
+    "Navbahor ",
     "Navoiy shahri",
-    "Navoiy tumani",
-    "Nurota tumani",
-    "Qiziltepa tumani",
-    "Tomdi tumani",
-    "Uchquduq tumani",
-    "Xatirchi tumani",
+    "Navoiy ",
+    "Nurota ",
+    "Qiziltepa ",
+    "Tomdi ",
+    "Uchquduq ",
+    "Xatirchi ",
     "Zarafshon shahri",
   ],
   Buxoro: [
     "Buxoro shahri",
-    "Buxoro tumani",
-    "G'ijduvon tumani",
-    "Jondor tumani",
-    "Kogon tumani",
-    "Qorako'l tumani",
-    "Qorovulbozor tumani",
-    "Peshku tumani",
-    "Romitan tumani",
-    "Shofirkon tumani",
-    "Vobkent tumani",
-    "Yangiobod tumani",
+    "Buxoro ",
+    "G'ijduvon ",
+    "Jondor ",
+    "Kogon ",
+    "Qorako'l ",
+    "Qorovulbozor ",
+    "Peshku ",
+    "Romitan ",
+    "Shofirkon ",
+    "Vobkent ",
+    "Yangiobod ",
   ],
   Xorazm: [
-    "Bog'ot tumani",
-    "Gurlan tumani",
-    "Hazorasp tumani",
+    "Bog'ot ",
+    "Gurlan ",
+    "Hazorasp ",
     "Khiva shahri",
-    "Shovot tumani",
+    "Shovot ",
     "Urganch shahri",
-    "Urganch tumani",
-    "Xonqa tumani",
-    "Xorazm tumani",
-    "Yangibozor tumani",
+    "Urganch ",
+    "Xonqa ",
+    "Xorazm ",
+    "Yangibozor ",
   ],
   Qoraqalpogiston: [
-    "Amudaryo tumani",
-    "Beruniy tumani",
-    "Chimboy tumani",
-    "Ellikqal'a tumani",
-    "Kegeyli tumani",
-    "Mo'ynoq tumani",
+    "Amudaryo ",
+    "Beruniy ",
+    "Chimboy ",
+    "Ellikqal'a ",
+    "Kegeyli ",
+    "Mo'ynoq ",
     "Nukus shahri",
-    "Nukus tumani",
-    "Qanliko'l tumani",
-    "Qo'ng'irot tumani",
-    "Qorao'zak tumani",
-    "Shumanay tumani",
-    "Taxtako'pir tumani",
-    "To'rtko'l tumani",
-    "Xo'jayli tumani",
+    "Nukus ",
+    "Qanliko'l ",
+    "Qo'ng'irot ",
+    "Qorao'zak ",
+    "Shumanay ",
+    "Taxtako'pir ",
+    "To'rtko'l ",
+    "Xo'jayli ",
   ],
 };
 export const Upload = () => {
@@ -302,13 +302,30 @@ export const Upload = () => {
     sessionStorage.setItem("selectedImages", JSON.stringify(selectedImages));
   }, [selectedImages]);
 
+
+  const city = useRef()
+  const district = useRef()
+  const type = useRef()
+  const description = useRef()
+  const price = useRef()
+  const price_type = useRef()
+  const phone = useRef()
+  const images = useRef()
+
+  console.log(images?.current?.value);
+  const storedData = sessionStorage.getItem("selectedImages");
+
+  // JSON formatidagi ma'lumotlarni o'zgaruvchiga o'girish
+  const parsedData = JSON.parse(storedData);
+  console.log(parsedData);
+
   return (
     <div className="upload__inner">
       <div className="container">
         <BackButton />
         <h2 className="upload__title">E’lon joylash</h2>
 
-        <form className="upload__form">
+        <form autoComplete="off" className="upload__form">
           <div className="row img__wrapper">
             {selectedImages.map((image, index) => (
               <div
@@ -339,6 +356,8 @@ export const Upload = () => {
                 // Has been edited and added classname,  because of not appearing in the DOM, also in CSS
                 onChange={handleImageChange}
                 id="upload"
+                multiple
+                ref={images}
                 visibility="hidden"
               />
             </label>
@@ -370,44 +389,7 @@ export const Upload = () => {
                 }))}
               />
             </Space>
-            {/* <select className="upload__region">
-              <option disabled selected value="def">
-                Viloyat tanlang
-              </option>
-              <option value="toshkent">Toshkent shahri</option>
-              <option value="andijon">Andijon</option>
-              <option value="buxoro">Buxoro</option>
-              <option value="fargona">Farg`ona</option>
-              <option value="jizzax">Jizzax</option>
-              <option value="xorazm">Xorazm</option>
-              <option value="namangan">Namangan</option>
-              <option value="navoiy">Navoiy</option>
-              <option value="qashqadaryo">Qashqadaryo</option>
-              <option value="samarqand">Samarqand</option>
-              <option value="sirdaryo">Sirdaryo</option>
-              <option value="surxondaryo">Surxondaryo</option>
-              <option value="toshkent-obl">Toshkent viloyati</option>
-              <option value="xorazm">Xorazm</option>
-            </select>
-            <select className="upload__region mt-2">
-              <option disabled selected value="def">
-                Tuman tanlang
-              </option>
-              <option value="toshkent">Chilonzor</option>
-              <option value="andijon">Andijon</option>
-              <option value="buxoro">Buxoro</option>
-              <option value="fargona">Farg`ona</option>
-              <option value="jizzax">Jizzax</option>
-              <option value="xorazm">Xorazm</option>
-              <option value="namangan">Namangan</option>
-              <option value="navoiy">Navoiy</option>
-              <option value="qashqadaryo">Qashqadaryo</option>
-              <option value="samarqand">Samarqand</option>
-              <option value="sirdaryo">Sirdaryo</option>
-              <option value="surxondaryo">Surxondaryo</option>
-              <option value="toshkent-obl">Toshkent viloyati</option>
-              <option value="xorazm">Xorazm</option>
-            </select> */}
+           
           </div>
 
           <div className="upload__wrap">
@@ -462,7 +444,16 @@ export const Upload = () => {
           <div className="upload__wrap ">
             <p>Narx Kiriting:</p>
             <div className="upload__price">
-              <input className="price__input" type="text" placeholder="123" />
+            <div className="upload__phone">
+                <input
+                  required
+                  id="phone"
+                  className="price__input"
+                  type="number"
+                  placeholder="Narx kiriting:"
+                  
+                />
+              </div>
               <Select
                 defaultValue="Valyuta"
                 style={{
@@ -490,8 +481,20 @@ export const Upload = () => {
 
           <div className="upload__wrap">
             <p>Telefon raqam:</p>
-            <input className="phone__input" type="text" placeholder="+998" />
-          </div>
+            <div className="upload__price">
+            <div className="upload__phone">
+                <span>+998</span>
+                <input
+                  required
+                  id="phone"
+                  className="price__input"
+                  type="number"
+                  placeholder="__ ___ __ __"
+                  
+                />
+              </div>
+              
+            </div>          </div>
 
           <button type="submit" className="upload__btn">
             Saqlash

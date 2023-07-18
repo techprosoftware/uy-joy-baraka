@@ -33,7 +33,7 @@ export const Header = () => {
 
   const options = [
     {
-      value: "O'z",
+      value: <img width={30} src={uzflag} alt="" />,
       label: (
         // <div>
         <img src={uzflag} width={30} alt="" />
@@ -41,7 +41,7 @@ export const Header = () => {
       ),
     }, //en
     {
-      value: "Ru",
+      value: <img width={30} src={ruflag} alt="" />,
       label: (
         // <div>
         <img src={ruflag} width="30" alt="" />
@@ -92,28 +92,7 @@ export const Header = () => {
                   + E’lon joylash
                 </Link>
               </li>
-              <li className="nav__item lang-icon">
-                <div className="lang__select">
-                  <p>{lang}</p>
-                  <Dropdown className="shadow-none" as={ButtonGroup}>
-                    <Dropdown.Toggle
-                      className="lang__btn  shadow-none"
-                      id="lng-dropdown"
-                    >
-                      {langLabel}
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => handlclick(0)}>
-                        {options[0].value}
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={() => handlclick(1)}>
-                        {options[1].value}
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </div>
-              </li>
+              
               <li className="nav__item chat-icon">
                 <Link className="nav__link" to={"/messaging"}>
                   <FaComment />
@@ -124,7 +103,28 @@ export const Header = () => {
                   <AiFillHeart />
                 </Link>
               </li>
+              <li className="nav__item lang-icon">
+                <div className="lang__select">
+                  {/* <p>{lang}</p> */}
+                  <Dropdown className="shadow-none" as={ButtonGroup}>
+                    <Dropdown.Toggle
+                      className="lang__btn  shadow-none"
+                      id="lng-dropdown"
+                    >
+                      {langLabel}
+                    </Dropdown.Toggle>
 
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={() => handlclick(0)}>
+                      O'z  {options[0].value}
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={() => handlclick(1)}>
+                      Ru  {options[1].value}
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+              </li>
               {!token ? (
                 <li className="nav__item user-icon">
                   <Link className="nav__link" to={"/register"}>
@@ -146,7 +146,7 @@ export const Header = () => {
                     src={UserIcon}
                     alt="User info icon"
                   />
-
+                  
                   <div className={`drop ${drop ? "" : "visually-hidden"}`}>
                     <p className="drop__info">Bunyodbek</p>
                     <ul className="drop__list">
