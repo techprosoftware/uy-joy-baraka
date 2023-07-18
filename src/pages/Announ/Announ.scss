@@ -44,5 +44,9 @@
 .active {
   background-color: #008B51;
   color: #fff;
+
+  &:hover {
+    color: #fff;
+  }
 }
 
