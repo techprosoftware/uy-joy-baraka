@@ -5,60 +5,46 @@ import {BackButton} from "@components/BackButton/BackButton"
 import {CardList} from "@components/CardList/CardList"
 // import data from "./data"
 import {MoreBtn} from "../MoreBtn/MoreBtn"
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import {motion} from "framer-motion"
 import "./share"
 import {BASE_URL} from "../../Api/api"
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import CardService from "@/Api/card.service.jsx";
 
 export const CardSingle = () => {
   let [imgId, setImgId] = useState(1)
   let [modal, setModal] = useState(false)
+  const [card, setCard] = useState({})
+  const {id} = useParams()
+
   window.addEventListener("keydown", (evt) => {
     if (evt.key === "Escape") {
       setModal(false)
     }
   })
 
-  const data = {
-    announcement_id: "c13b3cb4-ea6b-4220-bec1-56e01945ae5a",
-    slug: "toshkent-uy-sotiladi",
-    title: "toshkent-uy-sotiladi",
-    thumb: ["/images/uploads/default.png"],
-    city: "Toshkent",
-    district: "Chilonzor",
-    address: "Alisher Navoiy ko'chasi ",
-    type: "sale",
-    description: "O'rmonga o't ketsa Ho'lu toshkenlik birday yonadi",
-    price: 100000,
-    price_type: "dollar",
-    status: true,
-    confirm: true,
-    likeCount: 0,
-    viewCount: 0,
-    rec: false,
-    createdAt: "2023-07-13T10:25:11.622Z",
-    updatedAt: "2023-07-13T10:31:21.943Z",
-    user_id: "47eea903-d193-41fd-a768-1612ea937e1e",
-  }
+  useEffect(() => {
+    !async function () {
+      const data = await CardService.getByCard(id)
+      console.log(data)
+      try {
+        if (data.status === 200) {
+          setCard(data.data)
+          console.log(data.data)
+        }
+      } catch (error) {
+        console.log('Error fetching card data: ', error)
+      }
+    }()
 
-  const user = {
-    user_id: "47eea903-d193-41fd-a768-1612ea937e1e",
-    full_name: "Admin",
-    phone: "998905210501",
-    address: null,
-    role: "admin",
-    user_attempts: 0,
-    avatar: "/images/users/default.png",
-    confirm: true,
-    socket_id: null,
-    status: "offline",
-    createdAt: "2023-07-12T08:29:07.743Z",
-    updatedAt: "2023-07-15T12:12:09.928Z",
-  }
+  }, [])
 
-  const time = data.createdAt.split('-')
+  const data = card.post
+  const user = card.user
+  console.log(card)
+  const time = data?.createdAt.split('-')
   const customPrice = data?.price.toString().replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, '$1 ');
   const handleForm = () => {
   }
@@ -108,7 +94,7 @@ export const CardSingle = () => {
             <div className="card-single__content">
               <div className="card-single__top">
                 <div className="d-flex card-single__date">
-                  <time className="card-single__time">{`${time[2].split('T')[0]}. ${time[1]}.${time[0]}`}</time>
+                  <time className="card-single__time">{``}</time>
                   <span className="card-single__view">{data?.viewCount}</span>
                 </div>
                 <button
@@ -133,19 +119,20 @@ export const CardSingle = () => {
                 <div className="card-single__user-info">
                   <img
                     className="card-single__user-avatar"
-                    src={BASE_URL + user.avatar}
+                    src={BASE_URL + user?.avatar}
                     width={32}
                     height={32}
-                    alt={user.full_name}
+                    alt={user?.full_name}
                   />
                   <span className="card-single__user-name">
-                    {user.full_name}
+                    {user?.full_name}
                   </span>
                 </div>
               </div>
-              <p className="card__price card-single__price">{customPrice} {"s'om"}</p>
-              <h2 className="card-single__title">{data.title}</h2>
-              <p className="card-single__text">{data.description}</p>
+              <p
+                className="card__price card-single__price">{customPrice} {data?.price_type === "dollar" ? "$" : "s'om"}</p>
+              <h2 className="card-single__title">{data?.title}</h2>
+              <p className="card-single__text">{data?.description}</p>
               <form method="POST" onSubmit={handleForm}>
                   <textarea
                     className="card-single__area"
@@ -157,7 +144,7 @@ export const CardSingle = () => {
                 <div className="d-flex justify-content-between card-single__btns">
                   <a
                     className="card-single__call-btn"
-                    href={"tel:+" + user.phone}
+                    href={"tel:+" + user?.phone}
                   >
                     Qo’ng’iroq qilish
                   </a>
