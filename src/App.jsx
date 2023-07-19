@@ -13,6 +13,9 @@ import { Messaging } from './pages/Messaging/Messaging'
 import { AboutUs } from './pages/AboutUs/AboutUs'
 import { UserInfo } from './pages/User-info/UserInfo'
 import 'react-loading-skeleton/dist/skeleton.css'
+import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import { AnnounSingle } from './pages/AnnounSingle/AnnounSingle';
 
 function App() {
   return (
@@ -22,10 +25,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sms" element={<SmsPage />} />
-        <Route path="/announcement/:id" element={<CardSingle />} />
-        <Route path="/messaging" element={<Messaging />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/userinfo" element={<UserInfo />} />
+        
       </Routes>
 
       {/* <Routes>

@@ -1,13 +1,10 @@
-import { Header } from "@components/Header/Header"
 import { BackButton } from "@components/BackButton/BackButton"
-import { Footer } from "@components/Footer/Footer"
 import { Social } from "@components/Social/Social"
 import "./about-as.scss"
 
 export const AboutUs = () => {
   return (
     <>
-      <Header />
       <main>
         <div className="about">
           <div className="container">
@@ -53,7 +50,6 @@ export const AboutUs = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   )
 }

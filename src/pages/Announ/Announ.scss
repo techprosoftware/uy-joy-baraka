@@ -11,13 +11,15 @@
   font-size: 37px;
   line-height: 59px;
   color: #008b51;
+
+  
 }
 
 @media only screen and (max-width: 768px) {
   .announ__active {
     font-size: 30px;
-  font-weight: 500;
-  padding: 9px 0;
+    font-weight: 500;
+    padding: 9px 0;
   }
 }
 
@@ -30,10 +32,10 @@
 .announ__active {
   width: 100%;
   max-width: 585px;
-  background: #EDEDED;
+  background: #ededed;
   text-align: center;
-  color: #008B51;
-  font-size: 30px;
+  color: #008b51;
+  font-size: 20px;
   padding: 10px 0;
   font-family: Gilroy;
   font-style: normal;
@@ -42,11 +44,10 @@
 }
 
 .active {
-  background-color: #008B51;
+  background-color: #008b51;
   color: #fff;
 
   &:hover {
     color: #fff;
   }
 }
-

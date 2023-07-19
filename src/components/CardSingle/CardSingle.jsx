@@ -1,6 +1,4 @@
 import "./card-single.scss"
-import {Header} from "@components/Header/Header"
-import {Footer} from "@components/Footer/Footer"
 import {BackButton} from "@components/BackButton/BackButton"
 import {CardList} from "@components/CardList/CardList"
 // import data from "./data"
@@ -9,7 +7,6 @@ import {useEffect, useState} from "react"
 import {motion} from "framer-motion"
 import "./share"
 import {BASE_URL} from "../../Api/api"
-import axios from "axios";
 import {useParams} from "react-router-dom";
 import CardService from "@/Api/card.service.jsx";
 
@@ -50,7 +47,6 @@ export const CardSingle = () => {
   }
 
   return (<>
-    <Header/>
     <main>
       <section>
         <div className="container">
@@ -168,6 +164,5 @@ export const CardSingle = () => {
         </div>
       </section>
     </main>
-    <Footer/>
   </>)
 }

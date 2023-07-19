@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
-import { Header } from "../../components/Header/Header";
-import { Footer } from "../../components/Footer/Footer";
 import { BackButton } from "../../components/BackButton/BackButton";
 import "./UserInfo.scss";
 import userPic from "../../../public/assets/images/user-info_pic.svg";
@@ -123,7 +121,6 @@ export const UserInfo = () => {
 
   return (
     <>
-      <Header />
       <div className="user-info">
         <div className="container">
           <div className="backButton">
@@ -228,7 +225,6 @@ export const UserInfo = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
