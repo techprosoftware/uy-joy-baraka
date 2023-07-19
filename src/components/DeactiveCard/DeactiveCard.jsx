@@ -39,7 +39,7 @@ export const DeactiveCard = () => {
                 Olmazor tumanida joylashgan 2x kvartira ijaraga beriladi
               </h3>
               <button className="active__btn">Faollashtirish</button>
-              <p className="card__price">2 200 000 s'om</p>
+              <p className="de_card__price">2 200 000 s'om</p>
             </div>
           </li>
           

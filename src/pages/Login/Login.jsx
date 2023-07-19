@@ -55,7 +55,7 @@ export const Login = () => {
                   id="phone"
                   className="phone"
                   type="number"
-                  placeholder="Telefon raqamingiz"
+                  placeholder="__ ___ __ __"
                   ref={phone}
                   
                 />

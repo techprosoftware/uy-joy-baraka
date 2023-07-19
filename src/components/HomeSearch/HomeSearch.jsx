@@ -28,10 +28,12 @@ export const HomeSearch = () => {
                 <span className={`filter__btn `}>Filter</span>
               </a>
 
-              <ul className={`filter__select ${openSelect ? `${openSelect}` : 'd-none'}`}>
+              <ul className={`filter__select mt-4 ${openSelect ? `${openSelect}` : 'd-none'}`}>
                 <li>
                   <a className="dropdown-item" href="#">
                     <Select
+                                          prefixCls="ant-select-bootstrap"
+
                       defaultValue="Ijara yoki sotuv"
                       style={{
                         width: 207,
