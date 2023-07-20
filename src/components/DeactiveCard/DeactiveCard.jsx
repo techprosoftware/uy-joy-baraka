@@ -10,6 +10,8 @@ import deleteBtn from "@images/delete-btn.svg";
 import noData from "@images/no-data.svg";
 import AnnounService from "../../Api/announ.service";
 import { CardSkeleton } from "@components/Cards/CardSkeleton";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const DeactiveCard = () => {
   const [activeCard, setActiveCard] = useState({
@@ -40,6 +42,7 @@ export const DeactiveCard = () => {
     try {
       const token = localStorage.getItem("token");
       const data = await AnnounService.setActiveCard(id, token);
+      console.log(data);
       getActives();
 
     } catch (error) {
@@ -52,6 +55,10 @@ export const DeactiveCard = () => {
     try {
       const token = localStorage.getItem("token");
       const data = await AnnounService.deleteCard(id, token);
+      console.log(data.status);
+      if(data.status === 200) {
+        toast.success("E'lon muvaffaqqiyatli o'chirildi.");
+      }
       getActives();
 
       console.log(data);
@@ -77,7 +84,7 @@ export const DeactiveCard = () => {
                   <img className="card__img" src={mockCardImg} height={222} />
                   <div className="card__wrap">
                     <div className="card__inner">
-                      <span className="card__city">{item.city}</span>
+                      <span className="card__city">{item.city}, {item.district}</span>
                       <div className="card__right">
                         <span className="card__view me-2">
                           {item.viewCount}
@@ -103,6 +110,19 @@ export const DeactiveCard = () => {
               </>
             )) :  <img className="img-fluid" width={500} src={noData}/>}
         </ul>
+        <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <ToastContainer />
       </div>
     </>
   );

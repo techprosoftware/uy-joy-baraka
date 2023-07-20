@@ -11,27 +11,35 @@ const AnnounService = {
     }),
 
   setActiveCard: async (id, token) => {
-    await axios
-      .patch(
-        `/api/announcements/activation/${id}`,
-        {},
-        {
-          headers: { authorization: token },
-        }
-      )
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    const data = await axios.patch(
+      `/api/announcements/activation/${id}`,
+      {},
+      {
+        headers: { authorization: token },
+      }
+    );
+
+    return data;
   },
 
   deleteCard: async (id, token) => {
-    await axios
-      .delete(`/api/announcements/delete/${id}`, {
-        headers: { authorization: token },
-      })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    const data = await axios.delete(`/api/announcements/delete/${id}`, {
+      headers: { authorization: token },
+    });
+
+    return data;
   },
-  // SearchCard: async ()
+
+  CreateAnnoun: async (body, token) => {
+    try {
+      const data = await axios.post(`/api/announcements/create`, body, {
+        headers: { authorization: token },
+      });
+      return data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  },
 };
 
 export default AnnounService;

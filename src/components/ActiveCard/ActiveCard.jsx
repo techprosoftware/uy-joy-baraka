@@ -10,6 +10,9 @@ import AnnounService from "../../Api/announ.service";
 import { CardSkeleton } from "@components/Cards/CardSkeleton";
 import noData from "@images/no-data.svg";
 
+import { Switch } from 'antd';
+
+
 export const ActiveCard = () => {
   const [activeCard, setActiveCard] = useState({
     isLoading: true,
@@ -40,20 +43,19 @@ export const ActiveCard = () => {
 
   const handleChange = async (evt) => {
     let id = evt.target.id;
-    setCheck(!check);
-    console.log(check);
-    console.log(id);
-
-   
-      try {
-        const token = localStorage.getItem("token");
-        const data = await AnnounService.setActiveCard(id, token);
-        getActives();
-
-        console.log(data);
-      } catch (error) {
-        console.log(error.message);
-      }
+    console.log(evt.target.checked);
+  
+      // if(!evt.target.checked) {
+        try {
+          const token = localStorage.getItem("token");
+          const data = await AnnounService.setActiveCard(id, token);
+          getActives();
+          
+          console.log(data);
+        } catch (error) {
+          console.log(error.message);
+        }
+      // }
     
   };
 
@@ -70,7 +72,8 @@ export const ActiveCard = () => {
                   <div className="active__checkbtn">
                     <input
                       type="checkbox"
-                      defaultChecked={true}
+                      
+                      defaultChecked
                       hidden="hidden"
                       onChange={handleChange}
                       id={item.announcement_id}
