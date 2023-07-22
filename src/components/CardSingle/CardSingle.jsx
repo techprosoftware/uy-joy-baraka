@@ -10,10 +10,10 @@ import "./share"
 import {BASE_URL} from "../../Api/api"
 import {useParams} from "react-router-dom";
 
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import CardService from "@/Api/card.service.jsx";
 import {FaCopy, FaFacebook, FaTelegram, FaTwitter, FaWhatsapp} from "react-icons/fa";
-import {CopyToClipboard} from "react-copy-to-clipboard/src";
+// import {CopyToClipboard} from "react-copy-to-clipboard/src";
 import {toast} from 'react-toastify'
 import {ToastContainer} from "react-bootstrap";
 
@@ -107,17 +107,17 @@ export const CardSingle = () => {
                     style={{display: `${modal ? "block" : "none"}`}}
                     className="share-btn"
                   >
-                    <a className="ms-2" target="_blank" href={`https://t.me/share/url?url=${currentUrl}`}><FaTelegram
+                    <a className="ms-2"  href={`https://t.me/share/url?url=${currentUrl}`}><FaTelegram
                       fontSize={26}/></a>
-                    <a className="ms-2" target="_blank"
+                    <a className="ms-2" 
                        href={`https://www.facebook.com/sharer.php?u=${currentUrl}`}><FaFacebook fontSize={26}/></a>
-                    <a className="ms-2" target="_blank"
+                    <a className="ms-2" 
                        href={`https://api.whatsapp.com/send?text=${currentUrl}`}><FaWhatsapp fontSize={26}/></a>
-                    <a className="ms-2" target="_blank"
+                    <a className="ms-2" 
                        href={`https://twitter.com/intent/tweet?url=${currentUrl}`}><FaTwitter fontSize={26}/></a>
-                    <CopyToClipboard text={currentUrl} >
+                    {/* <CopyToClipboard text={currentUrl} >
                       <span className="ms-2" onClick={notify}><FaCopy fontSize={26}/></span>
-                    </CopyToClipboard>
+                    </CopyToClipboard> */}
                   </div>
                 </button>
                 <div className="card-single__user-info">
@@ -166,7 +166,5 @@ export const CardSingle = () => {
     </main>
 
     <ToastContainer/>
-    <Footer/>
   </>)
 }
->>>>>>> 25db0e0abde8ba0aae6f1025b0b99a20f859fe70

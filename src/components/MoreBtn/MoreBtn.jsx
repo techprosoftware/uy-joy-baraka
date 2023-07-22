@@ -16,4 +16,3 @@ export const MoreBtn = () => {
     onClick={handleClick}
     className="more-btn">Ko’proq ko’rish</button>
 }
->>>>>>> 25db0e0abde8ba0aae6f1025b0b99a20f859fe70
