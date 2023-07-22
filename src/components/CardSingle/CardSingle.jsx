@@ -42,7 +42,7 @@ export const CardSingle = () => {
 
   useEffect(() => {
     fetcher()
-  }, [])
+  }, [id])
 
   const data = card.post
   const user = card.user
@@ -72,6 +72,7 @@ export const CardSingle = () => {
                   className={`img-item card-single__img-${idx}`}
                   key={idx}
                   src={BASE_URL + img}
+                  alt={img}
                   width={120}
                   height={120}
                   data-id={idx}
