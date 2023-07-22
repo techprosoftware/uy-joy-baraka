@@ -1,3 +1,4 @@
+
 // import React from 'react'
 import "./card.scss"
 import CardLikeIcon from "@images/card-like-icon.svg"

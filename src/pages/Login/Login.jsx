@@ -11,7 +11,6 @@ export const Login = () => {
     const data = await AuthService.userLogin(value);
     console.log(data);
     if (data.status === 201) {
-      console.log(data.data.token);
       localStorage.setItem("token", data.data.token);
       navigate("/");
     }else {

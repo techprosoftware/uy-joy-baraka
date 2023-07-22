@@ -446,8 +446,8 @@
 
   .lang__btn img {
     border-radius: 50%;
-    width: 27px;
-    height: 25px;
+    width: 23px;
+    height: 22px;
   }
 }
 
@@ -610,6 +610,12 @@
     width: 25px;
     height: 25px;
   }
+
+  .lang__btn img {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+  }
 }
 
 @media only screen and (max-width: 700px) {
@@ -728,3 +734,4 @@
 .dropdown-toggle:after {
   display: none !important;
 }
+
