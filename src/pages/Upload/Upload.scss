@@ -280,3 +280,36 @@ border-color: #fff !important;
   // background: #fff;
   // box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
 }
+
+@media only screen and (max-width: 575px) {
+  .img__item {
+    min-width: 200px;
+    max-width: 260px;
+    min-height: 120.8px;
+    max-height: 146.8px;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+@media only screen and (max-width: 455px) {
+  .img__item {
+    min-width: 180px;
+    max-width: 260px;
+    min-height: 100.8px;
+    max-height: 146.8px;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+@media only screen and (max-width: 410px) {
+  .img__item {
+    min-width: 150px;
+    max-width: 100%;
+    min-height: 120.8px;
+    max-height: 146.8px;
+    object-fit: cover;
+    object-position: center;
+  }
+}

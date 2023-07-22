@@ -1,7 +1,8 @@
-import { SET_CARD, REMOVE_CARD } from "./cardType";
+
+import {SET_CARD, REMOVE_CARD} from "./cardType";
 
 const initialState = {
-  card: {},
+  card: {}
 };
 
 export const cardReducer = (state = initialState, action) => {

@@ -280,7 +280,6 @@ export const UserInfo = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
