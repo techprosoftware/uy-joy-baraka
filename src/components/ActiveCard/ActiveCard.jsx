@@ -12,6 +12,9 @@ import noData from "@images/no-data.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Switch } from 'antd';
+import { useNavigate } from "react-router-dom";
+import {BASE_URL} from "@/Api/api";
+import cardService from "@/Api/card.service.jsx";
 
 
 export const ActiveCard = () => {
@@ -62,6 +65,25 @@ export const ActiveCard = () => {
       
   };
 
+  const navigate = useNavigate()
+  const handleClick = async (evt) => {
+    console.log(evt.target);
+    const targetTag = evt.target.className
+    const token = localStorage.getItem('token') || ""
+    
+  if (!token) {
+      navigate('/register')
+    }
+
+    if (targetTag === 'card__like' || targetTag === 'card__like-img') {
+      const response = await cardService.likeCard(newData.announcement_id)
+      console.log('like: ', response)
+    } else {
+      window.scroll(0, 0)
+      navigate(`/announcement/${newData?.slug}`)
+    }
+  }
+
   return (
     <>
       <div>
@@ -71,8 +93,10 @@ export const ActiveCard = () => {
           ) : newData?.length ? (
             newData?.map((item) => (
               <>
-                <li className="card">
-                                  <img className="card__img" src={mockCardImg}  height={222} />
+                <li       onClick={handleClick}
+ className="card">
+                                  <img className="card__img"         src={BASE_URL + item?.thumb[0]}
+  height={222} />
                   <div className="card__wrap">
                     <div className="card__inner">
                       <span className="card__city">{item.city}</span>
@@ -89,13 +113,15 @@ export const ActiveCard = () => {
                             alt="Card like button image"
                           />
                         </button>
+                        <span className="me-1" style={{fontSize: "12px", color: "#666666", lineHeight: "14px"}}> {item?.likeCount}</span>
+
                       </div>
                     </div>
                     <h3 className="card__body">{item.description}</h3>
                     <button onClick={handleChange} id={item.announcement_id} className="de_active__btn">Faolsizlantirish</button>
 
                     <p className="de_card__price">
-                      {item.price} {item.price_type == "sum" ? "so'm" : "$"}
+                      {item.price.toString().replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, '$1 ')} {item.price_type == "sum" ? "so'm" : "$"}
                     </p>
                   </div>
                 </li>
