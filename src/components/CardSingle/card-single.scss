@@ -206,15 +206,24 @@
 }
 
 .card-single__send-btn {
-  padding: 11px 68px;
+  width: 100%;
+  max-width: 200px;
+  padding: 16px 40px;
   font-family: "Gilroy";
   font-weight: 500;
   font-size: 16px;
+  text-align: center;
   line-height: 19px;
   color: #ffffff;
   background-color: #ff8d08;
   border-radius: 6px;
   border: none;
+  text-decoration: none;
+
+  &:hover {
+    color: #FFFFFF;
+    opacity: 0.8;
+  }
 }
 
 .suggestion {

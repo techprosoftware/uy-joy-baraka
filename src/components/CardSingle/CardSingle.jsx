@@ -8,13 +8,20 @@ import {motion} from "framer-motion"
 import "./share"
 import {BASE_URL} from "../../Api/api"
 import {useParams} from "react-router-dom";
+
+import {Link, useParams} from "react-router-dom";
 import CardService from "@/Api/card.service.jsx";
+import {FaCopy, FaFacebook, FaTelegram, FaTwitter, FaWhatsapp} from "react-icons/fa";
+import {CopyToClipboard} from "react-copy-to-clipboard/src";
+import {toast} from 'react-toastify'
+import {ToastContainer} from "react-bootstrap";
 
 export const CardSingle = () => {
-  let [imgId, setImgId] = useState(1)
+  let [imgId, setImgId] = useState(0)
   let [modal, setModal] = useState(false)
   const [card, setCard] = useState({})
   const {id} = useParams()
+  const notify = toast("Copied!")
 
   window.addEventListener("keydown", (evt) => {
     if (evt.key === "Escape") {
@@ -22,30 +29,26 @@ export const CardSingle = () => {
     }
   })
 
-  useEffect(() => {
-    !async function () {
-      const data = await CardService.getByCard(id)
-      console.log(data)
-      try {
-        if (data.status === 200) {
-          setCard(data.data)
-          console.log(data.data)
-        }
-      } catch (error) {
-        console.log('Error fetching card data: ', error)
+  const fetcher = async () => {
+    try {
+      const response = await CardService.getByCard(id)
+      if (response.status === 200) {
+        setCard(response.data)
       }
-    }()
+    } catch (error) {
+      console.log('Error fetching card data: ', error)
+    }
+  }
 
+  useEffect(() => {
+    fetcher()
   }, [])
 
   const data = card.post
   const user = card.user
-  console.log(card)
-  const time = data?.createdAt.split('-')
+  const time = data?.updatedAt.split('-')
   const customPrice = data?.price.toString().replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, '$1 ');
-  const handleForm = () => {
-  }
-
+  const currentUrl = window.location.href
   return (<>
     <main>
       <section>
@@ -63,7 +66,7 @@ export const CardSingle = () => {
           >
             <div className="card-single__pics">
               <div className="img-select">
-                {data?.thumb?.map((img, idx) => (<img
+                {data?.thumb?.slice(0, 4).map((img, idx) => (<img
                   onClick={() => setImgId(idx)}
                   className={`img-item card-single__img-${idx}`}
                   key={idx}
@@ -80,7 +83,7 @@ export const CardSingle = () => {
                     className="show-image"
                     width={466}
                     height={525}
-                    src={BASE_URL + data?.thumb[imgId - 1]}
+                    src={BASE_URL + data?.thumb[imgId]}
                     alt="Home images"
                     aria-label="Home images"
                   />
@@ -90,7 +93,8 @@ export const CardSingle = () => {
             <div className="card-single__content">
               <div className="card-single__top">
                 <div className="d-flex card-single__date">
-                  <time className="card-single__time">{``}</time>
+                  <time
+                    className="card-single__time">{`${time?.length ? `${time[2]?.slice(0, 2)}.${time[1]}.${time[0]}` : ''}`}</time>
                   <span className="card-single__view">{data?.viewCount}</span>
                 </div>
                 <button
@@ -100,16 +104,19 @@ export const CardSingle = () => {
                   Ulashish
                   <div
                     style={{display: `${modal ? "block" : "none"}`}}
-                    className="share-btn a2a_kit a2a_kit_size_32 a2a_default_style"
+                    className="share-btn"
                   >
-                    <a
-                      className="a2a_dd"
-                      href="https://www.addtoany.com/share"
-                    ></a>
-                    <a className="a2a_button_facebook"></a>
-                    <a className="a2a_button_twitter"></a>
-                    <a className="a2a_button_telegram"></a>
-                    <a className="a2a_button_copy_link"></a>
+                    <a className="ms-2" target="_blank" href={`https://t.me/share/url?url=${currentUrl}`}><FaTelegram
+                      fontSize={26}/></a>
+                    <a className="ms-2" target="_blank"
+                       href={`https://www.facebook.com/sharer.php?u=${currentUrl}`}><FaFacebook fontSize={26}/></a>
+                    <a className="ms-2" target="_blank"
+                       href={`https://api.whatsapp.com/send?text=${currentUrl}`}><FaWhatsapp fontSize={26}/></a>
+                    <a className="ms-2" target="_blank"
+                       href={`https://twitter.com/intent/tweet?url=${currentUrl}`}><FaTwitter fontSize={26}/></a>
+                    <CopyToClipboard text={currentUrl} >
+                      <span className="ms-2" onClick={notify}><FaCopy fontSize={26}/></span>
+                    </CopyToClipboard>
                   </div>
                 </button>
                 <div className="card-single__user-info">
@@ -128,30 +135,22 @@ export const CardSingle = () => {
               <p
                 className="card__price card-single__price">{customPrice} {data?.price_type === "dollar" ? "$" : "s'om"}</p>
               <h2 className="card-single__title">{data?.title}</h2>
+              <p className="fs-4 mt-2">{data?.district}, {data?.address}</p>
               <p className="card-single__text">{data?.description}</p>
-              <form method="POST" onSubmit={handleForm}>
-                  <textarea
-                    className="card-single__area"
-                    name="text"
-                    rows={10}
-                  >
-                    Uy egasiga yozish
-                  </textarea>
-                <div className="d-flex justify-content-between card-single__btns">
-                  <a
-                    className="card-single__call-btn"
-                    href={"tel:+" + user?.phone}
-                  >
-                    Qo’ng’iroq qilish
-                  </a>
-                  <button
-                    className="card-single__send-btn"
-                    type="submit"
-                  >
-                    Yuborish
-                  </button>
-                </div>
-              </form>
+              <div className="d-flex justify-content-between mt-3 card-single__btns">
+                <a
+                  className="card-single__call-btn"
+                  href={"tel:+" + user?.phone}
+                >
+                  Qo’ng’iroq qilish
+                </a>
+                <Link
+                  className="card-single__send-btn"
+                  to={'/messaging'}
+                >
+                  Xabar yuborish
+                </Link>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -159,10 +158,13 @@ export const CardSingle = () => {
       <section className="suggestion">
         <div className="container">
           <h2 className="suggestion__title">Siz uchun taklif</h2>
-          <CardList/>
+          <CardList page={1} count={5}/>
           <MoreBtn/>
         </div>
       </section>
     </main>
+
+    <ToastContainer/>
+    <Footer/>
   </>)
 }
