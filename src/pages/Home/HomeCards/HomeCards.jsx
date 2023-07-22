@@ -1,3 +1,4 @@
+
 /* eslint-disable no-unused-vars */
 
 import React from "react";
@@ -9,7 +10,7 @@ export const HomeCards = () => {
       <div className="home__card-inner">
         <div className="container">
           <h2 className="home__card-title">Sizga mos keladigan uylar</h2>
-          <CardList />
+          <CardList page={1} count={10} end={false} />
         </div>
       </div>
     </>
