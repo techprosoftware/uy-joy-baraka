@@ -238,7 +238,7 @@ export const Header = () => {
                         </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
-                    <p>{lang}</p>
+                    <p className="ms-2">{lang}</p>
                   </div>
                 </li>
                 <span className="close__line"></span>

@@ -15,7 +15,6 @@ import { UserInfo } from './pages/User-info/UserInfo'
 import 'react-loading-skeleton/dist/skeleton.css'
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { AnnounSingle } from './pages/AnnounSingle/AnnounSingle';
 
 function App() {
   return (

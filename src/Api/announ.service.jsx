@@ -1,10 +1,13 @@
 import axios from "./api";
 
 const AnnounService = {
-  getActiveCard: async (token) =>
-    await axios.get(`/api/announcements/active`, {
+  getActiveCard: async (token) => {
+    const data = await axios.get(`/api/announcements/active`, {
       headers: { authorization: token },
-    }),
+    });
+
+    return data;
+  },
   getDeActiveCard: async (token) =>
     await axios.get(`/api/announcements/inactive`, {
       headers: { authorization: token },
@@ -35,6 +38,7 @@ const AnnounService = {
       const data = await axios.post(`/api/announcements/create`, body, {
         headers: { authorization: token },
       });
+      console.log(data);
       return data;
     } catch (error) {
       console.log(error.message);

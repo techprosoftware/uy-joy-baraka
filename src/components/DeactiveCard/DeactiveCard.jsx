@@ -43,10 +43,14 @@ export const DeactiveCard = () => {
       const token = localStorage.getItem("token");
       const data = await AnnounService.setActiveCard(id, token);
       console.log(data);
+      if(data.status ===200) {
+        toast.success("E'lon faollashtirildi.");
+      
+      }
       getActives();
 
     } catch (error) {
-      console.log(error.message);
+      toast.warning("Admin tasdig'ini kuting.");
     }
   };
 
@@ -55,7 +59,7 @@ export const DeactiveCard = () => {
     try {
       const token = localStorage.getItem("token");
       const data = await AnnounService.deleteCard(id, token);
-      console.log(data.status);
+      // console.log(data.status);
       if(data.status === 200) {
         toast.success("E'lon muvaffaqqiyatli o'chirildi.");
       }
@@ -111,7 +115,7 @@ export const DeactiveCard = () => {
             )) :  <img className="img-fluid" width={500} src={noData}/>}
         </ul>
         <ToastContainer
-        position="top-right"
+        position="bottom-right"
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -122,7 +126,7 @@ export const DeactiveCard = () => {
         pauseOnHover
         theme="light"
       />
-      <ToastContainer />
+      
       </div>
     </>
   );

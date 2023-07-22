@@ -267,9 +267,11 @@ export const Upload = () => {
     setPrice_type(value);
   };
 
+  const [urls, setUrls] = useState();
+
   const handleImageChange = async (evt) => {
     const maxAllowedImages = 4;
-    const maxTotalSize = 1 * 1024 * 1024; // 4 MB in bytes
+    const maxTotalSize = 4 * 1024 * 1024; // 4 MB in bytes
     const files = Array.from(evt.target.files);
     const imageFiles = files.filter((file) => file.type.startsWith("image/"));
 
@@ -307,6 +309,10 @@ export const Upload = () => {
         const compressedImage = dataURLtoFile(result, imageFiles[index].name);
         return compressedImage;
       });
+      const filteredResults = compressedResults.filter(Boolean);
+      const compressedImageUrls = filteredResults.map((image) =>
+        typeof image === "string" ? image : URL.createObjectURL(image)
+      );
 
       totalSize = compressedFiles.reduce((acc, file) => acc + file.size, 0);
 
@@ -316,7 +322,7 @@ export const Upload = () => {
         );
         return;
       }
-
+      setUrls(compressedImageUrls);
       setSelectedImages(compressedFiles);
     } catch (error) {
       console.error("Rasmni kichraytirishda xatolik:", error);
@@ -325,7 +331,6 @@ export const Upload = () => {
     console.log("Umumiy rasmlar hajmi:", totalSize, "bayt");
   };
 
-  // Qo'shimcha funksiya: Data URL dan fayl olish uchun
   const dataURLtoFile = (dataURL, fileName) => {
     const arr = dataURL.split(",");
     const mime = arr[0].match(/:(.*?);/)[1];
@@ -337,10 +342,11 @@ export const Upload = () => {
     }
     return new File([u8arr], fileName, { type: mime });
   };
+
   const removeImage = (index) => {
-    const updatedImages = [...selectedImages];
+    const updatedImages = [...urls];
     updatedImages.splice(index, 1);
-    setSelectedImages(updatedImages);
+    setUrls(updatedImages);
   };
 
   const title = useRef();
@@ -354,7 +360,6 @@ export const Upload = () => {
   const sendAnnoun = async (body) => {
     const token = localStorage.getItem("token");
     const data = await AnnounService.CreateAnnoun(body, token);
-    console.log(data);
     if (data?.status === 201) {
       toast.success("E'lon muvaffaqqiyatli qo'shildi.");
     } else {
@@ -362,9 +367,8 @@ export const Upload = () => {
     }
   };
 
-  console.log(selectedImages);
 
-  const handleSubmit = (e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault();
     const formData = new FormData();
 
@@ -382,7 +386,8 @@ export const Upload = () => {
       formData.append(`images`, selectedImages[i]);
     }
 
-    sendAnnoun(formData);
+     sendAnnoun(formData);
+     
   };
 
   return (
@@ -396,14 +401,14 @@ export const Upload = () => {
           autoComplete="off"
           className="upload__form"
         >
-          <div className="row img__wrapper">
-            {selectedImages.map((image, index) => (
+          <div className="d-flex flex-wrap gap-3 justify-content-center img__wrapper">
+            {urls?.map((image, index) => (
               <div
-                className="position-relative col-6 col-sm-6 col-md-6 mb-3"
+                className="position-relative "
                 key={index}
               >
                 <img
-                  className=" rounded-2 img__item"
+                  className="rounded-2 img__item"
                   src={image}
                   alt={`Selected Image ${index}`}
                 />
@@ -437,7 +442,7 @@ export const Upload = () => {
             <p>Shaharni tanlang:</p>
             <Space wrap>
               <Select
-                defaultValue={provinceData[0]}
+                defaultValue="Shahar tanlang"
                 style={{
                   width: 120,
                 }}
@@ -448,6 +453,7 @@ export const Upload = () => {
                 }))}
               />
               <Select
+              defaultValue="Tuman tanlang"
                 style={{
                   width: 120,
                 }}
@@ -574,7 +580,7 @@ export const Upload = () => {
         </form>
       </div>
       <ToastContainer
-        position="top-right"
+        position="bottom-right"
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -585,7 +591,6 @@ export const Upload = () => {
         pauseOnHover
         theme="light"
       />
-      <ToastContainer />
     </div>
   );
 };
