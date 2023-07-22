@@ -8,6 +8,9 @@ import close from "../../../public/assets/images/close.png";
 import ImageCompressor from "image-compressor.js";
 import { BackButton } from "@components/BackButton/BackButton";
 import { Select, Space } from "antd";
+import AnnounService from "../../Api/announ.service";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const provinceData = [
   "Toshkent",
   "Andijon",
@@ -238,23 +241,47 @@ const cityData = {
 export const Upload = () => {
   const [selectedImages, setSelectedImages] = useState([]);
 
+  const [city, setCity] = useState();
+  const [district, setDistrict] = useState();
+  const [type, setType] = useState();
+  const [price_type, setPrice_type] = useState();
+
   const [cities, setCities] = useState(cityData[provinceData[0]]);
   const [secondCity, setSecondCity] = useState(cityData[provinceData[0]]);
   const handleProvinceChange = (value) => {
     setCities(cityData[value]);
     setSecondCity(cityData[value][0]);
+    setCity(value);
   };
   const onSecondCityChange = (value) => {
     setSecondCity(value);
+    setDistrict(value);
   };
 
   const handleChange = (value) => {
     console.log(`selected ${value}`);
+    setType(value);
   };
 
-  const handleImageChange = (event) => {
-    const files = Array.from(event.target.files);
+  const handleChange1 = (value) => {
+    setPrice_type(value);
+  };
+
+  const [urls, setUrls] = useState();
+
+  const handleImageChange = async (evt) => {
+    const maxAllowedImages = 4;
+    const maxTotalSize = 4 * 1024 * 1024; // 4 MB in bytes
+    const files = Array.from(evt.target.files);
     const imageFiles = files.filter((file) => file.type.startsWith("image/"));
+
+    if (imageFiles.length > maxAllowedImages) {
+      toast.error(`Maksimum ${maxAllowedImages} ta rasm yuklash mumkin.`);
+      return;
+    }
+
+    let totalSize = 0;
+    const compressedImages = [];
 
     const imagePromises = imageFiles.map((file) => {
       return new Promise((resolve, reject) => {
@@ -276,48 +303,92 @@ export const Upload = () => {
       });
     });
 
-    Promise.all(imagePromises)
-      .then((results) => {
-        setSelectedImages([...selectedImages, ...results]);
-      })
-      .catch((error) => {
-        console.error("Error reading images:", error);
+    try {
+      const compressedResults = await Promise.all(imagePromises);
+      const compressedFiles = compressedResults.map((result, index) => {
+        const compressedImage = dataURLtoFile(result, imageFiles[index].name);
+        return compressedImage;
       });
+      const filteredResults = compressedResults.filter(Boolean);
+      const compressedImageUrls = filteredResults.map((image) =>
+        typeof image === "string" ? image : URL.createObjectURL(image)
+      );
+
+      totalSize = compressedFiles.reduce((acc, file) => acc + file.size, 0);
+
+      if (totalSize > maxTotalSize) {
+        toast.error(
+          "Umumiy hajm 4 MB dan oshdi. Iltimos, kichik hajmdagi rasmlar yuklang."
+        );
+        return;
+      }
+      setUrls(compressedImageUrls);
+      setSelectedImages(compressedFiles);
+    } catch (error) {
+      console.error("Rasmni kichraytirishda xatolik:", error);
+    }
+
+    console.log("Umumiy rasmlar hajmi:", totalSize, "bayt");
+  };
+
+  const dataURLtoFile = (dataURL, fileName) => {
+    const arr = dataURL.split(",");
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], fileName, { type: mime });
   };
 
   const removeImage = (index) => {
-    const updatedImages = [...selectedImages];
+    const updatedImages = [...urls];
     updatedImages.splice(index, 1);
-    setSelectedImages(updatedImages);
+    setUrls(updatedImages);
   };
 
-  useEffect(() => {
-    const savedImages = sessionStorage.getItem("selectedImages");
-    if (savedImages) {
-      setSelectedImages(JSON.parse(savedImages));
+  const title = useRef();
+  const address = useRef();
+  const description = useRef();
+  const price = useRef();
+  const phone = useRef();
+
+  const [files, setFiles] = useState();
+
+  const sendAnnoun = async (body) => {
+    const token = localStorage.getItem("token");
+    const data = await AnnounService.CreateAnnoun(body, token);
+    if (data?.status === 201) {
+      toast.success("E'lon muvaffaqqiyatli qo'shildi.");
+    } else {
+      toast.error("E'lon qo'shilmadi.");
     }
-  }, []);
-
-  useEffect(() => {
-    sessionStorage.setItem("selectedImages", JSON.stringify(selectedImages));
-  }, [selectedImages]);
+  };
 
 
-  const city = useRef()
-  const district = useRef()
-  const type = useRef()
-  const description = useRef()
-  const price = useRef()
-  const price_type = useRef()
-  const phone = useRef()
-  const images = useRef()
+  const handleSubmit =  (e) => {
+    e.preventDefault();
+    const formData = new FormData();
 
-  console.log(images?.current?.value);
-  const storedData = sessionStorage.getItem("selectedImages");
+    const fullPhone = "998" + phone.current.value;
+    formData.append("phone", fullPhone);
+    formData.append("title", title.current.value);
+    formData.append("address", address.current.value);
+    formData.append("description", description.current.value);
+    formData.append("price", price.current.value);
+    formData.append("city", city);
+    formData.append("district", district);
+    formData.append("type", type);
+    formData.append("price_type", price_type);
+    for (let i = 0; i < selectedImages?.length; i++) {
+      formData.append(`images`, selectedImages[i]);
+    }
 
-  // JSON formatidagi ma'lumotlarni o'zgaruvchiga o'girish
-  const parsedData = JSON.parse(storedData);
-  console.log(parsedData);
+     sendAnnoun(formData);
+     
+  };
 
   return (
     <div className="upload__inner">
@@ -325,15 +396,19 @@ export const Upload = () => {
         <BackButton />
         <h2 className="upload__title">E’lon joylash</h2>
 
-        <form autoComplete="off" className="upload__form">
-          <div className="row img__wrapper">
-            {selectedImages.map((image, index) => (
+        <form
+          onSubmit={handleSubmit}
+          autoComplete="off"
+          className="upload__form"
+        >
+          <div className="d-flex flex-wrap gap-3 justify-content-center img__wrapper">
+            {urls?.map((image, index) => (
               <div
-                className="position-relative col-6 col-sm-6 col-md-6 mb-3"
+                className="position-relative "
                 key={index}
               >
                 <img
-                  className="img-fluid rounded-2 img__item"
+                  className="rounded-2 img__item"
                   src={image}
                   alt={`Selected Image ${index}`}
                 />
@@ -357,7 +432,7 @@ export const Upload = () => {
                 onChange={handleImageChange}
                 id="upload"
                 multiple
-                ref={images}
+                accept="image/*"
                 visibility="hidden"
               />
             </label>
@@ -367,7 +442,7 @@ export const Upload = () => {
             <p>Shaharni tanlang:</p>
             <Space wrap>
               <Select
-                defaultValue={provinceData[0]}
+                defaultValue="Shahar tanlang"
                 style={{
                   width: 120,
                 }}
@@ -378,6 +453,7 @@ export const Upload = () => {
                 }))}
               />
               <Select
+              defaultValue="Tuman tanlang"
                 style={{
                   width: 120,
                 }}
@@ -389,7 +465,6 @@ export const Upload = () => {
                 }))}
               />
             </Space>
-           
           </div>
 
           <div className="upload__wrap">
@@ -397,6 +472,7 @@ export const Upload = () => {
             <input
               className="address__input mb-2"
               type="text"
+              ref={address}
               placeholder="Manzil"
             />
             <Select
@@ -411,11 +487,11 @@ export const Upload = () => {
                   options: [
                     {
                       label: "Ijara",
-                      value: "ijara",
+                      value: "rent",
                     },
                     {
                       label: "Sotuv",
-                      value: "sotuv",
+                      value: "sale",
                     },
                   ],
                 },
@@ -426,6 +502,7 @@ export const Upload = () => {
           <div className="upload__wrap">
             <p>Sarlavha kiriting:</p>
             <textarea
+              ref={title}
               className="upload__title__area"
               placeholder="Sarlavha"
               rows="5"
@@ -435,6 +512,7 @@ export const Upload = () => {
           <div className="upload__wrap">
             <p>Uy haqida ma’lumot:</p>
             <textarea
+              ref={description}
               className="upload__title__area"
               placeholder="Uy haqida ma’lumot"
               rows="6"
@@ -444,14 +522,14 @@ export const Upload = () => {
           <div className="upload__wrap ">
             <p>Narx Kiriting:</p>
             <div className="upload__price">
-            <div className="upload__phone">
+              <div className="upload__phone">
                 <input
                   required
+                  ref={price}
                   id="phone"
                   className="price__input"
                   type="number"
                   placeholder="Narx kiriting:"
-                  
                 />
               </div>
               <Select
@@ -459,7 +537,7 @@ export const Upload = () => {
                 style={{
                   width: 200,
                 }}
-                onChange={handleChange}
+                onChange={handleChange1}
                 options={[
                   {
                     label: "Valyuta",
@@ -482,25 +560,37 @@ export const Upload = () => {
           <div className="upload__wrap">
             <p>Telefon raqam:</p>
             <div className="upload__price">
-            <div className="upload__phone">
+              <div className="upload__phone">
                 <span>+998</span>
                 <input
+                  ref={phone}
                   required
                   id="phone"
                   className="price__input"
                   type="number"
                   placeholder="__ ___ __ __"
-                  
                 />
               </div>
-              
-            </div>          </div>
+            </div>{" "}
+          </div>
 
           <button type="submit" className="upload__btn">
             Saqlash
           </button>
         </form>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

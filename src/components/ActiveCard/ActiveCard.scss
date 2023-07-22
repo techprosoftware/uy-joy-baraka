@@ -76,8 +76,8 @@
   color: #000000;
 }
 
-.card__price {
-  margin: 42px 0 0 0;
+.de_card__price {
+  margin: 0 0 0 0;
   padding: 0;
   font-family: "Roboto";
   font-weight: 700;
@@ -86,9 +86,29 @@
   color: #008b51;
 }
 
+
+
 .card__wrap {
   padding: 3px 10px 19px 16px;
 }
+
+.de_active__btn {
+  width: 100%;
+  padding: 8px 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: Gilroy;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  background: var(--second-color, #ff0808);
+}
+
 
 //******************//
 //***   MOBILE   ***//
@@ -130,7 +150,7 @@
   }
 
   .card__price {
-    margin: 24px 0 0 0;
+    margin: 0 0 0 0;
   }
 }
 

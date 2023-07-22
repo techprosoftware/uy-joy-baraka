@@ -1,6 +1,5 @@
+
 import "./card-single.scss"
-import {Header} from "@components/Header/Header"
-import {Footer} from "@components/Footer/Footer"
 import {BackButton} from "@components/BackButton/BackButton"
 import {CardList} from "@components/CardList/CardList"
 // import data from "./data"
@@ -9,10 +8,12 @@ import {useEffect, useState} from "react"
 import {motion} from "framer-motion"
 import "./share"
 import {BASE_URL} from "../../Api/api"
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
+
+import {Link} from "react-router-dom";
 import CardService from "@/Api/card.service.jsx";
 import {FaCopy, FaFacebook, FaTelegram, FaTwitter, FaWhatsapp} from "react-icons/fa";
-import {CopyToClipboard} from "react-copy-to-clipboard/src";
+// import {CopyToClipboard} from "react-copy-to-clipboard/src";
 import {toast} from 'react-toastify'
 import {ToastContainer} from "react-bootstrap";
 
@@ -50,7 +51,6 @@ export const CardSingle = () => {
   const customPrice = data?.price.toString().replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, '$1 ');
   const currentUrl = window.location.href
   return (<>
-    <Header/>
     <main>
       <section>
         <div className="container">
@@ -108,17 +108,17 @@ export const CardSingle = () => {
                     style={{display: `${modal ? "block" : "none"}`}}
                     className="share-btn"
                   >
-                    <a className="ms-2" target="_blank" href={`https://t.me/share/url?url=${currentUrl}`}><FaTelegram
+                    <a className="ms-2"  href={`https://t.me/share/url?url=${currentUrl}`}><FaTelegram
                       fontSize={26}/></a>
-                    <a className="ms-2" target="_blank"
+                    <a className="ms-2" 
                        href={`https://www.facebook.com/sharer.php?u=${currentUrl}`}><FaFacebook fontSize={26}/></a>
-                    <a className="ms-2" target="_blank"
+                    <a className="ms-2" 
                        href={`https://api.whatsapp.com/send?text=${currentUrl}`}><FaWhatsapp fontSize={26}/></a>
-                    <a className="ms-2" target="_blank"
+                    <a className="ms-2" 
                        href={`https://twitter.com/intent/tweet?url=${currentUrl}`}><FaTwitter fontSize={26}/></a>
-                    <CopyToClipboard text={currentUrl} >
+                    {/* <CopyToClipboard text={currentUrl} >
                       <span className="ms-2" onClick={notify}><FaCopy fontSize={26}/></span>
-                    </CopyToClipboard>
+                    </CopyToClipboard> */}
                   </div>
                 </button>
                 <div className="card-single__user-info">
@@ -165,7 +165,7 @@ export const CardSingle = () => {
         </div>
       </section>
     </main>
+
     <ToastContainer/>
-    <Footer/>
   </>)
 }
