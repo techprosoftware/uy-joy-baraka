@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Header } from "@components/Header/Header";
 import axios from "axios";
 import "./Messaging.scss";
 // Icons
@@ -122,6 +123,7 @@ export const Messaging = () => {
   return (
     <>
       {/* Header component */}
+      <Header />
       {/* Users bar */}
       <div className="users-bar">
         <div className="container">
