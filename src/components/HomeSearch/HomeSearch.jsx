@@ -6,22 +6,28 @@ import { BiFilter } from "react-icons/bi";
 
 import { Select } from "antd";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCity } from "../../redux/city/citydAction";
 
 export const HomeSearch = () => {
   const [type, setType] = useState();
   const [price_type, setPrice_type] = useState();
-  const [city, setCity] = useState();
+  const [city, setCitys] = useState();
 
+  // REDUX
   const search = useRef();
 
+  //
   const handleChange1 = (value) => {
     console.log(`selected ${value}`);
     setType(value);
   };
+  //
   const handleChange2 = (value) => {
     console.log(`selected ${value}`);
     setPrice_type(value);
   };
+  //
   const handleChange3 = (value) => {
     console.log(`selected ${value}`);
     setCity(value);
@@ -33,28 +39,16 @@ export const HomeSearch = () => {
     setOpenSelect(!openSelect);
   };
 
-const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmitSearch = (e) => {
-    e.preventDefault()
-    // console.log(search.current.value);
-    const searchValue = search.current.value;
+    e.preventDefault();
+     dispatch(setCity(search.current.value));
 
-    // navigate('/announsearch')
-
-        // URLSearchParams obyektini yaratish va shahar parametriga qiymatni o'rniga o'zgartirish
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    urlSearchParams.set("city", searchValue);
-
-    // Yangi URL ni olish va sahifani uni bilan almashish
-    const newUrl = `${window.location.pathname}?${urlSearchParams.toString()}`;
-    window.location.href = newUrl;
-
-    console.log(newUrl);
-    
+    navigate("/card-search");
   };
 
-  // console.log(openSelect);
   return (
     <div className="search__inner">
       <div className="container">
@@ -214,7 +208,7 @@ const navigate = useNavigate()
             />
           </div>
           <div className="search__btn">
-            <Link to={'announsearch'} onClick={handleSubmitSearch} href="#">
+            <Link to={"announsearch"} onClick={handleSubmitSearch} href="#">
               Izlash
             </Link>
           </div>

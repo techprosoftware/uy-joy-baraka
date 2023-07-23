@@ -2,8 +2,13 @@ import axios from "./api";
 
 const SearchService = {
   searchOnInput: async (body) => {
-    const data = await axios.post(`/api/search?search=${body}`);
+    console.log(body);
+    try {
+      const data = await axios.get(`/api/search?search=${body}`);
     return data;
+    } catch (error) {
+      console.log(error.message);
+    }
   },
 
 };
