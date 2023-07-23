@@ -13,6 +13,7 @@ export const HomeSearch = () => {
   const [type, setType] = useState();
   const [price_type, setPrice_type] = useState();
   const [city, setCitys] = useState();
+  // console.log(city);
 
   // REDUX
   const search = useRef();
@@ -30,7 +31,7 @@ export const HomeSearch = () => {
   //
   const handleChange3 = (value) => {
     console.log(`selected ${value}`);
-    setCity(value);
+    setCitys(value);
   };
 
   const [openSelect, setOpenSelect] = useState(false);
@@ -44,9 +45,15 @@ export const HomeSearch = () => {
 
   const handleSubmitSearch = (e) => {
     e.preventDefault();
-     dispatch(setCity(search.current.value));
 
-    navigate("/card-search");
+
+    if (!search.current.value.trim() == "") {
+      dispatch(setCity(search.current.value, city, type, price_type));
+      navigate("/card-search");
+    }else {
+
+      alert('fdf')
+    }
   };
 
   return (
@@ -202,6 +209,7 @@ export const HomeSearch = () => {
             </ul>
             <input
               ref={search}
+              required
               className="input__sale"
               type="text"
               placeholder="Qidirish"
