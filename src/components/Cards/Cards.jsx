@@ -37,7 +37,7 @@ export const Card = (card) => {
         alt={card.card.district}/>
       <div className="card__wrap">
         <div className="card__inner">
-          <span className="card__city">{card.card?.city}</span>
+          <span className="card__city">{card.card?.city ? card.card?.city : ""}</span>
           <div className="card__right">
             <span className="card__view me-2">{card.card?.viewCount}</span>
             <button className="card__like">
