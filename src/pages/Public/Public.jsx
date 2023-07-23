@@ -22,7 +22,7 @@ export const Public = () => {
         <Route path='/upload' element={<Upload/>}/>
         <Route path='/announ/*' element={<Announ/>} />
 				<Route path='*' element={<NotFoundError/>} />
-        <Route path='/announsearch' element={<AnnounSearch/>} />
+        <Route path='/card-search' element={<AnnounSearch/>} />
         <Route path="/announcement/:id" element={<CardSingle />} />
         <Route path="/messaging" element={<Messaging />} />
         <Route path="/aboutus" element={<AboutUs />} />

@@ -99,7 +99,7 @@ export const Header = () => {
                 </Link>
               </li>
               <li className="nav__item heart-icon">
-                <Link className="nav__link" to={"#"}>
+                <Link className="nav__link" to={"/card-search"}>
                   <AiFillHeart />
                 </Link>
               </li>
