@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 
 export const AnnounSearch = () => {
   const cityName = useSelector(item => item.city.city)
-  
+console.log(cityName);
   const [activeCard, setActiveCard] = useState({
     isLoading: true,
     data: [],
@@ -29,7 +29,7 @@ export const AnnounSearch = () => {
   const getSearchCard = async () => {
     const data = await SearchService.searchOnInput(cityName)
     // console.log(data);
-    if (data.status === 200) {
+    if (data?.status === 200) {
       setActiveCard({
         isLoading: false,
         data: data.data,
@@ -93,11 +93,9 @@ export const AnnounSearch = () => {
       <div style={{ paddingTop: "90px" }}>
         <h3 className="heart__title">Saralanganlar</h3>
         <hr />
-        <h3 className="heart__desc mb-2"><span className="me-2" style={{fontStyle: 'italic'}}>{cityName}</span>  so'rovi bo'yicha {newData?.length} ta e'lon topildi</h3>{" "}
+        <h3 className="heart__desc mb-2">{newData?.length} ta e'lon topildi</h3>{" "}
         <ul className="card-list pt-3">
-          {activeCard.isLoading ? (
-            mockData.map((moc) => <CardSkeleton key={moc} />)
-          ) : newData?.length ? (
+          {newData?.length ? (
             newData?.map((item) => (
               <>
                 <li
