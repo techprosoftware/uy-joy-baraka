@@ -10,9 +10,6 @@
   }
 }
 
-
-
-
 .card__img {
   width: 100%;
 }
@@ -28,6 +25,8 @@
 }
 
 .card__city {
+  max-width: 110px;
+  width: 100%;
   margin: 0;
   padding: 0;
   font-family: "Roboto";

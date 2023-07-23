@@ -137,7 +137,7 @@ export const CardSingle = () => {
               <p
                 className="card__price card-single__price">{customPrice} {data?.price_type === "dollar" ? "$" : "s'om"}</p>
               <h2 className="card-single__title">{data?.title}</h2>
-              <p className="fs-4 mt-2">{data?.district}, {data?.address}</p>
+              <p className="fs-4 mt-2">{data?.address}</p>
               <p className="card-single__text">{data?.description}</p>
               <div className="d-flex justify-content-between mt-3 card-single__btns">
                 <a

@@ -1,126 +1,155 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Skeleton from "react-loading-skeleton";
-import { BackButton } from "../../components/BackButton/BackButton";
 import "./UserInfo.scss";
-import userPic from "../../../public/assets/images/user-info_pic.svg";
-import UploadIcon from "../../../public/assets/images/user-info_upload.png";
-// Ant design packs
-import { Upload } from "antd";
-import ImgCrop from "antd-img-crop";
-// import axios from "axios";
+import { Header } from "../../components/Header/Header";
+import { Footer } from "../../components/Footer/Footer";
+import { BackButton } from "../../components/BackButton/BackButton";
+
+//* API endpoint
+import ProfileService from "../../Api/profile.service";
+
+//* Ant design packs
+import { message } from "antd";
+
+//* Utils
+import { formatPhoneNumber } from "../../utils/RegEx.utils";
 
 export const UserInfo = () => {
+  const [messageApi, contextHolder] = message.useMessage();
   const [isLoading, setIsLoading] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [userData, setUserData] = useState([]);
+  const [getterSt, getterStSet] = useState(false);
+  const [avatarFile, setAvatarFile] = useState(null);
 
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "This is a success message",
+    });
+  };
+
+  //* REF VALUES
+  const fullnameValue = useRef();
+  const phoneValue = useRef();
+
+  //* GET REQUEST | FETCH
   useEffect(() => {
-    // Simulating loading data from an API
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 800);
-  }, []);
+    const fetchUserProfile = async () => {
+      try {
+        const response = await ProfileService.GetProfile();
+        setUserData(response.data);
+        setIsLoading(false);
+        getterStSet(false);
+      } catch (error) {
+        console.error("Error occurred while fetching user profile", error);
+        setIsLoading(false);
+      }
+    };
 
-  // useEffect(() => {
-  //   //* GET REQUEST
-  //   axios
-  //     .get("/api/users/profile")
-  //     .then((response) => {
-  //       const data = response.data;
-  //       console.log(data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
+    fetchUserProfile();
+  }, [getterSt]);
 
-  //   //* PATCH REQUEST
-  //   axios
-  //     .patch("/api/users/edit-phone")
-  //     .then((response) => {
-  //       const data = response.data;
-  //       console.log(data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // });
+  //* SUBMIT REQUEST WHEN ONLY SUBMIT (useffect overrider)
+  const handleSubmit = async (event) => {
+    event.preventDefault(); //* Prevent the default form submission behavior
 
+    //* GET the updated data from the fields | FULLNAME
+    const fullnameUserData = {
+      full_name: fullnameValue.current?.value,
+    };
+
+    //* Clears out the field once submited
+    fullnameValue.current.value = "";
+
+    //* GET the updated data from the fields | PHONE
+    const phoneNumberData = {
+      phone: phoneValue.current.value.replace(/\D/g, ""),
+    };
+
+    //* Clears out the field once submited
+    phoneValue.current.value = "";
+
+    //* EDIT FULLNAME | REQUEST
+    const editProfileName = async () => {
+      try {
+        const edit = await ProfileService.EditFullname(fullnameUserData);
+        if (edit) {
+          message.success(
+            "Ism muvaffaqiyatli o'zgartirildi, o'zgarishlarga biroz vaqt olishi mumkin!"
+          );
+        }
+        getterStSet(true);
+      } catch (error) {
+        console.error("Error editing full name", error);
+      }
+    };
+    await editProfileName(); //* Call the function to perform the relevant actions
+
+    //* EDIT PHONE | REQUEST
+    const editPhone = async () => {
+      try {
+        const edit = await ProfileService.EditPhone(phoneNumberData);
+        if (edit) {
+          message.success(
+            "Telefon raqam muvaffaqiyatli o'zgartirildi, o'zgarishlarga biroz vaqt olishi mumkin!"
+          );
+        }
+        getterStSet(true);
+      } catch (error) {
+        console.error("Error editing phone", error);
+      }
+    };
+    await editPhone();
+
+    //* EDIT AVATAR | REQUEST
+    const editAvatar = async () => {
+      try {
+        if (avatarFile) {
+          const formData = new FormData();
+          formData.append("avatar", avatarFile);
+
+          const edit = await ProfileService.EditAvatar(formData);
+          if (edit) {
+            message.success(
+              "Profil rasm muvaffaqiyatli o'zgartirildi, o'zgarishlarga biroz vaqt olishi mumkin!"
+            );
+          }
+          getterStSet(true);
+        }
+      } catch (error) {
+        console.error("Error editing avatar", error);
+      }
+    };
+    await editAvatar();
+  };
+
+  //* RegEX implementation
   const handleChange = (e) => {
-    // Gets target value of input
+    //* Gets target value of input
     const inputValue = e.target.value;
 
-    // Attach input value to formatPhoneNumber
+    //* Attach input value to formatPhoneNumber
     const formattedValue = formatPhoneNumber(inputValue);
     setPhoneNumber(formattedValue);
   };
 
-  const formatPhoneNumber = (phoneNumber) => {
-    const cleanedNumber = phoneNumber.replace(/\D/g, "");
-    let formattedNumber = cleanedNumber.slice(0, 22);
-    if (formattedNumber.charAt(0) === "+") {
-      formattedNumber = "+" + formattedNumber.slice(1);
-    } else {
-      formattedNumber = "+" + formattedNumber;
-    }
-    if (formattedNumber.length > 3) {
-      if (formattedNumber.length <= 6) {
-        formattedNumber = formattedNumber.replace(
-          /^(\+\d{3})(\d{1,2})$/,
-          "$1($2)"
-        );
-      } else if (formattedNumber.length <= 8) {
-        formattedNumber = formattedNumber.replace(
-          /^(\+\d{3})(\d{2})(\d{1,2})$/,
-          "$1($2) $3"
-        );
-      } else if (formattedNumber.length <= 10) {
-        formattedNumber = formattedNumber.replace(
-          /^(\+\d{3})(\d{2})(\d{2})(\d{1,2})$/,
-          "$1($2) $3 $4"
-        );
-      } else {
-        formattedNumber = formattedNumber.replace(
-          /^(\+\d{3})(\d{2})(\d{2})(\d{2})(\d{1,2})$/,
-          "$1($2) $3 $4 $5"
-        );
-      }
-    }
-    return formattedNumber;
+  const onFileChange = (event) => {
+    const file = event.target.files[0];
+    setAvatarFile(file);
   };
 
-  // Create a new classname and give it to an input as an atribute
+  //* Create a new classname and give it to an input as an attribute
   const inputClassname =
-    phoneNumber.length === 13
+    phoneNumber.length === 14
       ? "user-edit__input classHandler"
       : "user-edit__input";
 
-  const [fileList, setFileList] = useState([
-    {
-      uid: "-1",
-      name: "image.png",
-      status: "done",
-      url: "https://preview.keenthemes.com/good/assets/media/avatars/300-1.jpg",
-    },
-  ]);
-  const onChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-  };
-  const onPreview = async (file) => {
-    let src = file.url;
-    if (!src) {
-      src = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file.originFileObj);
-        reader.onload = () => resolve(reader.result);
-      });
-    }
-    const image = new Image();
-    image.src = src;
-    const imgWindow = window.open(src);
-    imgWindow?.document.write(image.outerHTML);
-  };
-
   return (
     <>
+      <Header />
+      {contextHolder}
+      {/* <Button onClick={success}>Success</Button> */}
       <div className="user-info">
         <div className="container">
           <div className="backButton">
@@ -140,46 +169,69 @@ export const UserInfo = () => {
               </div>
             ) : (
               <>
-                <img
-                  className="user-current__image"
-                  src={userPic}
-                  alt="user-current-image"
-                />
-                <h3 className="user-current__name">Akbar Ahmadjonov</h3>
-                <p className="user-current__number">+99890 509 83 13</p>
+                <div>
+                  <img
+                    className="user-current__image"
+                    src={`http://Test.uyjoybaraka.uz/${userData.user?.avatar}`}
+                    alt="user-current-image"
+                    width={149}
+                    height={149}
+                  />
+                  <div>
+                    <h3 className="user-current__name">
+                      {userData.user?.full_name}
+                    </h3>
+                    <p className="user-current__number">
+                      +{userData.user?.phone.slice(0, 3)}(
+                      {userData.user?.phone.slice(3, 5)}){" "}
+                      {userData.user?.phone.slice(5, 8)}{" "}
+                      {userData.user?.phone.slice(8, 10)}{" "}
+                      {userData.user?.phone.slice(10)}
+                    </p>
+                  </div>
+                </div>
               </>
             )}
           </div>
+
           {/* User edit section */}
           <div className="user-info__inner">
-            <form className="form">
+            <form onSubmit={(e) => handleSubmit(e)} className="form">
               <div className="user-edit__wrapper">
                 <div className="user-edit__pic">
                   <h3 className="user-edit__title">Rasm: </h3>
                   {isLoading ? (
                     <Skeleton width={120} height={80} />
                   ) : (
-                    <ImgCrop rotationSlider>
-                      <Upload
-                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                        listType="picture-card"
-                        fileList={fileList}
-                        onChange={onChange}
-                        onPreview={onPreview}
-                      >
-                        {fileList.length < 1 && (
-                          <div>
+                    <>
+                      <label htmlFor="avatarInput">
+                        {avatarFile ? (
+                          <img
+                            className="fileInputIcon"
+                            src={URL.createObjectURL(avatarFile)}
+                            alt="edit pen"
+                            width={24}
+                          />
+                        ) : (
+                          <div className="fileWrapper">
                             <img
                               className="fileInputIcon"
-                              src={UploadIcon}
+                              src={`http://Test.uyjoybaraka.uz/${userData.user?.avatar}`}
                               alt="edit pen"
-                              width={24}
+                              width={130}
+                              height={120}
                             />
-                            <span>Rasm yuklang</span>
                           </div>
                         )}
-                      </Upload>
-                    </ImgCrop>
+                      </label>
+                      <input
+                        id="avatarInput"
+                        type="file"
+                        accept="image/*"
+                        onChange={onFileChange}
+                        style={{ display: "none" }}
+                      />
+                    </>
                   )}
                 </div>
                 <div className="user-edit__name">
@@ -189,9 +241,11 @@ export const UserInfo = () => {
                   ) : (
                     <input
                       className="user-edit__input"
+                      ref={fullnameValue}
                       type="text"
-                      placeholder="Akbar"
+                      placeholder={userData.user?.full_name}
                       name="name"
+                      autoFocus={true}
                     />
                   )}
                 </div>
@@ -203,7 +257,8 @@ export const UserInfo = () => {
                     <input
                       className={inputClassname}
                       type="text"
-                      placeholder="+99890 509 83 13"
+                      ref={phoneValue}
+                      placeholder={userData.user?.phone}
                       name="number"
                       maxLength={20}
                       value={phoneNumber}

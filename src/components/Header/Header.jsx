@@ -151,7 +151,7 @@ export const Header = () => {
                     <p className="drop__info">Bunyodbek</p>
                     <ul className="drop__list">
                       <li className="drop__item">
-                        <Link className="drop__link" to={"/user-info"}>
+                        <Link className="drop__link" to={"/userinfo"}>
                           Mening ma’lumotlarim
                         </Link>
                       </li>
