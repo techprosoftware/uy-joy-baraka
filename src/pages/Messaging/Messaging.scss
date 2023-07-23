@@ -161,6 +161,7 @@
         & button {
           display: flex;
           margin-left: auto;
+          margin-right: 7px;
 
           border: none;
           background-color: transparent;
@@ -213,14 +214,60 @@
         }
       }
       .chat-inner__info {
+        width: 100%;
         margin-left: 7px;
       }
     }
   }
 }
 
-//* Users chat responsiveness
-// ✅
+//*✅ Users bar responsiveness
+@media only screen and (max-width: 1183px) {
+  .users-bar {
+    .bar-wrapper {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .wrapper-sections {
+      width: 100%;
+      max-width: 700px;
+    }
+  }
+}
+
+@media only screen and (max-width: 605px) {
+  .users-bar {
+    .bar-wrapper {
+      display: block;
+      .layoutButtons {
+        .layout-buttons__btn {
+          font-size: 20px;
+        }
+      }
+    }
+
+    .chats-container {
+      .chat-wrapper {
+        width: 100%;
+
+        .chat-inner {
+          padding: 3px;
+          .chat-user__ad {
+            font-size: 14px;
+          }
+
+          .chat-user__message {
+            font-size: 16px;
+            font-size: 800;
+          }
+        }
+      }
+    }
+  }
+}
+//*✅ Users bar responsiveness
 
 //* Chatbar section
 .chatbar-section {
@@ -390,3 +437,7 @@
     }
   }
 }
+
+//*✅ Chatbar section
+
+//*✅ Chatbar section

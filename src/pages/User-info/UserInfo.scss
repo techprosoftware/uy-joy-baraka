@@ -3,6 +3,11 @@
   // Custom properties
   text-align: center;
 
+  .user-current__image {
+    border-radius: 20px;
+    object-fit: cover;
+  }
+
   .user-current__name {
     // Margin, paddings
     margin: 0;
@@ -76,6 +81,45 @@
       font-family: "Gilroy";
       font-weight: 500;
       line-height: 24px;
+    }
+
+    .fileWrapper {
+      position: relative;
+
+      border: 3px solid #fff;
+
+      &::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 50px;
+
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: auto;
+        bottom: 0;
+
+        background-image: url("../../../public/assets/images/user-info_gallery.svg");
+        background-repeat: no-repeat;
+        z-index: 999;
+        cursor: pointer;
+      }
+    }
+
+    .fileInputIcon {
+      padding: 4px;
+      // Margin, paddings
+
+      width: 130px;
+      height: 120px;
+
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 0.5rem 1.5rem 0.5rem rgba(0, 0, 0, 0.075);
+      cursor: pointer;
+      filter: brightness(70%);
     }
 
     .fileInputIcon {

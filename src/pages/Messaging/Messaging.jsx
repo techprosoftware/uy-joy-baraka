@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
+import { Header } from "@components/Header/Header";
 import axios from "axios";
 import "./Messaging.scss";
 // Icons
 import TrashIcon from "../../../public/assets/images/messaging-delete-icon.svg";
 import { BackButton } from "../../components/BackButton/BackButton";
-import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilonzor.webp";
 import ChatsendIcon from "../../../public/assets/images/chatbar-send-icon.svg";
 
 export const Messaging = () => {
@@ -123,6 +123,7 @@ export const Messaging = () => {
   return (
     <>
       {/* Header component */}
+      <Header />
       {/* Users bar */}
       <div className="users-bar">
         <div className="container">
@@ -178,11 +179,11 @@ export const Messaging = () => {
                           </button>
                         </div>
                         <p className="chat-user__ad">
-                          {info.ad.substr(0, 61)}....
+                          {info.ad.substr(0, 45)}....
                         </p>
                         <p className="chat-user__message">
                           {/* Now, it cuts texts based on user message */}
-                          {info.message.substr(0, 58)}
+                          {info.message.substr(0, 80)}
                         </p>
                       </div>
                     </div>
@@ -191,85 +192,6 @@ export const Messaging = () => {
               </div>
             </div>
             {/* Chat section */}
-            {selectedChat && (
-              <div className="chatbar-section">
-                <div className="chatbar-layoutButtons">
-                  {/* Layout buttons */}
-                  <div className="user-selected">
-                    <div className="user-inner">
-                      <img src={selectedChat.src} alt="selected user image" />
-                      <span className="user-name__selected">
-                        {selectedChat.name}
-                      </span>
-                    </div>
-                    <div className="trash-inner">
-                      <button>
-                        <img src={TrashIcon} alt="trash icon" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-chat">
-                  <div className="delete-bars">
-                    {selectedChat && (
-                      <div
-                        className={`selected-chat ${
-                          selectedChat.id === activeChatId ? "chatActive" : ""
-                        }`}
-                      >
-                        <img src={SelectedChatImg} alt="selected chat" />
-                        <div>
-                          <span className="selected-ad">{selectedChat.ad}</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  {/* Chats */}
-                  <div className="chats-container__bar">
-                    <div className="chat-wrapper__bar">
-                      <span className="chatbar-date">
-                        {selectedChat.chat_started}
-                      </span>
-                    </div>
-                  </div>
-                  {/* Chat messaged mock */}
-                  <div style={{ width: "200px", marginTop: "50px" }}>
-                    <span
-                      style={{
-                        backgroundColor: "#80C5A8",
-                        marginBottom: "20px",
-                        display: "inline-block",
-                      }}
-                    >
-                      {selectedChat.message}
-                    </span>
-                    <span
-                      style={{
-                        backgroundColor: "#80A8C5",
-                        marginBottom: "20px",
-                        display: "inline-block",
-                      }}
-                    >
-                      {selectedChat.message}
-                    </span>
-                  </div>
-                  {/* Chat messaged mock */}
-                  <input
-                    type="text"
-                    className="chatbar-input"
-                    placeholder="Sms yozish"
-                    aria-label="Enter your message(Habaringizni kiriting)"
-                  />
-                  <button type="submit" className="chatbar-button">
-                    <img
-                      className="chatbar-send__icon"
-                      src={ChatsendIcon}
-                      alt="chat-send icon"
-                    />
-                  </button>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>
@@ -279,3 +201,81 @@ export const Messaging = () => {
     </>
   );
 };
+
+//  {
+//    selectedChat && (
+//      <div className="chatbar-section">
+//        <div className="chatbar-layoutButtons">
+//          {/* Layout buttons */}
+//          <div className="user-selected">
+//            <div className="user-inner">
+//              <img src={selectedChat.src} alt="selected user image" />
+//              <span className="user-name__selected">{selectedChat.name}</span>
+//            </div>
+//            <div className="trash-inner">
+//              <button>
+//                <img src={TrashIcon} alt="trash icon" />
+//              </button>
+//            </div>
+//          </div>
+//        </div>
+//        <div className="bg-chat">
+//          <div className="delete-bars">
+//            {selectedChat && (
+//              <div
+//                className={`selected-chat ${
+//                  selectedChat.id === activeChatId ? "chatActive" : ""
+//                }`}
+//              >
+//                <img src={SelectedChatImg} alt="selected chat" />
+//                <div>
+//                  <span className="selected-ad">{selectedChat.ad}</span>
+//                </div>
+//              </div>
+//            )}
+//          </div>
+//          {/* Chats */}
+//          <div className="chats-container__bar">
+//            <div className="chat-wrapper__bar">
+//              <span className="chatbar-date">{selectedChat.chat_started}</span>
+//            </div>
+//          </div>
+//          {/* Chat messaged mock */}
+//          <div style={{ width: "200px", marginTop: "50px" }}>
+//            <span
+//              style={{
+//                backgroundColor: "#80C5A8",
+//                marginBottom: "20px",
+//                display: "inline-block",
+//              }}
+//            >
+//              {selectedChat.message}
+//            </span>
+//            <span
+//              style={{
+//                backgroundColor: "#80A8C5",
+//                marginBottom: "20px",
+//                display: "inline-block",
+//              }}
+//            >
+//              {selectedChat.message}
+//            </span>
+//          </div>
+//          {/* Chat messaged mock */}
+//          <input
+//            type="text"
+//            className="chatbar-input"
+//            placeholder="Sms yozish"
+//            aria-label="Enter your message(Habaringizni kiriting)"
+//          />
+//          <button type="submit" className="chatbar-button">
+//            <img
+//              className="chatbar-send__icon"
+//              src={ChatsendIcon}
+//              alt="chat-send icon"
+//            />
+//          </button>
+//        </div>
+//      </div>
+//    );
+//  }
