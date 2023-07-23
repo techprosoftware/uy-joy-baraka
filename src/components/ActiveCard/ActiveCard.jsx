@@ -11,11 +11,10 @@ import { CardSkeleton } from "@components/Cards/CardSkeleton";
 import noData from "@images/no-data.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Switch } from 'antd';
+import { Switch } from "antd";
 import { useNavigate } from "react-router-dom";
-import {BASE_URL} from "@/Api/api";
+import { BASE_URL } from "@/Api/api";
 import cardService from "@/Api/card.service.jsx";
-
 
 export const ActiveCard = () => {
   const [activeCard, setActiveCard] = useState({
@@ -48,41 +47,44 @@ export const ActiveCard = () => {
   const handleChange = async (evt) => {
     let id = evt.target.id;
     console.log(evt.target.checked);
-  
-        try {
-          const token = localStorage.getItem("token");
-          const data = await AnnounService.setActiveCard(id, token);
-          if(data.status ===200) {
-            toast.success("E'lon faolsizlantirildi.");
-          
-          }
-          getActives();
-          
-          console.log(data);
-        } catch (error) {
-          console.log(error.message);
-        }
-      
+
+    try {
+      const token = localStorage.getItem("token");
+      const data = await AnnounService.setActiveCard(id, token);
+      if (data.status === 200) {
+        toast.success("E'lon faolsizlantirildi.");
+      }
+      getActives();
+
+      console.log(data);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleClick = async (evt) => {
-    console.log(evt.target);
-    const targetTag = evt.target.className
-    const token = localStorage.getItem('token') || ""
-    
-  if (!token) {
-      navigate('/register')
+    const slug = (evt.target.name);
+    const id  = evt.target.id
+    // const slug = evt.target
+    const targetTag = evt.target.className;
+
+    const token = localStorage.getItem("token") || "";
+
+    if (!token) {
+      navigate("/register");
     }
 
-    if (targetTag === 'card__like' || targetTag === 'card__like-img') {
-      const response = await cardService.likeCard(newData.announcement_id)
-      console.log('like: ', response)
-    } else {
-      window.scroll(0, 0)
-      navigate(`/announcement/${newData?.slug}`)
+    if (targetTag != "de_active__btn") {
+      if (targetTag === "card__like" || targetTag === "card__like-img") {
+        const response = await cardService.likeCard(id);
+        console.log("like: ", response);
+      } else {
+        window.scroll(0, 0);
+        navigate(`/announcement/${slug}`);
+      }
     }
-  }
+  };
 
   return (
     <>
@@ -93,35 +95,68 @@ export const ActiveCard = () => {
           ) : newData?.length ? (
             newData?.map((item) => (
               <>
-                <li       onClick={handleClick}
- className="card">
-                                  <img className="card__img"         src={BASE_URL + item?.thumb[0]}
-  height={222} />
-                  <div className="card__wrap">
-                    <div className="card__inner">
-                      <span className="card__city">{item.city}</span>
-                      <div className="card__right">
-                        <span className="card__view me-2">
+                <li name={item.slug}
+                  id={item.announcement_id}
+                  onClick={handleClick}
+                  className="card"
+                >
+                  <img name={item.slug}
+                    id={item.announcement_id}
+                    className="card__img"
+                    src={BASE_URL + item?.thumb[0]}
+                    height={222}
+                  />
+                  <div name={item.slug} id={item.announcement_id} className="card__wrap">
+                    <div name={item.slug} id={item.announcement_id} className="card__inner">
+                      <span name={item.slug} id={item.announcement_id} className="card__city">
+                        {item.city}
+                      </span>
+                      <div name={item.slug} id={item.announcement_id} className="card__right">
+                        <span name={item.slug}
+                          id={item.announcement_id}
+                          className="card__view me-2"
+                        >
                           {item.viewCount}
                         </span>
-                        <button className="card__like">
-                          <img
-                            className="card__like-img"
-                            src={CardULikeIcon}
-                            width={17}
-                            height={16}
-                            alt="Card like button image"
-                          />
+                        <button name={item.slug} id={item.announcement_id} className="card__like">
+                        <img
+                className="card__like-img"
+                src={item?.likeCount ? CardLikeIcon : CardULikeIcon}
+                width={17}
+                height={16}
+                alt="Card like button image"
+              />
                         </button>
-                        <span className="me-1" style={{fontSize: "12px", color: "#666666", lineHeight: "14px"}}> {item?.likeCount}</span>
-
+                        <span name={item.slug} id={item.announcement_id}
+                          className="me-1"
+                          style={{
+                            fontSize: "12px",
+                            color: "#666666",
+                            lineHeight: "14px",
+                          }}
+                        >
+                          {" "}
+                          {item?.likeCount}
+                        </span>
                       </div>
                     </div>
-                    <h3 className="card__body">{item.description}</h3>
-                    <button onClick={handleChange} id={item.announcement_id} className="de_active__btn">Faolsizlantirish</button>
+                    <h3 name={item.slug} id={item.announcement_id} className="card__body">{item.description}</h3>
+                    <button
+                      onClick={handleChange}
+                      id={item.announcement_id}
+                      className="de_active__btn"
+                    >
+                      Faolsizlantirish
+                    </button>
 
-                    <p className="de_card__price">
-                      {item.price.toString().replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, '$1 ')} {item.price_type == "sum" ? "so'm" : "$"}
+                    <p name={item.slug} id={item.announcement_id} className="de_card__price">
+                      {item.price
+                        .toString()
+                        .replace(
+                          /(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g,
+                          "$1 "
+                        )}{" "}
+                      {item.price_type == "sum" ? "so'm" : "$"}
                     </p>
                   </div>
                 </li>
@@ -132,17 +167,17 @@ export const ActiveCard = () => {
           )}
         </ul>
         <ToastContainer
-        position="bottom-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+          position="bottom-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </>
   );

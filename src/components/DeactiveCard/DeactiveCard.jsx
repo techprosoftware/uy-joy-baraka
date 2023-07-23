@@ -12,6 +12,9 @@ import AnnounService from "../../Api/announ.service";
 import { CardSkeleton } from "@components/Cards/CardSkeleton";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "@/Api/api";
+import cardService from "@/Api/card.service.jsx";
 
 export const DeactiveCard = () => {
   const [activeCard, setActiveCard] = useState({
@@ -71,6 +74,31 @@ export const DeactiveCard = () => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleClick = async (evt) => {
+    const slug = (evt.target.name);
+    const id  = evt.target.id
+    // const slug = evt.target
+    const targetTag = evt.target.className;
+
+    const token = localStorage.getItem("token") || "";
+
+    if (!token) {
+      navigate("/register");
+    }
+
+    if (targetTag != "active__btn") {
+      if (targetTag === "card__like" || targetTag === "card__like-img") {
+        const response = await cardService.likeCard(id);
+        console.log("like: ", response);
+      } else {
+        window.scroll(0, 0);
+        navigate(`/announcement/${slug}`);
+      }
+    }
+  };
+
   return (
     <>
       <div>
@@ -80,34 +108,68 @@ export const DeactiveCard = () => {
             : 
             newData.length ? newData?.map((item) => (
               <>
-                <li className="card">
-                  <div  className="active__check_btn">
-                    <img style={{cursor: 'pointer'}} onClick={handleDelete} id={item.announcement_id}  src={deleteBtn} alt="" />
-                  </div>
-
-                  <img className="card__img" src={mockCardImg} height={222} />
-                  <div className="card__wrap">
-                    <div className="card__inner">
-                      <span className="card__city">{item.city}, {item.district}</span>
-                      <div className="card__right">
-                        <span className="card__view me-2">
+                <li name={item.slug}
+                  id={item.announcement_id}
+                  onClick={handleClick}
+                  className="card"
+                >
+                  <img name={item.slug}
+                    id={item.announcement_id}
+                    className="card__img"
+                    src={BASE_URL + item?.thumb[0]}
+                    height={222}
+                  />
+                  <div name={item.slug} id={item.announcement_id} className="card__wrap">
+                    <div name={item.slug} id={item.announcement_id} className="card__inner">
+                      <span name={item.slug} id={item.announcement_id} className="card__city">
+                        {item.city}
+                      </span>
+                      <div name={item.slug} id={item.announcement_id} className="card__right">
+                        <span name={item.slug}
+                          id={item.announcement_id}
+                          className="card__view me-2"
+                        >
                           {item.viewCount}
                         </span>
-                        <button className="card__like">
-                          <img
-                            className="card__like-img"
-                            src={CardULikeIcon}
-                            width={17}
-                            height={16}
-                            alt="Card like button image"
-                          />
+                        <button name={item.slug} id={item.announcement_id} className="card__like">
+                        <img
+                className="card__like-img"
+                src={item?.likeCount ? CardLikeIcon : CardULikeIcon}
+                width={17}
+                height={16}
+                alt="Card like button image"
+              />
                         </button>
+                        <span name={item.slug} id={item.announcement_id}
+                          className="me-1"
+                          style={{
+                            fontSize: "12px",
+                            color: "#666666",
+                            lineHeight: "14px",
+                          }}
+                        >
+                          {" "}
+                          {item?.likeCount}
+                        </span>
                       </div>
                     </div>
-                    <h3 className="card__body">{item.description}</h3>
-                    <button onClick={handleChange} id={item.announcement_id} className="active__btn">Faollashtirish</button>
-                    <p className="de_card__price">
-                      {item.price} {item.price_type == "sum" ? "so'm" : "$"}
+                    <h3 name={item.slug} id={item.announcement_id} className="card__body">{item.description}</h3>
+                    <button
+                      onClick={handleChange}
+                      id={item.announcement_id}
+                      className="active__btn"
+                    >
+                      Faollashtirish
+                    </button>
+
+                    <p name={item.slug} id={item.announcement_id} className="de_card__price">
+                      {item.price
+                        .toString()
+                        .replace(
+                          /(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g,
+                          "$1 "
+                        )}{" "}
+                      {item.price_type == "sum" ? "so'm" : "$"}
                     </p>
                   </div>
                 </li>
