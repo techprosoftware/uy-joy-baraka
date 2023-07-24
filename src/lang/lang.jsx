@@ -63,5 +63,9 @@ export const lang = {
       deactiveannoun: "Faolsizlantirish"
 
     },
+
+    searchpage: {
+      
+    }
   },
 };

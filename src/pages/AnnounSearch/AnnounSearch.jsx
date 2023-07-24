@@ -31,7 +31,7 @@ export const AnnounSearch = () => {
 
   const getSearchCard = async () => {
     const data = await SearchService.searchOnInput(cityName, city, type, price_type);
-    console.log(data);
+    // console.log(data);
     if (data?.status === 200) {
       setActiveCard({
         isLoading: false,
@@ -45,7 +45,7 @@ export const AnnounSearch = () => {
   }, []);
 
   const [count, setCount] = useState();
-
+  console.log(activeCard);
   const newData = activeCard?.data?.posts;
 
   const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -94,13 +94,17 @@ export const AnnounSearch = () => {
   return (
     <div className="container">
       <div style={{ paddingTop: "90px" }}>
-        <h3 className="heart__title">Saralanganlar</h3>
+        <h3 className="heart__title">Kategoriya</h3>
         <hr />
         <h3 className="heart__desc mb-2">
-          {newData?.length} ta e'lon topildi
+          {
+          activeCard?.data?.totalCount} ta e'lon topildi
         </h3>{" "}
         <ul className="card-list pt-3">
-          {newData?.length ? (
+          {activeCard.isLoading ? (
+            mockData.map((moc) => <CardSkeleton key={moc} />)
+          ) : 
+          newData?.length ? (
             newData?.map((item) => (
               <>
                 <li
@@ -209,7 +213,7 @@ export const AnnounSearch = () => {
                 </span>{" "}
               </p>
             </div>
-          )}
+          ) }
         </ul>
         <ToastContainer
           position="bottom-right"
