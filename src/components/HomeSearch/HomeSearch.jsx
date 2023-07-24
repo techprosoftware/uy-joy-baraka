@@ -43,15 +43,30 @@ export const HomeSearch = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if(!city && !type && !price_type) {
+      alert('sa')
+    }else {
+      localStorage.removeItem('searchCity')
+      localStorage.setItem('city', city)
+      localStorage.setItem('type', type)
+      localStorage.setItem('price_type', price_type)
+      navigate("/card-search");
+  
+    }
+
+   
+  }
+
   const handleSubmitSearch = (e) => {
     e.preventDefault();
-
-
     if (!search.current.value.trim() == "") {
-      dispatch(setCity(search.current.value, city, type, price_type));
+      localStorage.setItem('searchCity', search.current.value)
       navigate("/card-search");
     }else {
-
       alert('fdf')
     }
   };
@@ -140,60 +155,57 @@ export const HomeSearch = () => {
                         options: [
                           {
                             label: "Andijon",
-                            value: "andijon",
+                            value: "Andijon",
                           },
                           {
                             label: "Buxoro",
-                            value: "buxoro",
+                            value: "Buxoro",
                           },
                           {
                             label: "Farg'ona",
-                            value: "fargona",
+                            value: "Fargona",
                           },
                           {
                             label: "Jizzax",
-                            value: "jizzax",
+                            value: "Jizzax",
                           },
                           {
                             label: "Xorazm",
-                            value: "xorazm",
+                            value: "Xorazm",
                           },
                           {
                             label: "Namangan",
-                            value: "namangan",
+                            value: "Namangan",
                           },
                           {
                             label: "Navoiy",
-                            value: "navoiy",
+                            value: "Navoiy",
                           },
                           {
                             label: "Qashqadaryo",
-                            value: "qashqadaryo",
+                            value: "Qashqadaryo",
                           },
                           {
                             label: "Qoraqalpog'iston Respublikasi",
-                            value: "qoraqalpogiston",
+                            value: "Qoraqalpogiston",
                           },
                           {
                             label: "Samarqand",
-                            value: "samarqand",
+                            value: "Samarqand",
                           },
                           {
                             label: "Sirdaryo",
-                            value: "sirdaryo",
+                            value: "Sirdaryo",
                           },
                           {
                             label: "Surxondaryo",
-                            value: "surxondaryo",
+                            value: "Surxondaryo",
                           },
                           {
                             label: "Toshkent shahri",
-                            value: "toshkentShahri",
+                            value: "Toshkent",
                           },
-                          {
-                            label: "Toshkent viloyati",
-                            value: "toshkentViloyati",
-                          },
+                          
                         ],
                       },
                     ]}
@@ -202,7 +214,7 @@ export const HomeSearch = () => {
               </li>
 
               <li className="dropdown-item">
-                <button className="send__button w-100" href="#">
+                <button type="submit" onClick={handleSubmit} className="send__button w-100" href="#">
                   Filtrlash
                 </button>
               </li>

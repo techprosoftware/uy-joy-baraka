@@ -16,19 +16,22 @@ import SearchService from "../../Api/search.service";
 import { useSelector } from "react-redux";
 
 export const AnnounSearch = () => {
-  const cityName = useSelector(item => item.city.city)
-console.log(cityName);
+  const cityName = localStorage.getItem("searchCity");
+  const city = localStorage.getItem('city')
+  const type = localStorage.getItem('type')
+  const price_type = localStorage.getItem('price_type')
+
+  console.log(cityName);
   const [activeCard, setActiveCard] = useState({
     isLoading: true,
     data: [],
   });
 
-
   // console.log(cityName);
 
   const getSearchCard = async () => {
-    const data = await SearchService.searchOnInput(cityName)
-    // console.log(data);
+    const data = await SearchService.searchOnInput(cityName, city, type, price_type);
+    console.log(data);
     if (data?.status === 200) {
       setActiveCard({
         isLoading: false,
@@ -41,10 +44,10 @@ console.log(cityName);
     getSearchCard();
   }, []);
 
-  const [count, setCount] = useState()
+  const [count, setCount] = useState();
 
   const newData = activeCard?.data?.posts;
-  
+
   const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   // const handleChange = async (evt) => {
@@ -93,7 +96,9 @@ console.log(cityName);
       <div style={{ paddingTop: "90px" }}>
         <h3 className="heart__title">Saralanganlar</h3>
         <hr />
-        <h3 className="heart__desc mb-2">{newData?.length} ta e'lon topildi</h3>{" "}
+        <h3 className="heart__desc mb-2">
+          {newData?.length} ta e'lon topildi
+        </h3>{" "}
         <ul className="card-list pt-3">
           {newData?.length ? (
             newData?.map((item) => (
@@ -175,7 +180,6 @@ console.log(cityName);
                     >
                       {item.description}
                     </h3>
-                   
 
                     <p
                       name={item.slug}
@@ -196,9 +200,10 @@ console.log(cityName);
             ))
           ) : (
             <div className="py-5 d-flex flex-column align-items-center">
-             
               <p>
-                <Link className="heart__desc-link" to={"/"}>Bu yerdan </Link>
+                <Link className="heart__desc-link" to={"/"}>
+                  Bu yerdan{" "}
+                </Link>
                 <span className=" heart__desc">
                   ko'proq e'lon topishingiz mumkin.
                 </span>{" "}
