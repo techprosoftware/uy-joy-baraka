@@ -15,6 +15,16 @@ const CardService = {
       return await err
     }
   }
+  ,
+  getLike: async () => {
+    try {
+      return await axios.get(`/api/announcements/liked`, {
+        headers: {authorization: token},
+      })
+    } catch (err) {
+      return await err
+    }
+  }
 }
 
 export default CardService;

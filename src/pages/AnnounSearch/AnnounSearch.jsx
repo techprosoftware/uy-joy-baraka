@@ -27,8 +27,6 @@ export const AnnounSearch = () => {
     data: [],
   });
 
-  // console.log(cityName);
-
   const getSearchCard = async () => {
     const data = await SearchService.searchOnInput(cityName, city, type, price_type);
     // console.log(data);
@@ -49,24 +47,6 @@ export const AnnounSearch = () => {
   const newData = activeCard?.data?.posts;
 
   const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-  // const handleChange = async (evt) => {
-  //   let id = evt.target.id;
-  //   console.log(evt.target.checked);
-
-  //   try {
-  //     const token = localStorage.getItem("token");
-  //     const data = await AnnounService.setActiveCard(id, token);
-  //     if (data.status === 200) {
-  //       toast.success("E'lon faolsizlantirildi.");
-  //     }
-  //     getSearchCard();
-
-  //     console.log(data);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
 
   const navigate = useNavigate();
   const handleClick = async (evt) => {
