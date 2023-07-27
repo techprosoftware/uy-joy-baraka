@@ -1,4 +1,4 @@
-@import "fonts.scss";
+@import "fonts";
 
 body {
   margin: 0;
@@ -26,6 +26,21 @@ a {
   text-decoration: none;
 }
 
+//* Scroll top button
+:where(.css-dev-only-do-not-override-1m62vyb).ant-back-top
+  .ant-back-top-content {
+  background-color: #008b51;
+  width: 50px;
+  height: 50px;
+
+  &:hover {
+    background-color: rgb(1, 173, 101);
+  }
+}
+
+:where(.css-dev-only-do-not-override-1m62vyb).ant-back-top {
+  right: 35px;
+}
 
 //******************//
 //***   MOBILE   ***//

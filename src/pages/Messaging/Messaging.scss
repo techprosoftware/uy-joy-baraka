@@ -1,35 +1,31 @@
 //* Users chat as wrapper
 .backButton {
   padding-top: 90px;
+  padding-bottom: 30px;
+}
+
+.customBack {
+  width: 100%;
+  max-width: 165px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 6px 20px 6px 19px;
+  background-color: transparent;
+  text-decoration: none;
+  border: 1px solid #008b51;
+  border-radius: 6px;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  color: #008b51;
 }
 
 .users-bar {
   .arrow-btn__wrapper {
     padding-top: 30px;
-  }
-  // Back button
-  .arrow__btn {
-    // Custom properties
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    max-width: 185px;
-
-    // Margin, paddings
-    padding: 9px 34px 10px 19px;
-
-    // Custom styles
-    background-color: transparent;
-    text-decoration: none;
-    border: 1px solid #008b51;
-    border-radius: 6px;
-    font-family: "Gilroy";
-    font-style: normal;
-    font-weight: 500;
-    font-size: 26px;
-    line-height: 32px;
-    color: #008b51;
   }
 
   /* ===== Scrollbar CSS ===== */
@@ -57,16 +53,63 @@
   .bar-wrapper {
     .wrapper-sections {
       margin-right: 30px;
+      // display: none;
     }
     display: flex;
     .bg-chat {
-      background-color: #fff;
+      display: flex;
+      flex-direction: column;
       height: 774px;
       overflow: auto;
+      background-color: #fff;
+      margin-bottom: 62px;
+    }
+
+    .client-ms {
+      //* Custom properties
+      width: 183px;
+      display: flex;
+      margin-bottom: 0;
+      margin-left: 20px;
+      padding: 4px 8px;
+
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 400;
+
+      color: #fff;
+      background-color: #80c5a8;
+      border-bottom-left-radius: 10px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      font-family: "Gilroy";
+      font-weight: 400;
+    }
+
+    .self-ms {
+      //* Custom properties
+      width: 183px;
+      display: flex;
+      margin-top: 35px;
+      margin-bottom: 35px;
+      margin-left: 20px;
+      padding: 4px 8px;
+
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 400;
+
+      color: #fff;
+      background-color: #80a8c5;
+      border-bottom-left-radius: 10px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      font-family: "Gilroy";
+      font-weight: 400;
     }
 
     // Margins, paddings
-    padding: 30px 0;
+    padding: 0px 0 30px 0;
 
     width: 100%;
     max-width: 570px;
@@ -104,7 +147,7 @@
       align-items: center;
 
       //   Margin, paddings
-      margin-bottom: 15px;
+      // margin-bottom: 15px;
       margin-left: auto;
 
       border: none;
@@ -223,10 +266,13 @@
 
 //*✅ Users bar responsiveness
 @media only screen and (max-width: 1183px) {
+  .backButton {
+    margin-bottom: 30px;
+  }
   .users-bar {
     .bar-wrapper {
       width: 100%;
-      max-width: 600px;
+      // max-width: 600px;
       margin: 0 auto;
     }
 
@@ -240,6 +286,16 @@
 @media only screen and (max-width: 605px) {
   .users-bar {
     .bar-wrapper {
+      .trash-icon {
+        position: absolute;
+        margin-top: -125px;
+        right: 16px;
+      }
+
+      .bg-chat {
+        max-height: 400px;
+      }
+
       display: block;
       .layoutButtons {
         .layout-buttons__btn {
@@ -439,5 +495,56 @@
 }
 
 //*✅ Chatbar section
+@media only screen and (max-width: 1183px) {
+  .backButton {
+    padding-bottom: 0px;
+  }
 
+  .users-bar {
+    .bar-wrapper {
+      .wrapper-sections {
+        display: block;
+      }
+
+      .isBarActive {
+        display: none;
+      }
+
+      .client-ms {
+        width: 200px;
+        font-size: 13px;
+      }
+
+      .self-ms {
+        width: 200px;
+        font-size: 13px;
+      }
+    }
+  }
+
+  .chatbar-section {
+    .bg-chat {
+      .selected-ad {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .chatbar-head {
+    display: block;
+    margin-top: 40px;
+  }
+
+  .isBarActive {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .chats-container__bar {
+    .chat-wrapper__bar {
+      max-width: 100%;
+    }
+  }
+}
 //*✅ Chatbar section
