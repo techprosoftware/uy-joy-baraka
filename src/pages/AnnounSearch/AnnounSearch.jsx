@@ -87,7 +87,8 @@ export const AnnounSearch = () => {
           newData?.length ? (
             newData?.map((item) => (
               <>
-                <li
+                <li 
+                key={item.announcement_id}
                   name={item.slug}
                   id={item.announcement_id}
                   onClick={handleClick}

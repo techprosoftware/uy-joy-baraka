@@ -15,8 +15,11 @@ import { BackButton } from "../../components/BackButton/BackButton";
 import SearchService from "../../Api/search.service";
 import { useSelector } from "react-redux";
 import CardService from "../../Api/card.service";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Favorite = () => {
+  const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon);
+
   const [activeCard, setActiveCard] = useState({
     isLoading: true,
     data: [],
@@ -26,6 +29,7 @@ export const Favorite = () => {
     const data = await CardService.getLike();
     console.log(data);
     if (data?.status === 200) {
+      setLikeImgSrc(CardLikeIcon);
       setActiveCard({
         isLoading: false,
         data: data.data,
@@ -35,13 +39,10 @@ export const Favorite = () => {
 
   useEffect(() => {
     getSearchCard();
-
   }, []);
 
   const [count, setCount] = useState();
-  // console.log(activeCard);
   const newData = activeCard?.data?.posts;
-  // console.log(newData?.forEach(item => console.log(item?.announcement)));
   const mappedData = newData?.map((item) => ({
     likeId: item.like_id,
 
@@ -59,6 +60,7 @@ export const Favorite = () => {
       address: item["announcement.address"],
 
       city: item["announcement.city"],
+      slug: item["announcement.slug"],
 
       district: item["announcement.district"],
 
@@ -93,28 +95,56 @@ export const Favorite = () => {
     },
   }));
 
-
   const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const navigate = useNavigate();
-  const handleClick = async (evt) => {
-    const slug = evt.target.name;
-    const id = evt.target.id;
-    const targetTag = evt.target.className;
 
-    const token = localStorage.getItem("token") || "";
+  //   const handleClick = async (evt) => {
+  //     const slug = evt.target.name;
+  //     const id = evt.target.id;
+  //     const targetTag = evt.target.className;
+  // // console.log(id);
+  // console.log(targetTag);
+  //     const token = localStorage.getItem("token") || "";
 
-    if (!token) {
-      navigate("/register");
-    }
+  //     if (!token) {
+  //       navigate("/register");
+  //     }
 
-    if (targetTag != "de_active__btn") {
-      if (targetTag === "card__like" || targetTag === "card__like-img") {
-        const response = await cardService.likeCard(id);
-        console.log("like: ", response);
-      } else {
-        window.scroll(0, 0);
-        navigate(`/announcement/${slug}`);
-      }
+  //     if (targetTag === "card__like" || targetTag === "card__like-img") {
+  //       const [response] = await cardService.likeCard(
+  //         id
+  //       );
+  //       if (response.data.status == 200) {
+  //         toast.success(response?.data?.message);
+  //         setLikeImgSrc(CardLikeIcon);
+  //         return;
+  //       } else if (response.data.message === "Siz allaqachon like bosgansiz") {
+  //         toast.success("Siz allaqachon like bosgansiz");
+  //         setLikeImgSrc(CardLikeIcon);
+  //       }
+
+  //       toast.warn(response?.data?.message);
+  //       console.log("like: ", response);
+  //     }
+
+  //   };
+
+  // const unLikeFunc = async (id) => {};
+
+  // useEffect(() => {
+  //   unLikeFunc();
+  // }, []);
+
+  const handleClick = async (event) => {
+    event.preventDefault();
+    const targetElement = event.target.closest(".card__like");
+
+    if (targetElement) {
+      const data = await CardService.unLikeCard(event.target.id);
+      console.log(data);
+      getSearchCard();
+      event.preventDefault();
+      return data
     }
   };
 
@@ -130,105 +160,58 @@ export const Favorite = () => {
           {activeCard.isLoading ? (
             mockData.map((moc) => <CardSkeleton key={moc} />)
           ) : mappedData?.length ? (
-            mappedData?.map((item) => (
+            mappedData?.map((card) => (
               <>
-                <li
-                  name={item?.announcement?.slug}
-                  id={item?.announcement?.announcement_id}
+                <Link
+                  to={`/announcement/${card.announcement?.slug}`}
                   onClick={handleClick}
                   className="card"
                 >
                   <img
-                    name={item?.announcement?.slug}
-                    id={item?.announcement?.announcement_id}
                     className="card__img"
-                    src={BASE_URL + item.announcement?.thumb[0]}
+                    src={BASE_URL + card.announcement?.thumb[0]}
                     height={222}
+                    alt={card.announcement?.district}
                   />
-                  <div
-                    name={item?.announcement?.slug}
-                    id={item?.announcement?.announcement_id}
-                    className="card__wrap"
-                  >
-                    <div
-                      name={item?.announcement?.slug}
-                      id={item?.announcement?.announcement_id}
-                      className="card__inner"
-                    >
-                      <span
-                        name={item?.announcement?.slug}
-                        id={item?.announcement?.announcement_id}
-                        className="card__city"
-                      >
-                        {item.announcement?.city}
+                  <div className="card__wrap">
+                    <div className="card__inner">
+                      <span className="card__city">
+                        {card.announcement?.city
+                          ? card.announcement?.city
+                          : "Kiritilmagan"}
                       </span>
-                      <div
-                        name={item?.announcement?.slug}
-                        id={item?.announcement?.announcement_id}
-                        className="card__right"
-                      >
-                        <span
-                          name={item?.announcement?.slug}
-                          id={item?.announcement?.announcement_id}
-                          className="card__view me-2"
-                        >
-                          {item.announcement?.viewCount}
+                      <div className="card__right">
+                        <span className="card__view me-2">
+                          {card.announcement?.viewCount}
                         </span>
-                        <button
-                          name={item?.announcement?.slug}
-                          id={item?.announcement?.announcement_id}
-                          className="card__like"
-                        >
+                        <button className="card__like">
                           <img
+                            id={card.announcementId}
                             className="card__like-img"
-                            src={
-                              item.announcement?.likeCount
-                                ? CardLikeIcon
-                                : CardULikeIcon
-                            }
+                            src={likeImgSrc}
                             width={17}
                             height={16}
                             alt="Card like button image"
                           />
                         </button>
-                        <span
-                          name={item?.announcement?.slug}
-                          id={item?.announcement?.announcement_id}
-                          className="me-1"
-                          style={{
-                            fontSize: "12px",
-                            color: "#666666",
-                            lineHeight: "14px",
-                          }}
-                        >
-                          {" "}
-                          {item.announcement?.likeCount}
-                        </span>
                       </div>
                     </div>
-                    <h3
-                      name={item?.announcement?.slug}
-                      id={item?.announcement?.announcement_id}
-                      className="card__body"
-                    >
-                      {item.announcement?.description}
+                    <h3 className="card__body">
+                      {card.announcement?.description?.substring(0, 45)}...
                     </h3>
-
-                    <p
-                      name={item?.announcement?.slug}
-                      id={item?.announcement?.announcement_id}
-                      className="de_card__price"
-                    >
-                      {item.announcement?.price
+                    <p className="card__price">
+                      {card.announcement?.price
                         .toString()
                         .replace(
                           /(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g,
                           "$1 "
                         )}{" "}
-                      {item.announcement?.price_type == "sum" ? "so'm" : "$"}
+                      {card.announcement?.price_type === "dollar"
+                        ? "$"
+                        : "s'om"}
                     </p>
                   </div>
-                </li>
+                </Link>
               </>
             ))
           ) : (

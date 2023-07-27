@@ -64,8 +64,8 @@ export const ActiveCard = () => {
 
   const navigate = useNavigate();
   const handleClick = async (evt) => {
-    const slug = (evt.target.name);
-    const id  = evt.target.id
+    const slug = evt.target.name;
+    const id = evt.target.id;
     // const slug = evt.target
     const targetTag = evt.target.className;
 
@@ -95,39 +95,64 @@ export const ActiveCard = () => {
           ) : newData?.length ? (
             newData?.map((item) => (
               <>
-                <li name={item.slug}
+                <li
+                  name={item.slug}
                   id={item.announcement_id}
                   onClick={handleClick}
                   className="card"
                 >
-                  <img name={item.slug}
+                  <img
+                    name={item.slug}
                     id={item.announcement_id}
                     className="card__img"
                     src={BASE_URL + item?.thumb[0]}
                     height={222}
                   />
-                  <div name={item.slug} id={item.announcement_id} className="card__wrap">
-                    <div name={item.slug} id={item.announcement_id} className="card__inner">
-                      <span name={item.slug} id={item.announcement_id} className="card__city">
+                  <div
+                    name={item.slug}
+                    id={item.announcement_id}
+                    className="card__wrap"
+                  >
+                    <div
+                      name={item.slug}
+                      id={item.announcement_id}
+                      className="card__inner"
+                    >
+                      <span
+                        name={item.slug}
+                        id={item.announcement_id}
+                        className="card__city"
+                      >
                         {item.city}
                       </span>
-                      <div name={item.slug} id={item.announcement_id} className="card__right">
-                        <span name={item.slug}
+                      <div
+                        name={item.slug}
+                        id={item.announcement_id}
+                        className="card__right"
+                      >
+                        <span
+                          name={item.slug}
                           id={item.announcement_id}
                           className="card__view me-2"
                         >
                           {item.viewCount}
                         </span>
-                        <button name={item.slug} id={item.announcement_id} className="card__like">
-                        <img
-                className="card__like-img"
-                src={item?.likeCount ? CardLikeIcon : CardULikeIcon}
-                width={17}
-                height={16}
-                alt="Card like button image"
-              />
+                        <button
+                          name={item.slug}
+                          id={item.announcement_id}
+                          className="card__like"
+                        >
+                          <img
+                            className="card__like-img"
+                            src={item?.likeCount ? CardLikeIcon : CardULikeIcon}
+                            width={17}
+                            height={16}
+                            alt="Card like button image"
+                          />
                         </button>
-                        <span name={item.slug} id={item.announcement_id}
+                        <span
+                          name={item.slug}
+                          id={item.announcement_id}
                           className="me-1"
                           style={{
                             fontSize: "12px",
@@ -140,7 +165,13 @@ export const ActiveCard = () => {
                         </span>
                       </div>
                     </div>
-                    <h3 name={item.slug} id={item.announcement_id} className="card__body">{item.description}</h3>
+                    <h3
+                      name={item.slug}
+                      id={item.announcement_id}
+                      className="card__body"
+                    >
+                      {item.description}
+                    </h3>
                     <button
                       onClick={handleChange}
                       id={item.announcement_id}
@@ -149,7 +180,11 @@ export const ActiveCard = () => {
                       Faolsizlantirish
                     </button>
 
-                    <p name={item.slug} id={item.announcement_id} className="de_card__price">
+                    <p
+                      name={item.slug}
+                      id={item.announcement_id}
+                      className="de_card__price"
+                    >
                       {item.price
                         .toString()
                         .replace(
