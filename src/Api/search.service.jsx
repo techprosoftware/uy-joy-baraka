@@ -1,38 +1,25 @@
+/* eslint-disable no-unused-vars */
 import axios from "./api";
 
 const SearchService = {
-  searchOnInput: async (body, city, type, price_type) => {
-    console.log(body);
+  searchOnInput: async (search, city, type, price_type) => {
+    let params = {};
+
+    if (price_type != "undefined") {
+      params.price_type = price_type;
+    }
+    if (type != "undefined") {
+      params.type = type;
+    }
+    if (city != "undefined") {
+      params.city = city;
+    }
+    if (search != "undefined") {
+      params.search = search;
+    }
     try {
-        return await axios.get(`/api/search?${body ? `search=${body}` : city ? `&city=${city}` : type ? `&type=${type}` : price_type ? `&price_type=${price_type}` : ""}`);
-    //   } else if (city && type && price_type) {
-    //     const data = await axios.get(
-    //       `/api/search?city=${city}&type=${type}$price_type=${price_type}`
-    //     );
-    //     return data;
-    //   } else if (city && type) {
-    //     const data = await axios.get(`/api/search?city=${city}&type=${type}`);
-    //     return data;
-    //   } else if (city && price_type) {
-    //     const data = await axios.get(
-    //       `/api/search?city=${city}&price_type=${price_type}`
-    //     );
-    //     return data;
-    //   } else if (type && price_type) {
-    //     const data = await axios.get(
-    //       `/api/search?type=${type}&price_type=${price_type}`
-    //     );
-    //     return data;
-    //   } else if (city) {
-    //     const data = await axios.get(`/api/search?city=${city}`);
-    //     return data;
-    //   } else if (type) {
-    //     const data = await axios.get(`/api/search?type=${type}`);
-    //     return data;
-    //   } else if (price_type) {
-    //     const data = await axios.get(`/api/search?price_type=${price_type}`);
-    //     return data;
-    //   }
+      const data = await axios.get("/api/search", { params });
+      return data;
     } catch (error) {
       console.log(error.message);
     }

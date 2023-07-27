@@ -13,6 +13,7 @@ import { Messaging } from '../Messaging/Messaging';
 import { AboutUs } from '../AboutUs/AboutUs';
 import { UserInfo } from '../User-info/UserInfo';
 import { AnnounSearch } from '../AnnounSearch/AnnounSearch';
+import { Favorite } from '../Favorite/Favorite';
 export const Public = () => {
   return (
     <>
@@ -27,6 +28,7 @@ export const Public = () => {
         <Route path="/messaging" element={<Messaging />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/userinfo" element={<UserInfo />} />
+        <Route path='/favorite' element={<Favorite/>} />
 
     </Routes>
     <Footer />
