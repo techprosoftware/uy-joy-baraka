@@ -4,3 +4,7 @@
 3. Work with comments, when needed.
 
 1. /Register - Token-Redux, cookie-get
+
+** Akbar **
+// Back button will be fixed
+// Chat section will be fixed
