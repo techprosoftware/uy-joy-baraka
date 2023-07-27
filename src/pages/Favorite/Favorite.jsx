@@ -98,49 +98,14 @@ export const Favorite = () => {
   const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const navigate = useNavigate();
 
-  //   const handleClick = async (evt) => {
-  //     const slug = evt.target.name;
-  //     const id = evt.target.id;
-  //     const targetTag = evt.target.className;
-  // // console.log(id);
-  // console.log(targetTag);
-  //     const token = localStorage.getItem("token") || "";
-
-  //     if (!token) {
-  //       navigate("/register");
-  //     }
-
-  //     if (targetTag === "card__like" || targetTag === "card__like-img") {
-  //       const [response] = await cardService.likeCard(
-  //         id
-  //       );
-  //       if (response.data.status == 200) {
-  //         toast.success(response?.data?.message);
-  //         setLikeImgSrc(CardLikeIcon);
-  //         return;
-  //       } else if (response.data.message === "Siz allaqachon like bosgansiz") {
-  //         toast.success("Siz allaqachon like bosgansiz");
-  //         setLikeImgSrc(CardLikeIcon);
-  //       }
-
-  //       toast.warn(response?.data?.message);
-  //       console.log("like: ", response);
-  //     }
-
-  //   };
-
-  // const unLikeFunc = async (id) => {};
-
-  // useEffect(() => {
-  //   unLikeFunc();
-  // }, []);
-
   const handleClick = async (event) => {
     event.preventDefault();
     const targetElement = event.target.closest(".card__like");
 
     if (targetElement) {
       const data = await CardService.unLikeCard(event.target.id);
+      toast.success("Saqlanganlardan chiqarildi");
+
       console.log(data);
       getSearchCard();
       event.preventDefault();
@@ -163,6 +128,7 @@ export const Favorite = () => {
             mappedData?.map((card) => (
               <>
                 <Link
+                key={card.announcementId}
                   to={`/announcement/${card.announcement?.slug}`}
                   onClick={handleClick}
                   className="card"

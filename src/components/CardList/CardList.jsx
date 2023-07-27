@@ -68,4 +68,4 @@ export const CardList = ({page, count, end}) => {
   );
 };
 
-// export default CardList;
+

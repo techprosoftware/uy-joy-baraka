@@ -20,22 +20,21 @@ export const Card = (card) => {
 
     if (!token) {
       navigate("/register");
-    }
+    }    
 
     if (targetTag === "card__like" || targetTag === "card__like-img") {
       const response = await CardService.likeCard(card?.card?.announcement_id);
       console.log(response);
       if (response?.status === 200) {
         setLikeImgSrc(CardLikeIcon);
-        toast.success("like bosildi!");
-        setLikeImgSrc(CardLikeIcon);
+        toast.success("Saqlanganlarga qo'shildi");
         return;
       } else {
-        toast.warning("Siz allaqachon like bosgansiz");
-        setLikeImgSrc(CardLikeIcon);
+        const data = await CardService.unLikeCard(card?.card?.announcement_id);
+        console.log(data);
+        toast.success("Saqlanganlardan chiqarildi");
+        setLikeImgSrc(CardULikeIcon);
       }
-
-      console.log("like: ", response);
     } else {
       window.scroll(0, 0);
       navigate(`/announcement/${card.card?.slug}`);
@@ -75,8 +74,7 @@ export const Card = (card) => {
             {customPrice} {card.card?.price_type === "dollar" ? "$" : "s'om"}
           </p>
         </div>
-      </li>
-      <ToastContainer
+        <ToastContainer
         position="bottom-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -88,6 +86,8 @@ export const Card = (card) => {
         pauseOnHover
         theme="light"
       />
+      </li>
+      
     </>
   );
 };

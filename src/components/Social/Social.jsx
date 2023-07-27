@@ -8,7 +8,7 @@ import TelegramIcon from "@images/social-telegram-icon.svg"
 export const Social = () => {
   return (
     <div className="social">
-      <div className="social__inner">
+      <div className="container"><div className="social__inner">
         <img
           className="social__logo"
           src={LogoSocial}
@@ -63,7 +63,7 @@ export const Social = () => {
             </Link>
           </li>
         </ul>
-      </div>
+      </div></div>
     </div>
   )
 }
