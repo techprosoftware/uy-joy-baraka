@@ -2,7 +2,7 @@ import axios from "./api";
 
 const AnnounService = {
   getActiveCard: async (token) => {
-    const data = await axios.get(`/api/announcements/active`, {
+    const data = await axios.get(`/api/announcements/active?p_page=12&c_page=1`, {
       headers: { authorization: token },
     });
 

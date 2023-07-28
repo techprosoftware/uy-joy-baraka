@@ -29,6 +29,7 @@ export const ActiveCard = () => {
     const token = localStorage.getItem("token");
 
     const data = await AnnounService.getActiveCard(token);
+    console.log(data);
     if (data.status == 200) {
       setActiveCard({
         isLoading: false,

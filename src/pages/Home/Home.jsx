@@ -16,16 +16,20 @@ export const Home = () => {
   useEffect(() => {
     dispatch(setPage(3));
   }, []);
-
+//51b9fddd-96c9-41c8-97eb-c372b153569c
   return (
     <>
       <HomeBanner />
       <HomeCards />
       <Ads />
-
-      <CardList page={2} count={5} end={false} />
+      <div className="container">
+        <CardList page={2} count={12} end={false} />
+      </div>
       <Social />
-      <CardList page={2} count={5} end={true} />
+      <div className="container">
+        {" "}
+        <CardList page={3} count={12} end={false} />
+      </div>{" "}
       <MoreBtn />
     </>
   );

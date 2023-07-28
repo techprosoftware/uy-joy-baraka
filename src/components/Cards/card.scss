@@ -1,6 +1,6 @@
 .card {
   width: 100% !important;
-  max-width: 222px;
+  max-width: 280px !important;
   min-height: 380px;
   background-color: #ffffff !important;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12) !important;
@@ -12,8 +12,21 @@
   }
 }
 
+@media only screen and (max-width: 992px) {
+  .card {
+    max-width: 200px !important;
+  }
+}
+
+@media only screen and (max-width: 877px) {
+  .card {
+    max-width: 222px !important;
+  }
+}
+
 .card__img {
   width: 100%;
+  height: 220px;
 }
 
 .card__like-img {
@@ -111,15 +124,25 @@
   }
 }
 
-@media only screen  and (max-width: 605px){
+@media only screen  and (max-width: 600px){
   .card {
     max-width: 250px !important;
+    min-height: 350px;
+
   }
+  .card__img {
+    width: 100%;
+    height: 180px;
+  }
+
+  
 }
 
 @media only screen and (max-width: 576px) {
   .card {
-    max-width: 192px;
+    max-width: 192px !important;
+    min-height: 320px;
+
   }
 
   .card__view {
@@ -147,19 +170,12 @@
   }
 }
 
-@media only screen  and (max-width: 462px){
-  .card {
-    max-width: 200px !important;
-  }
+// @media only screen  and (max-width: 462px){
+//   .card {
+//     max-width: 220px !important;
+//   }
   
-}
-
-@media only screen  and (max-width: 440px){
-  .card {
-    max-width: 180px !important;
-  }
-  
-}
+// }
 
 @media only screen  and (max-width: 400px){
   .card {

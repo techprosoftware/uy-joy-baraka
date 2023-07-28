@@ -20,7 +20,7 @@ export const Footer = () => {
       {/* Pre footer */}
       <div className="upper-footer">
         <div className="container">
-          <div className="pre-footer">
+          <div className="pre-footer mt-5">
             <div className="pre-footer__inner">
               <img
                 className="pre-footer__bg"

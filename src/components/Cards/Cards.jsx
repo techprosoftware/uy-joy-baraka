@@ -46,7 +46,7 @@ export const Card = (card) => {
         <img
           className="card__img"
           src={BASE_URL + card.card?.thumb[0]}
-          height={222}
+          // height={190}
           alt={card.card.district}
         />
         <div className="card__wrap">

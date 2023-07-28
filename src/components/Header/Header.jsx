@@ -208,16 +208,16 @@ export const Header = () => {
               </div>
               <ul className="nav__list">
                 <li className="nav__item chat-icon">
-                  <Link className="nav__link" to={"/messaging"}>
+                  <Link className="nav__link d-flex align-items-center gap-2" to={"/messaging"}>
                     <FaRegComment />
-                  </Link>
                   <p>Online Chat</p>
+                  </Link>
                 </li>
                 <li className="nav__item heart-icon">
-                  <Link className="nav__link" to={"#"}>
+                  <Link className="nav__link d-flex align-items-center gap-2" to={"/favorite"}>
                     <AiOutlineHeart />
-                  </Link>
                   <p>Saralangan</p>
+                  </Link>
                 </li>
                 <li className="nav__item lang-icon">
                   <div className="lang__select">
@@ -243,16 +243,16 @@ export const Header = () => {
                 </li>
                 <span className="close__line"></span>
                 <li className="nav__item heart-icon">
-                  <Link className="nav__link" to={"#"}>
+                  <Link className="nav__link d-flex align-items-center gap-2" to={"#"}>
                     <BiSupport />
-                  </Link>
                   <p>Biz bilan bog'lanish</p>
+                  </Link>
                 </li>
                 <li className="nav__item heart-icon">
-                  <Link className="nav__link" to={"#"}>
+                  <Link className="nav__link d-flex align-items-center gap-2" to={"/aboutus"}>
                     <BsInfoCircle />
-                  </Link>
                   <p>Biz haqimizda</p>
+                  </Link>
                 </li>
                 <li className="nav__item heart-icon">
                   <Link className="nav__link" to={"#"}>
