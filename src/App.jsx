@@ -37,9 +37,9 @@ function App() {
           <Route path="buy" element={<BuyMessaging />} />
         </Route>
       </Routes> */}
-      <div>
+      {/* <div className="back">
         <BackTop />
-      </div>
+      </div> */}
     </>
   );
 }

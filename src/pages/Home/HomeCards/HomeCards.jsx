@@ -10,7 +10,7 @@ export const HomeCards = () => {
       <div className="home__card-inner">
         <div className="container">
           <h2 className="home__card-title">Sizga mos keladigan uylar</h2>
-          <CardList page={1} count={10} end={false} />
+          <CardList page={1} count={12} end={false} />
         </div>
       </div>
     </>
