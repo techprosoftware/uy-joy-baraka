@@ -271,7 +271,7 @@ export const Upload = () => {
 
   const handleImageChange = async (evt) => {
     const maxAllowedImages = 4;
-    const maxTotalSize = 4 * 1024 * 1024; // 4 MB in bytes
+    const maxTotalSize = 6 * 1024 * 1024; // 4 MB in bytes
     const files = Array.from(evt.target.files);
     const imageFiles = files.filter((file) => file.type.startsWith("image/"));
 
@@ -318,7 +318,7 @@ export const Upload = () => {
 
       if (totalSize > maxTotalSize) {
         toast.error(
-          "Umumiy hajm 4 MB dan oshdi. Iltimos, kichik hajmdagi rasmlar yuklang."
+          "Umumiy hajm 6 MB dan oshdi. Iltimos, kichik hajmdagi rasmlar yuklang."
         );
         return;
       }

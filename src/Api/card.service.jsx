@@ -21,7 +21,7 @@ const CardService = {
   },
   unLikeCard: async (id) => {
     try {
-      return await axios.patch(`/api/announcements/${id}/unlike`, {}, {
+      return await axios.patch(`/api/announcements/${id}/unlike`, { announcement_id: id }, {
         headers: {authorization: token},
       })
     } catch (err) {
@@ -40,4 +40,3 @@ const CardService = {
 };
 
 export default CardService;
-// api/announcements/f26b2f68-5cd0-4fd9-875c-41163c90e0b3/unlike

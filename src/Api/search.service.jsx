@@ -18,12 +18,14 @@ const SearchService = {
       params.search = search;
     }
     try {
-      const data = await axios.get("/api/search", { params });
+      const data = await axios.get("/api/search?", { params });
+      console.log(data);
       return data;
     } catch (error) {
       console.log(error.message);
     }
   },
+  
 };
 
 export default SearchService;
