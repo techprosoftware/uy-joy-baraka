@@ -48,7 +48,7 @@ export const HomeSearch = () => {
     e.preventDefault()
 
     if(!city && !type && !price_type) {
-      alert('sa')
+      return
     }else {
       localStorage.removeItem('searchCity')
       localStorage.setItem('city', city)
@@ -65,9 +65,10 @@ export const HomeSearch = () => {
     e.preventDefault();
     if (!search.current.value.trim() == "") {
       localStorage.setItem('searchCity', search.current.value)
-      navigate("/card-search");
+        navigate("/card-search");
+      
     }else {
-      alert('fdf')
+      return
     }
   };
 

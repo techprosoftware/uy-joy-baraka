@@ -44,7 +44,7 @@ export const Card = (card) => {
     <>
       <li onClick={handleClick} className="card">
         <img
-          className="card__img"
+          className="card__img mb-3"
           src={BASE_URL + card.card?.thumb[0]}
           // height={190}
           alt={card.card.district}
@@ -70,6 +70,7 @@ export const Card = (card) => {
           <h3 className="card__body">
             {card.card?.description?.substring(0, 45)}...
           </h3>
+          <p className="m-0 mt-4">{card.card?.district} - { new Date(card.card?.createdAt).getMonth()}</p>
           <p className="card__price">
             {customPrice} {card.card?.price_type === "dollar" ? "$" : "s'om"}
           </p>

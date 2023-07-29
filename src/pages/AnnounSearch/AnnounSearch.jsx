@@ -14,6 +14,7 @@ import CardULikeIcon from "@images/card-ulike-icon.svg";
 import { BackButton } from "../../components/BackButton/BackButton";
 import SearchService from "../../Api/search.service";
 import { useSelector } from "react-redux";
+import { MoreBtn } from "../../components/MoreBtn/MoreBtn";
 
 export const AnnounSearch = () => {
   const cityName = localStorage.getItem("searchCity");
@@ -22,6 +23,7 @@ export const AnnounSearch = () => {
   const price_type = localStorage.getItem('price_type')
 
   console.log(cityName);
+
   const [activeCard, setActiveCard] = useState({
     isLoading: true,
     data: [],
@@ -30,19 +32,26 @@ export const AnnounSearch = () => {
   const getSearchCard = async () => {
     const data = await SearchService.searchOnInput(cityName, city, type, price_type);
     // console.log(data);
-    if (data?.status === 200) {
-      setActiveCard({
-        isLoading: false,
-        data: data.data,
-      });
+    try {
+      if (data?.status === 200) {
+        setActiveCard({
+          isLoading: false,
+          data: data.data,
+        });
+      }
+    } catch (error) {
+      console.log(error.message);
+      
     }
+
   };
 
   useEffect(() => {
     getSearchCard();
   }, []);
+  
+  const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon);
 
-  const [count, setCount] = useState();
   console.log(activeCard);
   const newData = activeCard?.data?.posts;
 
@@ -85,102 +94,58 @@ export const AnnounSearch = () => {
             mockData.map((moc) => <CardSkeleton key={moc} />)
           ) : 
           newData?.length ? (
-            newData?.map((item) => (
+            newData.map((item) => (
               <>
-                <li 
-                key={item.announcement_id}
-                  name={item.slug}
-                  id={item.announcement_id}
-                  onClick={handleClick}
-                  className="card"
-                >
-                  <img
-                    name={item.slug}
-                    id={item.announcement_id}
-                    className="card__img"
-                    src={BASE_URL + item?.thumb[0]}
-                    height={222}
-                  />
-                  <div
-                    name={item.slug}
-                    id={item.announcement_id}
-                    className="card__wrap"
-                  >
-                    <div
-                      name={item.slug}
-                      id={item.announcement_id}
-                      className="card__inner"
-                    >
-                      <span
-                        name={item.slug}
-                        id={item.announcement_id}
-                        className="card__city"
-                      >
-                        {item.city}
-                      </span>
-                      <div
-                        name={item.slug}
-                        id={item.announcement_id}
-                        className="card__right"
-                      >
-                        <span
-                          name={item.slug}
-                          id={item.announcement_id}
-                          className="card__view me-2"
-                        >
-                          {item.viewCount}
-                        </span>
-                        <button
-                          name={item.slug}
-                          id={item.announcement_id}
-                          className="card__like"
-                        >
-                          <img
-                            className="card__like-img"
-                            src={item?.likeCount ? CardLikeIcon : CardULikeIcon}
-                            width={17}
-                            height={16}
-                            alt="Card like button image"
-                          />
-                        </button>
-                        <span
-                          name={item.slug}
-                          id={item.announcement_id}
-                          className="me-1"
-                          style={{
-                            fontSize: "12px",
-                            color: "#666666",
-                            lineHeight: "14px",
-                          }}
-                        >
-                          {" "}
-                          {item?.likeCount}
-                        </span>
-                      </div>
-                    </div>
-                    <h3
-                      name={item.slug}
-                      id={item.announcement_id}
-                      className="card__body"
-                    >
-                      {item.description}
-                    </h3>
-
-                    <p
-                      name={item.slug}
-                      id={item.announcement_id}
-                      className="de_card__price"
-                    >
-                      {item.price
+                <li onClick={handleClick} className="card">
+        <img
+          className="card__img"
+          src={BASE_URL + item.card?.thumb[0]}
+          // height={190}
+          alt={item.card?.district}
+        />
+        <div className="card__wrap">
+          <div className="card__inner">
+            <span className="card__city">
+              {item.card?.city ? item.card?.city : "Kiritilmagan"}
+            </span>
+            <div className="card__right">
+              <span className="card__view me-2">{item.card?.viewCount}</span>
+              <button className="card__like">
+                <img
+                  className="card__like-img"
+                  src={likeImgSrc}
+                  width={17}
+                  height={16}
+                  alt="Card like button image"
+                />
+              </button>
+            </div>
+          </div>
+          <h3 className="card__body">
+            {item.card?.description?.substring(0, 45)}...
+          </h3>
+          <p className="card__price mt-3">
+            {item.price
                         .toString()
                         .replace(
                           /(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g,
                           "$1 "
-                        )}{" "}
-                      {item.price_type == "sum" ? "so'm" : "$"}
-                    </p>
-                  </div>
-                </li>
+                        )} {item.card?.price_type === "dollar" ? "$" : "s'om"}
+          </p>
+        </div>
+        <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      </li>
               </>
             ))
           ) : (
@@ -195,6 +160,7 @@ export const AnnounSearch = () => {
               </p>
             </div>
           ) }
+         {/* {activeCard?.data?.totalCount != 0 ?  <MoreBtn/> : ""} */}
         </ul>
         <ToastContainer
           position="bottom-right"

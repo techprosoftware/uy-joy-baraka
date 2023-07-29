@@ -22,6 +22,7 @@ import { Dropdown, ButtonGroup, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import uzflag from "@images/flag_uz.png";
 import ruflag from "@images/flag_ru.png";
+import ProfileService from "../../Api/profile.service";
 
 export const Header = () => {
   const [drop, setDrop] = useState(false);
@@ -63,6 +64,17 @@ export const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
   };
+
+  const [user, setUSer] = useState();
+
+  const getUser = async () => {
+    const data = await ProfileService.GetProfile();
+    setUSer(data);
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <div className="site-header fixed-top ">
@@ -148,7 +160,7 @@ export const Header = () => {
                   />
 
                   <div className={`drop ${drop ? "" : "visually-hidden"}`}>
-                    <p className="drop__info">Bunyodbek</p>
+                    <p className="drop__info">{user?.data?.user?.full_name}</p>
                     <ul className="drop__list">
                       <li className="drop__item">
                         <Link className="drop__link" to={"/userinfo"}>
@@ -196,7 +208,7 @@ export const Header = () => {
                   {token ? (
                     <div className="d-flex align-items-center gap-1">
                       {" "}
-                      <CiUser /> <p>Bunyodbek</p>
+                      <CiUser /> <p>{user?.data?.user?.full_name}</p>
                     </div>
                   ) : (
                     <>
@@ -208,15 +220,21 @@ export const Header = () => {
               </div>
               <ul className="nav__list">
                 <li className="nav__item chat-icon">
-                  <Link className="nav__link d-flex align-items-center gap-2" to={"/messaging"}>
+                  <Link
+                    className="nav__link d-flex align-items-center gap-2"
+                    to={"/messaging"}
+                  >
                     <FaRegComment />
-                  <p>Online Chat</p>
+                    <p>Online Chat</p>
                   </Link>
                 </li>
                 <li className="nav__item heart-icon">
-                  <Link className="nav__link d-flex align-items-center gap-2" to={"/favorite"}>
+                  <Link
+                    className="nav__link d-flex align-items-center gap-2"
+                    to={"/favorite"}
+                  >
                     <AiOutlineHeart />
-                  <p>Saralangan</p>
+                    <p>Saralangan</p>
                   </Link>
                 </li>
                 <li className="nav__item lang-icon">
@@ -243,15 +261,21 @@ export const Header = () => {
                 </li>
                 <span className="close__line"></span>
                 <li className="nav__item heart-icon">
-                  <Link className="nav__link d-flex align-items-center gap-2" to={"#"}>
+                  <Link
+                    className="nav__link d-flex align-items-center gap-2"
+                    to={"#"}
+                  >
                     <BiSupport />
-                  <p>Biz bilan bog'lanish</p>
+                    <p>Biz bilan bog'lanish</p>
                   </Link>
                 </li>
                 <li className="nav__item heart-icon">
-                  <Link className="nav__link d-flex align-items-center gap-2" to={"/aboutus"}>
+                  <Link
+                    className="nav__link d-flex align-items-center gap-2"
+                    to={"/aboutus"}
+                  >
                     <BsInfoCircle />
-                  <p>Biz haqimizda</p>
+                    <p>Biz haqimizda</p>
                   </Link>
                 </li>
                 <li className="nav__item heart-icon">

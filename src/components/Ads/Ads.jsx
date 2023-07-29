@@ -6,7 +6,7 @@ import "./ads.scss"
 
 export const Ads = () => {
   return (
-    <div className="ads">
+    <div className="ads mb-4">
       <div className="container">
         <div className="ads__title">
           <h2>Reklamangiz uchun joy</h2>

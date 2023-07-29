@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #F6F6F8;
 }
 
 .container {
@@ -11,6 +12,13 @@ body {
   max-width: 1350px !important;
   padding: 0 20px !important;
   margin: 0 auto !important;
+}
+
+@media only screen and (max-width: 960px) {
+  .container {
+    max-width: 1140px;
+  }
+  
 }
 
 ul {
@@ -39,8 +47,8 @@ a {
 }
 
 :where(.css-dev-only-do-not-override-1m62vyb).ant-back-top {
-  right: 43px;
-  bottom: 115px;
+  left: 43px;
+  bottom: 40px;
 }
 
 //******************//

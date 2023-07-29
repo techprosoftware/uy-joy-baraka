@@ -167,7 +167,7 @@ export const CardSingle = () => {
       <section className="suggestion">
         <div className="container">
           <h2 className="suggestion__title">Siz uchun taklif</h2>
-          <CardList page={1} count={5}/>
+          <CardList page={1} count={12}/>
         </div>
         <MoreBtn/>
       </section>
