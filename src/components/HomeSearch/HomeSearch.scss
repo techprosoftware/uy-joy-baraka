@@ -81,7 +81,6 @@
   }
 }
 
-
 .dropdown__btn {
   align-items: center;
   border: 1px solid #008b51;
@@ -141,6 +140,11 @@
   font-size: 16px !important;
 }
 
+.search {
+  position: relative;
+  width: 100%;
+}
+
 .input__sale {
   border: none;
   outline: none;
@@ -162,7 +166,7 @@
   max-width: 245px;
   background: #fff;
   padding: 15px;
-  transition: all ease .51;
+  transition: all ease 0.51;
   top: 115px;
   position: absolute;
   z-index: 999;
@@ -195,8 +199,6 @@
 }
 
 @media only screen and (max-width: 600px) {
-
-
   .search__btn a {
     font-size: 16px;
     line-height: 32px;
@@ -234,7 +236,7 @@
     font-size: 15px;
   }
 
-  .filter__btn{
+  .filter__btn {
     display: none;
   }
 }
