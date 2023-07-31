@@ -8,11 +8,15 @@ import { Select } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCity } from "../../redux/city/citydAction";
+import { regions } from "./data"
+import { Search } from "./Search"
+import SearchService from "@components/Api/search.service"
 
 export const HomeSearch = () => {
   const [type, setType] = useState();
   const [price_type, setPrice_type] = useState();
   const [city, setCitys] = useState();
+  const [searchModal, setSearchModal] = useState(false)
   // console.log(city);
 
   // REDUX
@@ -73,7 +77,17 @@ export const HomeSearch = () => {
   };
 
   const changeInput = async (evt)=> {
+    
     console.log(evt.target.value);
+    const currentValue = evt.target.value
+    
+    if (currentValue !== "" && currentValue.trim()) {
+      const response = await SearchService.searchOnInput(currentValue)
+      console.log(response.posts);
+
+
+      setSearchModal(true)
+    }
   }
 
   return (
@@ -157,61 +171,7 @@ export const HomeSearch = () => {
                     options={[
                       {
                         label: "Viloyatlar",
-                        options: [
-                          {
-                            label: "Andijon",
-                            value: "Andijon",
-                          },
-                          {
-                            label: "Buxoro",
-                            value: "Buxoro",
-                          },
-                          {
-                            label: "Farg'ona",
-                            value: "Fargona",
-                          },
-                          {
-                            label: "Jizzax",
-                            value: "Jizzax",
-                          },
-                          {
-                            label: "Xorazm",
-                            value: "Xorazm",
-                          },
-                          {
-                            label: "Namangan",
-                            value: "Namangan",
-                          },
-                          {
-                            label: "Navoiy",
-                            value: "Navoiy",
-                          },
-                          {
-                            label: "Qashqadaryo",
-                            value: "Qashqadaryo",
-                          },
-                          {
-                            label: "Qoraqalpog'iston ",
-                            value: "Qoraqalpogiston",
-                          },
-                          {
-                            label: "Samarqand",
-                            value: "Samarqand",
-                          },
-                          {
-                            label: "Sirdaryo",
-                            value: "Sirdaryo",
-                          },
-                          {
-                            label: "Surxondaryo",
-                            value: "Surxondaryo",
-                          },
-                          {
-                            label: "Toshkent shahri",
-                            value: "Toshkent",
-                          },
-                          
-                        ],
+                        options: regions,
                       },
                     ]}
                   />
@@ -224,14 +184,17 @@ export const HomeSearch = () => {
                 </button>
               </li>
             </ul>
-            <input
-              ref={search}
-              onChange={changeInput}
-              required
-              className="input__sale"
-              type="text"
-              placeholder="Qidirish"
-            />
+            <div className="search">
+              <input
+                ref={search}
+                onKeyDown={changeInput}
+                required
+                className="input__sale"
+                type="text"
+                placeholder="Qidirish"
+              />
+              {searchModal ? <Search/> : ''}
+            </div>
           </div>
           <div className="search__btn">
             <Link to={"announsearch"} onClick={handleSubmitSearch} href="#">
