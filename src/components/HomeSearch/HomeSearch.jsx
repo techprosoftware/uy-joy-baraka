@@ -72,6 +72,10 @@ export const HomeSearch = () => {
     }
   };
 
+  const changeInput = async (evt)=> {
+    console.log(evt.target.value);
+  }
+
   return (
     <div className="search__inner">
       <div className="container">
@@ -82,7 +86,7 @@ export const HomeSearch = () => {
             </a>
 
             <ul
-              className={`filter__select mt-4 ${
+              className={`filter__select ${
                 openSelect ? `${openSelect}` : "d-none"
               }`}
             >
@@ -187,7 +191,7 @@ export const HomeSearch = () => {
                             value: "Qashqadaryo",
                           },
                           {
-                            label: "Qoraqalpog'iston Respublikasi",
+                            label: "Qoraqalpog'iston ",
                             value: "Qoraqalpogiston",
                           },
                           {
@@ -222,6 +226,7 @@ export const HomeSearch = () => {
             </ul>
             <input
               ref={search}
+              onChange={changeInput}
               required
               className="input__sale"
               type="text"

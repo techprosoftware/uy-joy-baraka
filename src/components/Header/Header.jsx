@@ -100,9 +100,15 @@ export const Header = () => {
           <nav className="nav d-flex align-items-center">
             <ul className="nav__list">
               <li className="nav__item new-poster">
-                <Link className="nav__link" to={"/upload"}>
-                  + E’lon joylash
-                </Link>
+                {token ? (
+                  <Link className="nav__link" to={"/upload"}>
+                    + E’lon joylash
+                  </Link>
+                ) : (
+                  <Link className="nav__link" to={"/login"}>
+                    + E’lon joylash
+                  </Link>
+                )}
               </li>
 
               <li className="nav__item chat-icon">
@@ -111,9 +117,11 @@ export const Header = () => {
                 </Link>
               </li>
               <li className="nav__item heart-icon">
-                <Link className="nav__link" to={"/favorite"}>
+                {token ? <Link className="nav__link" to={"/favorite"}>
                   <AiFillHeart />
-                </Link>
+                </Link> : <Link className="nav__link" to={"/login"}>
+                  <AiFillHeart />
+                </Link>}
               </li>
               <li className="nav__item lang-icon">
                 <div className="lang__select">
@@ -139,7 +147,7 @@ export const Header = () => {
               </li>
               {!token ? (
                 <li className="nav__item user-icon">
-                  <Link className="nav__link" to={"/register"}>
+                  <Link className="nav__link" to={"/login"}>
                     {" "}
                     <img
                       className="nav__img"
