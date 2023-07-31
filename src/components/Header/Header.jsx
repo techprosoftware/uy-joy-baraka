@@ -69,8 +69,11 @@ export const Header = () => {
 
   const getUser = async () => {
     const data = await ProfileService.GetProfile();
+    console.log(data);
     setUSer(data);
   };
+
+  // console.log(user);
 
   useEffect(() => {
     getUser();

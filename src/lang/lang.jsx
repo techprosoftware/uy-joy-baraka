@@ -65,7 +65,12 @@ export const lang = {
     },
 
     searchpage: {
-      
+      filter: "Filter",
+      search: "Qidirsh",
+      search_btn: "Izlash",
+      sale: "Ijara yoki sotuv",
+      type: "Valyuta kursi",
+      region: "Viloyatlar"
     }
   },
 };
