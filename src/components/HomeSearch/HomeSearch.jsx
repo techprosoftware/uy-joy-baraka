@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./HomeSearch.scss";
 import { BiFilter } from "react-icons/bi";
 
@@ -10,13 +10,14 @@ import { useDispatch } from "react-redux";
 import { setCity } from "../../redux/city/citydAction";
 import { regions } from "./data"
 import { Search } from "./Search"
-import SearchService from "@components/Api/search.service"
+import SearchService from "@api/search.service"
+import LoadingImg from "@images/card-single-loading.svg"
 
 export const HomeSearch = () => {
   const [type, setType] = useState();
   const [price_type, setPrice_type] = useState();
   const [city, setCitys] = useState();
-  const [searchModal, setSearchModal] = useState(false)
+  const [searchResult, setSearchResult] = useState( { isLoading: false, data: [] } )
   // console.log(city);
 
   // REDUX
@@ -77,16 +78,16 @@ export const HomeSearch = () => {
   };
 
   const changeInput = async (evt)=> {
-    
+    setSearchResult({isLoading: true, data: []})
     console.log(evt.target.value);
     const currentValue = evt.target.value
     
     if (currentValue !== "" && currentValue.trim()) {
-      const response = await SearchService.searchOnInput(currentValue)
-      console.log(response.posts);
-
-
-      setSearchModal(true)
+      const response = await (await SearchService.searchOnInput(currentValue))
+      console.log(response);
+      setSearchResult({isLoading: false, data: response.data.posts})
+    } else {
+      setSearchResult({isLoading: false, data: []})
     }
   }
 
@@ -193,7 +194,7 @@ export const HomeSearch = () => {
                 type="text"
                 placeholder="Qidirish"
               />
-              {searchModal ? <Search/> : ''}
+              {!searchResult.isLoading ? <Search data={searchResult.data}/> : ""}
             </div>
           </div>
           <div className="search__btn">
