@@ -19,7 +19,7 @@ export const Card = (card) => {
     const token = localStorage.getItem("token") || "";
 
     if (!token) {
-      navigate("/register");
+      navigate("/login");
     }    
 
     if (targetTag === "card__like" || targetTag === "card__like-img") {

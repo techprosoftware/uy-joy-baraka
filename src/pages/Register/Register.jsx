@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import AuthService from "../../Api/auth.service";
 import { useDispatch } from "react-redux";
 import { setPhoneId } from "../../redux/phoneId/phoneIdAction";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Register = () => {
   const name = useRef();
@@ -51,7 +53,7 @@ export const Register = () => {
       users(value);
       console.log("send");
     } else {
-      console.log("error password");
+      toast.error("");
     }
 
     var phoneNumber = phone.current.value;
@@ -142,6 +144,18 @@ export const Register = () => {
             </form>
           </div>
         </div>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </>
   );

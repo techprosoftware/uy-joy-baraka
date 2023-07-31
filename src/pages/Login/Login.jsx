@@ -2,6 +2,8 @@ import { useRef } from "react";
 import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../../Api/auth.service";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Login = () => {
   const phone = useRef();
@@ -9,12 +11,14 @@ export const Login = () => {
   const navigate = useNavigate();
   const users = async (value) => {
     const data = await AuthService.userLogin(value);
-    console.log(data);
-    if (data.status === 201) {
+    // console.log(data);
+    if (data?.status === 201) {
       localStorage.setItem("token", data.data.token);
+      toast.success('Tizimga muvaffaqqiyatli kirdingiz')
       navigate("/");
-    }else {
-      console.log('error');
+    }
+    else{
+      toast.error('Raqam yoki parol xato')
     }
   };
 
@@ -28,9 +32,6 @@ export const Login = () => {
     users(value);
   };
 
-
- 
-
   return (
     <>
       <div className="login__inner ">
@@ -41,22 +42,24 @@ export const Login = () => {
               Saytimizga kirish uchun ismingiz va raqamingizni kiriting
             </p>
 
-            <form autoComplete="off" className="login__form" onSubmit={handleSubmit}>
+            <form
+              autoComplete="off"
+              className="login__form"
+              onSubmit={handleSubmit}
+            >
               <label className="login__label" htmlFor="phone">
                 Nomer
               </label>
               <div className="default__phone">
                 <span>+998</span>
                 <input
-              
-               maxLength={11}
+                  maxLength={11}
                   required
                   id="phone"
                   className="phone"
                   type="number"
                   placeholder="__ ___ __ __"
                   ref={phone}
-                  
                 />
               </div>
               <label className="login__label" htmlFor="pass">
@@ -77,6 +80,18 @@ export const Login = () => {
             </form>
           </div>
         </div>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </>
   );
