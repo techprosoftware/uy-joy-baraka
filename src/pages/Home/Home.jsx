@@ -8,6 +8,7 @@ import { Social } from "@components/Social/Social";
 import { useDispatch, useSelector } from "react-redux";
 import { setPage } from "@/redux/page/pageAction.js";
 import { CardList } from "@components/CardList/CardList";
+import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll"
 
 export const Home = () => {
   const page = useSelector((state) => state.page.page);
@@ -30,7 +31,8 @@ export const Home = () => {
         {" "}
         <CardList page={3} count={12} end={false} />
       </div>{" "}
-      <MoreBtn />
+      <InfiniteScroll/>
+      {/* <MoreBtn /> */}
     </>
   );
 };
