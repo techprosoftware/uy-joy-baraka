@@ -56,11 +56,15 @@ export const lang = {
     },
 
     announ: {
-      anoouns: "E'lonlarim",
+      announs: "E'lonlarim",
       active: "Faol",
       deactive: "Faol emas",
       activeannoun: "Faollashtirish",
-      deactiveannoun: "Faolsizlantirish"
+      deactiveannoun: "Faolsizlantirish",
+      succannoun: "E'lon faolsizlantirildi",
+      errannoun: "E'lon faolsizlantirildi",
+      checkadmin: "Admin tasdig'ini kuting",
+      deleteannoun: "E'lon muvaffaqqiyatli o'chirildi"
 
     },
 
@@ -70,7 +74,8 @@ export const lang = {
       search_btn: "Izlash",
       sale: "Ijara yoki sotuv",
       type: "Valyuta kursi",
-      region: "Viloyatlar"
+      region: "Viloyatlar",
+      filters: "Filterlash"
     }
   },
 };

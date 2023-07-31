@@ -5,13 +5,16 @@ import { BackButton } from "@components/BackButton/BackButton";
 import { Link, NavLink, Route, Routes } from "react-router-dom";
 import { ActiveCard } from "../../components/ActiveCard/ActiveCard";
 import { DeactiveCard } from "../../components/DeactiveCard/DeactiveCard";
+import { useTranslation } from 'react-i18next';
 
 export const Announ = () => {
+  const { t, i18n } = useTranslation();
+
   return (
     <div className="announ__inner">
       <div className="container">
         <BackButton />
-        <h2 className="announ__title">E’lonlarim</h2>
+        <h2 className="announ__title">{t('announ.announs')}</h2>
         <hr className="m-0 mt-1" />
         <div className="announ__wrap mb-4">
           <NavLink
@@ -20,7 +23,7 @@ export const Announ = () => {
               isActive ? "announ__active active" : "announ__active"
             }
           >
-            Faol
+            {t('announ.active')}
           </NavLink>
           <NavLink
             to="/announ/deactive"
@@ -28,7 +31,7 @@ export const Announ = () => {
               isActive ? "announ__active active" : "announ__active"
             }
           >
-            Faol emas
+            {t('announ.deactive')}
           </NavLink>
         </div>
 

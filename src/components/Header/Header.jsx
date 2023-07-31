@@ -23,10 +23,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import uzflag from "@images/flag_uz.png";
 import ruflag from "@images/flag_ru.png";
 import ProfileService from "../../Api/profile.service";
+import { useTranslation } from "react-i18next";
 
 export const Header = () => {
   const [drop, setDrop] = useState(false);
   const [burger, setBurger] = useState(false);
+
+  const { t, i18n } = useTranslation();
 
   const token = localStorage.getItem("token");
 
@@ -105,11 +108,11 @@ export const Header = () => {
               <li className="nav__item new-poster">
                 {token ? (
                   <Link className="nav__link" to={"/upload"}>
-                    + E’lon joylash
+                    + {t("header.addpost")}
                   </Link>
                 ) : (
                   <Link className="nav__link" to={"/login"}>
-                    + E’lon joylash
+                    + {t("header.addpost")}
                   </Link>
                 )}
               </li>
@@ -120,11 +123,15 @@ export const Header = () => {
                 </Link>
               </li>
               <li className="nav__item heart-icon">
-                {token ? <Link className="nav__link" to={"/favorite"}>
-                  <AiFillHeart />
-                </Link> : <Link className="nav__link" to={"/login"}>
-                  <AiFillHeart />
-                </Link>}
+                {token ? (
+                  <Link className="nav__link" to={"/favorite"}>
+                    <AiFillHeart />
+                  </Link>
+                ) : (
+                  <Link className="nav__link" to={"/login"}>
+                    <AiFillHeart />
+                  </Link>
+                )}
               </li>
               <li className="nav__item lang-icon">
                 <div className="lang__select">
@@ -175,17 +182,17 @@ export const Header = () => {
                     <ul className="drop__list">
                       <li className="drop__item">
                         <Link className="drop__link" to={"/userinfo"}>
-                          Mening ma’lumotlarim
+                          {t("profile.userinfo")}
                         </Link>
                       </li>
                       <li className="drop__item">
                         <Link className="drop__link" to={"/announ/active"}>
-                          E’lonlarim
+                          {t("profile.posts")}{" "}
                         </Link>
                       </li>
                       <li className="drop__item">
                         <Link className="drop__link" to={"/aboutus"}>
-                          Biz haqimizda
+                          {t("profile.aboutme")}
                         </Link>
                       </li>
                       <li className="drop__item">
@@ -194,7 +201,7 @@ export const Header = () => {
                           className="drop__link logout-btn"
                           onClick={handleLogout}
                         >
-                          Chiqish
+                          {t("profile.exit")}
                         </p>
                       </li>
                     </ul>
@@ -223,8 +230,8 @@ export const Header = () => {
                     </div>
                   ) : (
                     <>
-                      <Link to="/login">Kirish</Link> /{" "}
-                      <Link to="/register">Ro'yxatdan o'tish</Link>
+                      <Link to="/login">{t("header.login")}</Link> /{" "}
+                      <Link to="/register">{t("profile.register")}</Link>
                     </>
                   )}
                 </div>
@@ -236,7 +243,7 @@ export const Header = () => {
                     to={"/messaging"}
                   >
                     <FaRegComment />
-                    <p>Online Chat</p>
+                    <p>{t("header.chat")}</p>
                   </Link>
                 </li>
                 <li className="nav__item heart-icon">
@@ -245,7 +252,7 @@ export const Header = () => {
                     to={"/favorite"}
                   >
                     <AiOutlineHeart />
-                    <p>Saralangan</p>
+                    <p>{t("header.sorted")}</p>
                   </Link>
                 </li>
                 <li className="nav__item lang-icon">
@@ -277,7 +284,7 @@ export const Header = () => {
                     to={"#"}
                   >
                     <BiSupport />
-                    <p>Biz bilan bog'lanish</p>
+                    <p>{t("header.callcenter")}</p>
                   </Link>
                 </li>
                 <li className="nav__item heart-icon">
@@ -286,14 +293,14 @@ export const Header = () => {
                     to={"/aboutus"}
                   >
                     <BsInfoCircle />
-                    <p>Biz haqimizda</p>
+                    <p>{t("header.aboutme")}</p>
                   </Link>
                 </li>
                 <li className="nav__item heart-icon">
                   <Link className="nav__link" to={"#"}>
                     <BsPhone />
                   </Link>
-                  <p>Ilovani yuklash</p>
+                  <p>{t("header.apps")}</p>
                 </li>
               </ul>
               <div className="modal__items">

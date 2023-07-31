@@ -12,6 +12,7 @@ import { regions } from "./data"
 import { Search } from "./Search"
 import SearchService from "@api/search.service"
 import LoadingImg from "@images/card-single-loading.svg"
+import { useTranslation } from 'react-i18next';
 
 export const HomeSearch = () => {
   const [type, setType] = useState();
@@ -19,6 +20,7 @@ export const HomeSearch = () => {
   const [city, setCitys] = useState();
   const [searchResult, setSearchResult] = useState( { isLoading: false, data: [] } )
   // console.log(city);
+  const { t, i18n } = useTranslation();
 
   // REDUX
   const search = useRef();
@@ -97,7 +99,7 @@ export const HomeSearch = () => {
         <div className="search__wrap">
           <div className="search__select">
             <a className="dropdown__btn " href="#" onClick={handleSelect}>
-              <BiFilter /> <span className={`filter__btn `}>Filter</span>
+              <BiFilter /> <span className={`filter__btn `}>{t('filter')}</span>
             </a>
 
             <ul
@@ -109,14 +111,14 @@ export const HomeSearch = () => {
                 <a className="dropdown-item" href="#">
                   <Select
                     prefixCls="ant-select-bootstrap"
-                    defaultValue="Ijara yoki sotuv"
+                    defaultValue={t('searchpage.sale')}
                     style={{
                       width: 207,
                     }}
                     onChange={handleChange1}
                     options={[
                       {
-                        label: "Ijara yoki sotuv",
+                        label: `${t('searchpage.sale')}`,
                         options: [
                           {
                             label: "Ijara",
@@ -136,14 +138,14 @@ export const HomeSearch = () => {
                 <a className="dropdown-item bootstrap-dropdown" href="#">
                   <Select
                     prefixCls="ant-select-bootstrap"
-                    defaultValue="Valyuta bo'yicha"
+                    defaultValue={t('searchpage.type')}
                     style={{
                       width: 207,
                     }}
                     onChange={handleChange2}
                     options={[
                       {
-                        label: "Valyuta bo'yicha",
+                        label: `${t('searchpage.type')}`,
                         options: [
                           {
                             label: "So'm",
@@ -164,14 +166,14 @@ export const HomeSearch = () => {
                 <a className="dropdown-item " href="#">
                   <Select
                     prefixCls="ant-select-bootstrap"
-                    defaultValue="Viloyatlar"
+                    defaultValue={t('searchpage.region')}
                     style={{
                       width: 207,
                     }}
                     onChange={handleChange3}
                     options={[
                       {
-                        label: "Viloyatlar",
+                        label: `${t('searchpage.region')}`,
                         options: regions,
                       },
                     ]}
@@ -181,7 +183,7 @@ export const HomeSearch = () => {
 
               <li className="dropdown-item">
                 <button type="submit" onClick={handleSubmit} className="send__button w-100" href="#">
-                  Filtrlash
+                  {t('searchpage.filters')}
                 </button>
               </li>
             </ul>
@@ -192,14 +194,14 @@ export const HomeSearch = () => {
                 required
                 className="input__sale"
                 type="text"
-                placeholder="Qidirish"
+                placeholder={t('searchpage.search')}
               />
               {!searchResult.isLoading ? <Search data={searchResult.data}/> : ""}
             </div>
           </div>
           <div className="search__btn">
             <Link to={"announsearch"} onClick={handleSubmitSearch} href="#">
-              Izlash
+              {t('searchpage.search_btn')}
             </Link>
           </div>
         </div>

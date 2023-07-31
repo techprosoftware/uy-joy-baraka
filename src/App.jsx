@@ -14,10 +14,27 @@ import { AboutUs } from "./pages/AboutUs/AboutUs";
 import { UserInfo } from "./pages/User-info/UserInfo";
 import "react-loading-skeleton/dist/skeleton.css";
 import i18next from "i18next";
+import i18n from 'i18next';
 import { initReactI18next } from "react-i18next";
 import { BackTop } from "antd";
+import { lang } from "./lang/lang";
 
 function App() {
+
+  i18n
+
+  .use(initReactI18next)
+  .init({
+    debug: true,
+    fallbackLng: 'uz',
+   
+    resources: {
+      uz: {
+        translation: lang.uz
+      }
+    }
+  });
+
   return (
     <>
       <Routes>
