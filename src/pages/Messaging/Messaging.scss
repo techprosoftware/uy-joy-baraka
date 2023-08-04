@@ -222,9 +222,15 @@
 
       cursor: pointer;
       .chat-inner {
+        img.member-img {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
         // Margin, paddings
         padding: 5px 0 5px 10px;
-
+        
         .chat-user__name {
           font-size: 14px;
           line-height: 16.8px;
@@ -341,6 +347,12 @@
 
       background-color: #fff;
       .user-inner {
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
         & .user-name__selected {
           // Margin, paddings
           margin-left: 7px;

@@ -1,17 +1,27 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "@components/Header/Header";
-import axios from "axios";
 import "./Messaging.scss";
+import { useRef } from "react";
 // Icons
 import TrashIcon from "../../../public/assets/images/messaging-delete-icon.svg";
 import { BackButton } from "../../components/BackButton/BackButton";
 import ChatsendIcon from "../../../public/assets/images/chatbar-send-icon.svg";
 import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilonzor.webp";
 import arrow from "../../../public/assets/images/left-arrow.svg";
-
+import MessagingService from "../../Api/messaging.service";
 //* Socket connection
-import { Socket, io } from "socket.io-client";
+
+// const token = localStorage.getItem("token");
+
+// import { io } from "socket.io-client";
+// const socket = io("https://test.uyjoybaraka.uz/", {
+//   extraHeaders: {
+//     authorization: token,
+//   },
+// });
+
+// console.log(socket);
 
 export const Messaging = () => {
   const mockData = [
@@ -19,7 +29,7 @@ export const Messaging = () => {
       id: 1,
       src: "../../../public/assets/images/messaging-user-icon.svg",
       name: "Umid",
-      ad: "Beruniyda 1-xonalik kvartira ijaraga studentlarga beriladi",
+      ad: "BBeruniyda 1-xonalik kvartira ijaraga studentlarga beriladi",
       message:
         "Aka biz 15 kishimiz, realniy turamiz, honada kir mashina bormi?",
       chat_started: "01.08.2022",
@@ -35,9 +45,13 @@ export const Messaging = () => {
   ];
   const [isActive, setIsActive] = useState(false);
   const [isBarActive, setIsBarActive] = useState();
-  const [chats, setChats] = useState(mockData);
+  const [chats, setChats] = useState(null);
   const [activeChatId, setActiveChatId] = useState(null);
 
+  // const message = useRef(null);
+  // const sendMessage = async (e) => {
+  //   e.preventDefault();
+  // };
   //* Handle button active state change
   const handleButtonClick = () => {
     setIsActive(!isActive);
@@ -58,10 +72,21 @@ export const Messaging = () => {
     });
   };
 
-  useEffect(() => {}, [activeChatId]);
+  useEffect(() => {
+    (async() => {
+      try {
+        const data = await MessagingService.GetMessaging();
+        setChats(data?.members);
+        // getterStSet(false);
+      } catch (error) {
+        console.error("Error occurred while fetching user profile", error);
+      }
+    })()
+  }, [activeChatId]);
 
-  const selectedChat = chats.find((chat) => chat.id === activeChatId);
 
+  console.log(chats);
+  const selectedChat = chats?.find((chat) => chat.chat_id === activeChatId);
   return (
     <>
       {/* Header component */}
@@ -108,33 +133,33 @@ export const Messaging = () => {
                   </button>
                 </div>
                 {/* Chats */}
-                {chats.map((info) => (
-                  <div key={info.id} className="chats-container">
+                {chats?.map((info) => (
+                  <div key={info.chat_id} className="chats-container">
                     <div
                       className={`chat-wrapper ${
-                        info.id === activeChatId ? "chatActive" : ""
+                        info.chat_id === activeChatId ? "chatActive" : ""
                       }`}
                       onClick={() => {
-                        handleChatBarActive(info.id);
+                        handleChatBarActive(info.chat_id);
                         handleBarActive();
                       }}
                     >
                       <div className="chat-inner">
-                        <img src={info.src} alt="user image" />
+                        <img src={`https://test.uyjoybaraka.uz/${info.user.avatar}`} width={100} alt="user image" className="member-img"/>
                       </div>
                       <div className="chat-inner chat-inner__info">
                         <div className="chat-deleting">
-                          <span className="chat-user__name">{info.name}</span>
-                          <button onClick={() => handleRemoveChat(info.id)}>
+                          <span className="chat-user__name">{info.user.full_name}</span>
+                          <button onClick={() => handleRemoveChat(info.chat_id)}>
                             <img src={TrashIcon} alt="delete chat icon" />
                           </button>
                         </div>
                         <p className="chat-user__ad">
-                          {info.ad.substr(0, 45)}....
+                          {/* {info.message.substr(0, 57)} */}
                         </p>
                         <p className="chat-user__message">
+                          {info.message.content.substr(0, 45)}....
                           {/* Now, it cuts texts based on user message */}
-                          {info.message.substr(0, 57)}
                         </p>
                       </div>
                     </div>
@@ -152,9 +177,9 @@ export const Messaging = () => {
                     {/* Layout buttons */}
                     <div className="user-selected">
                       <div className="user-inner">
-                        <img src={selectedChat.src} alt="selected user image" />
+                        <img src={`https://test.uyjoybaraka.uz/${selectedChat.user.avatar}`} alt="selected user image"  width={100} />
                         <span className="user-name__selected">
-                          {selectedChat.name}
+                          {selectedChat.user.full_name}
                         </span>
                       </div>
                       <div className="trash-inner">
@@ -167,15 +192,16 @@ export const Messaging = () => {
                   <div className="bg-chat">
                     <div className="delete-bars">
                       {selectedChat && (
+                        
                         <div
                           className={`selected-chat ${
-                            selectedChat.id === activeChatId ? "chatActive" : ""
+                            selectedChat.chat_id === activeChatId ? "chatActive" : ""
                           }`}
                         >
                           <img src={SelectedChatImg} alt="selected chat" />
                           <div>
                             <span className="selected-ad">
-                              {selectedChat.ad}
+                              {selectedChat.announcement_id}
                             </span>
                           </div>
                         </div>
@@ -185,14 +211,14 @@ export const Messaging = () => {
                     <div className="chats-container__bar">
                       <div className="chat-wrapper__bar">
                         <span className="chatbar-date">
-                          {selectedChat.chat_started}
+                          {selectedChat.message.timestamp.split("T")[0].split("-").join(".")}
                         </span>
                       </div>
                     </div>
                     {/* Chat messaged mock */}
                     <div style={{ width: "200px", marginTop: "50px" }}>
-                      <span className="client-ms">{selectedChat.message}</span>
-                      <span className="self-ms">{selectedChat.message}</span>
+                      <span className="client-ms">{selectedChat.message.content}</span>
+                      {/* <span className="self-ms">{selectedChat.message}</span> */}
                     </div>
                     {/* Chat messaged mock */}
                     <input
@@ -200,8 +226,13 @@ export const Messaging = () => {
                       className="chatbar-input"
                       placeholder="Sms yozish"
                       aria-label="Enter your message(Habaringizni kiriting)"
+                      // ref={message}
                     />
-                    <button type="submit" className="chatbar-button">
+                    <button
+                      type="submit"
+                      className="chatbar-button"
+                      // onClick={sendMessage}
+                    >
                       <img
                         className="chatbar-send__icon"
                         src={ChatsendIcon}
@@ -215,7 +246,6 @@ export const Messaging = () => {
           </div>
         </div>
       </div>
-
       {/* Footer component */}
       {/* <Footer /> */}
     </>
