@@ -2,23 +2,25 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
 import "./HomeSearch.scss";
-import { BiFilter } from "react-icons/bi";
 
 import { Select } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCity } from "../../redux/city/citydAction";
-import { regions } from "./data"
-import { Search } from "./Search"
-import SearchService from "@api/search.service"
-import LoadingImg from "@images/card-single-loading.svg"
-import { useTranslation } from 'react-i18next';
+import { regions } from "./data";
+import { Search } from "./Search";
+import SearchService from "@api/search.service";
+import LoadingImg from "@images/card-single-loading.svg";
+import { useTranslation } from "react-i18next";
 
 export const HomeSearch = () => {
   const [type, setType] = useState();
   const [price_type, setPrice_type] = useState();
   const [city, setCitys] = useState();
-  const [searchResult, setSearchResult] = useState( { isLoading: false, data: [] } )
+  const [searchResult, setSearchResult] = useState({
+    isLoading: false,
+    data: [],
+  });
   // console.log(city);
   const { t, i18n } = useTranslation();
 
@@ -50,48 +52,43 @@ export const HomeSearch = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if(!city && !type && !price_type) {
-      return
-    }else {
-      localStorage.removeItem('searchCity')
-      localStorage.setItem('city', city)
-      localStorage.setItem('type', type)
-      localStorage.setItem('price_type', price_type)
+    if (!city && !type && !price_type) {
+      return;
+    } else {
+      localStorage.removeItem("searchCity");
+      localStorage.setItem("city", city);
+      localStorage.setItem("type", type);
+      localStorage.setItem("price_type", price_type);
       navigate("/card-search");
-  
     }
-
-   
-  }
+  };
 
   const handleSubmitSearch = (e) => {
     e.preventDefault();
     if (!search.current.value.trim() == "") {
-      localStorage.setItem('searchCity', search.current.value)
-        navigate("/card-search");
-      
-    }else {
-      return
+      localStorage.setItem("searchCity", search.current.value);
+      navigate("/card-search");
+    } else {
+      return;
     }
   };
 
-  const changeInput = async (evt)=> {
-    setSearchResult({isLoading: true, data: []})
+  const changeInput = async (evt) => {
+    setSearchResult({ isLoading: true, data: [] });
     console.log(evt.target.value);
-    const currentValue = evt.target.value
-    
+    const currentValue = evt.target.value;
+
     if (currentValue !== "" && currentValue.trim()) {
-      const response = await (await SearchService.searchOnInput(currentValue))
+      const response = await await SearchService.searchOnInput(currentValue);
       console.log(response);
-      setSearchResult({isLoading: false, data: response.data.posts})
+      setSearchResult({ isLoading: false, data: response.data.posts });
     } else {
-      setSearchResult({isLoading: false, data: []})
+      setSearchResult({ isLoading: false, data: [] });
     }
-  }
+  };
 
   return (
     <div className="search__inner">
@@ -99,7 +96,28 @@ export const HomeSearch = () => {
         <div className="search__wrap">
           <div className="search__select">
             <a className="dropdown__btn " href="#" onClick={handleSelect}>
-              <BiFilter /> <span className={`filter__btn `}>{t('filter')}</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#008b51"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="4" y1="21" x2="4" y2="14"></line>
+                <line x1="4" y1="10" x2="4" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12" y2="3"></line>
+                <line x1="20" y1="21" x2="20" y2="16"></line>
+                <line x1="20" y1="12" x2="20" y2="3"></line>
+                <line x1="1" y1="14" x2="7" y2="14"></line>
+                <line x1="9" y1="8" x2="15" y2="8"></line>
+                <line x1="17" y1="16" x2="23" y2="16"></line>
+              </svg>{" "}
+              <span className={`filter__btn `}>{t("filter")}</span>
             </a>
 
             <ul
@@ -111,14 +129,14 @@ export const HomeSearch = () => {
                 <a className="dropdown-item" href="#">
                   <Select
                     prefixCls="ant-select-bootstrap"
-                    defaultValue={t('searchpage.sale')}
+                    defaultValue={t("searchpage.sale")}
                     style={{
                       width: 207,
                     }}
                     onChange={handleChange1}
                     options={[
                       {
-                        label: `${t('searchpage.sale')}`,
+                        label: `${t("searchpage.sale")}`,
                         options: [
                           {
                             label: "Ijara",
@@ -138,14 +156,14 @@ export const HomeSearch = () => {
                 <a className="dropdown-item bootstrap-dropdown" href="#">
                   <Select
                     prefixCls="ant-select-bootstrap"
-                    defaultValue={t('searchpage.type')}
+                    defaultValue={t("searchpage.type")}
                     style={{
                       width: 207,
                     }}
                     onChange={handleChange2}
                     options={[
                       {
-                        label: `${t('searchpage.type')}`,
+                        label: `${t("searchpage.type")}`,
                         options: [
                           {
                             label: "So'm",
@@ -166,14 +184,14 @@ export const HomeSearch = () => {
                 <a className="dropdown-item " href="#">
                   <Select
                     prefixCls="ant-select-bootstrap"
-                    defaultValue={t('searchpage.region')}
+                    defaultValue={t("searchpage.region")}
                     style={{
                       width: 207,
                     }}
                     onChange={handleChange3}
                     options={[
                       {
-                        label: `${t('searchpage.region')}`,
+                        label: `${t("searchpage.region")}`,
                         options: regions,
                       },
                     ]}
@@ -182,8 +200,13 @@ export const HomeSearch = () => {
               </li>
 
               <li className="dropdown-item">
-                <button type="submit" onClick={handleSubmit} className="send__button w-100" href="#">
-                  {t('searchpage.filters')}
+                <button
+                  type="submit"
+                  onClick={handleSubmit}
+                  className="send__button w-100"
+                  href="#"
+                >
+                  {t("searchpage.filters")}
                 </button>
               </li>
             </ul>
@@ -194,14 +217,18 @@ export const HomeSearch = () => {
                 required
                 className="input__sale"
                 type="text"
-                placeholder={t('searchpage.search')}
+                placeholder={t("searchpage.search")}
               />
-              {!searchResult.isLoading ? <Search data={searchResult.data}/> : ""}
+              {!searchResult.isLoading ? (
+                <Search data={searchResult.data} />
+              ) : (
+                ""
+              )}
             </div>
           </div>
           <div className="search__btn">
             <Link to={"announsearch"} onClick={handleSubmitSearch} href="#">
-              {t('searchpage.search_btn')}
+              {t("searchpage.search_btn")}
             </Link>
           </div>
         </div>
