@@ -13,7 +13,11 @@ export const Card = (card) => {
     .toString()
     .replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, "$1 ")
   const navigate = useNavigate()
-  const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon)
+  // const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon)
+
+
+  const [like , setLike] = useState(false)
+
   const handleClick = async (evt) => {
     const targetTag = evt.target.className
     const token = localStorage.getItem("token") || ""
@@ -23,17 +27,17 @@ export const Card = (card) => {
     }
 
     if (targetTag === "card__like" || targetTag === "card__like-img") {
+      console.log(evt.target.src);
+setLike(!like)
       const response = await CardService.likeCard(card?.card?.announcement_id)
       console.log(response)
       if (response?.status === 200) {
-        setLikeImgSrc(CardLikeIcon)
         toast.success("Saqlanganlarga qo'shildi")
         return
       } else {
         const data = await CardService.unLikeCard(card?.card?.announcement_id)
         console.log(data)
         toast.success("Saqlanganlardan chiqarildi")
-        setLikeImgSrc(CardULikeIcon)
       }
     } else {
       window.scroll(0, 0)
@@ -62,7 +66,7 @@ export const Card = (card) => {
               <button className="card__like">
                 <img
                   className="card__like-img"
-                  src={likeImgSrc}
+                  src={like ? CardLikeIcon : CardULikeIcon}
                   width={17}
                   height={16}
                   alt="Card like button image"
@@ -81,8 +85,8 @@ export const Card = (card) => {
           </p>
         </div>
         <ToastContainer
-          position="bottom-right"
-          autoClose={3000}
+          position="bottom-center"
+          autoClose={2000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

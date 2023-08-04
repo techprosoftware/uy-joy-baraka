@@ -15,8 +15,11 @@ import { Switch } from "antd";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "@/Api/api";
 import cardService from "@/Api/card.service.jsx";
+import { useTranslation } from 'react-i18next';
 
 export const ActiveCard = () => {
+  const { t, i18n } = useTranslation();
+
   const [activeCard, setActiveCard] = useState({
     isLoading: true,
     data: [],
@@ -53,7 +56,7 @@ export const ActiveCard = () => {
       const token = localStorage.getItem("token");
       const data = await AnnounService.setActiveCard(id, token);
       if (data.status === 200) {
-        toast.success("E'lon faolsizlantirildi.");
+        toast.success(`${t('announ.errannoun')}`);
       }
       getActives();
 
@@ -178,7 +181,7 @@ export const ActiveCard = () => {
                       id={item.announcement_id}
                       className="de_active__btn"
                     >
-                      Faolsizlantirish
+                      {t('announ.deactiveannoun')}
                     </button>
 
                     <p

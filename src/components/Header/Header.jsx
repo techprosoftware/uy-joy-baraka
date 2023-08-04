@@ -11,22 +11,20 @@ import FacebookIcon from "@images/facebook.png";
 import TwitterIcon from "@images/twitter.png";
 import PlayButtonIcon from "@images/play-button.png";
 import LangUzbIcon from "@images/flag_uz.png";
-import UserIcon from "@images/user-icon.svg";
-import { FaComment, FaRegComment, FaWallet } from "react-icons/fa";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { BiWallet, BiSupport } from "react-icons/bi";
-import { BsInfoCircle, BsPhone } from "react-icons/bs";
-import { CiCircleMore, CiUser } from "react-icons/ci";
+
 
 import { Dropdown, ButtonGroup, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import uzflag from "@images/flag_uz.png";
 import ruflag from "@images/flag_ru.png";
 import ProfileService from "../../Api/profile.service";
+import { useTranslation } from "react-i18next";
 
 export const Header = () => {
   const [drop, setDrop] = useState(false);
   const [burger, setBurger] = useState(false);
+
+  const { t, i18n } = useTranslation();
 
   const token = localStorage.getItem("token");
 
@@ -69,8 +67,11 @@ export const Header = () => {
 
   const getUser = async () => {
     const data = await ProfileService.GetProfile();
+    console.log(data);
     setUSer(data);
   };
+
+  // console.log(user);
 
   useEffect(() => {
     getUser();
@@ -102,26 +103,68 @@ export const Header = () => {
               <li className="nav__item new-poster">
                 {token ? (
                   <Link className="nav__link" to={"/upload"}>
-                    + E’lon joylash
+                    + {t("header.addpost")}
                   </Link>
                 ) : (
                   <Link className="nav__link" to={"/login"}>
-                    + E’lon joylash
+                    + {t("header.addpost")}
                   </Link>
                 )}
               </li>
 
               <li className="nav__item chat-icon">
                 <Link className="nav__link" to={"/messaging"}>
-                  <FaComment />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#fefefe"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                  </svg>
                 </Link>
               </li>
               <li className="nav__item heart-icon">
-                {token ? <Link className="nav__link" to={"/favorite"}>
-                  <AiFillHeart />
-                </Link> : <Link className="nav__link" to={"/login"}>
-                  <AiFillHeart />
-                </Link>}
+                {token ? (
+                  <Link className="nav__link" to={"/favorite"}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="23"
+                      height="23"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#fefefe"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    {/* <AiFillHeart /> */}
+                  </Link>
+                ) : (
+                  <Link className="nav__link" to={"/login"}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="23"
+                      height="23"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#fefefe"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    {/* <AiFillHeart /> */}
+                  </Link>
+                )}
               </li>
               <li className="nav__item lang-icon">
                 <div className="lang__select">
@@ -149,11 +192,20 @@ export const Header = () => {
                 <li className="nav__item user-icon">
                   <Link className="nav__link" to={"/login"}>
                     {" "}
-                    <img
-                      className="nav__img"
-                      src={UserIcon}
-                      alt="User info icon"
-                    />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#fefefe"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
                   </Link>
                 </li>
               ) : (
@@ -161,28 +213,37 @@ export const Header = () => {
                   className="nav__item user-icon"
                   onClick={() => setDrop(!drop)}
                 >
-                  <img
-                    className="nav__img"
-                    src={UserIcon}
-                    alt="User info icon"
-                  />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#fefefe"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
 
                   <div className={`drop ${drop ? "" : "visually-hidden"}`}>
                     <p className="drop__info">{user?.data?.user?.full_name}</p>
                     <ul className="drop__list">
                       <li className="drop__item">
                         <Link className="drop__link" to={"/userinfo"}>
-                          Mening ma’lumotlarim
+                          {t("profile.userinfo")}
                         </Link>
                       </li>
                       <li className="drop__item">
                         <Link className="drop__link" to={"/announ/active"}>
-                          E’lonlarim
+                          {t("profile.posts")}{" "}
                         </Link>
                       </li>
                       <li className="drop__item">
                         <Link className="drop__link" to={"/aboutus"}>
-                          Biz haqimizda
+                          {t("profile.aboutme")}
                         </Link>
                       </li>
                       <li className="drop__item">
@@ -191,7 +252,7 @@ export const Header = () => {
                           className="drop__link logout-btn"
                           onClick={handleLogout}
                         >
-                          Chiqish
+                          {t("profile.exit")}
                         </p>
                       </li>
                     </ul>
@@ -216,12 +277,26 @@ export const Header = () => {
                   {token ? (
                     <div className="d-flex align-items-center gap-1">
                       {" "}
-                      <CiUser /> <p>{user?.data?.user?.full_name}</p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#4c4f4d"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                      </svg>{" "}
+                      <p>{user?.data?.user?.full_name}</p>
                     </div>
                   ) : (
                     <>
-                      <Link to="/login">Kirish</Link> /{" "}
-                      <Link to="/register">Ro'yxatdan o'tish</Link>
+                      <Link to="/login">{t("header.login")}</Link> /{" "}
+                      <Link to="/register">{t("profile.register")}</Link>
                     </>
                   )}
                 </div>
@@ -232,8 +307,20 @@ export const Header = () => {
                     className="nav__link d-flex align-items-center gap-2"
                     to={"/messaging"}
                   >
-                    <FaRegComment />
-                    <p>Online Chat</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#008b51"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                    <p>{t("header.chat")}</p>
                   </Link>
                 </li>
                 <li className="nav__item heart-icon">
@@ -241,8 +328,20 @@ export const Header = () => {
                     className="nav__link d-flex align-items-center gap-2"
                     to={"/favorite"}
                   >
-                    <AiOutlineHeart />
-                    <p>Saralangan</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="23"
+                      height="23"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#008b51"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <p>{t("header.sorted")}</p>
                   </Link>
                 </li>
                 <li className="nav__item lang-icon">
@@ -273,8 +372,22 @@ export const Header = () => {
                     className="nav__link d-flex align-items-center gap-2"
                     to={"#"}
                   >
-                    <BiSupport />
-                    <p>Biz bilan bog'lanish</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="23"
+                      height="23"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#008b51"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>{" "}
+                    <p>{t("header.callcenter")}</p>
                   </Link>
                 </li>
                 <li className="nav__item heart-icon">
@@ -282,15 +395,49 @@ export const Header = () => {
                     className="nav__link d-flex align-items-center gap-2"
                     to={"/aboutus"}
                   >
-                    <BsInfoCircle />
-                    <p>Biz haqimizda</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="23"
+                      height="23"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#008b51"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="16" x2="12" y2="12"></line>
+                      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    <p>{t("header.aboutme")}</p>
                   </Link>
                 </li>
                 <li className="nav__item heart-icon">
                   <Link className="nav__link" to={"#"}>
-                    <BsPhone />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="23"
+                      height="23"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#008b51"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <rect
+                        x="5"
+                        y="2"
+                        width="14"
+                        height="20"
+                        rx="2"
+                        ry="2"
+                      ></rect>
+                      <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                    </svg>
                   </Link>
-                  <p>Ilovani yuklash</p>
+                  <p>{t("header.apps")}</p>
                 </li>
               </ul>
               <div className="modal__items">

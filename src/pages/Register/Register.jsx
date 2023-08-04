@@ -23,22 +23,23 @@ export const Register = () => {
 
   const users = async (value) => {
     const data = await AuthService.userRegister(value);
-    if (data.status === 201) {
+    console.log(data);
+    // console.log('das');
+    if (data?.status === 201) {
       const userPhone = await AuthService.SendCode({
         phone: "998" + phone.current.value,
       });
       dispatch(setPhoneId(userPhone?.data?.codeValidationId));
       alert(userPhone?.data?.code);
-      console.log(data);
       navigate("/sms");
     }
+    else if (data?.response?.status === 401) {
+      toast.warning("Bu raqam  ro'yxatdan o'tgan")
+    }
+    else if (data?.response?.status === 400) {
+      toast.error("Nimadir xato, qayta urinib ko'ring")
+    }
   };
-
-  // const sendCode = async () => {
-  //   const userPhone = await AuthService.SendCode(code);
-  //   dispatch(setPhoneId(userPhone?.data?.codeValidationId));
-  //   alert(userPhone?.data?.code);
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,7 +54,7 @@ export const Register = () => {
       users(value);
       console.log("send");
     } else {
-      toast.error("");
+      toast.error("Takroriy parol xato");
     }
 
     var phoneNumber = phone.current.value;
@@ -145,7 +146,7 @@ export const Register = () => {
           </div>
         </div>
         <ToastContainer
-          position="bottom-right"
+          position="bottom-center"
           autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}

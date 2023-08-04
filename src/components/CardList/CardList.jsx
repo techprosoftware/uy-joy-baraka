@@ -12,7 +12,7 @@ import "./card-list.scss";
 export const CardList = ({page, count, end}) => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
-  const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const [data, setData] = useState([]);
   // const cardSelector = useSelector((state) => state.cards.card);
   

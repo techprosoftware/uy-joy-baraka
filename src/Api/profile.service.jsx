@@ -5,11 +5,13 @@ const token = localStorage.getItem("token");
 const ProfileService = {
   //* GET | profile to insert asynchronously
   GetProfile: async () =>
-    await axios.get("/api/users/profile", {
+    {const data = await axios.get("/api/users/profile", {
       headers: {
         Authorization: `${token}`,
       },
-    }),
+    })
+  
+  return data},
 
   //* PATCH | Edit fullname REQUEST
   EditFullname: async (body) => {

@@ -2,13 +2,21 @@
   width: 100% !important;
   max-width: 308px !important;
   min-height: 380px !important;
+  border: none !important;
   background-color: rgb(255, 255, 255) !important;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12) !important;
+  // box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12) !important;
   border-radius: 14px !important;
+  overflow: hidden;
   cursor: pointer;
-  padding: 15px 15px 20px 15px;  &:hover {
-    border: 1px solid #008b51 !important;
+  // padding: 15px 15px 20px 15px;  
+  &:hover {
+    // border: 1px solid #3b413e !important;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
   }
+}
+
+.card__wrap {
+  padding: 10px 20px 30px 20px;
 }
 
 
@@ -16,7 +24,7 @@
   width: 100%;
   min-height: 275px;
   max-height: 275px;
-  border-radius: 10px;
+  // border-radius: 10px;
 
 }
 

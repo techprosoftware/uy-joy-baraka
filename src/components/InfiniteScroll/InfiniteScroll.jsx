@@ -54,12 +54,13 @@ export const InfiniteScroll = () => {
       <div className="container">
         {fetcher.data.length ? (
           <ul className="card-list">
-            {fetcher.data.map((item, idx) => (
-              <Card
-                key={idx}
-                card={item}
-              />
-            ))}
+            {
+           fetcher.length ?  fetcher?.data?.map((item, idx) => (
+            <Card
+              key={idx}
+              card={item}
+            />
+          )) : ""}
           </ul>
         ) : (
           ""

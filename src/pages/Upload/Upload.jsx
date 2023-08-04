@@ -2,8 +2,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
 import "./Upload.scss";
-import { Link } from "react-router-dom";
-import plus from "../../../public/assets/images/plus-upload.svg";
 import close from "../../../public/assets/images/close.png";
 import ImageCompressor from "image-compressor.js";
 import { BackButton } from "@components/BackButton/BackButton";
@@ -367,8 +365,7 @@ export const Upload = () => {
     }
   };
 
-
-  const handleSubmit =  (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
 
@@ -386,8 +383,7 @@ export const Upload = () => {
       formData.append(`images`, selectedImages[i]);
     }
 
-     sendAnnoun(formData);
-     
+    sendAnnoun(formData);
   };
 
   return (
@@ -403,10 +399,7 @@ export const Upload = () => {
         >
           <div className="d-flex flex-wrap gap-3 justify-content-center img__wrapper">
             {urls?.map((image, index) => (
-              <div
-                className="position-relative "
-                key={index}
-              >
+              <div className="position-relative " key={index}>
                 <img
                   className="rounded-2 img__item"
                   src={image}
@@ -424,7 +417,21 @@ export const Upload = () => {
           <div className="upload__wrap">
             <p>Uy rasmini yuklang:</p>
             <label className="upload__img" htmlFor="upload">
-              <img src={plus} alt="" /> Rasm yuklang
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#008b51"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>{" "}
+              Rasm yuklang
               <input
                 type="file"
                 className="upload-input"
@@ -453,7 +460,7 @@ export const Upload = () => {
                 }))}
               />
               <Select
-              defaultValue="Tuman tanlang"
+                defaultValue="Tuman tanlang"
                 style={{
                   width: 120,
                 }}

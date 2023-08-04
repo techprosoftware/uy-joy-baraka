@@ -15,8 +15,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "@/Api/api";
 import cardService from "@/Api/card.service.jsx";
+import { useTranslation } from 'react-i18next';
+
 
 export const DeactiveCard = () => {
+  const { t, i18n } = useTranslation();
+
   const [activeCard, setActiveCard] = useState({
     isLoading: true,
     data: [],
@@ -46,14 +50,12 @@ export const DeactiveCard = () => {
       const token = localStorage.getItem("token");
       const data = await AnnounService.setActiveCard(id, token);
       console.log(data);
-      if(data.status ===200) {
-        toast.success("E'lon faollashtirildi.");
-      
+      if (data.status === 200) {
+        toast.success(`${t('announ.succannoun')}`);
       }
       getActives();
-
     } catch (error) {
-      toast.warning("Admin tasdig'ini kuting.");
+      toast.warning(`${t('announ.checkadmin')}`);
     }
   };
 
@@ -63,8 +65,8 @@ export const DeactiveCard = () => {
       const token = localStorage.getItem("token");
       const data = await AnnounService.deleteCard(id, token);
       // console.log(data.status);
-      if(data.status === 200) {
-        toast.success("E'lon muvaffaqqiyatli o'chirildi.");
+      if (data.status === 200) {
+        toast.success(`${t('announ.deleteannoun')}`);
       }
       getActives();
 
@@ -77,8 +79,8 @@ export const DeactiveCard = () => {
   const navigate = useNavigate();
 
   const handleClick = async (evt) => {
-    const slug = (evt.target.name);
-    const id  = evt.target.id
+    const slug = evt.target.name;
+    const id = evt.target.id;
     // const slug = evt.target
     const targetTag = evt.target.className;
 
@@ -103,44 +105,69 @@ export const DeactiveCard = () => {
     <>
       <div>
         <ul className="card-list">
-          {activeCard.isLoading
-            ? mockData.map((moc) => <CardSkeleton key={moc} />)
-            : 
-            newData.length ? newData?.map((item) => (
+          {activeCard.isLoading ? (
+            mockData.map((moc) => <CardSkeleton key={moc} />)
+          ) : newData.length ? (
+            newData?.map((item) => (
               <>
-                <li name={item.slug}
+                <li
+                  name={item.slug}
                   id={item.announcement_id}
                   onClick={handleClick}
                   className="card"
                 >
-                  <img name={item.slug}
+                  <img
+                    name={item.slug}
                     id={item.announcement_id}
                     className="card__img"
                     src={BASE_URL + item?.thumb[0]}
                     height={222}
                   />
-                  <div name={item.slug} id={item.announcement_id} className="card__wrap">
-                    <div name={item.slug} id={item.announcement_id} className="card__inner">
-                      <span name={item.slug} id={item.announcement_id} className="card__city">
+                  <div
+                    name={item.slug}
+                    id={item.announcement_id}
+                    className="card__wrap"
+                  >
+                    <div
+                      name={item.slug}
+                      id={item.announcement_id}
+                      className="card__inner"
+                    >
+                      <span
+                        name={item.slug}
+                        id={item.announcement_id}
+                        className="card__city"
+                      >
                         {item.city}
                       </span>
-                      <div name={item.slug} id={item.announcement_id} className="card__right">
-                        <span name={item.slug}
+                      <div
+                        name={item.slug}
+                        id={item.announcement_id}
+                        className="card__right"
+                      >
+                        <span
+                          name={item.slug}
                           id={item.announcement_id}
                           className="card__view me-2"
                         >
                           {item.viewCount}
                         </span>
-                        <button name={item.slug} id={item.announcement_id} className="card__like">
-                        <img
-                className="card__like-img"
-                src={item?.likeCount ? CardLikeIcon : CardULikeIcon}
-                width={17}
-                height={16}
-                alt="Card like button image"
-              />
+                        <button
+                          name={item.slug}
+                          id={item.announcement_id}
+                          className="card__like"
+                        >
+                          <img
+                            className="card__like-img"
+                            src={item?.likeCount ? CardLikeIcon : CardULikeIcon}
+                            width={17}
+                            height={16}
+                            alt="Card like button image"
+                          />
                         </button>
-                        <span name={item.slug} id={item.announcement_id}
+                        <span
+                          name={item.slug}
+                          id={item.announcement_id}
                           className="me-1"
                           style={{
                             fontSize: "12px",
@@ -153,16 +180,26 @@ export const DeactiveCard = () => {
                         </span>
                       </div>
                     </div>
-                    <h3 name={item.slug} id={item.announcement_id} className="card__body">{item.description}</h3>
+                    <h3
+                      name={item.slug}
+                      id={item.announcement_id}
+                      className="card__body"
+                    >
+                      {item.description}
+                    </h3>
                     <button
                       onClick={handleChange}
                       id={item.announcement_id}
                       className="active__btn"
                     >
-                      Faollashtirish
+                      {t('announ.activeannoun')}
                     </button>
 
-                    <p name={item.slug} id={item.announcement_id} className="de_card__price">
+                    <p
+                      name={item.slug}
+                      id={item.announcement_id}
+                      className="de_card__price"
+                    >
                       {item.price
                         .toString()
                         .replace(
@@ -174,21 +211,23 @@ export const DeactiveCard = () => {
                   </div>
                 </li>
               </>
-            )) :  <img className="img-fluid" width={500} src={noData}/>}
+            ))
+          ) : (
+            <img className="img-fluid" width={500} src={noData} />
+          )}
         </ul>
         <ToastContainer
-        position="bottom-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      
+          position="bottom-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </>
   );

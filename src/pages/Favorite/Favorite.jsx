@@ -119,10 +119,11 @@ export const Favorite = () => {
         <h3 className="heart__title">Saqlanganlar</h3>
         <hr />
         <h3 className="heart__desc mb-2">
-          {activeCard?.data?.totalCount} ta e'lon topildi
+          {mappedData?.length ? <>{activeCard?.data?.totalCount} ta e'lon topildi</> : ''}
         </h3>{" "}
-        <ul className="card-list pt-3">
-          {activeCard.isLoading ? (
+        <ul className="card-list pt-3 mb-3">
+          {
+          activeCard.isLoading ? (
             mockData.map((moc) => <CardSkeleton key={moc} />)
           ) : mappedData?.length ? (
             mappedData?.map((card) => (
@@ -191,7 +192,7 @@ export const Favorite = () => {
           )}
         </ul>
         <ToastContainer
-          position="bottom-right"
+          position="bottom-center"
           autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
