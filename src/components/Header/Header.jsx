@@ -11,8 +11,6 @@ import FacebookIcon from "@images/facebook.png";
 import TwitterIcon from "@images/twitter.png";
 import PlayButtonIcon from "@images/play-button.png";
 import LangUzbIcon from "@images/flag_uz.png";
-
-
 import { Dropdown, ButtonGroup, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import uzflag from "@images/flag_uz.png";
