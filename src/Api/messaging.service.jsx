@@ -5,11 +5,12 @@ const token = localStorage.getItem("token");
 const MessagingService = {
   //* GET | Messaging
   GetMessaging: async () => {
-    await axios.get("/api/chats", {
+    const {data} = await axios.get("/api/chats", {
       headers: {
         Authorization: token,
       },
     });
+    return data
   },
 };
 
