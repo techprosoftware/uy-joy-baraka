@@ -76,19 +76,38 @@ export const HomeSearch = () => {
     }
   };
 
-  const changeInput = async (evt) => {
-    setSearchResult({ isLoading: true, data: [] });
-    console.log(evt.target.value);
-    const currentValue = evt.target.value;
+  //* This returns us debounced version of the function and let it timeout to go for, this function accepts two arguments dynamically *//
+  const debounceMe = (func, delayTime) => {
+    //* Creates a new timeout *//
+    let timeOut;
 
-    if (currentValue !== "" && currentValue.trim()) {
-      const response = await await SearchService.searchOnInput(currentValue);
-      console.log(response);
-      setSearchResult({ isLoading: false, data: response.data.posts });
-    } else {
-      setSearchResult({ isLoading: false, data: [] });
-    }
+    //* Returns a debounced function
+    return function (...args) {
+      //* Clears the timeout after the function rendered *//
+      clearTimeout(timeOut);
+      timeOut = setTimeout(() => func.apply(this, args), delayTime);
+    };
   };
+
+  //* Works asynchronously debounced
+  const changeInput = useRef(
+    debounceMe(async (evt) => {
+      setSearchResult({ isLoading: true, data: [] });
+      //* Check here if it is working asynchronously 
+      console.log(evt.target.value);
+      const currentValue = evt.target.value;
+
+      if (currentValue !== "" && currentValue.trim()) {
+        const response = await await SearchService.searchOnInput(currentValue);
+        console.log(response);
+        setSearchResult({ isLoading: false, data: response.data.posts });
+      } else {
+        setSearchResult({ isLoading: false, data: [] });
+      }
+      //* Sets the timeout to timeout
+    }, 1000)
+    //* Gets the current value
+  ).current;
 
   return (
     <div className="search__inner">
