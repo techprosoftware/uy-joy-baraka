@@ -13,17 +13,23 @@ import MessagingService from "../../Api/messaging.service";
 //* Socket connection
 import { io } from "socket.io-client";
 
-const token = localStorage.getItem('token')
-const socket = io("http://test.uyjoybaraka.uz/", {
-  // extraHeaders: {
-    Authorization: token,
-  // },
-});
-
-console.log(socket);
-
-
 export const Messaging = () => {
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (token) {
+      const socket = io.connect("http://test.uyjoybaraka.uz/", {
+        extraHeaders: {
+          Authorization: token,
+        },
+      });
+
+      return () => {
+        socket.disconnect();
+      };
+    }
+  }, [token]);
+
   const mockData = [
     {
       id: 1,
@@ -73,16 +79,15 @@ export const Messaging = () => {
   };
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       try {
         const data = await MessagingService.GetMessaging();
         setChats(data?.members);
       } catch (error) {
         console.error("Error occurred while fetching user profile", error);
       }
-    })()
+    })();
   }, [activeChatId]);
-
 
   const selectedChat = chats?.find((chat) => chat.chat_id === activeChatId);
   return (
@@ -131,38 +136,51 @@ export const Messaging = () => {
                   </button>
                 </div>
                 {/* Chats */}
-                {chats?.length ? chats?.map((info) => (
-                  <div key={info.chat_id} className="chats-container">
-                    <div
-                      className={`chat-wrapper ${
-                        info.chat_id === activeChatId ? "chatActive" : ""
-                      }`}
-                      onClick={() => {
-                        handleChatBarActive(info.chat_id);
-                        handleBarActive();
-                      }}
-                    >
-                      <div className="chat-inner">
-                        <img src={`https://test.uyjoybaraka.uz/${info.user.avatar}`} width={100} alt="user image" className="member-img"/>
-                      </div>
-                      <div className="chat-inner chat-inner__info">
-                        <div className="chat-deleting">
-                          <span className="chat-user__name">{info.user.full_name}</span>
-                          <button onClick={() => handleRemoveChat(info.chat_id)}>
-                            <img src={TrashIcon} alt="delete chat icon" />
-                          </button>
+                {chats?.length ? (
+                  chats?.map((info) => (
+                    <div key={info.chat_id} className="chats-container">
+                      <div
+                        className={`chat-wrapper ${
+                          info.chat_id === activeChatId ? "chatActive" : ""
+                        }`}
+                        onClick={() => {
+                          handleChatBarActive(info.chat_id);
+                          handleBarActive();
+                        }}
+                      >
+                        <div className="chat-inner">
+                          <img
+                            src={`https://test.uyjoybaraka.uz/${info.user.avatar}`}
+                            width={100}
+                            alt="user image"
+                            className="member-img"
+                          />
                         </div>
-                        <p className="chat-user__ad">
-                          {/* {info.message.substr(0, 57)} */}
-                        </p>
-                        <p className="chat-user__message">
-                          {info.message.content.substr(0, 45)}....
-                          {/* Now, it cuts texts based on user message */}
-                        </p>
+                        <div className="chat-inner chat-inner__info">
+                          <div className="chat-deleting">
+                            <span className="chat-user__name">
+                              {info.user.full_name}
+                            </span>
+                            <button
+                              onClick={() => handleRemoveChat(info.chat_id)}
+                            >
+                              <img src={TrashIcon} alt="delete chat icon" />
+                            </button>
+                          </div>
+                          <p className="chat-user__ad">
+                            {/* {info.message.substr(0, 57)} */}
+                          </p>
+                          <p className="chat-user__message">
+                            {info.message.content.substr(0, 45)}....
+                            {/* Now, it cuts texts based on user message */}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )) : <h3 style={{paddingLeft: "20px" }}>No chats..</h3>}
+                  ))
+                ) : (
+                  <h3 style={{ paddingLeft: "20px" }}>No chats..</h3>
+                )}
               </div>
             </div>
             {/* Chat section */}
@@ -175,7 +193,11 @@ export const Messaging = () => {
                     {/* Layout buttons */}
                     <div className="user-selected">
                       <div className="user-inner">
-                        <img src={`https://test.uyjoybaraka.uz/${selectedChat.user.avatar}`} alt="selected user image"  width={100} />
+                        <img
+                          src={`https://test.uyjoybaraka.uz/${selectedChat.user.avatar}`}
+                          alt="selected user image"
+                          width={100}
+                        />
                         <span className="user-name__selected">
                           {selectedChat.user.full_name}
                         </span>
@@ -190,10 +212,11 @@ export const Messaging = () => {
                   <div className="bg-chat">
                     <div className="delete-bars">
                       {selectedChat && (
-                        
                         <div
                           className={`selected-chat ${
-                            selectedChat.chat_id === activeChatId ? "chatActive" : ""
+                            selectedChat.chat_id === activeChatId
+                              ? "chatActive"
+                              : ""
                           }`}
                         >
                           <img src={SelectedChatImg} alt="selected chat" />
@@ -209,13 +232,18 @@ export const Messaging = () => {
                     <div className="chats-container__bar">
                       <div className="chat-wrapper__bar">
                         <span className="chatbar-date">
-                          {selectedChat.message.timestamp.split("T")[0].split("-").join(".")}
+                          {selectedChat.message.timestamp
+                            .split("T")[0]
+                            .split("-")
+                            .join(".")}
                         </span>
                       </div>
                     </div>
                     {/* Chat messaged mock */}
                     <div style={{ width: "200px", marginTop: "50px" }}>
-                      <span className="client-ms">{selectedChat.message.content}</span>
+                      <span className="client-ms">
+                        {selectedChat.message.content}
+                      </span>
                       {/* <span className="self-ms">{selectedChat.message}</span> */}
                     </div>
                     {/* Chat messaged mock */}
