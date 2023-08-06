@@ -1,56 +1,56 @@
-import "./card-single.scss";
-import { BackButton } from "@components/BackButton/BackButton";
-import { CardList } from "@components/CardList/CardList";
-import { MoreBtn } from "../MoreBtn/MoreBtn";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import "./share";
-import { BASE_URL } from "../../Api/api";
-import { useParams } from "react-router-dom";
+import "./card-single.scss"
+import { BackButton } from "@components/BackButton/BackButton"
+import { CardList } from "@components/CardList/CardList"
+import { MoreBtn } from "../MoreBtn/MoreBtn"
+import { useEffect, useState } from "react"
+import { motion } from "framer-motion"
+import "./share"
+import { BASE_URL } from "../../Api/api"
+import { useParams } from "react-router-dom"
 
-import { Link } from "react-router-dom";
-import CardService from "@/Api/card.service.jsx";
+import { Link } from "react-router-dom"
+import CardService from "@/Api/card.service.jsx"
 
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { toast } from "react-toastify";
-import LoadingIcon from "@images/card-single-loading.svg";
+import { CopyToClipboard } from "react-copy-to-clipboard"
+import { toast } from "react-toastify"
+import LoadingIcon from "@images/card-single-loading.svg"
 
 export const CardSingle = () => {
-  let [imgId, setImgId] = useState(0);
-  let [modal, setModal] = useState(false);
-  const [card, setCard] = useState({ isLoading: true, data: {} });
-  const { id } = useParams();
+  let [imgId, setImgId] = useState(0)
+  let [modal, setModal] = useState(false)
+  const [card, setCard] = useState({ isLoading: true, data: {} })
+  const { id } = useParams()
 
   window.addEventListener("keydown", (evt) => {
     if (evt.key === "Escape") {
-      setModal(false);
+      setModal(false)
     }
-  });
+  })
 
   const fetcher = async () => {
-    setCard({ isLoading: true, data: [] });
+    setCard({ isLoading: true, data: [] })
     try {
-      const response = await CardService.getByCard(id);
+      const response = await CardService.getByCard(id)
       if (response.status === 200) {
-        setCard({ isLoading: false, data: response.data });
+        setCard({ isLoading: false, data: response.data })
       }
     } catch (error) {
-      setCard({ isLoading: false, data: [] });
-      console.log("Error fetching card data: ", error);
+      setCard({ isLoading: false, data: [] })
+      console.log("Error fetching card data: ", error)
     }
-  };
+  }
 
   useEffect(() => {
-    fetcher();
-  }, [id]);
+    fetcher()
+  }, [id])
 
-  const data = card.data.post;
-  const user = card.user;
-  const time = data?.updatedAt.split("-");
+  const data = card.data.post
+  const user = card.user
+  const time = data?.updatedAt.split("-")
   const customPrice = data?.price
     .toString()
-    .replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, "$1 ");
-  const currentUrl = window.location.href;
+    .replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, "$1 ")
+  const currentUrl = window.location.href
 
   return (
     <>
@@ -236,7 +236,10 @@ export const CardSingle = () => {
                     >
                       Qo’ng’iroq qilish
                     </a>
-                    <Link className="card-single__send-btn" to={"/messaging"}>
+                    <Link
+                      className="card-single__send-btn"
+                      to={"/messaging"}
+                    >
                       Xabar yuborish
                     </Link>
                   </div>
@@ -248,13 +251,14 @@ export const CardSingle = () => {
         <section className="suggestion">
           <div className="container">
             <h2 className="suggestion__title">Siz uchun taklif</h2>
-            <CardList page={1} count={12} />
+            <CardList
+              page={1}
+              count={12}
+            />
           </div>
           <MoreBtn />
         </section>
       </main>
-
-
     </>
-  );
-};
+  )
+}
