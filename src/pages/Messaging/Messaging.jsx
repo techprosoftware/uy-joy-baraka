@@ -11,17 +11,17 @@ import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilon
 import arrow from "../../../public/assets/images/left-arrow.svg";
 import MessagingService from "../../Api/messaging.service";
 //* Socket connection
+import { io } from "socket.io-client";
 
-// const token = localStorage.getItem("token");
+const token = localStorage.getItem('token')
+const socket = io("http://test.uyjoybaraka.uz/", {
+  // extraHeaders: {
+    Authorization: token,
+  // },
+});
 
-// import { io } from "socket.io-client";
-// const socket = io("https://test.uyjoybaraka.uz/", {
-//   extraHeaders: {
-//     authorization: token,
-//   },
-// });
+console.log(socket);
 
-// console.log(socket);
 
 export const Messaging = () => {
   const mockData = [
@@ -77,7 +77,6 @@ export const Messaging = () => {
       try {
         const data = await MessagingService.GetMessaging();
         setChats(data?.members);
-        // getterStSet(false);
       } catch (error) {
         console.error("Error occurred while fetching user profile", error);
       }
@@ -85,7 +84,6 @@ export const Messaging = () => {
   }, [activeChatId]);
 
 
-  console.log(chats);
   const selectedChat = chats?.find((chat) => chat.chat_id === activeChatId);
   return (
     <>
@@ -133,7 +131,7 @@ export const Messaging = () => {
                   </button>
                 </div>
                 {/* Chats */}
-                {chats?.map((info) => (
+                {chats?.length ? chats?.map((info) => (
                   <div key={info.chat_id} className="chats-container">
                     <div
                       className={`chat-wrapper ${
@@ -164,7 +162,7 @@ export const Messaging = () => {
                       </div>
                     </div>
                   </div>
-                ))}
+                )) : <h3 style={{paddingLeft: "20px" }}>No chats..</h3>}
               </div>
             </div>
             {/* Chat section */}
