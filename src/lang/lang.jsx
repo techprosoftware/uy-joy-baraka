@@ -70,7 +70,7 @@ export const lang = {
 
     searchpage: {
       filter: "Filter",
-      search: "Qidirsh",
+      search: "Mavjud uylarni qidirish: Chilonzor 2-honalik kv",
       search_btn: "Izlash",
       sale: "Ijara yoki sotuv",
       type: "Valyuta kursi",
