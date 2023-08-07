@@ -587,7 +587,7 @@ export const Upload = () => {
         </form>
       </div>
       <ToastContainer
-        position="bottom-right"
+        position="bottom-center"
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
