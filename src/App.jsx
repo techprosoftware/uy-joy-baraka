@@ -25,7 +25,7 @@ function App() {
   .use(initReactI18next)
   .init({
     debug: true,
-    fallbackLng: localStorage.getItem('lang'),
+    fallbackLng: localStorage.getItem('lang') || 'uz',
    
     resources: {
       uz: {
