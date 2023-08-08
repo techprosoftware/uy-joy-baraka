@@ -1,112 +1,82 @@
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.ant-input-number-handler-wrap {
+    display: none !important; 
 }
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
-
 
 .login__inner {
-    padding: 100px 0;
+  padding: 100px 0;
 }
 
 .login__wrapper {
-    text-align: center;
-    width: 100%;
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
 }
 
 .login__wrapper h3 {
-    margin: 0;
-    font-family: 'Gilroy';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 40px;
-    color: #000000;
+  margin: 0;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  color: #000000;
 }
 
 .login__wrapper p {
-    margin: 0;
-    margin-bottom: 31px;
-    font-family: 'Gilroy';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 17px;
-    color: #000000;
-}
-
-.login__form {
-    width: 100%;
-    max-width:550px;
-    display: block;
-    margin: 0 auto;
+  margin: 0;
+  margin-bottom: 31px;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
 }
 
 
 
-.login__form button {
-    background: #008B51;
+.form__button {
+    background: #008b51;
     border-radius: 9px;
     outline: none;
     width: 100%;
-    margin-top: 12px;
     border: none;
-    font-family: 'Gilroy';
+    font-family: "Gilroy";
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
-    color: #FFFFFF;
-    padding: 15px 0;
+    color: #ffffff;
 }
 
+.form__button:focus {
+    color: #fff !important;
+}
+
+.form__button:hover {
+  color: #fff !important;
+}
+
+
 .login__form a {
-    text-align: end;
-    margin-top: 20px;
-    display: block;
+  text-align: end;
+  margin-top: 20px;
+  display: block;
 }
 
 .login__label {
-    display: flex !important;
-    margin-bottom: 10px;
-    font-weight: 500;
-    font-family: 'Inter' serif;
+  display: flex !important;
+  margin-bottom: 15px 10px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-family: "Inter" serif;
 }
 
-.login__form .password {
-    display: block;
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 15px 0 15px 19px;
-    border: 1px solid #008B51;
-    border-radius: 9px;
-    outline: none;
-}
 
-.login__form .phone {
-    width: 100%;
-    background: #fff !important;
-    border: none;
-    outline: none;
-}
 
-.default__phone {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 15px 0 15px 19px;
-    border: 1px solid #008B51;
-    border-radius: 9px;
-    outline: none;
-}
 
-input#phone.phone {
-    background-color: #fff !important;
-}

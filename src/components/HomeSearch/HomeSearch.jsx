@@ -247,7 +247,7 @@ export const HomeSearch = () => {
           </div>
           <div className="search__btn">
             <Link to={"announsearch"} onClick={handleSubmitSearch} href="#">
-              {t("searchpage.search_btn")}
+              {t("homebanner.searchbtn")}
             </Link>
           </div>
         </div>

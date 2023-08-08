@@ -21,6 +21,8 @@ export const Header = () => {
   const [drop, setDrop] = useState(false);
   const [burger, setBurger] = useState(false);
 
+  // const [changeLang, setChangeLang] = useState('uz')
+
   const { t, i18n } = useTranslation();
 
   const token = localStorage.getItem("token");
@@ -29,28 +31,21 @@ export const Header = () => {
 
   const options = [
     {
-      value: "Uz",
-      label: (
-        // <div>
-        <img src={uzflag} width={30} alt="" />
-        // </div>
-      ),
-    }, //en
+      value: "uz",
+      label: <img src={uzflag} width={30} alt="" />,
+    },
     {
-      value: "Ru",
-      label: (
-        // <div>
-        <img src={ruflag} width="30" alt="" />
-        // </div>
-      ),
-    }, //de
+      value: "ru",
+      label: <img src={ruflag} width="30" alt="" />,
+    },
   ];
-  const [lang, setLang] = useState("O'z");
+  const [lang, setLang] = useState("ru");
+
+  console.log(lang);
 
   const [langLabel, setLangLabel] = useState(options[0].label);
 
   const [course, setCourse] = useState("Uzs");
-
   function handlclick(n) {
     setLangLabel(options[n].label);
     setLang(options[n].value);
@@ -173,11 +168,23 @@ export const Header = () => {
                       {langLabel}
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => handlclick(0)}>
+                    <Dropdown.Menu defaultValue={i18n.language}>
+                      <Dropdown.Item
+                        onClick={() => {
+                          localStorage.setItem("lang", "uz");
+                          i18n.changeLanguage("uz");
+                          localStorage.setItem("uz", 0);
+                        }}
+                      >
                         {options[0].value}
                       </Dropdown.Item>
-                      <Dropdown.Item onClick={() => handlclick(1)}>
+                      <Dropdown.Item
+                        onClick={() => {
+                          localStorage.setItem("lang", "ru");
+                          i18n.changeLanguage("ru");
+                          localStorage.setItem("uz", 0);
+                        }}
+                      >
                         {options[1].value}
                       </Dropdown.Item>
                     </Dropdown.Menu>
@@ -292,7 +299,7 @@ export const Header = () => {
                   ) : (
                     <>
                       <Link to="/login">{t("header.login")}</Link> /{" "}
-                      <Link to="/register">{t("profile.register")}</Link>
+                      <Link to="/register">{t("header.register")}</Link>
                     </>
                   )}
                 </div>
