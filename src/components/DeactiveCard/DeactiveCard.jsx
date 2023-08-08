@@ -15,8 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "@/Api/api";
 import cardService from "@/Api/card.service.jsx";
-import { useTranslation } from 'react-i18next';
-
+import { useTranslation } from "react-i18next";
 
 export const DeactiveCard = () => {
   const { t, i18n } = useTranslation();
@@ -51,11 +50,11 @@ export const DeactiveCard = () => {
       const data = await AnnounService.setActiveCard(id, token);
       console.log(data);
       if (data.status === 200) {
-        toast.success(`${t('announ.succannoun')}`);
+        toast.success(`${t("announ.succannoun")}`);
       }
       getActives();
     } catch (error) {
-      toast.warning(`${t('announ.checkadmin')}`);
+      toast.warning(`${t("announ.checkadmin")}`);
     }
   };
 
@@ -66,7 +65,7 @@ export const DeactiveCard = () => {
       const data = await AnnounService.deleteCard(id, token);
       // console.log(data.status);
       if (data.status === 200) {
-        toast.success(`${t('announ.deleteannoun')}`);
+        toast.success(`${t("announ.deleteannoun")}`);
       }
       getActives();
 
@@ -90,7 +89,7 @@ export const DeactiveCard = () => {
       navigate("/register");
     }
 
-    if (targetTag != "active__btn") {
+    if (targetTag != "active__btn" && targetTag != 'delete__img') {
       if (targetTag === "card__like" || targetTag === "card__like-img") {
         const response = await cardService.likeCard(id);
         console.log("like: ", response);
@@ -119,10 +118,19 @@ export const DeactiveCard = () => {
                   <img
                     name={item.slug}
                     id={item.announcement_id}
-                    className="card__img"
+                    className="card__img mb-3"
                     src={BASE_URL + item?.thumb[0]}
                     height={222}
                   />
+                  <img
+                    name={item.slug}
+                    id={item.announcement_id}
+                    onClick={handleDelete}
+                    className="delete__img"
+                    src={deleteBtn}
+                    alt=""
+                  />
+
                   <div
                     name={item.slug}
                     id={item.announcement_id}
@@ -159,7 +167,7 @@ export const DeactiveCard = () => {
                         >
                           <img
                             className="card__like-img"
-                            src={item?.likeCount ? CardLikeIcon : CardULikeIcon}
+                            src={CardULikeIcon}
                             width={17}
                             height={16}
                             alt="Card like button image"
@@ -185,16 +193,19 @@ export const DeactiveCard = () => {
                       id={item.announcement_id}
                       className="card__body"
                     >
-                      {item.description}
+                      {item.description?.substring(0, 60)}...
                     </h3>
                     <button
                       onClick={handleChange}
                       id={item.announcement_id}
                       className="active__btn"
                     >
-                      {t('announ.activeannoun')}
+                      {t("announ.activeannoun")}
                     </button>
-
+                    <p className="m-0">
+                      {item?.district},{" "}
+                      {item?.createdAt.toString().slice(0, 10)}
+                    </p>
                     <p
                       name={item.slug}
                       id={item.announcement_id}
@@ -217,7 +228,7 @@ export const DeactiveCard = () => {
           )}
         </ul>
         <ToastContainer
-          position="bottom-right"
+          position="bottom-center"
           autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}

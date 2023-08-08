@@ -3,92 +3,17 @@ import React, { useState } from "react";
 import buttonPhone from "../../../../public/assets/images/home-phone.svg";
 import "./HomeBanner.scss";
 import { HomeSearch } from "../../../components/HomeSearch/HomeSearch";
+import { useTranslation } from "react-i18next";
 
 export const HomeBanner = () => {
+
+  const { t, i18n } = useTranslation();
+
+
   return (
     <>
       <HomeSearch />{" "}
-      {/* <div id="carouselExampleIndicators" className="carousel slide" data-mdb-ride="carousel">
-        <div className="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to={0}
-            className="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          />
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to={1}
-            aria-label="Slide 2"
-          />
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to={2}
-            aria-label="Slide 3"
-          />
-        </div>
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <div className="home-banner">
-              <div className="container">
-                <div className="home-banner-wrap">
-                  <div className="banner-wrapper">
-                    <h1 className="banner-title">
-                      Uy-joy e’lonlaringizni bizning saytga joylashtiring
-                    </h1>
-
-                    <button className="banner-btn" href="#">
-                      <img src={buttonPhone} alt="buton-phone" /> Biz bilan
-                      bog’lanish
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <div className="home-banner">
-              <div className="container">
-                <div className="home-banner-wrap">
-                  <div className="banner-wrapper">
-                    <h1 className="banner-title">
-                      Uy-joy e’lonlaringizni bizning saytga joylashtiring
-                    </h1>
-
-                    <button className="banner-btn" href="#">
-                      <img src={buttonPhone} alt="buton-phone" /> Biz bilan
-                      bog’lanish
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <div className="home-banner">
-              <div className="container">
-                <div className="home-banner-wrap">
-                  <div className="banner-wrapper">
-                    <h1 className="banner-title">
-                      Uy-joy e’lonlaringizni bizning saytga joylashtiring
-                    </h1>
-
-                    <button className="banner-btn" href="#">
-                      <img src={buttonPhone} alt="buton-phone" /> Biz bilan
-                      bog’lanish
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
-      <div
+           <div
         id="carouselExampleIndicators"
         className="carousel slide"
         data-mdb-ride="carousel"
@@ -114,12 +39,7 @@ export const HomeBanner = () => {
             data-mdb-slide-to={2}
             aria-label="Slide 3"
           />
-          <button
-            type="button"
-            data-mdb-target="#carouselExampleIndicators"
-            data-mdb-slide-to={3}
-            aria-label="Slide 3"
-          />{" "}
+          
          
         </div>
         <div className="carousel-inner">
@@ -129,12 +49,12 @@ export const HomeBanner = () => {
                 <div className="home-banner-wrap">
                   <div className="banner-wrapper">
                     <h1 className="banner-title">
-                      Uy-joy e’lonlaringizni bizning saytga joylashtiring
+                      {t("homebanner.title")}
                     </h1>
 
                     <button className="banner-btn" href="#">
-                      <img src={buttonPhone} alt="buton-phone" /> Biz bilan
-                      bog’lanish
+                      <img src={buttonPhone} alt="buton-phone" />
+                      {t("homebanner.callbtn")}
                     </button>
                   </div>
                 </div>
@@ -147,12 +67,11 @@ export const HomeBanner = () => {
                 <div className="home-banner-wrap">
                   <div className="banner-wrapper">
                     <h1 className="banner-title">
-                      Uy-joy e’lonlaringizni bizning saytga joylashtiring
-                    </h1>
+                    {t("homebanner.title")}                    </h1>
 
                     <button className="banner-btn" href="#">
-                      <img src={buttonPhone} alt="buton-phone" /> Biz bilan
-                      bog’lanish
+                      <img src={buttonPhone} alt="buton-phone" />                       {t("homebanner.callbtn")}
+
                     </button>
                   </div>
                 </div>
@@ -165,36 +84,18 @@ export const HomeBanner = () => {
                 <div className="home-banner-wrap">
                   <div className="banner-wrapper">
                     <h1 className="banner-title">
-                      Uy-joy e’lonlaringizni bizning saytga joylashtiring
+                    {t("homebanner.title")} 
                     </h1>
 
                     <button className="banner-btn" href="#">
-                      <img src={buttonPhone} alt="buton-phone" /> Biz bilan
-                      bog’lanish
+                      <img src={buttonPhone} alt="buton-phone" /> {t("homebanner.callbtn")} 
                     </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>{" "}
-          <div className="carousel-item">
-            <div className="home-banner">
-              <div className="container">
-                <div className="home-banner-wrap">
-                  <div className="banner-wrapper">
-                    <h1 className="banner-title">
-                      Uy-joy e’lonlaringizni bizning saytga joylashtiring
-                    </h1>
-
-                    <button className="banner-btn" href="#">
-                      <img src={buttonPhone} alt="buton-phone" /> Biz bilan
-                      bog’lanish
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+         
         </div>
         <button
           className="carousel-control-prev"

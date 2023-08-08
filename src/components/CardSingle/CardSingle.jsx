@@ -211,13 +211,7 @@ export const CardSingle = () => {
                       </div>
                     </button>
                     <div className="card-single__user-info">
-                      <img
-                        className="card-single__user-avatar"
-                        src={BASE_URL + user?.avatar}
-                        width={32}
-                        height={32}
-                        alt={user?.full_name}
-                      />
+                     
                       <span className="card-single__user-name">
                         {user?.full_name}
                       </span>

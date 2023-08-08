@@ -11,18 +11,21 @@ import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilon
 import arrow from "../../../public/assets/images/left-arrow.svg";
 import MessagingService from "../../Api/messaging.service";
 //* Socket connection
-import { io } from "socket.io-client";
+import  io  from "socket.io-client";
 
 export const Messaging = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     if (token) {
-      const socket = io.connect("http://test.uyjoybaraka.uz/", {
+      const socket = io.connect("http://test.uyjoybaraka.uz", {
         extraHeaders: {
-          Authorization: token,
+          authorization: token,
         },
       });
+
+      
+      console.log(socket);
 
       return () => {
         socket.disconnect();
@@ -30,25 +33,25 @@ export const Messaging = () => {
     }
   }, [token]);
 
-  const mockData = [
-    {
-      id: 1,
-      src: "../../../public/assets/images/messaging-user-icon.svg",
-      name: "Umid",
-      ad: "BBeruniyda 1-xonalik kvartira ijaraga studentlarga beriladi",
-      message:
-        "Aka biz 15 kishimiz, realniy turamiz, honada kir mashina bormi?",
-      chat_started: "01.08.2022",
-    },
-    {
-      id: 2,
-      src: "../../../public/assets/images/messaging-user-icon.svg",
-      name: "Qosim Abdusattorov",
-      ad: "Yakkasaroyda 5-xonalik kvartira ijaraga studentlarga beriladi",
-      message: "aka tel raqam tashlang?",
-      chat_started: "22.08.2021",
-    },
-  ];
+  // const mockData = [
+  //   {
+  //     id: 1,
+  //     src: "../../../public/assets/images/messaging-user-icon.svg",
+  //     name: "Umid",
+  //     ad: "BBeruniyda 1-xonalik kvartira ijaraga studentlarga beriladi",
+  //     message:
+  //       "Aka biz 15 kishimiz, realniy turamiz, honada kir mashina bormi?",
+  //     chat_started: "01.08.2022",
+  //   },
+  //   {
+  //     id: 2,
+  //     src: "../../../public/assets/images/messaging-user-icon.svg",
+  //     name: "Qosim Abdusattorov",
+  //     ad: "Yakkasaroyda 5-xonalik kvartira ijaraga studentlarga beriladi",
+  //     message: "aka tel raqam tashlang?",
+  //     chat_started: "22.08.2021",
+  //   },
+  // ];
   const [isActive, setIsActive] = useState(false);
   const [isBarActive, setIsBarActive] = useState();
   const [chats, setChats] = useState(null);
@@ -82,6 +85,7 @@ export const Messaging = () => {
     (async () => {
       try {
         const data = await MessagingService.GetMessaging();
+        console.log(data);
         setChats(data?.members);
       } catch (error) {
         console.error("Error occurred while fetching user profile", error);

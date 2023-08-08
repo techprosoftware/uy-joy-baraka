@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
@@ -5,10 +6,12 @@ import "./Upload.scss";
 import close from "../../../public/assets/images/close.png";
 import ImageCompressor from "image-compressor.js";
 import { BackButton } from "@components/BackButton/BackButton";
-import { Select, Space } from "antd";
+import { Button, Form, InputNumber, Select, Space } from "antd";
 import AnnounService from "../../Api/announ.service";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
+
 const provinceData = [
   "Toshkent",
   "Andijon",
@@ -361,13 +364,33 @@ export const Upload = () => {
     if (data?.status === 201) {
       toast.success("E'lon muvaffaqqiyatli qo'shildi.");
     } else {
-      toast.error("E'lon qo'shilmadi.");
+      toast.error("Maydonni to'liq to'ldiring.");
     }
   };
 
+  const [loadings, setLoadings] = useState([]);
+  const enterLoading = (index) => {
+    setLoadings((prevLoadings) => {
+      const newLoadings = [...prevLoadings];
+      newLoadings[index] = true;
+      return newLoadings;
+    });
+    setTimeout(() => {
+      setLoadings((prevLoadings) => {
+        const newLoadings = [...prevLoadings];
+        newLoadings[index] = false;
+        return newLoadings;
+      });
+    }, 6000);
+  };
+
   const handleSubmit = (e) => {
+    enterLoading(0)
     e.preventDefault();
     const formData = new FormData();
+    // console.log(fullPhone);
+
+  console.log(phone.current.value);
 
     const fullPhone = "998" + phone.current.value;
     formData.append("phone", fullPhone);
@@ -385,12 +408,13 @@ export const Upload = () => {
 
     sendAnnoun(formData);
   };
+  const { t } = useTranslation();
 
   return (
     <div className="upload__inner">
       <div className="container">
         <BackButton />
-        <h2 className="upload__title">E’lon joylash</h2>
+        <h2 className="upload__title">{t("addannoun.annountitle")}</h2>
 
         <form
           onSubmit={handleSubmit}
@@ -415,7 +439,7 @@ export const Upload = () => {
           </div>
 
           <div className="upload__wrap">
-            <p>Uy rasmini yuklang:</p>
+            <p>{t("addannoun.addimg")}:</p>
             <label className="upload__img" htmlFor="upload">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -431,7 +455,7 @@ export const Upload = () => {
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
               </svg>{" "}
-              Rasm yuklang
+              {t("addannoun.imgtitle")}
               <input
                 type="file"
                 className="upload-input"
@@ -446,10 +470,10 @@ export const Upload = () => {
           </div>
 
           <div className="upload__wrap">
-            <p>Shaharni tanlang:</p>
+            <p>{t("addannoun.selectcity")}:</p>
             <Space wrap>
               <Select
-                defaultValue="Shahar tanlang"
+              placeholder={t("addannoun.selectcity")}
                 style={{
                   width: 120,
                 }}
@@ -460,7 +484,7 @@ export const Upload = () => {
                 }))}
               />
               <Select
-                defaultValue="Tuman tanlang"
+                placeholder={t("addannoun.selectcity")}
                 style={{
                   width: 120,
                 }}
@@ -475,29 +499,29 @@ export const Upload = () => {
           </div>
 
           <div className="upload__wrap">
-            <p>Manzil:</p>
+            <p>{t("addannoun.address")}:</p>
             <input
               className="address__input mb-2"
               type="text"
               ref={address}
-              placeholder="Manzil"
+              placeholder="Chilonzor metorining yonida"
             />
             <Select
-              defaultValue="Ijara yoki Sotuv"
+              defaultValue={t("addannoun.type")}
               style={{
                 width: 200,
               }}
               onChange={handleChange}
               options={[
                 {
-                  label: "Ijara yoki Sotuv",
+                  label: `${t("addannoun.type")}`,
                   options: [
                     {
-                      label: "Ijara",
+                      label: `${t("addannoun.rent")}`,
                       value: "rent",
                     },
                     {
-                      label: "Sotuv",
+                      label: `${t("addannoun.sale")}`,
                       value: "sale",
                     },
                   ],
@@ -507,27 +531,27 @@ export const Upload = () => {
           </div>
 
           <div className="upload__wrap">
-            <p>Sarlavha kiriting:</p>
+            <p>{t("addannoun.title")}</p>
             <textarea
               ref={title}
               className="upload__title__area"
-              placeholder="Sarlavha"
+              placeholder="Faqat oilaga beriladi"
               rows="5"
             ></textarea>
           </div>
 
           <div className="upload__wrap">
-            <p>Uy haqida ma’lumot:</p>
+            <p>{t("addannoun.desc")}</p>
             <textarea
               ref={description}
               className="upload__title__area"
-              placeholder="Uy haqida ma’lumot"
+              placeholder="Uy yaxshi hamma sharoiti bor"
               rows="6"
             ></textarea>
           </div>
 
           <div className="upload__wrap ">
-            <p>Narx Kiriting:</p>
+            <p>{t("addannoun.price")}</p>
             <div className="upload__price">
               <div className="upload__phone">
                 <input
@@ -536,25 +560,25 @@ export const Upload = () => {
                   id="phone"
                   className="price__input"
                   type="number"
-                  placeholder="Narx kiriting:"
+                  placeholder="2 000 000"
                 />
               </div>
               <Select
-                defaultValue="Valyuta"
+                defaultValue={t("addannoun.course")}
                 style={{
                   width: 200,
                 }}
                 onChange={handleChange1}
                 options={[
                   {
-                    label: "Valyuta",
+                    label: `${t("addannoun.course")}`,
                     options: [
                       {
-                        label: "So'm",
+                        label: `${t("addannoun.sum")}`,
                         value: "sum",
                       },
                       {
-                        label: "Dollar",
+                        label: `${t("addannoun.usd")}`,
                         value: "dollar",
                       },
                     ],
@@ -565,25 +589,40 @@ export const Upload = () => {
           </div>
 
           <div className="upload__wrap">
-            <p>Telefon raqam:</p>
-            <div className="upload__price">
-              <div className="upload__phone">
-                <span>+998</span>
-                <input
-                  ref={phone}
-                  required
-                  id="phone"
-                  className="price__input"
-                  type="number"
-                  placeholder="__ ___ __ __"
+            <p>{t("addannoun.phone")}:</p>
+            <div className="">
+              <div className="">
+              <Form.Item
+                name="phone"
+                rules={[
+                  {
+                    required: true,
+                    type: "regexp",
+                    pattern: new RegExp(/\d+/g),
+                    message: "Telefon raqam kiriting!",
+                  },
+                ]}
+              >
+                <InputNumber
+                ref={phone}
+                  placeholder="90 123-45-67"
+                  maxLength="9"
+                  minLength="9"
+                  prefix="+998"
+                  size="large"
+                  style={{
+                    width: "100%",
+                  }}
                 />
+              </Form.Item>
               </div>
             </div>{" "}
           </div>
+          <Button className="upload__button" size="large" loading={loadings[0]} onClick={enterLoading} htmlType="submit">Kirish</Button>
 
-          <button type="submit" className="upload__btn">
-            Saqlash
-          </button>
+          {/* <button type="submit" className="upload__btn">
+          {t("addannoun.send")}
+          </button> */}
         </form>
       </div>
       <ToastContainer
