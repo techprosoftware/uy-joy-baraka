@@ -83,7 +83,7 @@ export const SmsPage = () => {
               className="sms__form"
             >
               <label className="sms__label" htmlFor="phone">
-                Nomer
+                Kod
               </label>
               <Form.Item
                 name="code"
@@ -99,7 +99,7 @@ export const SmsPage = () => {
                 <InputNumber
                   placeholder="0 0 0 0 0"
                   maxLength="9"
-                  minLength="9"
+                  minLength="5"
                   size="large"
                   suffix={`${time}s`}
                   style={{
