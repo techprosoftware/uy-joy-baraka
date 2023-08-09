@@ -59,10 +59,10 @@
 }
 
 .upload__wrap p {
-  position: absolute;
-  left: -26%;
-  top: 40%;
-  margin: 0;
+  position: relative;
+  // left: ;
+  top: 35%;
+  margin: 0 0 5px 0;
 }
 
 .upload__region {
@@ -280,6 +280,30 @@ border-color: #fff !important;
   // background: #fff;
   // box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.1);
 }
+
+.upload__button {
+  background: #008b51;
+  border-radius: 9px;
+  outline: none;
+  width: 100%;
+  max-width: 570px;
+  border: none;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+}
+
+.upload__button:focus {
+  color: #fff !important;
+}
+
+.upload__button:hover {
+color: #fff !important;
+}
+
 
 @media only screen and (max-width: 575px) {
   .img__item {

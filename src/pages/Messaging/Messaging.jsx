@@ -13,50 +13,48 @@ import MessagingService from "../../Api/messaging.service";
 import card from "../../Api/card.service";
 
 //* Socket connection
-import { io } from "socket.io-client";
+import  io  from "socket.io-client";
 
 export const Messaging = () => {
   const token = localStorage.getItem("token");
   console.log(token);
 
-  useEffect(() => {
-    if (token) {
-      const socket = io("http://test.uyjoybaraka.uz/", {
-        extraHeaders: {
-          authorization: token,
-        },
-      });
-      // (async function() {
-      //   const a = await card.getAllCard();
-      //   console.log(a);
-      // })()
-      console.log(socket);
+  // useEffect(() => {
+  //   if (token) {
+  //     const socket = io.connect("http://test.uyjoybaraka.uz", {
+  //       extraHeaders: {
+  //         authorization: token,
+  //       },
+  //     });
 
-      return () => {
-        socket.disconnect();
-      };
-    }
-  }, [token]);
+      
+  //     console.log(socket);
 
-  const mockData = [
-    {
-      id: 1,
-      src: "../../../public/assets/images/messaging-user-icon.svg",
-      name: "Umid",
-      ad: "BBeruniyda 1-xonalik kvartira ijaraga studentlarga beriladi",
-      message:
-        "Aka biz 15 kishimiz, realniy turamiz, honada kir mashina bormi?",
-      chat_started: "01.08.2022",
-    },
-    {
-      id: 2,
-      src: "../../../public/assets/images/messaging-user-icon.svg",
-      name: "Qosim Abdusattorov",
-      ad: "Yakkasaroyda 5-xonalik kvartira ijaraga studentlarga beriladi",
-      message: "aka tel raqam tashlang?",
-      chat_started: "22.08.2021",
-    },
-  ];
+  //     return () => {
+  //       socket.disconnect();
+  //     };
+  //   }
+  // }, [token]);
+
+  // const mockData = [
+  //   {
+  //     id: 1,
+  //     src: "../../../public/assets/images/messaging-user-icon.svg",
+  //     name: "Umid",
+  //     ad: "BBeruniyda 1-xonalik kvartira ijaraga studentlarga beriladi",
+  //     message:
+  //       "Aka biz 15 kishimiz, realniy turamiz, honada kir mashina bormi?",
+  //     chat_started: "01.08.2022",
+  //   },
+  //   {
+  //     id: 2,
+  //     src: "../../../public/assets/images/messaging-user-icon.svg",
+  //     name: "Qosim Abdusattorov",
+  //     ad: "Yakkasaroyda 5-xonalik kvartira ijaraga studentlarga beriladi",
+  //     message: "aka tel raqam tashlang?",
+  //     chat_started: "22.08.2021",
+  //   },
+  // ];
   const [isActive, setIsActive] = useState(false);
   const [isBarActive, setIsBarActive] = useState();
   const [chats, setChats] = useState(null);
@@ -90,6 +88,7 @@ export const Messaging = () => {
     (async () => {
       try {
         const data = await MessagingService.GetMessaging();
+        console.log(data);
         setChats(data?.members);
       } catch (error) {
         console.error("Error occurred while fetching user profile", error);
@@ -158,7 +157,7 @@ export const Messaging = () => {
                       >
                         <div className="chat-inner">
                           <img
-                            src={`https://test.uyjoybaraka.uz/${info.user.avatar}`}
+                            src={`http://test.uyjoybaraka.uz/${info?.user?.avatar}`}
                             width={100}
                             alt="user image"
                             className="member-img"
@@ -202,7 +201,7 @@ export const Messaging = () => {
                     <div className="user-selected">
                       <div className="user-inner">
                         <img
-                          src={`https://test.uyjoybaraka.uz/${selectedChat.user.avatar}`}
+                          src={`http://test.uyjoybaraka.uz/${selectedChat.user.avatar}`}
                           alt="selected user image"
                           width={100}
                         />

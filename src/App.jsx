@@ -7,30 +7,27 @@ import { Public } from "./pages/Public/Public";
 import { Register } from "./pages/Register/Register";
 import { Login } from "./pages/Login/Login";
 import { SmsPage } from "./pages/smsPage/SmsPage";
-import { CardSingle } from "./components/CardSingle/CardSingle";
-import { NotFoundError } from "./pages/404/404";
-import { Messaging } from "./pages/Messaging/Messaging";
-import { AboutUs } from "./pages/AboutUs/AboutUs";
-import { UserInfo } from "./pages/User-info/UserInfo";
+
 import "react-loading-skeleton/dist/skeleton.css";
 import i18next from "i18next";
 import i18n from 'i18next';
 import { initReactI18next } from "react-i18next";
 import { BackTop } from "antd";
-import { lang } from "./lang/lang";
+import { lang } from "./language/lang";
 
 function App() {
 
   i18n
-
   .use(initReactI18next)
   .init({
     debug: true,
-    fallbackLng: 'uz',
+    fallbackLng: localStorage.getItem('lang') || 'Uz',
    
     resources: {
-      uz: {
-        translation: lang.uz
+      Uz: {
+        translation: lang.Uz
+      },  Ru: {
+        translation: lang.Ru
       }
     }
   });
@@ -43,17 +40,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/sms" element={<SmsPage />} />
       </Routes>
-      {/* <Routes>
-        <Route path="/*" element={<Public />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/sms" element={<SmsPage />} />
-        <Route path="/card" element={<CardSingle />} />
-        <Route path="/messaging" element={<Messaging />}>
-          <Route path="sell" element={<SellMessaging />} />
-          <Route path="buy" element={<BuyMessaging />} />
-        </Route>
-      </Routes> */}
+     
       <div className="back">
         <BackTop />
       </div>

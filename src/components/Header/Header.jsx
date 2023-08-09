@@ -21,6 +21,8 @@ export const Header = () => {
   const [drop, setDrop] = useState(false);
   const [burger, setBurger] = useState(false);
 
+  // const [changeLang, setChangeLang] = useState('uz')
+
   const { t, i18n } = useTranslation();
 
   const token = localStorage.getItem("token");
@@ -30,31 +32,31 @@ export const Header = () => {
   const options = [
     {
       value: "Uz",
-      label: (
-        // <div>
-        <img src={uzflag} width={30} alt="" />
-        // </div>
-      ),
-    }, //en
+      label: <img src={uzflag} width={30} alt="" />,
+    },
     {
       value: "Ru",
-      label: (
-        // <div>
-        <img src={ruflag} width="30" alt="" />
-        // </div>
-      ),
-    }, //de
+      label: <img src={ruflag} width="30" alt="" />,
+    },
   ];
-  const [lang, setLang] = useState("O'z");
+  const [lang, setLang] = useState("Uz");
+
+  console.log(lang);
 
   const [langLabel, setLangLabel] = useState(options[0].label);
 
   const [course, setCourse] = useState("Uzs");
-
+  
+  const [flag, setFlag] = useState(localStorage.getItem('uz') || 0)
+  
   function handlclick(n) {
     setLangLabel(options[n].label);
     setLang(options[n].value);
   }
+
+  useEffect(() => {
+    handlclick(localStorage.getItem('uz') || 0)
+  }, [])
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -173,11 +175,27 @@ export const Header = () => {
                       {langLabel}
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => handlclick(0)}>
+                    <Dropdown.Menu defaultValue={i18n.language}>
+                      <Dropdown.Item
+                        onClick={() => {
+                          localStorage.setItem("lang", "Uz");
+                          i18n.changeLanguage("Uz");
+                          localStorage.setItem("uz", 0);
+                          handlclick(localStorage.getItem('uz') || 0)
+                        }}
+                      >
                         {options[0].value}
                       </Dropdown.Item>
-                      <Dropdown.Item onClick={() => handlclick(1)}>
+                      <Dropdown.Item
+                        onClick={() => {
+                          localStorage.setItem("lang", "Ru");
+                          i18n.changeLanguage("Ru");
+                          localStorage.setItem("uz", 1);
+                          handlclick(localStorage.getItem('uz') || 1)
+
+
+                        }}
+                      >
                         {options[1].value}
                       </Dropdown.Item>
                     </Dropdown.Menu>
@@ -292,7 +310,7 @@ export const Header = () => {
                   ) : (
                     <>
                       <Link to="/login">{t("header.login")}</Link> /{" "}
-                      <Link to="/register">{t("profile.register")}</Link>
+                      <Link to="/register">{t("header.register")}</Link>
                     </>
                   )}
                 </div>

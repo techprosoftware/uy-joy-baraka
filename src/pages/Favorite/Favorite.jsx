@@ -184,7 +184,7 @@ export const Favorite = () => {
           ) : (
             <div className="py-5 d-flex flex-column align-items-center">
               <p>
-                <span className=" heart__desc">
+                <span className="favorite__desc">
                   Hozircha yoqtirgan e'lonlaringiz mavjud emas!
                 </span>{" "}
               </p>

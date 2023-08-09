@@ -15,7 +15,7 @@ import { Switch } from "antd";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "@/Api/api";
 import cardService from "@/Api/card.service.jsx";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 export const ActiveCard = () => {
   const { t, i18n } = useTranslation();
@@ -56,7 +56,7 @@ export const ActiveCard = () => {
       const token = localStorage.getItem("token");
       const data = await AnnounService.setActiveCard(id, token);
       if (data.status === 200) {
-        toast.success(`${t('announ.errannoun')}`);
+        toast.success(`${t("announ.errannoun")}`);
       }
       getActives();
 
@@ -92,7 +92,7 @@ export const ActiveCard = () => {
 
   return (
     <>
-      <div>
+      <div className="active__card">
         <ul className="card-list">
           {activeCard.isLoading ? (
             mockData.map((moc) => <CardSkeleton key={moc} />)
@@ -108,7 +108,7 @@ export const ActiveCard = () => {
                   <img
                     name={item.slug}
                     id={item.announcement_id}
-                    className="card__img"
+                    className="card__img mb-3"
                     src={BASE_URL + item?.thumb[0]}
                     height={222}
                   />
@@ -148,7 +148,7 @@ export const ActiveCard = () => {
                         >
                           <img
                             className="card__like-img"
-                            src={item?.likeCount ? CardLikeIcon : CardULikeIcon}
+                            src={CardULikeIcon}
                             width={17}
                             height={16}
                             alt="Card like button image"
@@ -174,16 +174,19 @@ export const ActiveCard = () => {
                       id={item.announcement_id}
                       className="card__body"
                     >
-                      {item.description}
+                      {item.description?.substring(0, 60)}...
                     </h3>
                     <button
                       onClick={handleChange}
                       id={item.announcement_id}
                       className="de_active__btn"
                     >
-                      {t('announ.deactiveannoun')}
+                      {t("announ.deactiveannoun")}
                     </button>
-
+                    <p className="m-0">
+                      {item?.district},{" "}
+                      {item?.createdAt.toString().slice(0, 10)}
+                    </p>
                     <p
                       name={item.slug}
                       id={item.announcement_id}
@@ -206,7 +209,7 @@ export const ActiveCard = () => {
           )}
         </ul>
         <ToastContainer
-          position="bottom-right"
+          position="bottom-center"
           autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}

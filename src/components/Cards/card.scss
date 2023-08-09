@@ -1,7 +1,7 @@
 .card {
   width: 100% !important;
   max-width: 308px !important;
-  min-height: 380px !important;
+  min-height: 481px !important;
   border: none !important;
   background-color: rgb(255, 255, 255) !important;
   // box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12) !important;
@@ -16,7 +16,7 @@
 }
 
 .card__wrap {
-  padding: 10px 20px 30px 20px;
+  padding: 10px 20px 20px 20px;
 }
 
 
@@ -24,12 +24,7 @@
   width: 100%;
   min-height: 275px;
   max-height: 275px;
-  // border-radius: 10px;
-
 }
-
-
-
 
 .card__like-img {
   object-fit: cover;
@@ -110,7 +105,8 @@
 @media only screen and (max-width: 994px) {
   .card {
     max-width: 440px !important;
-    min-height: 471px !important;
+    min-height: 500px !important;
+    max-height: 500px !important;
   }
 
 
@@ -119,6 +115,8 @@
 @media only screen and (max-width: 935px) {
   .card {
     max-width: 400px !important;
+    max-height: 500px !important;
+
   }
 }
 
@@ -148,9 +146,13 @@
 @media only screen  and (max-width: 618px){
   .card {
     max-width: 250px !important;
-    min-height: 170px !important;
+    min-height: 426px !important;
     padding: 15px; 
 
+  }
+
+  .card__wrap {
+    padding: 0;
   }
 
   .card__img {
@@ -166,6 +168,9 @@
     max-width: 230px !important;
     // min-height: 270px;
 
+  }
+  .card__wrap {
+    padding: 10px;
   }
 
   .card__img {
@@ -197,7 +202,7 @@
 
 @media only screen  and (max-width: 485px){
   .card {
-    max-width: 210px !important;
+    max-width: 350px !important;
   }
 
   .card__img {

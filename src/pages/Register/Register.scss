@@ -1,13 +1,4 @@
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
 
 
 .register__inner {
@@ -15,9 +6,14 @@ input[type=number] {
 }
 
 .register__wrapper {
-  text-align: center;
-  // position: absolute;
   width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
 }
 
 .register__wrapper h3 {
@@ -41,12 +37,7 @@ input[type=number] {
   color: #000000;
 }
 
-.register__form {
-  width: 100%;
-  max-width: 550px;
-  display: block;
-  margin: 0 auto;
-}
+
 
 .register__form .register__inputs {
   display: block;
@@ -64,7 +55,6 @@ input[type=number] {
   border-radius: 9px;
   outline: none;
   width: 100%;
-  margin-top: 12px;
   border: none;
   font-family: "Gilroy";
   font-style: normal;
@@ -72,7 +62,14 @@ input[type=number] {
   font-size: 18px;
   line-height: 22px;
   color: #ffffff;
-  padding: 15px 0;
+}
+
+.register__form button:focus {
+  color: #fff !important;
+}
+
+.register__form button:hover {
+  color: #fff !important;
 }
 
 .register__form a {
@@ -83,7 +80,7 @@ input[type=number] {
 
 .register__label {
   display: flex !important;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-weight: 500;
   font-family: 'Inter' serif;
 }

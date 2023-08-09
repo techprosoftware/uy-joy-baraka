@@ -18,6 +18,7 @@ export const InfiniteScroll = () => {
   const fetchMoreData = async () => {
     setTimeout(async () => {
       const response = await await CardService.getByPage(page)
+      console.log('res', response);
       dispatch(incPage(page))
       setFetcher({
         hasMore: fetcher.hasMore,

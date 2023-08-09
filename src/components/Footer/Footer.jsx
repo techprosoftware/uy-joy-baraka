@@ -13,8 +13,11 @@ import FacebookIcon from "../../../public/assets/images/facebook-icon.svg";
 import TwitterIcon from "../../../public/assets/images/twitter-icon.svg";
 import YouTubeIcon from "../../../public/assets/images/youtube-icon.svg";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       {/* Pre footer */}
@@ -30,7 +33,7 @@ export const Footer = () => {
             </div>
             <div className="pre-footer__inner">
               <h2 className="pre-footer__text">
-                Har doim xabardor bo’ling Uy-joy baraka ilovasini yuklab oling
+                {t("footer.appstitle")}
               </h2>
             </div>
             <div className="pre-footer__inner">
@@ -68,17 +71,17 @@ export const Footer = () => {
             </div>
             <div className="footer__items">
               <Link className="footer__aboutLink" to="/haqida">
-                Biz haqimizda
+                {t("header.aboutme")}
               </Link>
               <ul className="footer__list links">
                 <li>
-                  <a href="https://t.me/hamkorlikuyjoybaraka">Hamkorlik</a>
+                  <a href="https://t.me/hamkorlikuyjoybaraka">{t("footer.partners")}</a>
                 </li>
                 <li>
-                  <a href="https://t.me/reklamauyjoybaraka">Reklama</a>
+                  <a href="https://t.me/reklamauyjoybaraka">{t("footer.ads")}</a>
                 </li>
                 <li>
-                  <a href="tel:+998907776655">Murojaat uchun</a>
+                  <a href="tel:+998907776655">{t("footer.callme")}</a>
                 </li>
               </ul>
             </div>

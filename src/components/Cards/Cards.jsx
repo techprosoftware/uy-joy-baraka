@@ -1,5 +1,5 @@
 import "./card.scss"
-import CardLikeIcon from "@images/card-like-icon.svg"
+// import CardLikeIcon from "@images/card-like-icon.svg"
 import CardULikeIcon from "@images/card-ulike-icon.svg"
 import { useNavigate } from "react-router-dom"
 import { BASE_URL } from "@/Api/api"
@@ -14,7 +14,7 @@ export const Card = (card) => {
     .replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, "$1 ")
   const navigate = useNavigate()
   // const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon)
-
+  const data = card.card?.createdAt.toString().slice(0, 10)
 
   const [like , setLike] = useState(false)
 
@@ -66,7 +66,7 @@ setLike(!like)
               <button className="card__like">
                 <img
                   className="card__like-img"
-                  src={like ? CardLikeIcon : CardULikeIcon}
+                  src={CardULikeIcon}
                   width={17}
                   height={16}
                   alt="Card like button image"
@@ -75,10 +75,10 @@ setLike(!like)
             </div>
           </div>
           <h3 className="card__body">
-            {card.card?.description?.substring(0, 45)}...
+            {card.card?.description?.substring(0, 60)}...
           </h3>
           <p className="m-0 mt-4">
-            {card.card?.district} - {new Date(card.card?.createdAt).getMonth()}
+            {card.card?.district}, {data}
           </p>
           <p className="card__price">
             {customPrice} {card.card?.price_type === "dollar" ? "$" : "s'om"}

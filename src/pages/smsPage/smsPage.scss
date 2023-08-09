@@ -3,9 +3,14 @@
 }
 
 .sms__wrapper {
-  text-align: center;
-  // position: absolute;
   width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
 }
 
 .sms__wrapper h3 {
@@ -31,27 +36,16 @@
 
 .sms__form {
   width: 100%;
-  max-width: 550px;
+  max-width: 600px;
   display: block;
   margin: 0 auto;
 }
 
-.sms__form input {
-  display: block;
-  width: 90%;
-  margin-bottom: 20px;
-  padding: 15px 0 15px 19px;
-  border: 1px solid #008b51;
-  border-radius: 9px;
-  outline: none;
-}
-
-.sms__form button {
+.sms__button {
   background: #008b51;
   border-radius: 9px;
   outline: none;
   width: 100%;
-  margin-top: 12px;
   border: none;
   font-family: "Gilroy";
   font-style: normal;
@@ -59,10 +53,17 @@
   font-size: 18px;
   line-height: 22px;
   color: #ffffff;
-  padding: 15px 0;
 }
 
-.sms__form div {
+.sms__button:focus {
+  color: #fff !important;
+}
+
+.sms__button:hover {
+  color: #fff !important;
+}
+
+.sms__forward {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -75,6 +76,10 @@
   text-decoration: none;
 }
 
-.second {
-  margin-bottom: 30px;
+.sms__label {
+  display: flex !important;
+  margin-bottom: 15px 10px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-family: "Inter" serif;
 }
