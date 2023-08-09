@@ -31,25 +31,32 @@ export const Header = () => {
 
   const options = [
     {
-      value: "uz",
+      value: "Uz",
       label: <img src={uzflag} width={30} alt="" />,
     },
     {
-      value: "ru",
+      value: "Ru",
       label: <img src={ruflag} width="30" alt="" />,
     },
   ];
-  const [lang, setLang] = useState("ru");
+  const [lang, setLang] = useState("Uz");
 
   console.log(lang);
 
   const [langLabel, setLangLabel] = useState(options[0].label);
 
   const [course, setCourse] = useState("Uzs");
+  
+  const [flag, setFlag] = useState(localStorage.getItem('uz') || 0)
+  
   function handlclick(n) {
     setLangLabel(options[n].label);
     setLang(options[n].value);
   }
+
+  useEffect(() => {
+    handlclick(localStorage.getItem('uz') || 0)
+  }, [])
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -171,18 +178,22 @@ export const Header = () => {
                     <Dropdown.Menu defaultValue={i18n.language}>
                       <Dropdown.Item
                         onClick={() => {
-                          localStorage.setItem("lang", "uz");
-                          i18n.changeLanguage("uz");
+                          localStorage.setItem("lang", "Uz");
+                          i18n.changeLanguage("Uz");
                           localStorage.setItem("uz", 0);
+                          handlclick(localStorage.getItem('uz') || 0)
                         }}
                       >
                         {options[0].value}
                       </Dropdown.Item>
                       <Dropdown.Item
                         onClick={() => {
-                          localStorage.setItem("lang", "ru");
-                          i18n.changeLanguage("ru");
-                          localStorage.setItem("uz", 0);
+                          localStorage.setItem("lang", "Ru");
+                          i18n.changeLanguage("Ru");
+                          localStorage.setItem("uz", 1);
+                          handlclick(localStorage.getItem('uz') || 1)
+
+
                         }}
                       >
                         {options[1].value}

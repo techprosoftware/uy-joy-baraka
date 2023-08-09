@@ -16,22 +16,22 @@ import  io  from "socket.io-client";
 export const Messaging = () => {
   const token = localStorage.getItem("token");
 
-  useEffect(() => {
-    if (token) {
-      const socket = io.connect("http://test.uyjoybaraka.uz", {
-        extraHeaders: {
-          authorization: token,
-        },
-      });
+  // useEffect(() => {
+  //   if (token) {
+  //     const socket = io.connect("http://test.uyjoybaraka.uz", {
+  //       extraHeaders: {
+  //         authorization: token,
+  //       },
+  //     });
 
       
-      console.log(socket);
+  //     console.log(socket);
 
-      return () => {
-        socket.disconnect();
-      };
-    }
-  }, [token]);
+  //     return () => {
+  //       socket.disconnect();
+  //     };
+  //   }
+  // }, [token]);
 
   // const mockData = [
   //   {
@@ -154,7 +154,7 @@ export const Messaging = () => {
                       >
                         <div className="chat-inner">
                           <img
-                            src={`https://test.uyjoybaraka.uz/${info.user.avatar}`}
+                            src={`http://test.uyjoybaraka.uz/${info?.user?.avatar}`}
                             width={100}
                             alt="user image"
                             className="member-img"
@@ -198,7 +198,7 @@ export const Messaging = () => {
                     <div className="user-selected">
                       <div className="user-inner">
                         <img
-                          src={`https://test.uyjoybaraka.uz/${selectedChat.user.avatar}`}
+                          src={`http://test.uyjoybaraka.uz/${selectedChat.user.avatar}`}
                           alt="selected user image"
                           width={100}
                         />

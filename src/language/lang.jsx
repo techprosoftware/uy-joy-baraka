@@ -1,5 +1,5 @@
 export const lang = {
-  uz: {
+  Uz: {
     backbtn: "Orqaga",
     header: {
       addpost: "E'lon joylash",
@@ -82,7 +82,7 @@ export const lang = {
       filters: "Filterlash"
     }
   },
-  ru: {
+  Ru: {
     backbtn: "Выход",
     header: {
       addpost: "Добавить объявление",
@@ -104,7 +104,7 @@ export const lang = {
       city: "Провинции",
       type: "Аренда или продажа",
       pricetype: "По валюте",
-      filterbtn: "фильтрация",
+      filterbtn: "фильтр",
       searchbtn: "Поиск",
       title: "Разместите объявления о продаже жилья на нашем сайте",
       callbtn: "Связаться с нами",

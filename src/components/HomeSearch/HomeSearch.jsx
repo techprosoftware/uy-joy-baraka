@@ -136,7 +136,7 @@ export const HomeSearch = () => {
                 <line x1="9" y1="8" x2="15" y2="8"></line>
                 <line x1="17" y1="16" x2="23" y2="16"></line>
               </svg>{" "}
-              <span className={`filter__btn `}>{t("filter")}</span>
+              <span className={`filter__btn `}>{t("searchpage.filter")}</span>
             </a>
 
             <ul
@@ -158,11 +158,11 @@ export const HomeSearch = () => {
                         label: `${t("searchpage.sale")}`,
                         options: [
                           {
-                            label: "Ijara",
+                            label: `${t("addannoun.rent")}`,
                             value: "rent",
                           },
                           {
-                            label: "Sotuv",
+                            label: `${t("addannoun.sale")}`,
                             value: "sale",
                           },
                         ],
@@ -185,11 +185,11 @@ export const HomeSearch = () => {
                         label: `${t("searchpage.type")}`,
                         options: [
                           {
-                            label: "So'm",
+                            label: `${t("addannoun.sum")}`,
                             value: "sum",
                           },
                           {
-                            label: "Dollar",
+                            label: `${t("addannoun.usd")}`,
                             value: "dollar",
                           },
                         ],
@@ -225,7 +225,7 @@ export const HomeSearch = () => {
                   className="send__button w-100"
                   href="#"
                 >
-                  {t("searchpage.filters")}
+                  {t("searchpage.filter")}
                 </button>
               </li>
             </ul>
