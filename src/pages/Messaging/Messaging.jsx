@@ -10,19 +10,27 @@ import ChatsendIcon from "../../../public/assets/images/chatbar-send-icon.svg";
 import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilonzor.webp";
 import arrow from "../../../public/assets/images/left-arrow.svg";
 import MessagingService from "../../Api/messaging.service";
+import card from "../../Api/card.service";
+
 //* Socket connection
 import { io } from "socket.io-client";
 
 export const Messaging = () => {
   const token = localStorage.getItem("token");
+  console.log(token);
 
   useEffect(() => {
     if (token) {
-      const socket = io.connect("http://test.uyjoybaraka.uz/", {
+      const socket = io("http://test.uyjoybaraka.uz/", {
         extraHeaders: {
-          Authorization: token,
+          authorization: token,
         },
       });
+      // (async function() {
+      //   const a = await card.getAllCard();
+      //   console.log(a);
+      // })()
+      console.log(socket);
 
       return () => {
         socket.disconnect();
