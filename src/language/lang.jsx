@@ -57,6 +57,11 @@ export const lang = {
       sale: "Sotuv",
       sum: "So'm",
       usd: "Dollar",
+      success: "E'lon muvaffaqqiyatli qo'shildi.",
+      error: "Maydonni to'liq to'ldiring.",
+      errorSize: "Umumiy hajm 6 MB dan oshdi. Iltimos, kichik hajmdagi rasmlar yuklang.",
+      max: "Maksimum,",
+      imgSize: "ta rasm yuklash mumkin."
     },
 
     announ: {
@@ -133,7 +138,15 @@ export const lang = {
     },
     favorite: {
       save: "Saqlanganlar",
-      count:"ta e'lon topildi"
+      count:"ta e'lon topildi",
+      close: "Saqlanganlardan chiqarildi",
+      empty: " Hozircha yoqtirgan e'lonlaringiz mavjud emas!"
+    },
+    search: {
+      save: "Kategoriya",
+      count:"ta e'lon topildi",
+      empty1: "Bu yerdan",
+      empty2: "ko'proq e'lon topishingiz mumkin."
     }
   },
   Ru: {
@@ -193,6 +206,11 @@ export const lang = {
       sale: "Распродажа",
       sum: "сум",
       usd: "доллар",
+      success: "Объявление успешно добавлено.",
+      error: "Заполните поле полностью.",
+      errorSize: "Общий размер превысил 6 МБ. Пожалуйста, загрузите маленькие изображения.",
+      max: "Максимум,",
+      imgSize: "Можно загрузить изображений."
     },
 
     announ: {
@@ -270,7 +288,15 @@ export const lang = {
     },
     favorite: {
       save: "Сохранено",
-      count:"объявлений найдено"
+      count:"объявлений найдено",
+      close: "Удалено из сохраненных",
+      empty: "Нет объявлений, которые вам понравились!"
+    },
+    search: {
+      save: "Категория",
+      count:"объявлений найдено",
+      empty1: "Отсюда",
+      empty2: "вы можете найти больше объявлений."
     }
   },
 };

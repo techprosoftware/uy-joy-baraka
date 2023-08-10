@@ -1,29 +1,19 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import "./Favorite.scss";
-import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import noData from "@images/no-data.svg";
-import AnnounService from "../../Api/announ.service";
-import cardService from "@/Api/card.service.jsx";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { CardSkeleton } from "@components/Cards/CardSkeleton";
 import { BASE_URL } from "@/Api/api";
 import CardLikeIcon from "@images/card-like-icon.svg";
 import CardULikeIcon from "@images/card-ulike-icon.svg";
-import { BackButton } from "../../components/BackButton/BackButton";
-import SearchService from "../../Api/search.service";
-import { useSelector } from "react-redux";
 import CardService from "../../Api/card.service";
 import "react-toastify/dist/ReactToastify.css";
-import InfiniteScroll from "react-infinite-scroll-component"
 import { useTranslation } from "react-i18next";
 
-
 export const Favorite = () => {
-
   const { t } = useTranslation();
-
 
   const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon);
 
@@ -106,17 +96,18 @@ export const Favorite = () => {
   const navigate = useNavigate();
 
   const handleClick = async (event) => {
-    event.preventDefault();
     const targetElement = event.target.closest(".card__like");
 
     if (targetElement) {
+      event.preventDefault();
+
       const data = await CardService.unLikeCard(event.target.id);
-      toast.success("Saqlanganlardan chiqarildi");
+      toast.success(`${t("favorite.close")}`);
 
       console.log(data);
       getSearchCard();
       event.preventDefault();
-      return data
+      return data;
     }
   };
 
@@ -126,17 +117,22 @@ export const Favorite = () => {
         <h3 className="heart__title">{t("favorite.save")}</h3>
         <hr />
         <h3 className="heart__desc mb-2">
-          {mappedData?.length ? <>{activeCard?.data?.totalCount} {t("favorite.count")}</> : ''}
+          {mappedData?.length ? (
+            <>
+              {activeCard?.data?.totalCount} {t("favorite.count")}
+            </>
+          ) : (
+            ""
+          )}
         </h3>{" "}
         <ul className="card-list pt-3 mb-3">
-          {
-          activeCard.isLoading ? (
+          {activeCard.isLoading ? (
             mockData.map((moc) => <CardSkeleton key={moc} />)
           ) : mappedData?.length ? (
             mappedData?.map((card) => (
               <>
                 <Link
-                key={card.announcementId}
+                  key={card.announcementId}
                   to={`/announcement/${card.announcement?.slug}`}
                   onClick={handleClick}
                   className="card"
@@ -158,7 +154,10 @@ export const Favorite = () => {
                         <span className="card__view me-2">
                           {card.announcement?.viewCount}
                         </span>
-                        <button className="card__like">
+                        <button
+                          id={card?.announcement_id}
+                          className="card__like"
+                        >
                           <img
                             id={card.announcementId}
                             className="card__like-img"
@@ -173,6 +172,10 @@ export const Favorite = () => {
                     <h3 className="card__body">
                       {card.announcement?.description?.substring(0, 45)}...
                     </h3>
+                    <p className="m-0 mt-4">
+                      {card?.announcement?.district},{" "}
+                      {card?.createdAt.toString().slice(0, 10)}
+                    </p>
                     <p className="card__price">
                       {card.announcement?.price
                         .toString()
@@ -191,25 +194,11 @@ export const Favorite = () => {
           ) : (
             <div className="py-5 d-flex flex-column align-items-center">
               <p>
-                <span className="favorite__desc">
-                  Hozircha yoqtirgan e'lonlaringiz mavjud emas!
-                </span>{" "}
+                <span className="favorite__desc">{t("favorite.empty")}</span>{" "}
               </p>
             </div>
           )}
         </ul>
-        <ToastContainer
-          position="bottom-center"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
       </div>
     </div>
   );

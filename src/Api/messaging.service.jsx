@@ -7,15 +7,16 @@ const MessagingService = {
   GetMessaging: async () => {
     const {data} = await axios.get("/api/chats", {
       headers: {
-        Authorization: token,
+        authorization: token,
       },
     });
+    console.log(data);
     return data
   },
   SendMessage : async (body, id) => {
     const {data} = await axios.post(`/api/chats/${id}`, body, {
       headers: {
-        Authorization: token,
+        authorization: token,
       }
     })
     return data

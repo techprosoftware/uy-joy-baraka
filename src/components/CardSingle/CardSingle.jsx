@@ -12,13 +12,13 @@ import CardService from "@/Api/card.service.jsx"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 import { toast } from "react-toastify"
 import LoadingIcon from "@images/card-single-loading.svg"
+import TelegramIcon from "@images/telegram-icon.svg"
+import WhatsappIcon from "@images/whatsapp-icon.svg"
 import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll"
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
 export const CardSingle = () => {
-
-  const { t } = useTranslation();
-
+  const { t } = useTranslation()
 
   let [imgId, setImgId] = useState(0)
   let [modal, setModal] = useState(false)
@@ -133,13 +133,18 @@ export const CardSingle = () => {
                       {t("singlepage.share")}
                       <div
                         style={{ display: `${modal ? "block" : "none"}` }}
-                        className="share-btn"
+                        className="share-btn rounded shadow"
                       >
                         <a
                           className="ms-2"
                           href={`https://t.me/share/url?url=${currentUrl}`}
                         >
-                          {/* <FaTelegram fontSize={26} /> */}
+                          <img
+                            src={TelegramIcon}
+                            width={23}
+                            height={23}
+                            alt="Telegram icon"
+                          />
                         </a>
                         <a
                           className="ms-2"
@@ -164,7 +169,12 @@ export const CardSingle = () => {
                           className="ms-2"
                           href={`https://api.whatsapp.com/send?text=${currentUrl}`}
                         >
-                          {/* <FaWhatsapp fontSize={26} /> */}
+                          <img
+                            src={WhatsappIcon}
+                            width={23}
+                            height={23}
+                            alt="Whatsapp icon"
+                          />
                         </a>
                         <a
                           className="ms-2"
@@ -214,11 +224,11 @@ export const CardSingle = () => {
                         </CopyToClipboard>
                       </div>
                     </button>
-                    <div className="card-single__user-info">
+                    {/* <div className="card-single__user-info">
                       <span className="card-single__user-name">
                         {user?.full_name}
                       </span>
-                    </div>
+                    </div> */}
                   </div>
                   <p className="card__price card-single__price">
                     {customPrice} {data?.price_type === "dollar" ? "$" : "s'om"}
@@ -242,8 +252,7 @@ export const CardSingle = () => {
                       className="card-single__call-btn"
                       href={"tel:+" + user?.phone}
                     >
-                                            {t("singlepage.phone")}
-
+                      {t("singlepage.phone")}
                     </a>
                     <Link
                       className="card-single__send-btn"
@@ -259,8 +268,7 @@ export const CardSingle = () => {
         </section>
         <section className="suggestion">
           <div className="container">
-            <h2 className="suggestion__title">                      {t("singlepage.recomended")}
-</h2>
+            <h2 className="suggestion__title"> {t("singlepage.recomended")}</h2>
             <CardList
               page={1}
               count={12}
