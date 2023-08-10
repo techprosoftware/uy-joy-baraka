@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import Skeleton from "react-loading-skeleton";
 import "./UserInfo.scss";
 import { Header } from "../../components/Header/Header";
-import { Footer } from "../../components/Footer/Footer";
 import { BackButton } from "../../components/BackButton/BackButton";
+import { useTranslation } from "react-i18next";
 
 //* API endpoint
 import ProfileService from "../../Api/profile.service";
@@ -15,6 +15,10 @@ import { message } from "antd";
 import { formatPhoneNumber } from "../../utils/RegEx.utils";
 
 export const UserInfo = () => {
+
+  const { t } = useTranslation();
+
+
   const [messageApi, contextHolder] = message.useMessage();
   const [isLoading, setIsLoading] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -76,7 +80,7 @@ export const UserInfo = () => {
         const edit = await ProfileService.EditFullname(fullnameUserData);
         if (edit) {
           message.success(
-            "Ism muvaffaqiyatli o'zgartirildi, o'zgarishlarga biroz vaqt olishi mumkin!"
+            `${t("account.change")}`
           );
         }
         getterStSet(true);
@@ -92,7 +96,7 @@ export const UserInfo = () => {
         const edit = await ProfileService.EditPhone(phoneNumberData);
         if (edit) {
           message.success(
-            "Telefon raqam muvaffaqiyatli o'zgartirildi, o'zgarishlarga biroz vaqt olishi mumkin!"
+            `${t("account.change")}`
           );
         }
         getterStSet(true);
@@ -112,7 +116,7 @@ export const UserInfo = () => {
           const edit = await ProfileService.EditAvatar(formData);
           if (edit) {
             message.success(
-              "Profil rasm muvaffaqiyatli o'zgartirildi, o'zgarishlarga biroz vaqt olishi mumkin!"
+              `${t("account.change")}`
             );
           }
           getterStSet(true);
@@ -199,7 +203,7 @@ export const UserInfo = () => {
             <form onSubmit={(e) => handleSubmit(e)} className="form">
               <div className="user-edit__wrapper">
                 <div className="user-edit__pic">
-                  <h3 className="user-edit__title">Rasm: </h3>
+                  <h3 className="user-edit__title">{t("account.img")}: </h3>
                   {isLoading ? (
                     <Skeleton width={120} height={80} />
                   ) : (
@@ -235,7 +239,7 @@ export const UserInfo = () => {
                   )}
                 </div>
                 <div className="user-edit__name">
-                  <h3 className="user-edit__title">Ism: </h3>
+                  <h3 className="user-edit__title">{t("account.name")}: </h3>
                   {isLoading ? (
                     <Skeleton width={200} height={30} />
                   ) : (
@@ -250,7 +254,7 @@ export const UserInfo = () => {
                   )}
                 </div>
                 <div className="user-edit__number">
-                  <h3 className="user-edit__title">Raqam: </h3>
+                  <h3 className="user-edit__title">{t("account.nomer")}: </h3>
                   {isLoading ? (
                     <Skeleton width={220} height={30} />
                   ) : (
@@ -272,7 +276,7 @@ export const UserInfo = () => {
                   <Skeleton width={120} height={35} />
                 ) : (
                   <button className="user-edit__submit" type="submit">
-                    Saqlash
+                    {t("account.send")}
                   </button>
                 )}
               </div>

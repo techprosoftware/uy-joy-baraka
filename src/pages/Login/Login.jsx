@@ -5,7 +5,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Form, Input, InputNumber, Button } from "antd";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+
 export const Login = () => {
+
+  const { t } = useTranslation();
+
+
   const navigate = useNavigate();
   const users = async (value) => {
     const data = await AuthService.userLogin(value);
@@ -14,7 +20,7 @@ export const Login = () => {
       toast.success("Tizimga muvaffaqqiyatli kirdingiz");
       navigate("/");
     } else {
-      toast.error("Raqam yoki parol xato");
+      toast.error(`${t("login.error")}`);
     }
   };
   const [loadings, setLoadings] = useState([]);
@@ -54,9 +60,9 @@ export const Login = () => {
       <div className="login__inner ">
         <div className="container">
           <div className="login__wrapper">
-            <h3>Kirish</h3>
+            <h3>{t("login.title")}</h3>
             <p className="mt-2">
-              Saytimizga kirish uchun raqam va parolingizni kiriting
+            {t("login.desc")}
             </p>
 
             <Form
@@ -67,7 +73,7 @@ export const Login = () => {
               className="login__form"
             >
               <label className="login__label" htmlFor="phone">
-                Nomer
+              {t("login.phone")}
               </label>
               <Form.Item
                 name="phone"
@@ -76,7 +82,7 @@ export const Login = () => {
                     required: true,
                     type: "regexp",
                     pattern: new RegExp(/\d+/g),
-                    message: "Telefon raqam kiriting!",
+                    message:  `${t("login.requiredPhone")}`,
                   },
                 ]}
               >
@@ -92,24 +98,24 @@ export const Login = () => {
                 />
               </Form.Item>
               <label className="login__label" htmlFor="pass">
-                Parol
+              {t("login.password")}
               </label>
               <Form.Item
                 name="password"
                 rules={[
                   {
                     required: true,
-                    message: "Parol kiriting!",
+                    message: `${t("login.requierdPassword")}`,
                   },
                 ]}
               >
                 <Input.Password placeholder="********" size="large" />
               </Form.Item>
 
-              <Button className="form__button" size="large" loading={loadings[0]} onClick={enterLoading} htmlType="submit">Kirish</Button>
+              <Button className="form__button" size="large" loading={loadings[0]} onClick={enterLoading} htmlType="submit">{t("login.title")}</Button>
 
 
-              <Link to="/register">Ro’yxatdan o’tmaganmisiz?</Link>
+              <Link to="/register">{t("login.isRegister")}</Link>
             </Form>
           </div>
         </div>
@@ -122,6 +128,7 @@ export const Login = () => {
           rtl={false}
           pauseOnFocusLoss
           draggable
+          
           pauseOnHover
           theme="light"
         />

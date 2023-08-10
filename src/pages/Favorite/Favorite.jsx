@@ -16,9 +16,12 @@ import SearchService from "../../Api/search.service";
 import { useSelector } from "react-redux";
 import CardService from "../../Api/card.service";
 import "react-toastify/dist/ReactToastify.css";
-import InfiniteScroll from "react-infinite-scroll-component"
 
 export const Favorite = () => {
+
+  const { t } = useTranslation();
+
+
   const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon);
 
   const [activeCard, setActiveCard] = useState({
@@ -117,10 +120,10 @@ export const Favorite = () => {
   return (
     <div className="container">
       <div style={{ paddingTop: "90px" }}>
-        <h3 className="heart__title">Saqlanganlar</h3>
+        <h3 className="heart__title">{t("favorite.save")}</h3>
         <hr />
         <h3 className="heart__desc mb-2">
-          {mappedData?.length ? <>{activeCard?.data?.totalCount} ta e'lon topildi</> : ''}
+          {mappedData?.length ? <>{activeCard?.data?.totalCount} {t("favorite.count")}</> : ''}
         </h3>{" "}
         <ul className="card-list pt-3 mb-3">
           {

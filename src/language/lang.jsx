@@ -5,11 +5,11 @@ export const lang = {
       addpost: "E'lon joylash",
       chat: "Online chat",
       sorted: "Saralangan",
-      callcenter:"Biz bilan bog'lanish",
+      callcenter: "Biz bilan bog'lanish",
       aboutme: "Biz haqimizda",
       apps: "Ilovani yuklash",
       login: "Kirish",
-      register: "Ro'yxatdan o'tish"
+      register: "Ro'yxatdan o'tish",
     },
     profile: {
       userinfo: "Mening ma'lumotlarim",
@@ -56,7 +56,7 @@ export const lang = {
       rent: "Ijara",
       sale: "Sotuv",
       sum: "So'm",
-      usd: "Dollar"
+      usd: "Dollar",
     },
 
     announ: {
@@ -68,18 +68,72 @@ export const lang = {
       succannoun: "E'lon faolsizlantirildi",
       errannoun: "E'lon faolsizlantirildi",
       checkadmin: "Admin tasdig'ini kuting",
-      deleteannoun: "E'lon muvaffaqqiyatli o'chirildi"
-
+      deleteannoun: "E'lon muvaffaqqiyatli o'chirildi",
     },
 
     searchpage: {
       filter: "Filter",
-      search: "Mavjud uylarni qidirish: Chilonzor 2-honalik kv",
+      search: "Mavjud uylarni qidirish: Chilonzor 2-xonalik kv",
       search_btn: "Izlash",
       sale: "Ijara yoki sotuv",
       type: "Valyuta kursi",
       region: "Viloyatlar",
-      filters: "Filterlash"
+      filters: "Filterlash",
+    },
+    singlepage: {
+      phone: "Qo'ng'iroq qilish",
+      sendsms: "Xabar yuborish",
+      share: "Ulashish",
+      recomended: "Siz uchun taklif",
+    },
+    login: {
+      title: "Kirish",
+      desc: "Saytimizga kirish uchun raqam va parolingizni kiriting",
+      phone: " Telefon nomer",
+      password: "Parol",
+      isRegister: "Ro’yxatdan o’tmaganmisiz?",
+      requiredPhone: "Telefon raqam kiriting!",
+      requierdPassword: "Parol kiriting!",
+      error: "Raqam yoki parol xato",
+    },
+    register: {
+      title: "Ro’yxatdan o’tish",
+      desc: "Saytimizdan foydalanish uchun iltimos oldin ro’yxatdan o’ting",
+      phone: " Telefon nomer",
+      password: "Parol",
+      password2: "Parolni takrorlash",
+      name: "Ism",
+      isLogin: "Ro’yxatdan o’tganmisiz?",
+      requiredName: "Ism kiriting!",
+      requiredPhone: "Telefon raqam kiriting!",
+      requierdPassword2: "Takroriy parolni kiriting!",
+      requierdPassword: "Parol kiriting!",
+      errorPhone: "Bu raqam  ro'yxatdan o'tgan",
+      error: "Nimadir xato, qayta urinib ko'ring",
+    },
+    sms : {
+      title: "Kodni kiriting",
+      desc: "Quyidagi telefon raqamga kod yuborildi",
+      code: "Kod",
+      verify: "Tasdiqlash",
+      changePhone: "Telefon raqamni almashtirish?",
+      isLogin: "Ro’yxatdan o’tganmisiz?",
+      requiredCode: "sms kodni kiriting!",
+      errorCode: "Kod xato!"   
+    },
+    account: {
+      img: "Rasm",
+      name: "Ism",
+      nomer: "Raqam",
+      change: "Muvaffaqiyatli o'zgartirildi, o'zgarishlarga biroz vaqt olishi mumkin!",
+      send: "Saqlash"
+    }, 
+    about : {
+      aboutme: "Biz haqimizda"
+    },
+    favorite: {
+      save: "Saqlanganlar",
+      count:"ta e'lon topildi"
     }
   },
   Ru: {
@@ -88,11 +142,11 @@ export const lang = {
       addpost: "Добавить объявление",
       chat: "Онлайн чат",
       sorted: "Избранные",
-      callcenter:"Связаться с нами",
+      callcenter: "Связаться с нами",
       aboutme: "о нас",
       apps: " Скачать приложение",
       login: "Войти",
-      register: "регистрация"
+      register: "регистрация",
     },
     profile: {
       userinfo: "Моя информация",
@@ -116,8 +170,7 @@ export const lang = {
       morebtn: "Узнать больше",
     },
     footer: {
-      appstitle:
-        "Всегда будьте в курсе Скачать приложение Uy-joy baraka",
+      appstitle: "Всегда будьте в курсе Скачать приложение Uy-joy baraka",
       partners: "Партнеры",
       ads: "Реклама",
       callme: "применять",
@@ -139,7 +192,7 @@ export const lang = {
       rent: "Аренa",
       sale: "Распродажа",
       sum: "сум",
-      usd: "доллар"
+      usd: "доллар",
     },
 
     announ: {
@@ -151,8 +204,7 @@ export const lang = {
       succannoun: "Объявление было активировано",
       errannoun: "Объявление было деактивировано",
       checkadmin: "Дождитесь подтверждения администратора",
-      deleteannoun: "Объявление было успешно удалено"
-
+      deleteannoun: "Объявление было успешно удалено",
     },
 
     searchpage: {
@@ -162,7 +214,63 @@ export const lang = {
       sale: "Аренда или продажа",
       type: "курс валюта",
       region: "Провинции",
-      filters: "Фильтрация"
+      filters: "Фильтрация",
+    },
+
+    singlepage: {
+      phone: "Позвонить",
+      sendsms: "сообщение",
+      share: "Делиться",
+      recomended: "Предложение для вас",
+    },
+    login: {
+      title: "Войти",
+      desc: "Введите свой номер и пароль для доступа к нашему сайту",
+      phone: "номер телефона",
+      password: "Пароль",
+      isRegister: "Не зарегистрирован?",
+      requiredPhone: "Введите номер телефона!",
+      requierdPassword: "Введите пароль!",
+      error: "Номер или пароль неверный",
+    },
+    register: {
+      title: "Регистрация",
+      desc: "Пожалуйста, зарегистрируйтесь сначала, чтобы использовать наш сайт",
+      phone: "номер телефона",
+      password: "Пароль",
+      password2: "Повторите пароль",
+      name: "Имя",
+      isLogin: "Вы зарегистрированы?",
+      requiredName: "Введите имя!",
+      requiredPhone: "Введите номер телефона!",
+      requierdPassword2: "Пожалуйста, введите дубликат пароля!",
+      requierdPassword: "Введите пароль!",
+      errorPhone: "Этот номер зарегистрирован",
+      error: "Что-то пошло не так. Пожалуйста, попробуйте еще раз",
+    },
+    sms : {
+      title: "введите код",
+      desc: "Код отправлен на номер телефона указанный ниже",
+      code: "Код",
+      verify: "Подтверждение",
+      changePhone: "Изменить номер телефона?",
+      isLogin: "Вы зарегистрированы?",
+      requiredCode: "введите смс код!",
+      errorCode: "неверный код!"   
+    },
+    account: {
+      img: "Фото",
+      name: "Имя",
+      nomer: "номер телефона",
+      change :"Изменения успешно внесены, изменения могут занять некоторое время!",
+      send: "сохранить"
+    },
+    about : {
+      aboutme: "о нас"
+    },
+    favorite: {
+      save: "Сохранено",
+      count:"объявлений найдено"
     }
   },
 };
