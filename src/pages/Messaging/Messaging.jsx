@@ -60,7 +60,7 @@ export const Messaging = () => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await MessagingService.GetMessaging();
+        const data = await MessagingService.GetMessaging(token);
         console.log(data);
         setChats(data?.members);
         setUpdate(false);
