@@ -277,7 +277,9 @@ export const Upload = () => {
     const imageFiles = files.filter((file) => file.type.startsWith("image/"));
 
     if (imageFiles.length > maxAllowedImages) {
-      toast.error(`Maksimum ${maxAllowedImages} ta rasm yuklash mumkin.`);
+      toast.error(
+        `${t("addannoun.max")} ${maxAllowedImages} ${t("addannoun.imgSize")}`
+      );
       return;
     }
 
@@ -318,9 +320,7 @@ export const Upload = () => {
       totalSize = compressedFiles.reduce((acc, file) => acc + file.size, 0);
 
       if (totalSize > maxTotalSize) {
-        toast.error(
-          "Umumiy hajm 6 MB dan oshdi. Iltimos, kichik hajmdagi rasmlar yuklang."
-        );
+        toast.error(`${t("addannoun.errorSize")}`);
         return;
       }
       setUrls(compressedImageUrls);
@@ -362,9 +362,9 @@ export const Upload = () => {
     const token = localStorage.getItem("token");
     const data = await AnnounService.CreateAnnoun(body, token);
     if (data?.status === 201) {
-      toast.success("E'lon muvaffaqqiyatli qo'shildi.");
+      toast.success(`${t("addannoun.success")}`);
     } else {
-      toast.error("Maydonni to'liq to'ldiring.");
+      toast.error(`${t("addannoun.error")}`);
     }
   };
 
@@ -385,12 +385,12 @@ export const Upload = () => {
   };
 
   const handleSubmit = (e) => {
-    enterLoading(0)
+    enterLoading(0);
     e.preventDefault();
     const formData = new FormData();
     // console.log(fullPhone);
 
-  console.log(phone.current.value);
+    console.log(phone.current.value);
 
     const fullPhone = "998" + phone.current.value;
     formData.append("phone", fullPhone);
@@ -473,7 +473,7 @@ export const Upload = () => {
             <p>{t("addannoun.selectcity")}:</p>
             <Space wrap>
               <Select
-              placeholder={t("addannoun.selectcity")}
+                placeholder={t("addannoun.selectcity")}
                 style={{
                   width: 120,
                 }}
@@ -592,35 +592,41 @@ export const Upload = () => {
             <p>{t("addannoun.phone")}:</p>
             <div className="">
               <div className="">
-              <Form.Item
-                name="phone"
-                rules={[
-                  {
-                    required: true,
-                    type: "regexp",
-                    pattern: new RegExp(/\d+/g),
-                    message: "Telefon raqam kiriting!",
-                  },
-                ]}
-              >
-                <InputNumber
-                ref={phone}
-                  placeholder="90 123-45-67"
-                  maxLength="9"
-                  minLength="9"
-                  prefix="+998"
-                  size="large"
-                  style={{
-                    width: "100%",
-                  }}
-                />
-              </Form.Item>
+                <Form.Item
+                  name="phone"
+                  rules={[
+                    {
+                      required: true,
+                      type: "regexp",
+                      pattern: new RegExp(/\d+/g),
+                      message: "Telefon raqam kiriting!",
+                    },
+                  ]}
+                >
+                  <InputNumber
+                    ref={phone}
+                    placeholder="90 123-45-67"
+                    maxLength="9"
+                    minLength="9"
+                    prefix="+998"
+                    size="large"
+                    style={{
+                      width: "100%",
+                    }}
+                  />
+                </Form.Item>
               </div>
             </div>{" "}
           </div>
-          <Button className="upload__button" size="large" loading={loadings[0]} onClick={enterLoading} htmlType="submit">{t("addannoun.send")}</Button>
-
-        
+          <Button
+            className="upload__button"
+            size="large"
+            loading={loadings[0]}
+            onClick={enterLoading}
+            htmlType="submit"
+          >
+            {t("addannoun.send")}
+          </Button>
         </form>
       </div>
       <ToastContainer

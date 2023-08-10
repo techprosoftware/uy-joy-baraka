@@ -111,7 +111,7 @@ export const Favorite = () => {
 
     if (targetElement) {
       const data = await CardService.unLikeCard(event.target.id);
-      toast.success("Saqlanganlardan chiqarildi");
+      toast.success(`${t("favorite.close")}`);
 
       console.log(data);
       getSearchCard();
@@ -192,7 +192,7 @@ export const Favorite = () => {
             <div className="py-5 d-flex flex-column align-items-center">
               <p>
                 <span className="favorite__desc">
-                  Hozircha yoqtirgan e'lonlaringiz mavjud emas!
+                 {t("favorite.empty")}
                 </span>{" "}
               </p>
             </div>

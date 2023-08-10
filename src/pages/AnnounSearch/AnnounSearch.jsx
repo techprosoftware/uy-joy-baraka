@@ -15,8 +15,13 @@ import { BackButton } from "../../components/BackButton/BackButton";
 import SearchService from "../../Api/search.service";
 import { useSelector } from "react-redux";
 import { MoreBtn } from "../../components/MoreBtn/MoreBtn";
+import { useTranslation } from "react-i18next";
 
 export const AnnounSearch = () => {
+
+  const { t } = useTranslation();
+
+
   const cityName = localStorage.getItem("searchCity");
   const city = localStorage.getItem('city')
   const type = localStorage.getItem('type')
@@ -83,11 +88,11 @@ export const AnnounSearch = () => {
   return (
     <div className="container">
       <div style={{ paddingTop: "90px" }}>
-        <h3 className="heart__title">Kategoriya</h3>
+        <h3 className="heart__title">{t("search.save")}</h3>
         <hr />
         <h3 className="heart__desc mb-2">
           {
-          activeCard?.data?.totalCount} ta e'lon topildi
+          activeCard?.data?.totalCount} {t("search.count")}
         </h3>{" "}
         <ul className="card-list pt-3">
           {activeCard.isLoading ? (
@@ -152,11 +157,10 @@ export const AnnounSearch = () => {
             <div className="py-5 d-flex flex-column align-items-center">
               <p>
                 <Link className="heart__desc-link" to={"/"}>
-                  Bu yerdan{" "}
+                  {t("search.empty1")}{" "}
                 </Link>
                 <span className=" heart__desc">
-                  ko'proq e'lon topishingiz mumkin.
-                </span>{" "}
+                {t("search.empty2")}                </span>{" "}
               </p>
             </div>
           ) }
