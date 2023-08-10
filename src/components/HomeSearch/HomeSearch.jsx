@@ -212,7 +212,7 @@ export const HomeSearch = () => {
                           {
                             label: `${t("addannoun.rent")}`,
                             value: "rent",
-                          },
+                        },
                           {
                             label: `${t("addannoun.sale")}`,
                             value: "sale",
