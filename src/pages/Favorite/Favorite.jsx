@@ -16,6 +16,9 @@ import SearchService from "../../Api/search.service";
 import { useSelector } from "react-redux";
 import CardService from "../../Api/card.service";
 import "react-toastify/dist/ReactToastify.css";
+import InfiniteScroll from "react-infinite-scroll-component"
+import { useTranslation } from "react-i18next";
+
 
 export const Favorite = () => {
 
