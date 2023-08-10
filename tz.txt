@@ -7,4 +7,4 @@
 
 ** Akbar **
 // Back button will be fixed
-// Chat section will be fixed
+// Chat section will be fixed.
