@@ -98,7 +98,7 @@ export const SmsPage = () => {
               >
                 <InputNumber
                   placeholder="0 0 0 0 0"
-                  maxLength="9"
+                  maxLength="5"
                   minLength="5"
                   size="large"
                   suffix={`${time}s`}
@@ -114,7 +114,7 @@ export const SmsPage = () => {
                 onClick={enterLoading}
                 htmlType="submit"
               >
-                Ro'yxatdan o'tish
+                Tasdiqlash
               </Button>
               <div className="sms__forward">
                 <Link to="/register">Telefon raqamni almashtirish?</Link>

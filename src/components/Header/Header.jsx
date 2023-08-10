@@ -31,11 +31,11 @@ export const Header = () => {
 
   const options = [
     {
-      value: "Uz",
+      value: "O'zbekcha",
       label: <img src={uzflag} width={30} alt="" />,
     },
     {
-      value: "Ru",
+      value: "Русский",
       label: <img src={ruflag} width="30" alt="" />,
     },
   ];
@@ -46,17 +46,17 @@ export const Header = () => {
   const [langLabel, setLangLabel] = useState(options[0].label);
 
   const [course, setCourse] = useState("Uzs");
-  
-  const [flag, setFlag] = useState(localStorage.getItem('uz') || 0)
-  
+
+  const [flag, setFlag] = useState(localStorage.getItem("uz") || 0);
+
   function handlclick(n) {
     setLangLabel(options[n].label);
     setLang(options[n].value);
   }
 
   useEffect(() => {
-    handlclick(localStorage.getItem('uz') || 0)
-  }, [])
+    handlclick(localStorage.getItem("uz") || 0);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -181,7 +181,7 @@ export const Header = () => {
                           localStorage.setItem("lang", "Uz");
                           i18n.changeLanguage("Uz");
                           localStorage.setItem("uz", 0);
-                          handlclick(localStorage.getItem('uz') || 0)
+                          handlclick(localStorage.getItem("uz") || 0);
                         }}
                       >
                         {options[0].value}
@@ -191,9 +191,7 @@ export const Header = () => {
                           localStorage.setItem("lang", "Ru");
                           i18n.changeLanguage("Ru");
                           localStorage.setItem("uz", 1);
-                          handlclick(localStorage.getItem('uz') || 1)
-
-
+                          handlclick(localStorage.getItem("uz") || 1);
                         }}
                       >
                         {options[1].value}
@@ -369,10 +367,24 @@ export const Header = () => {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => handlclick(0)}>
+                        <Dropdown.Item
+                          onClick={() => {
+                            localStorage.setItem("lang", "Uz");
+                            i18n.changeLanguage("Uz");
+                            localStorage.setItem("uz", 0);
+                            handlclick(localStorage.getItem("uz") || 0);
+                          }}
+                        >
                           {options[0].value}
                         </Dropdown.Item>
-                        <Dropdown.Item onClick={() => handlclick(1)}>
+                        <Dropdown.Item
+                          onClick={() => {
+                            localStorage.setItem("lang", "Ru");
+                            i18n.changeLanguage("Ru");
+                            localStorage.setItem("uz", 1);
+                            handlclick(localStorage.getItem("uz") || 1);
+                          }}
+                        >
                           {options[1].value}
                         </Dropdown.Item>
                       </Dropdown.Menu>
