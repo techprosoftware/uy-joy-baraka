@@ -1,6 +1,6 @@
 import axios from "./api";
 
-const token = localStorage.getItem("token");
+const token = localStorage.getItem("token") || "";
 
 const CardService = {
   getAllCard: async () => await axios.get(`/api/home`),
@@ -8,8 +8,24 @@ const CardService = {
   getByPage: async (page) => await axios.get(`/api/home?c_page=${page}`),
   likeCard: async (id) => {
     try {
-      return await axios.patch(
+      const data = await axios.patch(
         `/api/announcements/${id}/like`,
+        { announcement_id: id },
+        {
+          headers: { authorization: token },
+        }
+      );
+      console.log(data);
+
+      return data;
+    } catch (err) {
+      console.log(err.message);
+    }
+  },
+  unLikeCard: async (id) => {
+    try {
+      return await axios.patch(
+        `/api/announcements/${id}/unlike`,
         { announcement_id: id },
         {
           headers: { authorization: token },
@@ -19,19 +35,9 @@ const CardService = {
       return await err;
     }
   },
-  unLikeCard: async (id) => {
-    try {
-      return await axios.patch(`/api/announcements/${id}/unlike`, { announcement_id: id }, {
-        headers: {authorization: token},
-      })
-    } catch (err) {
-      return await err
-    }
-  },
   getLike: async () => {
     try {
-      return await axios.get(`/api/announcements/liked`,
-       {
+      return await axios.get(`/api/announcements/liked`, {
         headers: { authorization: token },
       });
     } catch (err) {

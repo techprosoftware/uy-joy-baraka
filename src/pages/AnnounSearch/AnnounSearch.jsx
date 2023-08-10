@@ -4,28 +4,22 @@ import React, { useEffect, useRef, useState } from "react";
 import "./AnnounSearch.scss";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import noData from "@images/no-data.svg";
 import AnnounService from "../../Api/announ.service";
-import cardService from "@/Api/card.service.jsx";
 import { CardSkeleton } from "@components/Cards/CardSkeleton";
 import { BASE_URL } from "@/Api/api";
 import CardLikeIcon from "@images/card-like-icon.svg";
 import CardULikeIcon from "@images/card-ulike-icon.svg";
-import { BackButton } from "../../components/BackButton/BackButton";
 import SearchService from "../../Api/search.service";
-import { useSelector } from "react-redux";
-import { MoreBtn } from "../../components/MoreBtn/MoreBtn";
 import { useTranslation } from "react-i18next";
+import CardService from "../../Api/card.service";
 
 export const AnnounSearch = () => {
-
   const { t } = useTranslation();
 
-
   const cityName = localStorage.getItem("searchCity");
-  const city = localStorage.getItem('city')
-  const type = localStorage.getItem('type')
-  const price_type = localStorage.getItem('price_type')
+  const city = localStorage.getItem("city");
+  const type = localStorage.getItem("type");
+  const price_type = localStorage.getItem("price_type");
 
   console.log(cityName);
 
@@ -35,7 +29,12 @@ export const AnnounSearch = () => {
   });
 
   const getSearchCard = async () => {
-    const data = await SearchService.searchOnInput(cityName, city, type, price_type);
+    const data = await SearchService.searchOnInput(
+      cityName,
+      city,
+      type,
+      price_type
+    );
     // console.log(data);
     try {
       if (data?.status === 200) {
@@ -46,15 +45,13 @@ export const AnnounSearch = () => {
       }
     } catch (error) {
       console.log(error.message);
-      
     }
-
   };
 
   useEffect(() => {
     getSearchCard();
   }, []);
-  
+
   const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon);
 
   console.log(activeCard);
@@ -68,19 +65,27 @@ export const AnnounSearch = () => {
     const id = evt.target.id;
     const targetTag = evt.target.className;
 
-    const token = localStorage.getItem("token") || "";
+    console.log(id);
 
-    if (!token) {
-      navigate("/register");
-    }
+
+    const token = localStorage.getItem("token") || "";
 
     if (targetTag != "de_active__btn") {
       if (targetTag === "card__like" || targetTag === "card__like-img") {
-        const response = await cardService.likeCard(id);
-        console.log("like: ", response);
-      } else {
-        window.scroll(0, 0);
-        navigate(`/announcement/${slug}`);
+        evt.preventDefault()
+        const response = await CardService.likeCard(id);
+        console.log(response);
+        if (response?.status === 200) {
+          toast.success("Saqlanganlarga qo'shildi");
+          return;
+        } else {
+          const data = await CardService.unLikeCard(id);
+          console.log(data);
+          toast.success("Saqlanganlardan chiqarildi");
+        }
+        if (!token) {
+          navigate("/login");
+        }
       }
     }
   };
@@ -91,66 +96,74 @@ export const AnnounSearch = () => {
         <h3 className="heart__title">{t("search.save")}</h3>
         <hr />
         <h3 className="heart__desc mb-2">
-          {
-          activeCard?.data?.totalCount} {t("search.count")}
+          {activeCard?.data?.totalCount} {t("search.count")}
         </h3>{" "}
         <ul className="card-list pt-3">
           {activeCard.isLoading ? (
             mockData.map((moc) => <CardSkeleton key={moc} />)
-          ) : 
-          newData?.length ? (
+          ) : newData?.length ? (
             newData.map((item) => (
               <>
-                <li onClick={handleClick} className="card">
-        <img
-          className="card__img"
-          src={BASE_URL + item.card?.thumb[0]}
-          // height={190}
-          alt={item.card?.district}
-        />
-        <div className="card__wrap">
-          <div className="card__inner">
-            <span className="card__city">
-              {item.card?.city ? item.card?.city : "Kiritilmagan"}
-            </span>
-            <div className="card__right">
-              <span className="card__view me-2">{item.card?.viewCount}</span>
-              <button className="card__like">
-                <img
-                  className="card__like-img"
-                  src={likeImgSrc}
-                  width={17}
-                  height={16}
-                  alt="Card like button image"
-                />
-              </button>
-            </div>
-          </div>
-          <h3 className="card__body">
-            {item.card?.description?.substring(0, 45)}...
-          </h3>
-          <p className="card__price mt-3">
-            {item.price
+                <Link
+                  key={item?.announcement_id}
+                  id={item?.announcement_id}
+                  to={`/announcement/${item?.slug}`}
+                  onClick={handleClick}
+                  className="card"
+                >
+                  <img
+                    className="card__img mb-3"
+                    src={BASE_URL + item?.thumb[0]}
+                    height={222}
+                  />
+                  <div className="card__wrap">
+                    <div className="card__inner">
+                      <span className="card__city">{item.city}</span>
+                      <div className="card__right">
+                        <span className="card__view me-2">
+                          {item.viewCount}
+                        </span>
+                        <button id={item?.announcement_id} className="card__like">
+                          <img id={item?.announcement_id}
+                            className="card__like-img"
+                            src={CardULikeIcon}
+                            width={17}
+                            height={16}
+                            alt="Card like button image"
+                          />
+                        </button>
+                        <span
+                          className="me-1"
+                          style={{
+                            fontSize: "12px",
+                            color: "#666666",
+                            lineHeight: "14px",
+                          }}
+                        >
+                          {" "}
+                          {item?.likeCount}
+                        </span>
+                      </div>
+                    </div>
+                    <h3 className="card__body">
+                      {item.description?.substring(0, 60)}...
+                    </h3>
+
+                    <p className="m-0 mt-4">
+                      {item?.district},{" "}
+                      {item?.createdAt.toString().slice(0, 10)}
+                    </p>
+                    <p className="de_card__price">
+                      {item.price
                         .toString()
                         .replace(
                           /(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g,
                           "$1 "
-                        )} {item.card?.price_type === "dollar" ? "$" : "s'om"}
-          </p>
-        </div>
-        <ToastContainer
-        position="bottom-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      </li>
+                        )}{" "}
+                      {item.price_type == "sum" ? "so'm" : "$"}
+                    </p>
+                  </div>
+                </Link>
               </>
             ))
           ) : (
@@ -159,25 +172,12 @@ export const AnnounSearch = () => {
                 <Link className="heart__desc-link" to={"/"}>
                   {t("search.empty1")}{" "}
                 </Link>
-                <span className=" heart__desc">
-                {t("search.empty2")}                </span>{" "}
+                <span className=" heart__desc">{t("search.empty2")} </span>{" "}
               </p>
             </div>
-          ) }
-         {/* {activeCard?.data?.totalCount != 0 ?  <MoreBtn/> : ""} */}
+          )}
+          {/* {activeCard?.data?.totalCount != 0 ?  <MoreBtn/> : ""} */}
         </ul>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
       </div>
     </div>
   );

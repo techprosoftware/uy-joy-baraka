@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Header } from "@components/Header/Header";
 import "./Messaging.scss";
 import { useRef } from "react";
 // Icons
 import TrashIcon from "../../../public/assets/images/messaging-delete-icon.svg";
-import { BackButton } from "../../components/BackButton/BackButton";
 import ChatsendIcon from "../../../public/assets/images/chatbar-send-icon.svg";
 import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilonzor.webp";
 import arrow from "../../../public/assets/images/left-arrow.svg";
