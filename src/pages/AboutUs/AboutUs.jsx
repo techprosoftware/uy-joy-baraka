@@ -11,7 +11,7 @@ export const AboutUs = () => {
       <main>
         <div className="about">
           <div className="container">
-            <div className="mt-3">
+            <div className="back-btn">
               <BackButton />
             </div>
             <h2 className="about__title">{t("about.aboutme")}</h2>
