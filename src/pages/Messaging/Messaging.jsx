@@ -11,59 +11,37 @@ import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilon
 import arrow from "../../../public/assets/images/left-arrow.svg";
 import MessagingService from "../../Api/messaging.service";
 import card from "../../Api/card.service";
+import DoubleCheck from "../../../public/assets/images/double-check_message.svg";
 
 //* Socket connection
-import  io  from "socket.io-client";
+import io from "socket.io-client";
+import { toast } from "react-toastify";
+import { MDBIcon } from "mdbreact";
 
 export const Messaging = () => {
   const token = localStorage.getItem("token");
   console.log(token);
-
-  // useEffect(() => {
-  //   if (token) {
-  //     const socket = io.connect("http://test.uyjoybaraka.uz", {
-  //       extraHeaders: {
-  //         authorization: token,
-  //       },
-  //     });
-
-      
-  //     console.log(socket);
-
-  //     return () => {
-  //       socket.disconnect();
-  //     };
-  //   }
-  // }, [token]);
-
-  // const mockData = [
-  //   {
-  //     id: 1,
-  //     src: "../../../public/assets/images/messaging-user-icon.svg",
-  //     name: "Umid",
-  //     ad: "BBeruniyda 1-xonalik kvartira ijaraga studentlarga beriladi",
-  //     message:
-  //       "Aka biz 15 kishimiz, realniy turamiz, honada kir mashina bormi?",
-  //     chat_started: "01.08.2022",
-  //   },
-  //   {
-  //     id: 2,
-  //     src: "../../../public/assets/images/messaging-user-icon.svg",
-  //     name: "Qosim Abdusattorov",
-  //     ad: "Yakkasaroyda 5-xonalik kvartira ijaraga studentlarga beriladi",
-  //     message: "aka tel raqam tashlang?",
-  //     chat_started: "22.08.2021",
-  //   },
-  // ];
   const [isActive, setIsActive] = useState(false);
   const [isBarActive, setIsBarActive] = useState();
   const [chats, setChats] = useState(null);
   const [activeChatId, setActiveChatId] = useState(null);
+  const [update, setUpdate] = useState(false);
 
-  // const message = useRef(null);
-  // const sendMessage = async (e) => {
-  //   e.preventDefault();
-  // };
+  const message = useRef(null);
+  const sendMessage = async (e) => {
+    e.preventDefault();
+    if (!message.current.value) return alert("Message value required");
+    try {
+      await MessagingService.SendMessage(
+        { message: message.current.value },
+        activeChatId
+      );
+      message.current.value = "";
+      setUpdate(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   //* Handle button active state change
   const handleButtonClick = () => {
     setIsActive(!isActive);
@@ -79,6 +57,7 @@ export const Messaging = () => {
       if (prevActiveChatId === id) {
         return null; //* Deactivate the chat item if it's already active
       } else {
+        setActiveChatId(id);
         return id; //* Activate the clicked chat item
       }
     });
@@ -90,11 +69,12 @@ export const Messaging = () => {
         const data = await MessagingService.GetMessaging();
         console.log(data);
         setChats(data?.members);
+        setUpdate(false);
       } catch (error) {
         console.error("Error occurred while fetching user profile", error);
       }
     })();
-  }, [activeChatId]);
+  }, [activeChatId, update]);
 
   const selectedChat = chats?.find((chat) => chat.chat_id === activeChatId);
   return (
@@ -175,7 +155,8 @@ export const Messaging = () => {
                             </button>
                           </div>
                           <p className="chat-user__ad">
-                            {/* {info.message.substr(0, 57)} */}
+                            {info.post.title.substr(0, 57)}
+                            {/* {selectedChat.post.title} */}
                           </p>
                           <p className="chat-user__message">
                             {info.message.content.substr(0, 45)}....
@@ -186,7 +167,7 @@ export const Messaging = () => {
                     </div>
                   ))
                 ) : (
-                  <h3 style={{ paddingLeft: "20px" }}>No chats..</h3>
+                  <h3 style={{ paddingLeft: "20px" }}>Chat yuklanmoqda..</h3>
                 )}
               </div>
             </div>
@@ -229,7 +210,7 @@ export const Messaging = () => {
                           <img src={SelectedChatImg} alt="selected chat" />
                           <div>
                             <span className="selected-ad">
-                              {selectedChat.announcement_id}
+                              {selectedChat.post.title}
                             </span>
                           </div>
                         </div>
@@ -247,9 +228,21 @@ export const Messaging = () => {
                       </div>
                     </div>
                     {/* Chat messaged mock */}
-                    <div style={{ width: "200px", marginTop: "50px" }}>
-                      <span className="client-ms">
+                    <div
+                      style={{
+                        width: "200px",
+                        marginLeft: "auto",
+                        marginRight: "15px",
+                      }}
+                    >
+                      <span style={{ display: "block" }} className="self-ms">
                         {selectedChat.message.content}
+                        <img
+                          className="double-check"
+                          style={{ marginLeft: "25px" }}
+                          src={DoubleCheck}
+                          alt=""
+                        />
                       </span>
                       {/* <span className="self-ms">{selectedChat.message}</span> */}
                     </div>
@@ -259,12 +252,12 @@ export const Messaging = () => {
                       className="chatbar-input"
                       placeholder="Sms yozish"
                       aria-label="Enter your message(Habaringizni kiriting)"
-                      // ref={message}
+                      ref={message}
                     />
                     <button
                       type="submit"
                       className="chatbar-button"
-                      // onClick={sendMessage}
+                      onClick={sendMessage}
                     >
                       <img
                         className="chatbar-send__icon"
