@@ -13,8 +13,13 @@ import { CopyToClipboard } from "react-copy-to-clipboard"
 import { toast } from "react-toastify"
 import LoadingIcon from "@images/card-single-loading.svg"
 import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll"
+import { useTranslation } from "react-i18next";
 
 export const CardSingle = () => {
+
+  const { t } = useTranslation();
+
+
   let [imgId, setImgId] = useState(0)
   let [modal, setModal] = useState(false)
   const [card, setCard] = useState({ isLoading: true, data: {} })
@@ -125,7 +130,7 @@ export const CardSingle = () => {
                       onClick={() => setModal(!modal)}
                       className="card-single__share-btn"
                     >
-                      Ulashish
+                      {t("singlepage.share")}
                       <div
                         style={{ display: `${modal ? "block" : "none"}` }}
                         className="share-btn"
@@ -237,13 +242,14 @@ export const CardSingle = () => {
                       className="card-single__call-btn"
                       href={"tel:+" + user?.phone}
                     >
-                      Qo’ng’iroq qilish
+                                            {t("singlepage.phone")}
+
                     </a>
                     <Link
                       className="card-single__send-btn"
                       to={"/messaging"}
                     >
-                      Xabar yuborish
+                      {t("singlepage.sendsms")}
                     </Link>
                   </div>
                 </div>
@@ -253,7 +259,8 @@ export const CardSingle = () => {
         </section>
         <section className="suggestion">
           <div className="container">
-            <h2 className="suggestion__title">Siz uchun taklif</h2>
+            <h2 className="suggestion__title">                      {t("singlepage.recomended")}
+</h2>
             <CardList
               page={1}
               count={12}

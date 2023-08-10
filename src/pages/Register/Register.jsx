@@ -10,8 +10,13 @@ import { setPhoneId } from "../../redux/phoneId/phoneIdAction";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Form, Input, InputNumber, Button } from "antd";
+import { useTranslation } from "react-i18next";
 
 export const Register = () => {
+
+  const { t } = useTranslation();
+
+
   const phone = useRef();
 
   const navigate = useNavigate();
@@ -55,9 +60,9 @@ export const Register = () => {
       alert(userPhone?.data?.code);
       navigate("/sms");
     } else if (data?.response?.status === 401) {
-      toast.warning("Bu raqam  ro'yxatdan o'tgan");
+      toast.warning(`${t("register.errorPhone")}`);
     } else if (data?.response?.status === 400) {
-      toast.error("Nimadir xato, qayta urinib ko'ring");
+      toast.error(`${t("register.error")}`);
     }
 
 
@@ -83,10 +88,9 @@ export const Register = () => {
       <div className="register__inner ">
         <div className="container">
           <div className="register__wrapper">
-            <h3>Ro’yxatdan o’tish</h3>
+            <h3>{t("register.title")}</h3>
             <p className="mt-2">
-              Saytimizdan foydalanish uchun iltimos oldin ro’yxatdan o’ting
-            </p>
+            {t("register.desc")}            </p>
 
             <Form
               form={form}
@@ -104,22 +108,22 @@ export const Register = () => {
               className="register__form"
             >
               <label className="register__label" htmlFor="name">
-                Ism
+                {t("register.name")}
               </label>
               <Form.Item
                 name="username"
                 rules={[
                   {
                     required: true,
-                    message: "Ism kiriting!",
+                    message: `${t("register.requiredName")}`,
                   },
                 ]}
               >
-                <Input size="large" placeholder="Ism kiriting" />
+                <Input size="large" placeholder={t("register.requiredName")} />
               </Form.Item>
 
               <label className="register__label" htmlFor="number">
-                Nomer
+              {t("register.phone")}
               </label>
               <Form.Item
                 name="phone"
@@ -128,7 +132,7 @@ export const Register = () => {
                     required: true,
                     type: "regexp",
                     pattern: new RegExp(/\d+/g),
-                    message: "Telefon raqam kiriting!",
+                    message: `${t("register.requiredPhone")}`,
                   },
                 ]}
               >
@@ -146,7 +150,7 @@ export const Register = () => {
                 />
               </Form.Item>
               <label className="register__label" htmlFor="password">
-                Parol
+                {t("register.password")}
               </label>
 
               <Form.Item
@@ -155,15 +159,15 @@ export const Register = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Parol kiriting!!",
+                    message: `${t("register.requierdPassword")}`,
                   },
                 ]}
                 hasFeedback
               >
-                <Input.Password minLength="5" placeholder="********" size="large" />
+                <Input.Password minLength="4" placeholder="********" size="large" />
               </Form.Item>
               <label className="register__label" htmlFor="pass2">
-                Parolni takrorlash
+              {t("register.requierdPassword2")}
               </label>
 
               <Form.Item
@@ -173,7 +177,7 @@ export const Register = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Takroriy parolni kiriting!",
+                    message: `${t("register.requierdPassword2")}`,
                   },
                   ({ getFieldValue }) => ({
                     validator(_, value) {
@@ -181,18 +185,18 @@ export const Register = () => {
                         return Promise.resolve();
                       }
                       return Promise.reject(
-                        new Error("Takroriy parolni to'g'ri kiriting!")
+                        new Error(`${t("register.requierdPassword2")}`)
                       );
                     },
                   }),
                 ]}
               >
-                <Input.Password minLength="5" placeholder="********" size="large" />
+                <Input.Password minLength="4" placeholder="********" size="large" />
               </Form.Item>
 
-              <Button size="large" loading={loadings[0]} onClick={enterLoading} htmlType="submit">Ro'yxatdan o'tish</Button>
+              <Button size="large" loading={loadings[0]} onClick={enterLoading} htmlType="submit">{t("register.title")}</Button>
 
-              <Link to="/login">Ro’yxatdan o’tganmisiz?</Link>
+              <Link to="/login">{t("register.isLogin")}</Link>
             </Form>
           </div>
         </div>
