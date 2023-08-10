@@ -29,7 +29,6 @@ export const Public = () => {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/userinfo" element={<UserInfo />} />
         <Route path='/favorite' element={<Favorite/>} />
-
     </Routes>
     <Footer />
     

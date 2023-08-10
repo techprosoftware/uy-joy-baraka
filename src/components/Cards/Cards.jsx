@@ -4,7 +4,7 @@ import CardULikeIcon from "@images/card-ulike-icon.svg"
 import { useNavigate } from "react-router-dom"
 import { BASE_URL } from "@/Api/api"
 import { useState } from "react"
-import { ToastContainer, toast } from "react-toastify"
+import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import CardService from "../../Api/card.service"
 
@@ -22,11 +22,12 @@ export const Card = (card) => {
     const targetTag = evt.target.className
     const token = localStorage.getItem("token") || ""
 
-    if (!token) {
-      navigate("/login")
-    }
-
+  
     if (targetTag === "card__like" || targetTag === "card__like-img") {
+      if (!token) {
+        navigate("/login")
+      }
+  
       console.log(evt.target.src);
 setLike(!like)
       const response = await CardService.likeCard(card?.card?.announcement_id)
@@ -84,18 +85,7 @@ setLike(!like)
             {customPrice} {card.card?.price_type === "dollar" ? "$" : "s'om"}
           </p>
         </div>
-        <ToastContainer
-          position="bottom-center"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
+     
       </li>
     </>
   )

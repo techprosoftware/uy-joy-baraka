@@ -1,7 +1,7 @@
 import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../../Api/auth.service";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Form, Input, InputNumber, Button } from "antd";
 import { useState } from "react";
@@ -119,19 +119,7 @@ export const Login = () => {
             </Form>
           </div>
         </div>
-        <ToastContainer
-          position="bottom-center"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          
-          pauseOnHover
-          theme="light"
-        />
+    
       </div>
     </>
   );

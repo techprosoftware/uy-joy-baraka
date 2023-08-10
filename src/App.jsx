@@ -14,6 +14,7 @@ import i18n from 'i18next';
 import { initReactI18next } from "react-i18next";
 import { BackTop } from "antd";
 import { lang } from "./language/lang";
+import { ToastContainer } from "react-toastify";
 
 function App() {
 
@@ -44,6 +45,18 @@ function App() {
       <div className="back">
         <BackTop />
       </div>
+      <ToastContainer
+          position="bottom-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
     </>
   );
 }
