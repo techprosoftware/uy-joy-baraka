@@ -11,7 +11,7 @@ import { Announ } from '../Announ/Announ';
 import { CardSingle } from '../../components/CardSingle/CardSingle';
 import { Messaging } from '../Messaging/Messaging';
 import { AboutUs } from '../AboutUs/AboutUs';
-import { UserInfo } from '../User-info/UserInfo';
+import { UserInfo } from '../UserInfo/UserInfo';
 import { AnnounSearch } from '../AnnounSearch/AnnounSearch';
 import { Favorite } from '../Favorite/Favorite';
 export const Public = () => {

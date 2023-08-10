@@ -78,7 +78,7 @@
       font-weight: 400;
 
       color: #fff;
-      background-color: #80c5a8;
+      background-color: #80a8c5;
       border-bottom-left-radius: 10px;
       border-top-right-radius: 10px;
       border-bottom-right-radius: 10px;
@@ -100,12 +100,16 @@
       font-weight: 400;
 
       color: #fff;
-      background-color: #80a8c5;
+      background-color: #80c5a8;
       border-bottom-left-radius: 10px;
       border-top-right-radius: 10px;
       border-bottom-right-radius: 10px;
       font-family: "Gilroy";
       font-weight: 400;
+    }
+
+    .double-check {
+      user-select: none;
     }
 
     // Margins, paddings
@@ -230,7 +234,7 @@
         }
         // Margin, paddings
         padding: 5px 0 5px 10px;
-        
+
         .chat-user__name {
           font-size: 14px;
           line-height: 16.8px;

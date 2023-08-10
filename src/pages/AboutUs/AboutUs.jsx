@@ -1,8 +1,11 @@
 import { BackButton } from "@components/BackButton/BackButton"
 import { Social } from "@components/Social/Social"
 import "./about-as.scss"
+import { useTranslation } from "react-i18next";
 
 export const AboutUs = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <main>
@@ -11,7 +14,7 @@ export const AboutUs = () => {
             <div className="mt-3">
               <BackButton />
             </div>
-            <h2 className="about__title">Biz haqimizda</h2>
+            <h2 className="about__title">{t("about.aboutme")}</h2>
             <div className="about__text">
               <p>
                 Друзья, наш сайт был специально создан для розничной и оптовой

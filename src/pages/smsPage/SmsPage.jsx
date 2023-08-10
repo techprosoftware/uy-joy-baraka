@@ -6,8 +6,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import AuthService from "../../Api/auth.service";
 import { Button, Form,  InputNumber } from "antd";
+import { useTranslation } from "react-i18next";
+import { ToastContainer, toast } from "react-toastify";
 
 export const SmsPage = () => {
+
+  const { t, i18n } = useTranslation();
+
+
   const phone = window.localStorage.getItem("phone");
 
   const navigate = useNavigate();
@@ -23,6 +29,9 @@ export const SmsPage = () => {
       console.log("access");
       localStorage.setItem("token", data?.data?.token);
       navigate("/");
+    }
+    else {
+      toast.error(`${t("sms.errorCode")}`)
     }
   };
 
@@ -69,9 +78,9 @@ export const SmsPage = () => {
       <div className="sms__inner ">
         <div className="container">
           <div className="sms__wrapper">
-            <h3>Kodni kiriting</h3>
+            <h3>{t("sms.title")}</h3>
             <p className="mt-2">
-              Quyidagi telefon raqamga kod yuborildi {phone ? phone : ""}
+              {t("sms.desc")} {phone ? phone : ""}
             </p>
 
             <Form
@@ -83,7 +92,7 @@ export const SmsPage = () => {
               className="sms__form"
             >
               <label className="sms__label" htmlFor="phone">
-                Kod
+                {t("sms.code")}
               </label>
               <Form.Item
                 name="code"
@@ -92,7 +101,7 @@ export const SmsPage = () => {
                     required: true,
                     type: "regexp",
                     pattern: new RegExp(/\d+/g),
-                    message: "sms kodni kiriting!",
+                    message: `${t("sms.requiredCode")}`,
                   },
                 ]}
               >
@@ -114,16 +123,28 @@ export const SmsPage = () => {
                 onClick={enterLoading}
                 htmlType="submit"
               >
-                Tasdiqlash
+                {t("sms.verify")}
               </Button>
               <div className="sms__forward">
-                <Link to="/register">Telefon raqamni almashtirish?</Link>
-                <Link to="/login">Ro’yxatdan o’tganmisiz?</Link>
+                <Link to="/register">{t("sms.changePhone")}</Link>
+                <Link to="/login">{t("sms.isLogin")}</Link>
               </div>
             </Form>
           </div>
         </div>
       </div>
+      <ToastContainer
+          position="bottom-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
     </>
   );
 };

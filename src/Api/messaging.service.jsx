@@ -12,6 +12,14 @@ const MessagingService = {
     });
     return data
   },
+  SendMessage : async (body, id) => {
+    const {data} = await axios.post(`/api/chats/${id}`, body, {
+      headers: {
+        Authorization: token,
+      }
+    })
+    return data
+  }
 };
 
 export default MessagingService;
