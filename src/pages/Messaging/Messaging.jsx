@@ -57,11 +57,13 @@ export const Messaging = () => {
       }
     });
   };
+  const token = localStorage.getItem("token");
+
 
   useEffect(() => {
     (async () => {
       try {
-        const data = await MessagingService.GetMessaging(token);
+        const data = await MessagingService.GetMessaging();
         console.log(data);
         setChats(data?.members);
         setUpdate(false);
@@ -69,7 +71,7 @@ export const Messaging = () => {
         console.error("Error occurred while fetching user profile", error);
       }
     })();
-  }, [activeChatId, update]);
+  }, []);
 
   const selectedChat = chats?.find((chat) => chat.chat_id === activeChatId);
   return (
