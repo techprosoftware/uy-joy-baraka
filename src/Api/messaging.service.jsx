@@ -1,5 +1,5 @@
 import axios from "axios";
-const token = localStorage.getItem("token") || "";
+const token = localStorage.getItem("token");
 
 //* Indicates chat section
 const MessagingService = {
@@ -7,7 +7,7 @@ const MessagingService = {
   GetMessaging: async () => {
     const {data} = await axios.get("/api/chats", {
       headers: {
-        authorization: token,
+        Authorization: token,
       },
     });
     return data

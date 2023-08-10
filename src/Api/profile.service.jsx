@@ -7,7 +7,7 @@ const ProfileService = {
   GetProfile: async () =>
     {const data = await axios.get("/api/users/profile", {
       headers: {
-        authorization: `${token}`,
+        Authorization: `${token}`,
       },
     })
   
