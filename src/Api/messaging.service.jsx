@@ -4,10 +4,10 @@ const token = localStorage.getItem("token");
 //* Indicates chat section
 const MessagingService = {
   //* GET | Messaging
-  GetMessaging: async (token) => {
+  GetMessaging: async () => {
     const {data} = await axios.get("/api/chats", {
       headers: {
-        authorization: token,
+        Authorization: token,
       },
     });
     return data

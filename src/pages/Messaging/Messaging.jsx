@@ -20,7 +20,6 @@ export const Messaging = () => {
   const [update, setUpdate] = useState(false);
   const [showFullTitle, setShowFullTitle] = useState(false);
 
-  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const message = useRef(null);
   const sendMessage = async (e) => {
@@ -61,7 +60,7 @@ export const Messaging = () => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await MessagingService.GetMessaging(token);
+        const data = await MessagingService.GetMessaging();
         console.log(data);
         setChats(data?.members);
         setUpdate(false);
@@ -69,7 +68,7 @@ export const Messaging = () => {
         console.error("Error occurred while fetching user profile", error);
       }
     })();
-  }, [activeChatId, update]);
+  }, [activeChatId,update]);
 
   const selectedChat = chats?.find((chat) => chat.chat_id === activeChatId);
   return (
