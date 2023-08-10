@@ -95,12 +95,15 @@ export const HomeSearch = () => {
       setSearchResult({ isLoading: true, data: [] });
       //* Check here if it is working asynchronously
       console.log(evt.target.value);
-      let currentValue = evt.target.value;
+      const currentValue = evt.target.value;
 
       if (currentValue !== "" && currentValue.trim()) {
-        currentValue = currentValue.match(/[\w\u0430-\u044f]+/gi);
-        console.log(currentValue);
-        const response = await await SearchService.searchOnInput(currentValue);
+        const normalizedValue = currentValue
+          .toLowerCase()
+          .match(/[\w\p{sc=Cyrillic}]+/gu);
+        const response =  await SearchService.searchOnInput(
+          normalizedValue
+        );
         console.log(response);
         setSearchResult({ isLoading: false, data: response.data.posts });
       } else {

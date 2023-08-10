@@ -20,6 +20,7 @@ export const Messaging = () => {
   const [update, setUpdate] = useState(false);
   const [showFullTitle, setShowFullTitle] = useState(false);
 
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const message = useRef(null);
   const sendMessage = async (e) => {
