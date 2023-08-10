@@ -24,6 +24,7 @@ export const SmsPage = () => {
 
   const phoneIdFunc = async (code) => {
     const phoneCode = { code: code };
+    console.log(phoneCode);
     const data = await AuthService.VerifyCode(phoneCode, phoneId);
     if (data?.data?.ok == true) {
       console.log("access");
@@ -69,7 +70,7 @@ export const SmsPage = () => {
   const onFinish = async (values) => {
     enterLoading(0);
 
-    phoneIdFunc(values.code);
+    phoneIdFunc(+values.code);
     console.log(values.code);
   };
 

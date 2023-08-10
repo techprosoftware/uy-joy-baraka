@@ -162,8 +162,8 @@
 }
 
 .card-single__area {
-  max-width: 470px;
   width: 100%;
+  max-width: 470px;
   margin: 10px 0;
   padding: 7px 8px;
   background-color: #f1f1f1;
@@ -173,11 +173,12 @@
   line-height: 16px;
   color: #ababab;
   outline: none;
-  border: 1px solid transparent;
+  border: 1px solid #ababab;
+  border-radius: 10px;
 
   &:focus {
     outline: none;
-
+    color: #111;
     border: 1px solid #ababab;
   }
 }

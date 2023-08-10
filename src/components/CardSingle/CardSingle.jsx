@@ -1,14 +1,11 @@
 import "./card-single.scss"
 import { BackButton } from "@components/BackButton/BackButton"
 import { CardList } from "@components/CardList/CardList"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { BASE_URL } from "@api/api"
 import { useParams } from "react-router-dom"
-
-import { Link } from "react-router-dom"
 import CardService from "@/Api/card.service.jsx"
-
 import { CopyToClipboard } from "react-copy-to-clipboard"
 import { toast } from "react-toastify"
 import LoadingIcon from "@images/card-single-loading.svg"
@@ -16,9 +13,33 @@ import TelegramIcon from "@images/telegram-icon.svg"
 import WhatsappIcon from "@images/whatsapp-icon.svg"
 import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll"
 import { useTranslation } from "react-i18next"
+import MessagingService from "../../Api/messaging.service"
 
 export const CardSingle = () => {
   const { t } = useTranslation()
+
+  const [userId, setUserId] = useState()
+  const [anId, setAnId] = useState()
+
+  const userMessage = useRef()
+
+  const postMessage = async (body, idx) => {
+    const data = await MessagingService.PostMessage(body, idx)
+    if(data.ok === true) {
+     toast.success('Xabar yuborildi')
+    }
+    console.log(data);
+  }
+
+  const handleMessage = () => {
+    const data = {
+      message: userMessage.current?.value,
+      announcement_id: anId 
+    }
+    console.log(data);
+    postMessage(data, userId)
+  }
+
 
   let [imgId, setImgId] = useState(0)
   let [modal, setModal] = useState(false)
@@ -35,6 +56,8 @@ export const CardSingle = () => {
     setCard({ isLoading: true, data: [] })
     try {
       const response = await CardService.getByCard(id)
+      setAnId(response.data.post.announcement_id)
+      setUserId(response.data.post?.user_id)
       if (response.status === 200) {
         setCard({ isLoading: false, data: response.data })
       }
@@ -241,10 +264,11 @@ export const CardSingle = () => {
                       className="card-single__area"
                       name="chat"
                       id="chat"
-                      cols="30"
-                      rows="10"
+                      ref={userMessage}
+                      rows="7"
+                      placeholder="Uy egasiga yozish"
                     >
-                      Uy egasiga yozish
+                      
                     </textarea>
                   </form>
                   <div className="d-flex justify-content-between mt-3 card-single__btns">
@@ -254,12 +278,12 @@ export const CardSingle = () => {
                     >
                       {t("singlepage.phone")}
                     </a>
-                    <Link
+                    <button
                       className="card-single__send-btn"
-                      to={"/messaging"}
+                      onClick={handleMessage}
                     >
                       {t("singlepage.sendsms")}
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </motion.div>
