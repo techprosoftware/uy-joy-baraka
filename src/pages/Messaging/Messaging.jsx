@@ -19,6 +19,7 @@ export const Messaging = () => {
   const [activeChatId, setActiveChatId] = useState(null);
   const [update, setUpdate] = useState(false);
   const [showFullTitle, setShowFullTitle] = useState(false);
+  const token = localStorage.getItem("token");
 
   const navigate = useNavigate();
   const message = useRef(null);
@@ -45,8 +46,18 @@ export const Messaging = () => {
     setIsBarActive(!isBarActive);
   };
 
+  const getMessageById = async (chat_id) => {
+    const data = await MessagingService.GetMessageById(chat_id);
+    console.log(data);
+
+    return data;
+  };
+
   //* Handle chat bar active
   const handleChatBarActive = (id) => {
+    console.log(id);
+    getMessageById(id);
+
     setActiveChatId((prevActiveChatId) => {
       if (prevActiveChatId === id) {
         return null; //* Deactivate the chat item if it's already active
@@ -61,14 +72,14 @@ export const Messaging = () => {
     (async () => {
       try {
         const data = await MessagingService.GetMessaging();
-        console.log(data);
+        // console.log(data);
         setChats(data?.members);
         setUpdate(false);
       } catch (error) {
         console.error("Error occurred while fetching user profile", error);
       }
     })();
-  }, [activeChatId,update]);
+  }, [activeChatId, update]);
 
   const selectedChat = chats?.find((chat) => chat.chat_id === activeChatId);
   return (
