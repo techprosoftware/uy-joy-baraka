@@ -13,20 +13,14 @@ import MessagingService from "../../Api/messaging.service";
 import card from "../../Api/card.service";
 import DoubleCheck from "../../../public/assets/images/double-check_message.svg";
 
-//* Socket connection
-import io from "socket.io-client";
-import { toast } from "react-toastify";
-import { MDBIcon } from "mdbreact";
-
 export const Messaging = () => {
-  const token = localStorage.getItem("token");
-  console.log(token);
   const [isActive, setIsActive] = useState(false);
   const [isBarActive, setIsBarActive] = useState();
   const [chats, setChats] = useState(null);
   const [activeChatId, setActiveChatId] = useState(null);
   const [update, setUpdate] = useState(false);
 
+  const navigate = useNavigate();
   const message = useRef(null);
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -85,7 +79,7 @@ export const Messaging = () => {
       <div className="users-bar">
         <div className="container">
           <div className="backButton">
-            <button onClick="" className="customBack">
+            <button onClick={() => navigate(-1)} className="customBack">
               <img src={arrow} alt="arrow button" /> Orqaga
             </button>
           </div>
@@ -244,27 +238,31 @@ export const Messaging = () => {
                           alt=""
                         />
                       </span>
-                      {/* <span className="self-ms">{selectedChat.message}</span> */}
+                      <span className="client-ms">
+                        {selectedChat.message.content}
+                      </span>
                     </div>
                     {/* Chat messaged mock */}
-                    <input
-                      type="text"
-                      className="chatbar-input"
-                      placeholder="Sms yozish"
-                      aria-label="Enter your message(Habaringizni kiriting)"
-                      ref={message}
-                    />
-                    <button
-                      type="submit"
-                      className="chatbar-button"
-                      onClick={sendMessage}
-                    >
-                      <img
-                        className="chatbar-send__icon"
-                        src={ChatsendIcon}
-                        alt="chat-send icon"
+                    <form>
+                      <input
+                        type="text"
+                        className="chatbar-input"
+                        placeholder="Sms yozish"
+                        aria-label="Enter your message(Habaringizni kiriting)"
+                        ref={message}
                       />
-                    </button>
+                      <button
+                        type="submit"
+                        className="chatbar-button"
+                        onClick={sendMessage}
+                      >
+                        <img
+                          className="chatbar-send__icon"
+                          src={ChatsendIcon}
+                          alt="chat-send icon"
+                        />
+                      </button>
+                    </form>
                   </div>
                 </div>
               )}
