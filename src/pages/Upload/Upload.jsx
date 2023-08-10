@@ -618,11 +618,9 @@ export const Upload = () => {
               </div>
             </div>{" "}
           </div>
-          <Button className="upload__button" size="large" loading={loadings[0]} onClick={enterLoading} htmlType="submit">Kirish</Button>
+          <Button className="upload__button" size="large" loading={loadings[0]} onClick={enterLoading} htmlType="submit">{t("addannoun.send")}</Button>
 
-          {/* <button type="submit" className="upload__btn">
-          {t("addannoun.send")}
-          </button> */}
+        
         </form>
       </div>
       <ToastContainer
