@@ -18,7 +18,6 @@ import { MDBIcon } from "mdbreact";
 
 export const Messaging = () => {
   const token = localStorage.getItem("token");
-  console.log(token);
   const [isActive, setIsActive] = useState(false);
   const [isBarActive, setIsBarActive] = useState();
   const [chats, setChats] = useState(null);
@@ -64,7 +63,7 @@ export const Messaging = () => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await MessagingService.GetMessaging();
+        const data = await MessagingService.GetMessaging(token);
         console.log(data);
         setChats(data?.members);
         setUpdate(false);

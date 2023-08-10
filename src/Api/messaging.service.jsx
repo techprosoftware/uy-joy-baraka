@@ -4,13 +4,12 @@ const token = localStorage.getItem("token");
 //* Indicates chat section
 const MessagingService = {
   //* GET | Messaging
-  GetMessaging: async () => {
+  GetMessaging: async (token) => {
     const {data} = await axios.get("/api/chats", {
       headers: {
         authorization: token,
       },
     });
-    console.log(data);
     return data
   },
   SendMessage : async (body, id) => {
@@ -20,7 +19,17 @@ const MessagingService = {
       }
     })
     return data
-  }
+  },
+  PostMessage : async (body, id) => {
+    const {data} = await axios.post(`/api/chats/message/${id}`, body, {
+      headers: {
+        authorization: token,
+      }
+    })
+
+    return data
+  },
+
 };
 
 export default MessagingService;
