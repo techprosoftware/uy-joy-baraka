@@ -85,7 +85,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin-left: 50px;
+  margin-left: auto;
   padding: 3px 7px 2px 10px;
   background-color: #008b51;
   border: none;
@@ -142,18 +142,20 @@
   padding: 0;
   font-family: "Gilroy";
   font-weight: 600;
-  font-size: 28px;
+  font-size: 20px;
   line-height: 100%;
   color: #000000;
   text-transform: capitalize;
 }
 
 .card-single__text {
+  height: 150px;
   margin: 10px 0 0;
   padding: 0;
+  overflow-y: auto;
   font-family: "Gilroy";
   font-weight: 400;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 17px;
   color: #666666;
   text-transform: capitalize;
@@ -170,10 +172,12 @@
   font-size: 13px;
   line-height: 16px;
   color: #ababab;
-  border: none;
   outline: none;
+  border: 1px solid transparent;
 
   &:focus {
+    outline: none;
+
     border: 1px solid #ababab;
   }
 }

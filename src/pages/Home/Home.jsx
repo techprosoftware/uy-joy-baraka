@@ -24,14 +24,14 @@ export const Home = () => {
       <HomeCards />
       <Ads />
       <div className="container">
-        <CardList page={2} count={12} end={false} />
+        <CardList page={2} count={8} end={false} />
       </div>
       <Social />
       <div className="container">
         {" "}
-        <CardList page={3} count={12} end={false} />
+        <CardList page={3} count={4} end={true} />
       </div>{" "}
-      <InfiniteScroll/>
+      <InfiniteScroll />
       {/* <MoreBtn /> */}
     </>
   );
