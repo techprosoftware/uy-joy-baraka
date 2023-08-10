@@ -10,6 +10,7 @@ import arrow from "../../../public/assets/images/left-arrow.svg";
 import MessagingService from "../../Api/messaging.service";
 import card from "../../Api/card.service";
 import DoubleCheck from "../../../public/assets/images/double-check_message.svg";
+import { useNavigate } from "react-router-dom";
 
 export const Messaging = () => {
   const [isActive, setIsActive] = useState(false);
@@ -17,6 +18,7 @@ export const Messaging = () => {
   const [chats, setChats] = useState(null);
   const [activeChatId, setActiveChatId] = useState(null);
   const [update, setUpdate] = useState(false);
+  const [showFullTitle, setShowFullTitle] = useState(false);
 
   const navigate = useNavigate();
   const message = useRef(null);
@@ -111,7 +113,7 @@ export const Messaging = () => {
                 <div className="delete-bar">
                   <button className="trash-icon">
                     <img src={TrashIcon} alt="trash icon" />
-                    <span className="trash-span">Delete</span>
+                    <span className="trash-span">O'chirish</span>
                   </button>
                 </div>
                 {/* Chats */}
@@ -202,7 +204,16 @@ export const Messaging = () => {
                           <img src={SelectedChatImg} alt="selected chat" />
                           <div>
                             <span className="selected-ad">
-                              {selectedChat.post.title}
+                              {showFullTitle
+                                ? selectedChat.post.title
+                                : selectedChat.post.title.substr(0, 57) +
+                                  "... "}
+                              <button
+                                className="more__button"
+                                onClick={() => setShowFullTitle(!showFullTitle)}
+                              >
+                                {showFullTitle ? "Kichikroq" : "Batafsil"}
+                              </button>
                             </span>
                           </div>
                         </div>
@@ -236,10 +247,10 @@ export const Messaging = () => {
                           alt=""
                         />
                       </span>
-                      <span className="client-ms">
-                        {selectedChat.message.content}
-                      </span>
                     </div>
+                    <span className="client-ms">
+                      {selectedChat.message.content}
+                    </span>
                     {/* Chat messaged mock */}
                     <form>
                       <input

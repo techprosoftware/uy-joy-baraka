@@ -410,6 +410,21 @@
       font-family: "Gilroy";
       font-style: normal;
     }
+
+    .more__button {
+      font-size: 15px;
+      border: 1px solid #008b51;
+      border-radius: 8px;
+
+      border: none;
+      outline: none;
+      color: #fff;
+      background-color: #008b51;
+
+      &:hover {
+        background-color: #00cb76;
+      }
+    }
   }
 
   .chats-container__bar {
