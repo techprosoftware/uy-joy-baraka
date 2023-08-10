@@ -31,7 +31,7 @@ export const Home = () => {
         {" "}
         <CardList page={3} count={4} end={true} />
       </div>{" "}
-      <InfiniteScroll />
+      <InfiniteScroll page={4} />
       {/* <MoreBtn /> */}
     </>
   );
