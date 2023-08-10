@@ -13,8 +13,8 @@ export const CardSkeleton = () => {
       }}
     >
       <Skeleton
-        width={222}
-        height={222}
+        width={308}
+        height={481}
       />
       <div className="p-2">
         <div className="d-flex space-between mt-1">

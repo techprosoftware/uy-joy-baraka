@@ -1,11 +1,9 @@
 import "./card-single.scss"
 import { BackButton } from "@components/BackButton/BackButton"
 import { CardList } from "@components/CardList/CardList"
-import { MoreBtn } from "../MoreBtn/MoreBtn"
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import "./share"
-import { BASE_URL } from "../../Api/api"
+import { BASE_URL } from "@api/api"
 import { useParams } from "react-router-dom"
 
 import { Link } from "react-router-dom"
@@ -14,6 +12,7 @@ import CardService from "@/Api/card.service.jsx"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 import { toast } from "react-toastify"
 import LoadingIcon from "@images/card-single-loading.svg"
+import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll"
 
 export const CardSingle = () => {
   let [imgId, setImgId] = useState(0)
@@ -51,23 +50,23 @@ export const CardSingle = () => {
     .toString()
     .replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, "$1 ")
   const currentUrl = window.location.href
-
+  console.log(card)
   return (
     <>
       <main>
         <section>
           <div className="container">
-            <div className="mt-3">
+            <div className="mt-5 pt-5">
               <BackButton />
             </div>
             {card.isLoading ? (
               <img
                 className={
-                  "justify-content-center align-items-center mx-auto w-100"
+                  "justify-content-center align-items-center mx-auto w-100 p-5"
                 }
                 src={LoadingIcon}
-                width={400}
-                height={400}
+                width={300}
+                height={300}
                 alt={"Loading image"}
               />
             ) : (
@@ -211,7 +210,6 @@ export const CardSingle = () => {
                       </div>
                     </button>
                     <div className="card-single__user-info">
-                     
                       <span className="card-single__user-name">
                         {user?.full_name}
                       </span>
@@ -223,6 +221,17 @@ export const CardSingle = () => {
                   <h2 className="card-single__title">{data?.title}</h2>
                   <p className="fs-4 mt-2">{data?.address}</p>
                   <p className="card-single__text">{data?.description}</p>
+                  <form>
+                    <textarea
+                      className="card-single__area"
+                      name="chat"
+                      id="chat"
+                      cols="30"
+                      rows="10"
+                    >
+                      Uy egasiga yozish
+                    </textarea>
+                  </form>
                   <div className="d-flex justify-content-between mt-3 card-single__btns">
                     <a
                       className="card-single__call-btn"
@@ -250,8 +259,8 @@ export const CardSingle = () => {
               count={12}
             />
           </div>
-          <MoreBtn />
         </section>
+        <InfiniteScroll page={2} />
       </main>
     </>
   )
