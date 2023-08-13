@@ -56,6 +56,13 @@
       // display: none;
     }
     display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    // Margins, paddings
+    padding: 0px 0 30px 0;
+    width: 100%;
+    // max-width: 570px;
     .bg-chat {
       display: flex;
       flex-direction: column;
@@ -63,6 +70,10 @@
       overflow: auto;
       background-color: #fff;
       margin-bottom: 62px;
+      padding-bottom: 42px;
+
+      width: 100%;
+      max-width: 550px;
     }
 
     .client-ms {
@@ -90,8 +101,9 @@
       //* Custom properties
       width: 183px;
       display: flex;
-      margin-top: 35px;
-      margin-bottom: 35px;
+      justify-content: space-between;
+      margin-top: 20px;
+      margin-bottom: 10px;
       margin-left: 20px;
       padding: 4px 8px;
 
@@ -108,15 +120,18 @@
       font-weight: 400;
     }
 
+    .text__msg {
+      margin-left: auto;
+    }
+
     .double-check {
+      display: flex;
+      justify-content: flex-end;
+      margin-left: auto;
+
       user-select: none;
     }
 
-    // Margins, paddings
-    padding: 0px 0 30px 0;
-
-    width: 100%;
-    max-width: 570px;
     .layoutButtons {
       display: flex;
       & .layout-buttons__btn {
@@ -131,6 +146,7 @@
         border: none;
         background-color: #d9d9d9;
         color: #008b51;
+        text-align: center;
         font-family: "Gilroy";
         font-weight: 500;
       }

@@ -11,7 +11,7 @@ import arrow from "../../../public/assets/images/left-arrow.svg";
 import MessagingService from "../../Api/messaging.service";
 import card from "../../Api/card.service";
 import DoubleCheck from "../../../public/assets/images/double-check_message.svg";
-import { useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import ProfileService from "../../Api/profile.service";
 
 export const Messaging = () => {
@@ -23,8 +23,25 @@ export const Messaging = () => {
   const [showFullTitle, setShowFullTitle] = useState(false);
   const token = localStorage.getItem("token");
 
+  //* Additional things
   const navigate = useNavigate();
   const message = useRef(null);
+
+  //* GET MESSAGING -- [GET REQUEST]
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await MessagingService.GetMessaging();
+        console.log("user", data);
+        setChats(data?.members);
+        setUpdate(false);
+      } catch (error) {
+        console.error("Error occurred while fetching user profile", error);
+      }
+    })();
+  }, [activeChatId, update]);
+
+  //* POST MESSAGE -- [POST REQUEST]
   const sendMessage = async (e) => {
     e.preventDefault();
     if (!message.current.value) return alert("Message value required");
@@ -40,8 +57,17 @@ export const Messaging = () => {
     }
   };
 
-  const [userData, setUserData] = useState([]);
+  //* DELETE CHAT -- [DELETE REQUEST]
+  const deleteChat = async (i) => {
+    try {
+      await MessagingService.DeleteChat(i);
+      setUpdate(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  const [userData, setUserData] = useState([]);
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
@@ -56,8 +82,6 @@ export const Messaging = () => {
     fetchUserProfile();
   }, []);
 
-  // console.log(userData.data?.user?.user_id);
-
   //* Handle button active state change
   const handleButtonClick = () => {
     setIsActive(!isActive);
@@ -70,14 +94,10 @@ export const Messaging = () => {
   const [meData, setMeData] = useState();
   const getMessageById = async (chat_id) => {
     const data = await MessagingService.GetMessageById(chat_id);
-    console.log('message',data);
     setMeData(data.data?.messages);
-    // console.log('message',data.data.messages.map(item => item.sender_id));
 
     return data;
   };
-
-  // console.log(meData);
 
   const resultMeData = meData?.filter(
     (item) => item.sender_id == userData.data?.user?.user_id
@@ -86,12 +106,8 @@ export const Messaging = () => {
     (item) => item.sender_id != userData.data?.user?.user_id
   );
 
-  console.log(resultMeData);
-  console.log(resultYouData);
-
   //* Handle chat bar active
   const handleChatBarActive = (id) => {
-    // console.log(id);
     getMessageById(id);
 
     setActiveChatId((prevActiveChatId) => {
@@ -104,20 +120,9 @@ export const Messaging = () => {
     });
   };
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const data = await MessagingService.GetMessaging();
-        console.log("user", data);
-        setChats(data?.members);
-        setUpdate(false);
-      } catch (error) {
-        console.error("Error occurred while fetching user profile", error);
-      }
-    })();
-  }, [activeChatId, update]);
-
   const selectedChat = chats?.find((chat) => chat.chat_id === activeChatId);
+  console.log(selectedChat);
+
   return (
     <>
       {/* Header component */}
@@ -138,22 +143,24 @@ export const Messaging = () => {
             >
               <div className="layoutButtons">
                 {/* Layout buttons */}
-                <button
+                <Link
                   className={`layout-buttons__btn ${
                     isActive ? "layout-buttons__btn" : "active"
                   }`}
                   onClick={handleButtonClick}
+                  to={"sotaman"}
                 >
                   Sotaman
-                </button>
-                <button
+                </Link>
+                <Link
                   className={`layout-buttons__btn ${
                     isActive ? "active" : "layout-buttons__btn"
                   }`}
                   onClick={handleButtonClick}
+                  to={"sotibolaman"}
                 >
                   Sotib olaman
-                </button>
+                </Link>
               </div>
               {/* Delete messaging */}
               <div className="bg-chat">
@@ -189,9 +196,7 @@ export const Messaging = () => {
                             <span className="chat-user__name">
                               {info?.user?.full_name}
                             </span>
-                            <button
-                              onClick={() => handleRemoveChat(info?.chat_id)}
-                            >
+                            <button onClick={() => deleteChat(info?.chat_id)}>
                               <img src={TrashIcon} alt="delete chat icon" />
                             </button>
                           </div>
@@ -200,7 +205,7 @@ export const Messaging = () => {
                             {/* {selectedChat.post.title} */}
                           </p>
                           <p className="chat-user__message">
-                            {info?.message.content.substr(0, 45)}....
+                            {info?.message?.content.substr(0, 45)}....
                             {/* Now, it cuts texts based on user message */}
                           </p>
                         </div>
@@ -232,7 +237,11 @@ export const Messaging = () => {
                         </span>
                       </div>
                       <div className="trash-inner">
-                        <button>
+                        <button
+                          onClick={() =>
+                            deleteChat(selectedChat?.members?.chat_id)
+                          }
+                        >
                           <img src={TrashIcon} alt="trash icon" />
                         </button>
                       </div>
@@ -279,8 +288,7 @@ export const Messaging = () => {
                     </div>
 
                     {meData?.length
-                      ? 
-                      meData
+                      ? meData
                           ?.filter(
                             (item) =>
                               item.sender_id == userData.data?.user?.user_id
@@ -288,26 +296,27 @@ export const Messaging = () => {
                           .map((item) => (
                             <>
                               {" "}
-                              <span
+                              <div
                                 style={{
                                   display: "block",
-                                  width: "200px",
+                                  // width: "200px",
                                   marginLeft: "auto",
                                   marginRight: "15px",
                                 }}
                                 className="self-ms"
                               >
-                                {item?.content}
+                                <span className="text__msg">
+                                  {item?.content}
+                                </span>
                                 <img
                                   className="double-check"
-                                  style={{ marginLeft: "25px" }}
                                   src={DoubleCheck}
                                   alt=""
                                 />
-                              </span>
-                              
+                              </div>
                             </>
-                          )) ||  meData
+                          )) ||
+                        meData
                           ?.filter(
                             (item) =>
                               item.sender_id != userData.data?.user?.user_id
@@ -324,10 +333,8 @@ export const Messaging = () => {
                                   alt=""
                                 />
                               </span>
-                              
                             </>
                           ))
-                          
                       : ""}
 
                     {/* Chat messaged mock */}
