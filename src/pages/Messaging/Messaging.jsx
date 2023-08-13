@@ -159,54 +159,56 @@ export const Messaging = () => {
               </div>
               {/* Delete messaging */}
               <div className="bg-chat">
-                <div className="delete-bar">
-                  <button className="trash-icon">
-                    <img src={TrashIcon} alt="trash icon" />
-                    <span className="trash-span">O'chirish</span>
-                  </button>
-                </div>
-                {/* Chats */}
                 {chats?.length ? (
-                  chats?.map((info) => (
-                    <div key={info.chat_id} className="chats-container">
-                      <div
-                        className={`chat-wrapper ${
-                          info.chat_id === activeChatId ? "chatActive" : ""
-                        }`}
-                        onClick={() => {
-                          handleChatBarActive(info?.chat_id);
-                          handleBarActive();
-                        }}
-                      >
-                        <div className="chat-inner">
-                          <img
-                            src={`http://test.uyjoybaraka.uz/${info?.user?.avatar}`}
-                            width={100}
-                            alt="user image"
-                            className="member-img"
-                          />
-                        </div>
-                        <div className="chat-inner chat-inner__info">
-                          <div className="chat-deleting">
-                            <span className="chat-user__name">
-                              {info?.user?.full_name}
-                            </span>
-                            <button onClick={() => deleteChat(info?.chat_id)}>
-                              <img src={TrashIcon} alt="delete chat icon" />
-                            </button>
+                  <div>
+                    <div className="delete-bar">
+                      <button className="trash-icon">
+                        <img src={TrashIcon} alt="trash icon" />
+                        <span className="trash-span">O'chirish</span>
+                      </button>
+                    </div>
+                    {/* Chats */}
+                    {chats?.map((info) => (
+                      <div key={info.chat_id} className="chats-container">
+                        <div
+                          className={`chat-wrapper ${
+                            info.chat_id === activeChatId ? "chatActive" : ""
+                          }`}
+                          onClick={() => {
+                            handleChatBarActive(info?.chat_id);
+                            handleBarActive();
+                          }}
+                        >
+                          <div className="chat-inner">
+                            <img
+                              src={`http://test.uyjoybaraka.uz/${info?.user?.avatar}`}
+                              width={100}
+                              alt="user image"
+                              className="member-img"
+                            />
                           </div>
-                          <p className="chat-user__ad">
-                            {info.post?.title.substr(0, 57)}
-                            {/* {selectedChat.post.title} */}
-                          </p>
-                          <p className="chat-user__message">
-                            {info?.message?.content.substr(0, 45)}....
-                            {/* Now, it cuts texts based on user message */}
-                          </p>
+                          <div className="chat-inner chat-inner__info">
+                            <div className="chat-deleting">
+                              <span className="chat-user__name">
+                                {info?.user?.full_name}
+                              </span>
+                              <button onClick={() => deleteChat(info?.chat_id)}>
+                                <img src={TrashIcon} alt="delete chat icon" />
+                              </button>
+                            </div>
+                            <p className="chat-user__ad">
+                              {info.post?.title.substr(0, 57)}
+                              {/* {selectedChat.post.title} */}
+                            </p>
+                            <p className="chat-user__message">
+                              {info?.message?.content.substr(0, 45)}....
+                              {/* Now, it cuts texts based on user message */}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))
+                    ))}
+                  </div>
                 ) : (
                   <div className="no-data">
                     <img

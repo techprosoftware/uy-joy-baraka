@@ -1,84 +1,86 @@
-import "./card-single.scss"
-import { BackButton } from "@components/BackButton/BackButton"
-import { CardList } from "@components/CardList/CardList"
-import { useEffect, useRef, useState } from "react"
-import { motion } from "framer-motion"
-import { BASE_URL } from "@api/api"
-import { useParams } from "react-router-dom"
-import CardService from "@/Api/card.service.jsx"
-import { CopyToClipboard } from "react-copy-to-clipboard"
-import { toast } from "react-toastify"
-import LoadingIcon from "@images/card-single-loading.svg"
-import TelegramIcon from "@images/telegram-icon.svg"
-import WhatsappIcon from "@images/whatsapp-icon.svg"
-import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll"
-import { useTranslation } from "react-i18next"
-import MessagingService from "../../Api/messaging.service"
+import "./card-single.scss";
+import { BackButton } from "@components/BackButton/BackButton";
+import { CardList } from "@components/CardList/CardList";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { BASE_URL } from "@api/api";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import CardService from "@/Api/card.service.jsx";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { toast } from "react-toastify";
+import LoadingIcon from "@images/card-single-loading.svg";
+import TelegramIcon from "@images/telegram-icon.svg";
+import WhatsappIcon from "@images/whatsapp-icon.svg";
+import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll";
+import { useTranslation } from "react-i18next";
+import MessagingService from "../../Api/messaging.service";
 
 export const CardSingle = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
-  const [userId, setUserId] = useState()
-  const [anId, setAnId] = useState()
+  const navigate = useNavigate();
 
-  const userMessage = useRef()
+  const [userId, setUserId] = useState();
+  const [anId, setAnId] = useState();
+
+  const userMessage = useRef();
 
   const postMessage = async (body, idx) => {
-    const data = await MessagingService.PostMessage(body, idx)
-    if(data.ok === true) {
-     toast.success('Xabar yuborildi')
+    const data = await MessagingService.PostMessage(body, idx);
+    if (data.ok === true) {
+      toast.success("Xabar yuborildi");
+      navigate("/messaging");
     }
     console.log(data);
-  }
+  };
 
   const handleMessage = () => {
     const data = {
       message: userMessage.current?.value,
-      announcement_id: anId 
-    }
+      announcement_id: anId,
+    };
     console.log(data);
-    postMessage(data, userId)
-  }
+    postMessage(data, userId);
+  };
 
-
-  let [imgId, setImgId] = useState(0)
-  let [modal, setModal] = useState(false)
-  const [card, setCard] = useState({ isLoading: true, data: {} })
-  const { id } = useParams()
+  let [imgId, setImgId] = useState(0);
+  let [modal, setModal] = useState(false);
+  const [card, setCard] = useState({ isLoading: true, data: {} });
+  const { id } = useParams();
 
   window.addEventListener("keydown", (evt) => {
     if (evt.key === "Escape") {
-      setModal(false)
+      setModal(false);
     }
-  })
+  });
 
   const fetcher = async () => {
-    setCard({ isLoading: true, data: [] })
+    setCard({ isLoading: true, data: [] });
     try {
-      const response = await CardService.getByCard(id)
-      setAnId(response.data.post.announcement_id)
-      setUserId(response.data.post?.user_id)
+      const response = await CardService.getByCard(id);
+      setAnId(response.data.post.announcement_id);
+      setUserId(response.data.post?.user_id);
       if (response.status === 200) {
-        setCard({ isLoading: false, data: response.data })
+        setCard({ isLoading: false, data: response.data });
       }
     } catch (error) {
-      setCard({ isLoading: false, data: [] })
-      console.log("Error fetching card data: ", error)
+      setCard({ isLoading: false, data: [] });
+      console.log("Error fetching card data: ", error);
     }
-  }
+  };
 
   useEffect(() => {
-    fetcher()
-  }, [id])
+    fetcher();
+  }, [id]);
 
-  const data = card.data.post
-  const user = card.user
-  const time = data?.updatedAt.split("-")
+  const data = card.data.post;
+  const user = card.user;
+  const time = data?.updatedAt.split("-");
   const customPrice = data?.price
     .toString()
-    .replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, "$1 ")
-  const currentUrl = window.location.href
-  console.log(card)
+    .replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, "$1 ");
+  const currentUrl = window.location.href;
+  console.log(card);
   return (
     <>
       <main>
@@ -267,9 +269,7 @@ export const CardSingle = () => {
                       ref={userMessage}
                       rows="7"
                       placeholder="Uy egasiga yozish"
-                    >
-                      
-                    </textarea>
+                    ></textarea>
                   </form>
                   <div className="d-flex justify-content-between mt-3 card-single__btns">
                     <a
@@ -293,14 +293,11 @@ export const CardSingle = () => {
         <section className="suggestion">
           <div className="container">
             <h2 className="suggestion__title"> {t("singlepage.recomended")}</h2>
-            <CardList
-              page={1}
-              count={12}
-            />
+            <CardList page={1} count={12} />
           </div>
         </section>
         <InfiniteScroll page={2} />
       </main>
     </>
-  )
-}
+  );
+};
