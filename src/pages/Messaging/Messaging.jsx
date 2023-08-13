@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Header } from "@components/Header/Header";
 import "./Messaging.scss";
 import { useRef } from "react";
-//* Ant design 
+//* Ant design
 import { Modal, Button } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 //* Icons
@@ -122,9 +122,7 @@ export const Messaging = () => {
   //* Handle chat bar active
   const handleChatBarActive = (id) => {
     getMessageById(id);
-    setActiveChatId((prevActiveChatId) =>
-      prevActiveChatId === id ? null : id
-    );
+    setActiveChatId((prevActiveChatId) => (prevActiveChatId === id ? id : id));
   };
 
   const selectedChat = chats?.find((chat) => chat.chat_id === activeChatId);
