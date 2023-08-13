@@ -64,9 +64,9 @@ export const Messaging = () => {
   //* DELETE CHAT -- [DELETE REQUEST]
   const deleteChat = async (i) => {
     Modal.confirm({
-      title: "Confirm",
+      title: "Iltimos tasdiqlang",
       icon: <ExclamationCircleOutlined />,
-      content: "Rostdan ham bu chat-ni ochirmoqchimisiz?",
+      content: "Rostdan ham bu chat-ni o'chirishni xohlaysizmi?",
       okText: "Ha",
       cancelText: "Yo'q",
       onOk: async () => {
