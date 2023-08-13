@@ -19,7 +19,7 @@ const MessagingService = {
   GetMessaging: async () => {
     const {data} = await axios.get("/api/chats", {
       headers: {
-        Authorization: token,
+        authorization: token,
       },
     });
     return data

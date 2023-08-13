@@ -42,6 +42,7 @@ export const UserInfo = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await ProfileService.GetProfile();
+        console.log(response);
         setUserData(response.data);
         setIsLoading(false);
         getterStSet(false);
