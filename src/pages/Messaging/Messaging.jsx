@@ -3,7 +3,10 @@ import { useState, useEffect } from "react";
 import { Header } from "@components/Header/Header";
 import "./Messaging.scss";
 import { useRef } from "react";
-// Icons
+//* Ant design 
+import { Modal, Button } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+//* Icons
 import TrashIcon from "../../../public/assets/images/messaging-delete-icon.svg";
 import ChatsendIcon from "../../../public/assets/images/chatbar-send-icon.svg";
 import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilonzor.webp";
@@ -60,12 +63,21 @@ export const Messaging = () => {
 
   //* DELETE CHAT -- [DELETE REQUEST]
   const deleteChat = async (i) => {
-    try {
-      await MessagingService.DeleteChat(i);
-      setUpdate(true);
-    } catch (error) {
-      console.log(error);
-    }
+    Modal.confirm({
+      title: "Confirm",
+      icon: <ExclamationCircleOutlined />,
+      content: "Rostdan ham bu chat-ni ochirmoqchimisiz?",
+      okText: "Ha",
+      cancelText: "Yo'q",
+      onOk: async () => {
+        try {
+          await MessagingService.DeleteChat(i);
+          setUpdate(true);
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    });
   };
 
   const [userData, setUserData] = useState([]);
