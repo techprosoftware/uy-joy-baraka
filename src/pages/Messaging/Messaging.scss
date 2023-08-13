@@ -73,6 +73,7 @@
       padding-bottom: 42px;
 
       width: 100%;
+      min-width: 550px;
       max-width: 550px;
     }
 
@@ -286,6 +287,25 @@
         width: 100%;
         margin-left: 7px;
       }
+    }
+  }
+}
+
+.no-data {
+  display: block;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
+  & button {
+    //* Margin, paddings
+    padding: 7px 20px;
+
+    background-color: #008b51;
+    color: #fff;
+    border: none;
+
+    &:hover {
+      background-color: #00cb76;
     }
   }
 }

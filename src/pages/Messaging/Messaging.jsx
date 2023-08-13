@@ -13,6 +13,7 @@ import card from "../../Api/card.service";
 import DoubleCheck from "../../../public/assets/images/double-check_message.svg";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import ProfileService from "../../Api/profile.service";
+import NoData from "../../../public/assets/images/no-data.svg";
 
 export const Messaging = () => {
   const [isActive, setIsActive] = useState(false);
@@ -109,15 +110,9 @@ export const Messaging = () => {
   //* Handle chat bar active
   const handleChatBarActive = (id) => {
     getMessageById(id);
-
-    setActiveChatId((prevActiveChatId) => {
-      if (prevActiveChatId === id) {
-        return null; //* Deactivate the chat item if it's already active
-      } else {
-        setActiveChatId(id);
-        return id; //* Activate the clicked chat item
-      }
-    });
+    setActiveChatId((prevActiveChatId) =>
+      prevActiveChatId === id ? null : id
+    );
   };
 
   const selectedChat = chats?.find((chat) => chat.chat_id === activeChatId);
@@ -213,7 +208,22 @@ export const Messaging = () => {
                     </div>
                   ))
                 ) : (
-                  <h3 style={{ paddingLeft: "20px" }}>Chat yuklanmoqda..</h3>
+                  <div className="no-data">
+                    <img
+                      src={NoData}
+                      width={280}
+                      height={280}
+                      alt="no message yet"
+                    />
+                    <h3>Hali xabarlar yo'q</h3>
+                    <p>
+                      Asosiy sahifaga o'tish va orzuingizdagi uy-ni topish
+                      orqali, suhbatni boshlashingiz mumkin
+                    </p>
+                    <button onClick={() => navigate("/")}>
+                      Asosiy sahifaga
+                    </button>
+                  </div>
                 )}
               </div>
             </div>
