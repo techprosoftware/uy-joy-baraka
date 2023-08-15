@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import "./Announ.scss";
+// import "./Announ.scss";
 import { BackButton } from "@components/BackButton/BackButton";
 import { Link, NavLink, Route, Routes } from "react-router-dom";
 import { ActiveCard } from "../../components/ActiveCard/ActiveCard";

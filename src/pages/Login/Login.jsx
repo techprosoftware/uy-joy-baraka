@@ -1,4 +1,4 @@
-import "./Login.scss";
+// import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../../Api/auth.service";
 import {  toast } from "react-toastify";

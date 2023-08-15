@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom"
-import "./search.scss"
+// import "./search.scss"
 import { BASE_URL } from "@api/api"
 
 export const Search = ({ data }) => {

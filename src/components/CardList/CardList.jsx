@@ -6,7 +6,7 @@ import { setCard } from "@/redux/card/cardAction.js"
 import CardService from "@/Api/card.service.jsx"
 import { Card } from "../Cards/Cards"
 import { CardSkeleton } from "@components/Cards/CardSkeleton"
-import "./card-list.scss"
+// import "./card-list.scss"
 
 export const CardList = ({ page, count, end }) => {
   const [isLoading, setIsLoading] = useState(true)

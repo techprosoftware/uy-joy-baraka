@@ -1,4 +1,4 @@
-import "./card.scss"
+// import "./card.scss"
 // import CardLikeIcon from "@images/card-like-icon.svg"
 import CardULikeIcon from "@images/card-ulike-icon.svg"
 import { useNavigate } from "react-router-dom"

@@ -2,7 +2,7 @@
 /* eslint-disable no-irregular-whitespace */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
-import "./ActiveCard.scss";
+// import "./ActiveCard.scss";
 import CardLikeIcon from "@images/card-like-icon.svg";
 import CardULikeIcon from "@images/card-ulike-icon.svg";
 import mockCardImg from "@images/mock-img.png";

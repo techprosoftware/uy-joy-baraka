@@ -1,0 +1,105 @@
+
+
+
+.register__inner {
+  padding: 100px 0;
+}
+
+.register__wrapper {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.register__wrapper h3 {
+  margin: 0;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  color: #000000;
+}
+
+.register__wrapper p {
+  margin: 0;
+  margin-bottom: 31px;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+}
+
+
+
+.register__form .register__inputs {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 15px 0 15px 19px;
+  border: 1px solid #008b51;
+  border-radius: 9px;
+  outline: none;
+}
+
+
+.register__form button {
+  background: #008b51;
+  border-radius: 9px;
+  outline: none;
+  width: 100%;
+  border: none;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+}
+
+.register__form button:focus {
+  color: #fff !important;
+}
+
+.register__form button:hover {
+  color: #fff !important;
+}
+
+.register__form a {
+  text-align: end;
+  margin-top: 20px;
+  display: block;
+}
+
+.register__label {
+  display: flex !important;
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-family: 'Inter' serif;
+}
+
+.register__form .phone {
+  width: 100%;
+  background: #fff !important;
+  border: none;
+  outline: none;
+}
+
+
+.default__phone {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 15px 0 15px 19px;
+  border: 1px solid #008B51;
+  border-radius: 9px;
+  outline: none;
+}

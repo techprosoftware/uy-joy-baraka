@@ -1,8 +1,6 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
 
 import { useEffect, useState } from "react";
-import "./header.scss";
+// import "./header.scss";
 import { Link } from "react-router-dom";
 import SiteLogo from "@images/logo.svg";
 import TelegramIcon from "@images/telegram.png";
