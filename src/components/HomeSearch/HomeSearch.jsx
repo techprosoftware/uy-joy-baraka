@@ -62,11 +62,12 @@ export const HomeSearch = () => {
 
   const handleSubmitSearch = (e) => {
     e.preventDefault()
-    if (!search.current.value.trim() === "") {
+
+    if (!search.current.value.trim() == "") {
       localStorage.setItem("searchCity", search.current.value)
       navigate("/card-search")
     } else {
-      return
+      console.log('dsd');
     }
   }
 
@@ -189,6 +190,7 @@ export const HomeSearch = () => {
               </svg>{" "}
               <span className={`filter__btn `}>{t("searchpage.filter")}</span>
             </a>
+
 
             <ul
               className={`filter__select ${
