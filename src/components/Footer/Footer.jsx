@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import React from "react";
-import "./footer.scss";
+// import "./footer.scss";
 // Store links
 import AppStorePic from "../../../public/assets/images/footer_store-link_iphone.svg";
 import PlayStorePic from "../../../public/assets/images/footer_store-link_android.svg";

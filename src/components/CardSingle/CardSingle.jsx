@@ -1,4 +1,4 @@
-import "./card-single.scss"
+// import "./card-single.scss"
 import { BackButton } from "@components/BackButton/BackButton"
 import { CardList } from "@components/CardList/CardList"
 import { useEffect, useRef, useState } from "react"
@@ -25,6 +25,7 @@ export const CardSingle = () => {
 
   const postMessage = async (body, idx) => {
     const data = await MessagingService.PostMessage(body, idx)
+  
     if(data.ok === true) {
      toast.success('Xabar yuborildi')
     }
@@ -56,6 +57,7 @@ export const CardSingle = () => {
     setCard({ isLoading: true, data: [] })
     try {
       const response = await CardService.getByCard(id)
+      console.log(response);
       setAnId(response.data.post.announcement_id)
       setUserId(response.data.post?.user_id)
       if (response.status === 200) {
@@ -84,7 +86,7 @@ export const CardSingle = () => {
       <main>
         <section>
           <div className="container">
-            <div className="mt-5 pt-5">
+            <div className="pt-3">
               <BackButton />
             </div>
             {card.isLoading ? (

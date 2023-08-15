@@ -1,5 +1,5 @@
 import LogoSocial from "@images/logo-social.svg"
-import "./social.scss"
+// import "./social.scss"
 import { Link } from "react-router-dom"
 import FacebookIcon from "@images/social-facebook-icon.svg"
 import InstagramIcon from "@images/social-instagram-icon.svg"

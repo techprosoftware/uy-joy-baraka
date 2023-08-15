@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
-import "./AnnounSearch.scss";
+// import "./AnnounSearch.scss";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import AnnounService from "../../Api/announ.service";
@@ -92,7 +92,7 @@ export const AnnounSearch = () => {
 
   return (
     <div className="container">
-      <div style={{ paddingTop: "90px" }}>
+      <div style={{ paddingTop: "20px" }}>
         <h3 className="heart__title">{t("search.save")}</h3>
         <hr />
         <h3 className="heart__desc mb-2">

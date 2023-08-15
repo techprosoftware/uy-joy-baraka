@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useRef, useState } from "react";
-import "./Register.scss";
+// import "./Register.scss";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import AuthService from "../../Api/auth.service";

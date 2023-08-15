@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Skeleton from "react-loading-skeleton";
-import "./UserInfo.scss";
+// import "./UserInfo.scss";
 import { Header } from "../../components/Header/Header";
 import { BackButton } from "../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
@@ -152,7 +152,6 @@ export const UserInfo = () => {
 
   return (
     <>
-      <Header />
       {contextHolder}
       {/* <Button onClick={success}>Success</Button> */}
       <div className="user-info">

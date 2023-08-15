@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect } from "react";
 import { Header } from "@components/Header/Header";
-import "./Messaging.scss";
+// import "./Messaging.scss";
 import { useRef } from "react";
 // Icons
 import TrashIcon from "../../../public/assets/images/messaging-delete-icon.svg";
@@ -121,7 +121,6 @@ export const Messaging = () => {
   return (
     <>
       {/* Header component */}
-      <Header />
       {/* Users bar */}
       <div className="users-bar">
         <div className="container">

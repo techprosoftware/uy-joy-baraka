@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react"
-import "./HomeSearch.scss"
+// import "./HomeSearch.scss"
 
 import { Select } from "antd"
 import { Link, useNavigate } from "react-router-dom"

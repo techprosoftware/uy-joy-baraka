@@ -2,7 +2,7 @@
 import React from "react"
 import ButtonPhoneIcon from "@images/home-phone.svg"
 import AdsBgi from "@images/12.png"
-import "./ads.scss"
+// import "./ads.scss"
 import { useTranslation } from "react-i18next";
 
 

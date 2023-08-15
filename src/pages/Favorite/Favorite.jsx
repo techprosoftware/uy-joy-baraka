@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import "./Favorite.scss";
+// import "./Favorite.scss";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -113,7 +113,7 @@ export const Favorite = () => {
 
   return (
     <div className="container">
-      <div style={{ paddingTop: "90px" }}>
+      <div style={{ paddingTop: "20px" }}>
         <h3 className="heart__title">{t("favorite.save")}</h3>
         <hr />
         <h3 className="heart__desc mb-2">
