@@ -240,9 +240,9 @@ export const Header = () => {
                     <p className="drop__info">{user?.data?.user?.full_name}</p>
                     <ul className="drop__list">
                       <li className="drop__item">
-                        <Link className="drop__link" to={"/userinfo"}>
+                        <a className="drop__link" href="/userinfo">
                           {t("profile.userinfo")}
-                        </Link>
+                        </a>
                       </li>
                       <li className="drop__item">
                         <Link className="drop__link" to={"/announ/active"}>
