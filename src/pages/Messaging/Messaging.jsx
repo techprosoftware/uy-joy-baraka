@@ -17,6 +17,7 @@ import DoubleCheck from "../../../public/assets/images/double-check_message.svg"
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import ProfileService from "../../Api/profile.service";
 import NoData from "../../../public/assets/images/no-data.svg";
+import { useSelector } from "react-redux";
 
 export const Messaging = () => {
   const [isActive, setIsActive] = useState(false);
@@ -26,6 +27,10 @@ export const Messaging = () => {
   const [update, setUpdate] = useState(false);
   const [showFullTitle, setShowFullTitle] = useState(false);
   const token = localStorage.getItem("token");
+
+  const chatId = useSelector((item) => item.chat.chat)
+
+  // console.log(chatId);
 
   //* Additional things
   const navigate = useNavigate();
@@ -107,27 +112,26 @@ export const Messaging = () => {
   const [meData, setMeData] = useState();
   const getMessageById = async (chat_id) => {
     const data = await MessagingService.GetMessageById(chat_id);
+    console.log(chat_id);
     setMeData(data.data?.messages);
 
     return data;
   };
+  console.log(meData);
 
-  const resultMeData = meData?.filter(
-    (item) => item.sender_id == userData.data?.user?.user_id
-  );
-  const resultYouData = meData?.filter(
-    (item) => item.sender_id != userData.data?.user?.user_id
-  );
+ 
+// 
+  // console.log('me',resultMeData);
+  // console.log('you',resultYouData);
 
   //* Handle chat bar active
   const handleChatBarActive = (id) => {
     getMessageById(id);
-    setActiveChatId((prevActiveChatId) => (prevActiveChatId === id ? id : id));
+    setActiveChatId((prevActiveChatId) => (prevActiveChatId == id ? id : id));
   };
 
-  const selectedChat = chats?.find((chat) => chat.chat_id === activeChatId);
-  console.log(selectedChat);
-
+  const selectedChat = chats?.find((chat) => chat.chat_id == activeChatId);
+  // console.log(selectedChat);
   return (
     <>
       {/* Header component */}

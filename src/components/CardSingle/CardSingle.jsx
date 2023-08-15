@@ -14,13 +14,15 @@ import WhatsappIcon from "@images/whatsapp-icon.svg"
 import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll"
 import { useTranslation } from "react-i18next";
 import MessagingService from "../../Api/messaging.service";
+import { useDispatch } from "react-redux"
+import { chatId } from "../../redux/chatId/chatdAction"
 
 
 
 export const CardSingle = () => {
   const { t } = useTranslation();
 
-
+  const dispatch = useDispatch()
   const [userId, setUserId] = useState();
   const [anId, setAnId] = useState();
 
@@ -28,7 +30,9 @@ export const CardSingle = () => {
 
   const postMessage = async (body, idx) => {
     const data = await MessagingService.PostMessage(body, idx)
-  
+    console.log(data.messageItem?.chat_id);
+    dispatch(chatId(data.messageItem?.chat_id))
+
     if(data.ok === true) {
      toast.success('Xabar yuborildi')
 
