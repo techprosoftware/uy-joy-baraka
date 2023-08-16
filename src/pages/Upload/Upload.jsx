@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
@@ -26,7 +27,6 @@ const provinceData = [
   "Samarqand",
   "Sirdaryo",
   "Surxondaryo",
-  "ToshkentVil",
 ];
 const cityData = {
   Toshkent: [
@@ -248,15 +248,17 @@ export const Upload = () => {
   const [price_type, setPrice_type] = useState();
 
   const [cities, setCities] = useState(cityData[provinceData[0]]);
-  const [secondCity, setSecondCity] = useState(cityData[provinceData[0]]);
+  const [secondCity, setSecondCity] = useState();
   const handleProvinceChange = (value) => {
     setCities(cityData[value]);
     setSecondCity(cityData[value][0]);
     setCity(value);
+    console.log(value);
   };
   const onSecondCityChange = (value) => {
     setSecondCity(value);
     setDistrict(value);
+    console.log(value);
   };
 
   const handleChange = (value) => {
@@ -389,24 +391,30 @@ export const Upload = () => {
     e.preventDefault();
     const formData = new FormData();
     // console.log(fullPhone);
+    const fullPhone = "998" + phone.current.value;
 
     console.log(phone.current.value);
-
-    const fullPhone = "998" + phone.current.value;
-    formData.append("phone", fullPhone);
-    formData.append("title", title.current.value);
-    formData.append("address", address.current.value);
-    formData.append("description", description.current.value);
-    formData.append("price", price.current.value);
-    formData.append("city", city);
-    formData.append("district", district);
-    formData.append("type", type);
-    formData.append("price_type", price_type);
-    for (let i = 0; i < selectedImages?.length; i++) {
-      formData.append(`images`, selectedImages[i]);
+    if (phone.current.value == undefined || fullPhone==undefined || title.current.value == undefined || address.current.value== undefined || description.current.value == undefined || price.current.value ==undefined || city ==undefined || price_type ==undefined || type ==undefined || district == undefined) {
+      toast.error(`${t("addannoun.error")}`);
+      
+    }else {
+      formData.append("phone", fullPhone);
+      formData.append("title", title.current.value);
+      formData.append("address", address.current.value);
+      formData.append("description", description.current.value);
+      formData.append("price", price.current.value);
+      formData.append("city", city);
+      formData.append("district", district);
+      formData.append("type", type);
+      formData.append("price_type", price_type);
+      for (let i = 0; i < selectedImages?.length; i++) {
+        formData.append(`images`, selectedImages[i]);
+      }
+  
+      sendAnnoun(formData);
     }
-
-    sendAnnoun(formData);
+    
+    // console.log(formData);
   };
   const { t } = useTranslation();
 
@@ -472,7 +480,9 @@ export const Upload = () => {
           <div className="upload__wrap">
             <p>{t("addannoun.selectcity")}:</p>
             <Space wrap>
-              <Select
+           
+              <Select 
+              size="large"
                 placeholder={t("addannoun.selectcity")}
                 style={{
                   width: 120,
@@ -483,12 +493,14 @@ export const Upload = () => {
                   value: province,
                 }))}
               />
+             
               <Select
-                placeholder={t("addannoun.selectcity")}
+               size="large"
+                placeholder={t("addannoun.selectdistrict")}
                 style={{
                   width: 120,
                 }}
-                value={secondCity}
+                // value={secondCity}
                 onChange={onSecondCityChange}
                 options={cities?.map((city) => ({
                   label: city,
@@ -507,6 +519,7 @@ export const Upload = () => {
               placeholder="Chilonzor metorining yonida"
             />
             <Select
+             size="large"
               defaultValue={t("addannoun.type")}
               style={{
                 width: 200,
@@ -564,6 +577,7 @@ export const Upload = () => {
                 />
               </div>
               <Select
+               size="large"
                 defaultValue={t("addannoun.course")}
                 style={{
                   width: 200,
