@@ -32,9 +32,7 @@ export const Footer = () => {
               />
             </div>
             <div className="pre-footer__inner">
-              <h2 className="pre-footer__text">
-                {t("footer.appstitle")}
-              </h2>
+              <h2 className="pre-footer__text">{t("footer.appstitle")}</h2>
             </div>
             <div className="pre-footer__inner">
               {/* Pre links [1] */}
@@ -70,45 +68,55 @@ export const Footer = () => {
               </Link>
             </div>
             <div className="footer__items">
-              <Link className="footer__aboutLink" to="/haqida">
+              <Link className="footer__aboutLink" to="/aboutus">
                 {t("header.aboutme")}
               </Link>
               <ul className="footer__list links">
                 <li>
-                  <a href="https://t.me/hamkorlikuyjoybaraka">{t("footer.partners")}</a>
+                  <a href="https://t.me/uy_joybarakabor">
+                    {t("footer.partners")}
+                  </a>
                 </li>
                 <li>
-                  <a href="https://t.me/reklamauyjoybaraka">{t("footer.ads")}</a>
+                  <a href="https://t.me/uy_joybarakabor">{t("footer.ads")}</a>
                 </li>
                 <li>
-                  <a href="tel:+998907776655">{t("footer.callme")}</a>
+                  <a href="tel:+998 91 599-99-47">{t("footer.callme")}</a>
                 </li>
               </ul>
             </div>
             <div className="footer__items">
               <ul className="footer__list social_links">
                 <li>
-                  <a href="https://t.me/uyjoybaraka">
+                  <a
+                    href="https://t.me/uy_joybarakabor"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <img src={TelegramIcon} alt="Telegram icon" />
                   </a>
                 </li>
                 <li>
-                  <a href="https://instagram.com">
+                  <a
+                    href="https://www.instagram.com/uyjoy_baraka/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <img src={InstagramIcon} alt="Instagram icon" />
                   </a>
                 </li>
-                <li>
+                {/* <li>
                   <a href="https://facebook.com">
                     <img src={FacebookIcon} alt="Facebook icon" />
                   </a>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <a href="https://twitter.com">
                     <img src={TwitterIcon} alt="Twitter icon" />
                   </a>
-                </li>
+                </li> */}
                 <li>
-                  <a href="https://youtube.com">
+                  <a href="https://www.youtube.com/@UyjoyBaraka">
                     <img src={YouTubeIcon} alt="YouTube icon" />
                   </a>
                 </li>
