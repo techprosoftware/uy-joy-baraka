@@ -36,8 +36,12 @@ export const CardSingle = () => {
     if (data.ok === true) {
       toast.success("Xabar yuborildi");
     }
-    console.log(data);
+    // console.log(data);
   };
+
+  useEffect(() => {
+    postMessage()
+  }, [])
 
   const handleMessage = () => {
     const data = {
