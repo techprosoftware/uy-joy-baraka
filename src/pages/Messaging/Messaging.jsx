@@ -152,8 +152,12 @@ export const Messaging = () => {
               <div className="layoutButtons">
                 <h3 className="layoutButtons__title">
                   {" "}
-                  <img src={ChatMessaging} alt="messagin icon" width={30} /> Xabarlar
-                  arxivi
+                  <img
+                    src={ChatMessaging}
+                    alt="messagin icon"
+                    width={30}
+                  />{" "}
+                  Xabarlar arxivi
                 </h3>
               </div>
               {/* Delete messaging */}
@@ -233,144 +237,178 @@ export const Messaging = () => {
               className={`chatbar-head ${isBarActive ? "d-block" : "d-block"}`}
             >
               {selectedChat && (
-                <div className="chatbar-section">
-                  <div className="chatbar-layoutButtons">
-                    {/* Layout buttons */}
-                    <div className="user-selected">
-                      <div className="user-inner">
-                        <img
-                          src={`http://test.uyjoybaraka.uz/${selectedChat?.user?.avatar}`}
-                          alt="selected user image"
-                          width={100}
-                        />
-                        <span className="user-name__selected">
-                          {selectedChat?.user?.full_name}
-                        </span>
-                      </div>
-                      <div className="trash-inner">
-                        <button
-                          onClick={() =>
-                            deleteChat(selectedChat?.members?.chat_id)
-                          }
-                        >
-                          <img src={TrashIcon} alt="trash icon" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-chat">
-                    <div className="delete-bars">
-                      {selectedChat && (
-                        <div
-                          className={`selected-chat ${
-                            selectedChat?.chat_id === activeChatId
-                              ? "chatActive"
-                              : ""
-                          }`}
-                        >
-                          <img src={SelectedChatImg} alt="selected chat" />
-                          <div>
-                            <span className="selected-ad">
-                              {showFullTitle
-                                ? selectedChat.post?.title
-                                : selectedChat.post?.title.substr(0, 57) +
-                                  "... "}
-                              <button
-                                className="more__button"
-                                onClick={() => setShowFullTitle(!showFullTitle)}
-                              >
-                                {showFullTitle ? "Kichikroq" : "Batafsil"}
-                              </button>
+                <>
+                  <div className="chats-carousel">
+                    <div className="chats-carousel-inner">
+                      {/* This container will allow horizontal scrolling */}
+                      <div className="chats-carousel-container">
+                        {chats?.map((info) => (
+                          <div
+                            key={info.chat_id}
+                            className={`chat-circle ${
+                              info?.chat_id === activeChatId ? "active" : ""
+                            }`}
+                            onClick={() => {
+                              handleChatBarActive(info?.chat_id);
+                              setIsBarActive(true);
+                            }}
+                          >
+                            <img
+                              src={`http://test.uyjoybaraka.uz/${info?.user?.avatar}`}
+                              width={50}
+                              height={50}
+                              alt="user image"
+                              className="circle-img"
+                            />
+                            <span className="chat-user__name">
+                              {info?.user?.full_name}
                             </span>
                           </div>
-                        </div>
-                      )}
-                    </div>
-                    {/* Chats */}
-                    <div className="chats-container__bar">
-                      <div className="chat-wrapper__bar">
-                        <span className="chatbar-date">
-                          {selectedChat.message.timestamp
-                            .split("T")[0]
-                            .split("-")
-                            .join(".")}
-                        </span>
+                        ))}
                       </div>
                     </div>
-
-                    {meData?.length
-                      ? meData
-                          ?.filter(
-                            (item) =>
-                              item.sender_id == userData.data?.user?.user_id
-                          )
-                          .map((item) => (
-                            <>
-                              {" "}
-                              <div
-                                style={{
-                                  display: "block",
-                                  // width: "200px",
-                                  marginLeft: "auto",
-                                  marginRight: "15px",
-                                }}
-                                className="self-ms"
-                              >
-                                <span className="text__msg">
-                                  {item?.content}
-                                </span>
-                                <img
-                                  className="double-check"
-                                  src={DoubleCheck}
-                                  alt=""
-                                />
-                              </div>
-                            </>
-                          )) ||
-                        meData
-                          ?.filter(
-                            (item) =>
-                              item.sender_id != userData.data?.user?.user_id
-                          )
-                          .map((item) => (
-                            <>
-                              {" "}
-                              <span className="client-ms">
-                                {item?.content}
-                                <img
-                                  className="double-check"
-                                  style={{ marginLeft: "25px" }}
-                                  src={DoubleCheck}
-                                  alt=""
-                                />
-                              </span>
-                            </>
-                          ))
-                      : ""}
-
-                    {/* Chat messaged mock */}
-                    <form>
-                      <input
-                        type="text"
-                        className="chatbar-input"
-                        placeholder="Sms yozish"
-                        aria-label="Enter your message(Habaringizni kiriting)"
-                        ref={message}
-                      />
-                      <button
-                        type="submit"
-                        className="chatbar-button"
-                        onClick={sendMessage}
-                      >
-                        <img
-                          className="chatbar-send__icon"
-                          src={ChatsendIcon}
-                          alt="chat-send icon"
-                        />
-                      </button>
-                    </form>
                   </div>
-                </div>
+                  <div className="chatbar-section">
+                    <div className="chatbar-layoutButtons">
+                      {/* Layout buttons */}
+                      <div className="user-selected">
+                        <div className="user-inner">
+                          <img
+                            src={`http://test.uyjoybaraka.uz/${selectedChat?.user?.avatar}`}
+                            alt="selected user image"
+                            width={100}
+                          />
+                          <span className="user-name__selected">
+                            {selectedChat?.user?.full_name}
+                          </span>
+                        </div>
+                        <div className="trash-inner">
+                          <button
+                            onClick={() =>
+                              deleteChat(selectedChat?.members?.chat_id)
+                            }
+                          >
+                            <img src={TrashIcon} alt="trash icon" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-chat">
+                      <div className="delete-bars">
+                        {selectedChat && (
+                          <div
+                            className={`selected-chat ${
+                              selectedChat?.chat_id === activeChatId
+                                ? "chatActive"
+                                : ""
+                            }`}
+                          >
+                            <img src={SelectedChatImg} alt="selected chat" />
+                            <div>
+                              <span className="selected-ad">
+                                {showFullTitle
+                                  ? selectedChat.post?.title
+                                  : selectedChat.post?.title.substr(0, 57) +
+                                    "... "}
+                                <button
+                                  className="more__button"
+                                  onClick={() =>
+                                    setShowFullTitle(!showFullTitle)
+                                  }
+                                >
+                                  {showFullTitle ? "Kichikroq" : "Batafsil"}
+                                </button>
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      {/* Chats */}
+                      <div className="chats-container__bar">
+                        <div className="chat-wrapper__bar">
+                          <span className="chatbar-date">
+                            {selectedChat.message.timestamp
+                              .split("T")[0]
+                              .split("-")
+                              .join(".")}
+                          </span>
+                        </div>
+                      </div>
+
+                      {meData?.length
+                        ? meData
+                            ?.filter(
+                              (item) =>
+                                item.sender_id == userData.data?.user?.user_id
+                            )
+                            .map((item) => (
+                              <>
+                                {" "}
+                                <div
+                                  style={{
+                                    display: "block",
+                                    // width: "200px",
+                                    marginLeft: "auto",
+                                    marginRight: "15px",
+                                  }}
+                                  className="self-ms"
+                                >
+                                  <span className="text__msg">
+                                    {item?.content}
+                                  </span>
+                                  <img
+                                    className="double-check"
+                                    src={DoubleCheck}
+                                    alt=""
+                                  />
+                                </div>
+                              </>
+                            )) ||
+                          meData
+                            ?.filter(
+                              (item) =>
+                                item.sender_id != userData.data?.user?.user_id
+                            )
+                            .map((item) => (
+                              <>
+                                {" "}
+                                <span className="client-ms">
+                                  {item?.content}
+                                  <img
+                                    className="double-check"
+                                    style={{ marginLeft: "25px" }}
+                                    src={DoubleCheck}
+                                    alt=""
+                                  />
+                                </span>
+                              </>
+                            ))
+                        : ""}
+
+                      {/* Chat messaged mock */}
+                      <form>
+                        <input
+                          type="text"
+                          className="chatbar-input"
+                          placeholder="Sms yozish"
+                          aria-label="Enter your message(Habaringizni kiriting)"
+                          ref={message}
+                        />
+                        <button
+                          type="submit"
+                          className="chatbar-button"
+                          onClick={sendMessage}
+                        >
+                          <img
+                            className="chatbar-send__icon"
+                            src={ChatsendIcon}
+                            alt="chat-send icon"
+                          />
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </>
               )}
             </div>
           </div>
