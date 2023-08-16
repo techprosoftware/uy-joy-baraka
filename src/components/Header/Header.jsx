@@ -1,6 +1,5 @@
-
 import { useEffect, useRef, useState } from "react";
-import "./header.scss";
+// import "./header.scss";
 import { Link } from "react-router-dom";
 import SiteLogo from "@images/logo.svg";
 import TelegramIcon from "@images/telegram.png";
@@ -257,9 +256,9 @@ export const Header = () => {
                     <p className="drop__info">{user?.data?.user?.full_name}</p>
                     <ul className="drop__list">
                       <li className="drop__item">
-                        <a className="drop__link" href="/userinfo">
+                        <Link className="drop__link" to={"/userinfo"}>
                           {t("profile.userinfo")}
-                        </a>
+                        </Link>
                       </li>
                       <li className="drop__item">
                         <Link className="drop__link" to={"/announ/active"}>

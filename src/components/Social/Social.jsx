@@ -1,5 +1,5 @@
 import LogoSocial from "@images/logo-social.svg";
-import "./social.scss";
+// import "./social.scss";
 import { Link } from "react-router-dom";
 import InstagramIcon from "@images/social-instagram-icon.svg";
 import TelegramIcon from "@images/social-telegram-icon.svg";

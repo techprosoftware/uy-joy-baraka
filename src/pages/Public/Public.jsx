@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Header } from "../../components/Header/Header";
 import { Footer } from "../../components/Footer/Footer";
@@ -14,8 +13,6 @@ import { AboutUs } from "../AboutUs/AboutUs";
 import { UserInfo } from "../UserInfo/UserInfo";
 import { AnnounSearch } from "../AnnounSearch/AnnounSearch";
 import { Favorite } from "../Favorite/Favorite";
-import { BuyMessaging } from "../../pages/Messaging/BuyMessaging";
-import { SellMessaging } from "../../pages/Messaging/SellMessaging";
 
 export const Public = () => {
   return (
@@ -28,10 +25,7 @@ export const Public = () => {
         <Route path="*" element={<NotFoundError />} />
         <Route path="/card-search" element={<AnnounSearch />} />
         <Route path="/announcement/:id" element={<CardSingle />} />
-        <Route path="/messaging" element={<Messaging />}>
-          <Route path="sotaman" index element={<SellMessaging />} />
-          <Route path="sotibolaman" element={<BuyMessaging />} />
-        </Route>
+        <Route path="/messaging" element={<Messaging />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/userinfo" element={<UserInfo />} />
         <Route path="/favorite" element={<Favorite />} />
