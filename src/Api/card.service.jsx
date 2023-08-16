@@ -37,7 +37,7 @@ const CardService = {
   },
   getLike: async () => {
     try {
-      return await axios.get(`/api/announcements/liked`, {
+      return await axios.get(`/api/announcements/liked?p_page=50`, {
         headers: { authorization: token },
       });
     } catch (err) {

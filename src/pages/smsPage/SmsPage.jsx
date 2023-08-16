@@ -70,7 +70,7 @@ export const SmsPage = () => {
   const onFinish = async (values) => {
     enterLoading(0);
 
-    phoneIdFunc(+values.code);
+    phoneIdFunc(values.code);
     console.log(values.code);
   };
 
