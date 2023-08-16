@@ -1,0 +1,30 @@
+.arrow__btn {
+  width: 100%;
+  max-width: 165px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 6px 20px 6px 19px;
+  background-color: transparent;
+  text-decoration: none;
+  border: 1px solid #008b51;
+  border-radius: 6px;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  color: #008b51;
+}
+
+.arrow__btn img {
+  width: 10px;
+}
+
+.backButton {
+  padding-top: 20px !important;
+}
+
+.back-btn {
+  margin-top: 20px !important;
+}

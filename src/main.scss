@@ -1,4 +1,31 @@
-@import "fonts";
+@import "fonts"; 
+@import "./components/Header/header";
+@import "./pages/Home/HomeBanner/HomeBanner";
+@import "./pages/Favorite/Favorite";
+@import "./components/Cards/card";
+@import "./pages/UserInfo/UserInfo";
+@import "./pages/Upload/Upload";
+@import "./pages/smsPage/smsPage";
+@import "./pages/Register/Register";
+@import "./pages/Public/Public";
+@import "./pages/Messaging/Messaging";
+@import "./pages/Login/Login";
+@import "./pages/Home/HomeCards/HomeCard";
+@import "./components//Ads/ads";
+@import "./components/Footer/footer";
+@import "./components/Social/social";
+@import "./components/HomeSearch/search";
+@import "./components/HomeSearch/HomeSearch";
+@import "./components/ActiveCard/ActiveCard";
+@import "./components/DeactiveCard/DeactiveCard";
+@import "./components/CardSingle//card-single";
+@import "./components/CardList/card-list";
+@import "./components/BackButton/back-button";
+@import "./pages/AboutUs/about-as";
+@import "./pages/Announ/Announ";
+
+
+
 
 body {
   margin: 0;
@@ -31,7 +58,7 @@ ul {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important; 
 }
 
 //* Scroll top button

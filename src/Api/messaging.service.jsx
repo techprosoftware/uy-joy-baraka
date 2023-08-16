@@ -24,6 +24,7 @@ const MessagingService = {
     return data;
   },
   SendMessage: async (body, id) => {
+    console.log(id);
     const { data } = await axios.post(`/api/chats/${id}`, body, {
       headers: {
         authorization: token,
@@ -37,6 +38,8 @@ const MessagingService = {
         authorization: token,
       },
     });
+    
+
     return data;
   },
   DeleteChat: async (id) => {

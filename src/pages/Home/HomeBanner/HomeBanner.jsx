@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import buttonPhone from "../../../../public/assets/images/home-phone.svg";
-import "./HomeBanner.scss";
+// import "./HomeBanner.scss";
 import { HomeSearch } from "../../../components/HomeSearch/HomeSearch";
 import { useTranslation } from "react-i18next";
 

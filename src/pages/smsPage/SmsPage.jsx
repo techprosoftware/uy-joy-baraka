@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
-import "./smsPage.scss";
+// import "./smsPage.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import AuthService from "../../Api/auth.service";
@@ -70,7 +70,7 @@ export const SmsPage = () => {
   const onFinish = async (values) => {
     enterLoading(0);
 
-    phoneIdFunc(+values.code);
+    phoneIdFunc(values.code);
     console.log(values.code);
   };
 

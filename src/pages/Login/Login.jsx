@@ -1,4 +1,4 @@
-import "./Login.scss";
+// import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../../Api/auth.service";
 import {  toast } from "react-toastify";
@@ -19,6 +19,7 @@ export const Login = () => {
       localStorage.setItem("token", data.data.token);
       toast.success("Tizimga muvaffaqqiyatli kirdingiz");
       navigate("/");
+      location.reload()
     } else {
       toast.error(`${t("login.error")}`);
     }

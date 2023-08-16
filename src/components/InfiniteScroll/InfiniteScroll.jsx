@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import InfiniteScrollReact from "react-infinite-scroll-component"
 import LoadingImg from "@images/card-single-loading.svg"
 import { Card } from "@components/Cards/Cards"
@@ -33,6 +33,11 @@ export const InfiniteScroll = ({ page }) => {
       })
     }, 1500)
   }
+
+  
+  
+
+
   console.log(page)
   const loader = (
     <>

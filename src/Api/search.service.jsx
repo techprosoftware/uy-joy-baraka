@@ -17,6 +17,7 @@ const SearchService = {
     if (search != "undefined") {
       params.search = search;
     }
+    params.p_page = 50;
     try {
       const data = await axios.get("/api/search?", { params });
       console.log(data);

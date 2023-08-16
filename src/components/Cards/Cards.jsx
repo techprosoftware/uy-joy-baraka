@@ -1,4 +1,4 @@
-import "./card.scss"
+// import "./card.scss"
 // import CardLikeIcon from "@images/card-like-icon.svg"
 import CardULikeIcon from "@images/card-ulike-icon.svg"
 import { useNavigate } from "react-router-dom"
@@ -26,20 +26,22 @@ export const Card = (card) => {
     if (targetTag === "card__like" || targetTag === "card__like-img") {
       if (!token) {
         navigate("/login")
+      } else {
+        console.log(evt.target.src);
+        setLike(!like)
+        const response = await CardService.likeCard(card?.card?.announcement_id)
+        console.log(response)
+        if (response?.status === 200) {
+          toast.success("Saqlanganlarga qo'shildi")
+          return
+        } else {
+          const data = await CardService.unLikeCard(card?.card?.announcement_id)
+          console.log(data)
+          toast.success("Saqlanganlardan chiqarildi")
+        }
       }
   
-      console.log(evt.target.src);
-setLike(!like)
-      const response = await CardService.likeCard(card?.card?.announcement_id)
-      console.log(response)
-      if (response?.status === 200) {
-        toast.success("Saqlanganlarga qo'shildi")
-        return
-      } else {
-        const data = await CardService.unLikeCard(card?.card?.announcement_id)
-        console.log(data)
-        toast.success("Saqlanganlardan chiqarildi")
-      }
+      
     } else {
       window.scroll(0, 0)
       navigate(`/announcement/${card.card?.slug}`)

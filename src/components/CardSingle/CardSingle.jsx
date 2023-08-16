@@ -1,10 +1,10 @@
-import "./card-single.scss";
+// import "./card-single.scss"
 import { BackButton } from "@components/BackButton/BackButton";
-import { CardList } from "@components/CardList/CardList";
+import  CardList  from "@components/CardList/CardList";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { BASE_URL } from "@api/api";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CardService from "@/Api/card.service.jsx";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
@@ -14,12 +14,15 @@ import WhatsappIcon from "@images/whatsapp-icon.svg";
 import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll";
 import { useTranslation } from "react-i18next";
 import MessagingService from "../../Api/messaging.service";
+import { useDispatch } from "react-redux";
+import { chatId } from "../../redux/chatId/chatdAction";
 
 export const CardSingle = () => {
   const { t } = useTranslation();
 
-  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
+  const dispatch = useDispatch();
   const [userId, setUserId] = useState();
   const [anId, setAnId] = useState();
 
@@ -27,9 +30,11 @@ export const CardSingle = () => {
 
   const postMessage = async (body, idx) => {
     const data = await MessagingService.PostMessage(body, idx);
+    console.log(data.messageItem?.chat_id);
+    dispatch(chatId(data.messageItem?.chat_id));
+
     if (data.ok === true) {
       toast.success("Xabar yuborildi");
-      navigate("/messaging");
     }
     console.log(data);
   };
@@ -58,8 +63,10 @@ export const CardSingle = () => {
     setCard({ isLoading: true, data: [] });
     try {
       const response = await CardService.getByCard(id);
+      
       setAnId(response.data.post.announcement_id);
       setUserId(response.data.post?.user_id);
+
       if (response.status === 200) {
         setCard({ isLoading: false, data: response.data });
       }
@@ -86,7 +93,7 @@ export const CardSingle = () => {
       <main>
         <section>
           <div className="container">
-            <div className="mt-5 pt-5">
+            <div className="pt-3">
               <BackButton />
             </div>
             {card.isLoading ? (
@@ -278,12 +285,21 @@ export const CardSingle = () => {
                     >
                       {t("singlepage.phone")}
                     </a>
-                    <button
-                      className="card-single__send-btn"
-                      onClick={handleMessage}
-                    >
-                      {t("singlepage.sendsms")}
-                    </button>
+                    {token ? (
+                      <button
+                        className="card-single__send-btn"
+                        onClick={handleMessage}
+                      >
+                        {t("singlepage.sendsms")}
+                      </button>
+                    ) : (
+                      <Link
+                        className="card-single__send-btn"
+                        to={'/login'}
+                      >
+                        {t("singlepage.sendsms")}
+                      </Link>
+                    )}
                   </div>
                 </div>
               </motion.div>

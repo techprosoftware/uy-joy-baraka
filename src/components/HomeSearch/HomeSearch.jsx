@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react"
-import "./HomeSearch.scss"
+// import "./HomeSearch.scss"
 
 import { Select } from "antd"
 import { Link, useNavigate } from "react-router-dom"
@@ -62,11 +62,12 @@ export const HomeSearch = () => {
 
   const handleSubmitSearch = (e) => {
     e.preventDefault()
-    if (!search.current.value.trim() === "") {
+
+    if (!search.current.value.trim() == "") {
       localStorage.setItem("searchCity", search.current.value)
       navigate("/card-search")
     } else {
-      return
+      console.log('dsd');
     }
   }
 
@@ -190,6 +191,7 @@ export const HomeSearch = () => {
               <span className={`filter__btn `}>{t("searchpage.filter")}</span>
             </a>
 
+
             <ul
               className={`filter__select ${
                 openSelect ? `${openSelect}` : "d-none"
@@ -197,6 +199,7 @@ export const HomeSearch = () => {
             >
               <li>
                 <a
+                
                   className="dropdown-item"
                   href="#"
                 >

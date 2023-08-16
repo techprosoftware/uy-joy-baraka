@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import ButtonPhoneIcon from "@images/home-phone.svg";
-import AdsBgi from "@images/12.png";
-import "./ads.scss";
+import React from "react"
+import ButtonPhoneIcon from "@images/home-phone.svg"
+import AdsBgi from "@images/12.png"
+// import "./ads.scss"
 import { useTranslation } from "react-i18next";
 
 export const Ads = () => {

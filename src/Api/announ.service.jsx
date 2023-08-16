@@ -2,14 +2,14 @@ import axios from "./api";
 
 const AnnounService = {
   getActiveCard: async (token) => {
-    const data = await axios.get(`/api/announcements/active?p_page=12&c_page=1`, {
+    const data = await axios.get(`/api/announcements/active?p_page=50`, {
       headers: { authorization: token },
     });
 
     return data;
   },
   getDeActiveCard: async (token) =>
-    await axios.get(`/api/announcements/inactive`, {
+    await axios.get(`/api/announcements/inactive?p_page=50`, {
       headers: { authorization: token },
     }),
 

@@ -1,0 +1,85 @@
+.sms__inner {
+  padding: 100px 0;
+}
+
+.sms__wrapper {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.sms__wrapper h3 {
+  margin: 0;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  color: #000000;
+}
+
+.sms__wrapper p {
+  margin: 0;
+  margin-bottom: 31px;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+}
+
+.sms__form {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+}
+
+.sms__button {
+  background: #008b51;
+  border-radius: 9px;
+  outline: none;
+  width: 100%;
+  border: none;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+}
+
+.sms__button:focus {
+  color: #fff !important;
+}
+
+.sms__button:hover {
+  color: #fff !important;
+}
+
+.sms__forward {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sms__form a {
+  text-align: end;
+  margin-top: 20px;
+  display: block;
+  text-decoration: none;
+}
+
+.sms__label {
+  display: flex !important;
+  margin-bottom: 15px 10px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-family: "Inter" serif;
+}
