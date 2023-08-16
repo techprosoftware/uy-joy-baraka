@@ -2,6 +2,8 @@
   position: absolute;
   z-index: 10;
   width: 100%;
+  max-width: 100vh;
   max-height: 600px;
   overflow-y: scroll;
+  background-color: #ffffff;
 }

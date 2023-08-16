@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import InfiniteScrollReact from "react-infinite-scroll-component"
 import LoadingImg from "@images/card-single-loading.svg"
 import { Card } from "@components/Cards/Cards"
 import CardService from "@api/card.service"
 import { useDispatch, useSelector } from "react-redux"
 import { incPage } from "@/redux/page/pageAction.js"
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
-export const InfiniteScroll = ({ page }) => {
+export const InfiniteScroll = () => {
   let pageCount = useSelector((state) => state.page.page)
   const dispatch = useDispatch()
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const [fetcher, setFetcher] = useState({
     hasMore: true,
@@ -35,12 +35,7 @@ export const InfiniteScroll = ({ page }) => {
       })
     }, 1500)
   }
-
   
-  
-
-
-  console.log(page)
   const loader = (
     <>
       <div className="container">
@@ -54,7 +49,6 @@ export const InfiniteScroll = ({ page }) => {
       </div>
     </>
   )
-  console.log(fetcher)
 
   return (
     <InfiniteScrollReact
