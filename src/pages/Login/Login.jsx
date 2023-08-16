@@ -19,6 +19,7 @@ export const Login = () => {
       localStorage.setItem("token", data.data.token);
       toast.success("Tizimga muvaffaqqiyatli kirdingiz");
       navigate("/");
+      location.reload()
     } else {
       toast.error(`${t("login.error")}`);
     }
