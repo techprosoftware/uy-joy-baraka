@@ -64,10 +64,12 @@ export const HomeBanner = () => {
                   <div className="banner-wrapper">
                     <h1 className="banner-title">{t("homebanner.title")} </h1>
 
-                    <button className="banner-btn" href="#">
-                      <img src={buttonPhone} alt="buton-phone" />{" "}
-                      {t("homebanner.callbtn")}
-                    </button>
+                    <a href="tel:+998 91 599-99-47">
+                      <button className="banner-btn" href="#">
+                        <img src={buttonPhone} alt="buton-phone" />
+                        {t("homebanner.callbtn")}
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -80,10 +82,12 @@ export const HomeBanner = () => {
                   <div className="banner-wrapper">
                     <h1 className="banner-title">{t("homebanner.title")}</h1>
 
-                    <button className="banner-btn" href="#">
-                      <img src={buttonPhone} alt="buton-phone" />{" "}
-                      {t("homebanner.callbtn")}
-                    </button>
+                    <a href="tel:+998 91 599-99-47">
+                      <button className="banner-btn" href="#">
+                        <img src={buttonPhone} alt="buton-phone" />
+                        {t("homebanner.callbtn")}
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>

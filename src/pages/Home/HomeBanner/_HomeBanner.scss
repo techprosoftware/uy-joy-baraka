@@ -44,7 +44,14 @@
   border-radius: 6px;
   margin-top: 16px;
   border: none;
+  position: relative;
+  z-index: 999;
   padding: 16px 9px 16px 18px;
+}
+
+.carousel {
+  position: relative;
+  z-index: 0;
 }
 
 .carousel-indicators {
@@ -81,39 +88,58 @@
   content: "";
 }
 
-.control-next-icon {
-  display: inline-block;
-  width: 1rem !important;
-  height: 1rem !important;
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: 100% 100%;
-}
+// .control-next-icon {
+//   display: inline-block;
+//   width: 1rem !important;
+//   height: 1rem !important;
+//   background-repeat: no-repeat;
+//   background-position: 50%;
+//   background-size: 100% 100%;
+// }
 
-.carousel-control-next-icon {
-  background-color: #008b51;
-  padding: 10px !important;
-  top: 55% !important;
-  border-radius: 50%;
-}
+// .carousel-control-next-icon {
+//   background-color: #008b51;
+//   padding: 10px !important;
+//   border-radius: 50%;
 
-.carousel-control-prev-icon {
-  top: 55% !important;
-
-  background-color: #008b51;
-  padding: 10px !important;
-  border-radius: 50%;
-}
+// }
 .carousel-control-next {
-
-  top: 22% !important;
-  // right: 5%;
+  background-color: #008b51;
+  border-radius: 50%;
+  width: 2rem !important;
+  padding: 5px;
+  height: 2rem !important;
+  top: 56% !important;
+  right: 5%;
 }
 
 .carousel-control-prev {
-  top: 22% !important;
+  background-color: #008b51;
+  border-radius: 55%;
+  width: 2rem !important;
+  padding: 5px;
+  height: 2rem !important;
+  top: 56% !important;
+  left: 5%;
 }
 
+.carousel-control-next:hover {
+  border-radius: 50%;
+  width: 2rem !important;
+  padding: 5px;
+  height: 2rem !important;
+  top: 56% !important;
+  right: 5%;
+}
+
+.carousel-control-prev:hover {
+  border-radius: 55%;
+  width: 2rem !important; 
+  padding: 5px;
+  height: 2rem !important;
+  top: 56% !important;
+  left: 5%;
+}
 
 @media only screen and (max-width: 993px) {
   .home-banner-wrap {
@@ -133,6 +159,7 @@
     padding: 10px 15px;
     color: #fff;
     margin-bottom: 53px;
+    cursor: pointer;
     font-size: 14px;
   }
 }
@@ -200,11 +227,13 @@
   .carousel-control-next {
     display: none;
   }
-
+  
   .carousel-control-prev {
     display: none;
   }
 }
+
+
 
 .carousel-inner {
   z-index: -1 !important;
