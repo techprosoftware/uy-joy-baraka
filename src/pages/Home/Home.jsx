@@ -23,13 +23,9 @@ export const Home = () => {
       <HomeCards />
       <Ads />
       <div className="container">
-        <CardList page={2} count={12} end={false} />
+        <CardList page={2} />
       </div>
       <Social />
-      <div className="container">
-        {" "}
-        {/* <CardList page={3} count={4} end={false} /> */}
-      </div>{" "}
       <InfiniteScroll page={3} />
       {/* <MoreBtn /> */}
     </>
