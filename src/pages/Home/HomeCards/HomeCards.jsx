@@ -5,7 +5,7 @@ import React from "react";
 // import "./HomeCard.scss";
 import { useTranslation } from "react-i18next";
 
-import { CardList } from "@components/CardList/CardList";
+import  CardList  from "@components/CardList/CardList";
 export const HomeCards = () => {
   const { t } = useTranslation();
 

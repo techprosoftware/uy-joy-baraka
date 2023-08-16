@@ -6,7 +6,7 @@ import { Ads } from "@components/Ads/Ads";
 import { Social } from "@components/Social/Social";
 import { useDispatch, useSelector } from "react-redux";
 import { setPage } from "@/redux/page/pageAction.js";
-import { CardList } from "@components/CardList/CardList";
+import  CardList  from "@components/CardList/CardList";
 import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll"
 
 export const Home = () => {
