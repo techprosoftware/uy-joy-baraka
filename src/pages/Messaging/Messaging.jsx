@@ -28,7 +28,7 @@ export const Messaging = () => {
   const [showFullTitle, setShowFullTitle] = useState(false);
   const token = localStorage.getItem("token");
 
-  const chatId = useSelector((item) => item.chat.chat)
+  const chatId = useSelector((item) => item.chat.chat);
 
   // console.log(chatId);
 
@@ -119,8 +119,7 @@ export const Messaging = () => {
   };
   console.log(meData);
 
- 
-// 
+  //
   // console.log('me',resultMeData);
   // console.log('you',resultYouData);
 
@@ -150,25 +149,9 @@ export const Messaging = () => {
               }`}
             >
               <div className="layoutButtons">
-                {/* Layout buttons */}
-                <Link
-                  className={`layout-buttons__btn ${
-                    isActive ? "layout-buttons__btn" : "active"
-                  }`}
-                  onClick={handleButtonClick}
-                  to={"sotaman"}
-                >
-                  Sotaman
-                </Link>
-                <Link
-                  className={`layout-buttons__btn ${
-                    isActive ? "active" : "layout-buttons__btn"
-                  }`}
-                  onClick={handleButtonClick}
-                  to={"sotibolaman"}
-                >
-                  Sotib olaman
-                </Link>
+                <h1 style={{ background: "#f1f1f1", width: "100%", margin: "0" }}>
+                  Xabarlar tarixi
+                </h1>
               </div>
               {/* Delete messaging */}
               <div className="bg-chat">

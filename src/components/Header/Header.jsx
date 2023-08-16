@@ -1,5 +1,4 @@
-
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import "./header.scss";
 import { Link } from "react-router-dom";
 import SiteLogo from "@images/logo.svg";
@@ -20,6 +19,22 @@ export const Header = () => {
   const [burger, setBurger] = useState(false);
 
   // const [changeLang, setChangeLang] = useState('uz')
+
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDrop(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const { t, i18n } = useTranslation();
 
@@ -219,6 +234,7 @@ export const Header = () => {
               ) : (
                 <li
                   className="nav__item user-icon"
+                  ref={dropdownRef}
                   onClick={() => setDrop(!drop)}
                 >
                   <svg
@@ -240,9 +256,9 @@ export const Header = () => {
                     <p className="drop__info">{user?.data?.user?.full_name}</p>
                     <ul className="drop__list">
                       <li className="drop__item">
-                        <a className="drop__link" href="/userinfo">
+                        <Link className="drop__link" to={"/userinfo"}>
                           {t("profile.userinfo")}
-                        </a>
+                        </Link>
                       </li>
                       <li className="drop__item">
                         <Link className="drop__link" to={"/announ/active"}>
