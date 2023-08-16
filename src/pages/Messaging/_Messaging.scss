@@ -157,6 +157,18 @@
         color: #fff;
       }
     }
+
+    .layoutButtons__title {
+      width: 100%;
+
+      //* Margin, paddings 
+      margin: 0;
+      padding: 10px;
+
+      background-color: #e5f3ee;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
     //* Delete bar
     .delete-bar {
       padding-top: 15px;

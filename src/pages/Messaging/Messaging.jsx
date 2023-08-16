@@ -17,6 +17,7 @@ import DoubleCheck from "../../../public/assets/images/double-check_message.svg"
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import ProfileService from "../../Api/profile.service";
 import NoData from "../../../public/assets/images/no-data.svg";
+import ChatMessaging from "../../../public/assets/images/messaging-chat.svg";
 import { useSelector } from "react-redux";
 
 export const Messaging = () => {
@@ -149,9 +150,11 @@ export const Messaging = () => {
               }`}
             >
               <div className="layoutButtons">
-                <h1 style={{ background: "#f1f1f1", width: "100%", margin: "0" }}>
-                  Xabarlar tarixi
-                </h1>
+                <h3 className="layoutButtons__title">
+                  {" "}
+                  <img src={ChatMessaging} alt="messagin icon" width={30} /> Xabarlar
+                  arxivi
+                </h3>
               </div>
               {/* Delete messaging */}
               <div className="bg-chat">
