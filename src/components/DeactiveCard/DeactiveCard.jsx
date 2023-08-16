@@ -3,9 +3,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 // import "./DeactiveCard.scss";
-import CardLikeIcon from "@images/card-like-icon.svg";
-import CardULikeIcon from "@images/card-ulike-icon.svg";
-import mockCardImg from "@images/mock-img.png";
+// import CardLikeIcon from "@images/card-like-icon.svg";
+// import CardULikeIcon from "@images/card-ulike-icon.svg";
+// import mockCardImg from "@images/mock-img.png";
 import deleteBtn from "@images/delete-btn.svg";
 import noData from "@images/no-data.svg";
 import AnnounService from "../../Api/announ.service";
