@@ -6,10 +6,12 @@ import { Card } from "@components/Cards/Cards"
 import CardService from "@api/card.service"
 import { useDispatch, useSelector } from "react-redux"
 import { incPage } from "@/redux/page/pageAction.js"
+import { useTranslation } from "react-i18next";
 
 export const InfiniteScroll = ({ page }) => {
   let pageCount = useSelector((state) => state.page.page)
   const dispatch = useDispatch()
+  const { t } = useTranslation();
 
   const [fetcher, setFetcher] = useState({
     hasMore: true,
@@ -62,7 +64,7 @@ export const InfiniteScroll = ({ page }) => {
       loader={loader}
       endMessage={
         <p className="text-center fs-3 my-3 text-success p-3">
-          Siz oxiriga yetkanga o'xshaysiz
+          {t("homecard.end")}
         </p>
       }
       scrollableTarget="scrollableDiv"
