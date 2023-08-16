@@ -11,7 +11,7 @@ import { Card } from "../Cards/Cards"
 import { CardSkeleton } from "@components/Cards/CardSkeleton"
 // import "./card-list.scss"
 
-const CardList = ({ page, count, end }) => {
+const CardList = ({ page }) => {
   const [isLoading, setIsLoading] = useState(true)
   const dispatch = useDispatch()
   const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -21,7 +21,7 @@ const CardList = ({ page, count, end }) => {
     async function fetchCardData() {
       try {
         const response = await CardService.getByPage(page)
-        console.log(response);
+        console.log(response)
         if (response.status === 200) {
           setIsLoading(false)
           const data = response.data.posts
@@ -38,15 +38,8 @@ const CardList = ({ page, count, end }) => {
   return (
     <ul className="card-list">
       {isLoading
-        ? mockData.slice(0, count).map((moc) => <CardSkeleton key={moc} />)
-        : end
-        ? data?.slice(12 - count, 12)?.map((card) => (
-            <Card
-              key={card.announcement_id}
-              card={card}
-            />
-          ))
-        : data?.slice(0, count)?.map((card) => (
+        ? mockData.map((moc) => <CardSkeleton key={moc} />)
+        : data?.map((card) => (
             <Card
               key={card.announcement_id}
               card={card}
@@ -55,6 +48,5 @@ const CardList = ({ page, count, end }) => {
     </ul>
   )
 }
-
 
 export default React.memo(CardList)
