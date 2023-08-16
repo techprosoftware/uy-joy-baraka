@@ -31,6 +31,7 @@ export const lang = {
       adstitle: "REKLAMANGIZ UCHUN JOY",
       socialtitle: "Bizni ijtimoiy tarmoqlarda kuzating",
       morebtn: "Ko'proq ko'rish",
+      end: "Siz oxiriga yetkanga o'xshaysiz"
     },
     footer: {
       appstitle:
@@ -147,8 +148,14 @@ export const lang = {
       count:"ta e'lon topildi",
       empty1: "Bu yerdan",
       empty2: "ko'proq e'lon topishingiz mumkin."
+    },
+    notfound: {
+      errortitle: "Sahifa topilmadi",
+      errorbtn: "Asosiy sahifaga qaytish"
     }
   },
+
+  // Russian language
   Ru: {
     backbtn: "Выход",
     header: {
@@ -181,6 +188,7 @@ export const lang = {
       adstitle: "МЕСТО ДЛЯ ВАШЕЙ РЕКЛАМЫ",
       socialtitle: "Следите за нами в социальных сетях",
       morebtn: "Узнать больше",
+      end: "Вы, кажется, достигли конца"
     },
     footer: {
       appstitle: "Всегда будьте в курсе Скачать приложение Uy-joy baraka",
@@ -297,6 +305,10 @@ export const lang = {
       count:"объявлений найдено",
       empty1: "Отсюда",
       empty2: "вы можете найти больше объявлений."
+    },
+    notfound: {
+      errortitle: "Страница не найдена",
+      errorbtn: "Вернуться на главную"
     }
   },
 };
