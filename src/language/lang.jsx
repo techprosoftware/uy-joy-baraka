@@ -45,6 +45,7 @@ export const lang = {
       addimg: "Uy rasmini yuklang:",
       imgtitle: "Rasm yuklang",
       selectcity: "Shahar tanlang",
+      selectdistrict: "Tuman tanlang",
       address: "Manzil",
       type: "Ijara yoki sotuv",
       title: "Sarlavha kiriting:",
@@ -201,6 +202,8 @@ export const lang = {
       addimg: "Загрузить домашнее изображение:",
       imgtitle: "Загрузить изображение",
       selectcity: "Выберите город",
+      selectdistrict: "Выберите район",
+
       address: "Адрес",
       type: "Аренда или продажа",
       title: "Укажите название:",
