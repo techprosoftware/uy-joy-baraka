@@ -1,4 +1,4 @@
-@import "fonts"; 
+@import "fonts";
 @import "./components/Header/header";
 @import "./pages/Home/HomeBanner/HomeBanner";
 @import "./pages/Favorite/Favorite";
@@ -25,13 +25,11 @@
 @import "./pages/Announ/Announ";
 @import "./pages/404/404";
 
-
-
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #F6F6F8;
+  background-color: #f6f6f8;
 }
 
 .container {
@@ -45,7 +43,6 @@ body {
   .container {
     max-width: 1140px;
   }
-  
 }
 
 ul {
@@ -58,13 +55,20 @@ ul {
 }
 
 a {
-  text-decoration: none !important; 
+  text-decoration: none !important;
 }
 
 //* Scroll top button
-:where(.css-dev-only-do-not-override-1m62vyb).ant-back-top
+:where(.css-dev-only-do-not-override-byeoj0).ant-back-top
   .ant-back-top-content {
   background-color: #008b51;
+  position: absolute;
+  top: -55px;
+  left: 70px;
+}
+
+:where(.css-dev-only-do-not-override-1m62vyb).ant-back-top
+  .ant-back-top-content {
   width: 50px;
   height: 50px;
 
@@ -73,9 +77,11 @@ a {
   }
 }
 
-:where(.css-dev-only-do-not-override-1m62vyb).ant-back-top {
-  right: 43px;
-  bottom: 110px;
+@media only screen and (max-width: 800px) {
+  :where(.css-dev-only-do-not-override-byeoj0).ant-back-top
+    .ant-back-top-content {
+    left: 25px;
+  }
 }
 
 //******************//
