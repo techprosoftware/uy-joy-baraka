@@ -11,7 +11,7 @@ export const NotFoundError = () => {
     <div>
       <img className="error__img" src={imgerr} alt="" />
       <h3 className="title__error mb-2">{t("notfound.errortitle")}</h3>
-      <Link to={'/'} className="d-block text-center btn btn-success w-25 m-auto">{t("notfound.errorbtn")}</Link>
+      <Link to={'/'} className="d-block text-center h5 text-success m-auto">{t("notfound.errorbtn")}</Link>
     </div>
   );
 };
