@@ -14,7 +14,7 @@ export const SmsPage = () => {
   const { t, i18n } = useTranslation();
 
 
-  const phone = window.localStorage.getItem("phone");
+  const phone = localStorage.getItem("phone");
 
   const navigate = useNavigate();
 
@@ -23,13 +23,15 @@ export const SmsPage = () => {
   const phoneId = useSelector((item) => item.phoneId.phoneId);
 
   const phoneIdFunc = async (code) => {
-    const phoneCode = { code: code };
-    console.log(phoneCode);
+    const phoneCode = { code: code.toString() };
+    // console.log(phoneCode);
     const data = await AuthService.VerifyCode(phoneCode, phoneId);
+    // console.log(data);
     if (data?.data?.ok == true) {
       console.log("access");
       localStorage.setItem("token", data?.data?.token);
       navigate("/");
+      location.reload()
     }
     else {
       toast.error(`${t("sms.errorCode")}`)
@@ -70,8 +72,8 @@ export const SmsPage = () => {
   const onFinish = async (values) => {
     enterLoading(0);
 
-    phoneIdFunc(values.code);
     console.log(values.code);
+    phoneIdFunc(values.code);
   };
 
   return (

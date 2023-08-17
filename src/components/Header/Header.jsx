@@ -188,6 +188,7 @@ export const Header = () => {
 
                     <Dropdown.Menu defaultValue={i18n.language}>
                       <Dropdown.Item
+                      
                         onClick={() => {
                           localStorage.setItem("lang", "Uz");
                           i18n.changeLanguage("Uz");
