@@ -51,6 +51,44 @@
   background-color: #f3f3f3;
 
   .bar-wrapper {
+    // Active condition
+    .active {
+      // background-color: #008b51 !important;
+      border-radius: 20%;
+      background-color: transparent;
+      color: #008b51;
+    }
+
+    .chats-carousel {
+      overflow-x: auto;
+      display: none;
+    }
+
+    .chats-carousel-inner {
+      display: flex;
+      gap: 10px;
+    }
+
+    .chats-carousel-container {
+      display: flex;
+      align-items: center;
+
+      margin-bottom: 20px;
+    }
+
+    .chat-circle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 15px;
+
+      cursor: pointer;
+    }
+
+    .circle-img {
+      border-radius: 50%;
+      object-fit: cover;
+    }
     .wrapper-sections {
       margin-right: 30px;
       // display: none;
@@ -153,7 +191,7 @@
 
       // Active condition
       .active {
-        background-color: #008b51 !important;
+        // background-color: #008b51 !important;
         color: #fff;
       }
     }
@@ -161,7 +199,7 @@
     .layoutButtons__title {
       width: 100%;
 
-      //* Margin, paddings 
+      //* Margin, paddings
       margin: 0;
       padding: 10px;
 
@@ -328,6 +366,10 @@
   }
   .users-bar {
     .bar-wrapper {
+      .chats-carousel {
+        display: flex;
+      }
+
       width: 100%;
       // max-width: 600px;
       margin: 0 auto;
