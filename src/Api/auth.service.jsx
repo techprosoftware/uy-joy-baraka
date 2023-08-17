@@ -25,7 +25,7 @@ const AuthService = {
       .catch((err) => console.log(err));
     return data;
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   },
 
@@ -38,6 +38,7 @@ const AuthService = {
           "code-validation-id": `${phoneId}`,
         },
       });
+      console.log('api',data);
       return data;
     } catch (error) {
       console.log(error?.response?.data?.message);
