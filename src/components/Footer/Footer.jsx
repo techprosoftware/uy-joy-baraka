@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-unused-vars */
-
 import React from "react";
 // import "./footer.scss";
 // Store links
