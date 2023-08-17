@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 
 export const HomeBanner = () => {
   const { t, i18n } = useTranslation();
-
   return (
     <>
       <HomeSearch />{" "}
