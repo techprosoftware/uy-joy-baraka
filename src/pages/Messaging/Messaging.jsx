@@ -33,7 +33,7 @@ export const Messaging = () => {
 
   //* GET MESSAGING -- [GET REQUEST]
   useEffect(() => {
-    (async () => {
+    const getAllMessage = async () => {
       try {
         const data = await MessagingService.GetMessaging();
         console.log("user", data);
@@ -42,7 +42,11 @@ export const Messaging = () => {
       } catch (error) {
         console.error("Error occurred while fetching user profile", error);
       }
-    })();
+    };
+
+    setInterval(() => {
+      getAllMessage()
+    }, 6000);
   }, [activeChatId, update]);
 
   //* POST MESSAGE -- [POST REQUEST]
