@@ -1,10 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect } from "react";
-import { Header } from "@components/Header/Header";
-// import "./Messaging.scss";
 import { useRef } from "react";
 //* Ant design
-import { Modal, Button } from "antd";
+import { Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 //* Icons
 import TrashIcon from "../../../public/assets/images/messaging-delete-icon.svg";
@@ -12,13 +11,11 @@ import ChatsendIcon from "../../../public/assets/images/chatbar-send-icon.svg";
 import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilonzor.webp";
 import arrow from "../../../public/assets/images/left-arrow.svg";
 import MessagingService from "../../Api/messaging.service";
-import card from "../../Api/card.service";
 import DoubleCheck from "../../../public/assets/images/double-check_message.svg";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import ProfileService from "../../Api/profile.service";
 import NoData from "../../../public/assets/images/no-data.svg";
 import ChatMessaging from "../../../public/assets/images/messaging-chat.svg";
-import { useSelector } from "react-redux";
 
 export const Messaging = () => {
   const [isActive, setIsActive] = useState(false);
@@ -27,9 +24,6 @@ export const Messaging = () => {
   const [activeChatId, setActiveChatId] = useState(null);
   const [update, setUpdate] = useState(false);
   const [showFullTitle, setShowFullTitle] = useState(false);
-  const token = localStorage.getItem("token");
-
-  const chatId = useSelector((item) => item.chat.chat);
 
   // console.log(chatId);
 
@@ -113,12 +107,11 @@ export const Messaging = () => {
   const [meData, setMeData] = useState();
   const getMessageById = async (chat_id) => {
     const data = await MessagingService.GetMessageById(chat_id);
-    console.log(chat_id);
     setMeData(data.data?.messages);
-
     return data;
   };
   console.log(meData);
+  console.log(userData);
 
   //
   // console.log('me',resultMeData);
@@ -336,53 +329,19 @@ export const Messaging = () => {
                       </div>
 
                       {meData?.length
-                        ? meData
-                            ?.filter(
-                              (item) =>
-                                item.sender_id == userData.data?.user?.user_id
-                            )
-                            .map((item) => (
-                              <>
-                                {" "}
-                                <div
-                                  style={{
-                                    display: "block",
-                                    // width: "200px",
-                                    marginLeft: "auto",
-                                    marginRight: "15px",
-                                  }}
-                                  className="self-ms"
-                                >
-                                  <span className="text__msg">
-                                    {item?.content}
-                                  </span>
-                                  <img
-                                    className="double-check"
-                                    src={DoubleCheck}
-                                    alt=""
-                                  />
-                                </div>
-                              </>
-                            )) ||
-                          meData
-                            ?.filter(
-                              (item) =>
-                                item.sender_id != userData.data?.user?.user_id
-                            )
-                            .map((item) => (
-                              <>
-                                {" "}
-                                <span className="client-ms">
-                                  {item?.content}
-                                  <img
-                                    className="double-check"
-                                    style={{ marginLeft: "25px" }}
-                                    src={DoubleCheck}
-                                    alt=""
-                                  />
-                                </span>
-                              </>
-                            ))
+                        ? 
+                        meData?.map((item) => (
+                          <><div className={`chat-wrapper__bar ${item.sender_id === userData.data.user?.user_id ? "self-ms" : "client-ms"}`}>
+                          <span className="text__msg">
+                            {item?.content}
+                          </span>
+                          <img
+                            className="double-check"
+                            src={DoubleCheck}
+                            alt=""
+                          />
+                        </div></>
+                        ))
                         : ""}
 
                       {/* Chat messaged mock */}

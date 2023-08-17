@@ -738,3 +738,11 @@
   display: none !important;
 }
 
+.dropdown-menu .show {
+  position: absolute !important;
+  inset: 0px !important;
+  transform: translate3d(-99px, 26px, 0px) !important;
+}
+
+
+

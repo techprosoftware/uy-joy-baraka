@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-// import "./header.scss";
+import "./_header.scss";
 import { Link } from "react-router-dom";
 import SiteLogo from "@images/logo.svg";
 import TelegramIcon from "@images/telegram.png";
@@ -40,12 +40,10 @@ export const Header = () => {
 
   const token = localStorage.getItem("token");
 
-  // if(!token) location.reload()
-
   const options = [
     {
       value: "O'zbekcha",
-      label: <img src={uzflag} width={30} alt="" />,
+      label: <img src={uzflag} width="30" alt="" />,
     },
     {
       value: "Русский",
@@ -85,6 +83,10 @@ export const Header = () => {
   useEffect(() => {
     getUser();
   }, []);
+
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
 
   return (
     <div className="site-header fixed-top ">
@@ -177,6 +179,7 @@ export const Header = () => {
               </li>
               <li className="nav__item lang-icon">
                 <div className="lang__select">
+                  
                   {/* <p>{lang}</p> */}
                   <Dropdown className="shadow-none" as={ButtonGroup}>
                     <Dropdown.Toggle
@@ -186,9 +189,11 @@ export const Header = () => {
                       {langLabel}
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu defaultValue={i18n.language}>
-                      <Dropdown.Item
+                    <Dropdown.Menu style={{transform: "none"}}
                       
+                      defaultValue={i18n.language}
+                    >
+                      <Dropdown.Item
                         onClick={() => {
                           localStorage.setItem("lang", "Uz");
                           i18n.changeLanguage("Uz");

@@ -106,8 +106,9 @@
 }
 
 .dropdown-menu {
+  width: 100%;
   inset: 16px auto auto 0px !important;
-  --bs-dropdown-max-width: 25rem;
+  --bs-dropdown-max-width: 5rem;
   --bs-dropdown-divider-bg: var(--bs-border-color-translucent);
   --bs-dropdown-divider-margin-y: 0.5rem;
   --bs-dropdown-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
@@ -122,12 +123,13 @@
   --bs-dropdown-header-color: #6c757d;
   --bs-dropdown-header-padding-x: 0;
   --bs-dropdown-header-padding-y: 0;
-  width: 100%;
   max-width: var(--bs-dropdown-max-width);
 }
 
-.dropdown-item {
-  padding: 5px !important;
+.dropdown-menu .show {
+  position: relative !important;
+  transform: translate3d(-120px, 32px, 0px) !important;
+
 }
 
 .send__button {
