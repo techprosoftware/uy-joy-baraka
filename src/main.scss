@@ -1,6 +1,10 @@
 @import "fonts";
 @import "./components/Header/header";
 @import "./pages/Home/HomeBanner/HomeBanner";
+@import "./pages/Home/HomeCards/HomeCard";
+@import "./components/HomeSearch/search";
+@import "./components/HomeSearch/HomeSearch";
+@import "./components/Footer/footer";
 @import "./pages/Favorite/Favorite";
 @import "./components/Cards/card";
 @import "./pages/UserInfo/UserInfo";
@@ -10,12 +14,8 @@
 @import "./pages/Public/Public";
 @import "./pages/Messaging/Messaging";
 @import "./pages/Login/Login";
-@import "./pages/Home/HomeCards/HomeCard";
 @import "./components//Ads/ads";
-@import "./components/Footer/footer";
 @import "./components/Social/social";
-@import "./components/HomeSearch/search";
-@import "./components/HomeSearch/HomeSearch";
 @import "./components/ActiveCard/ActiveCard";
 @import "./components/DeactiveCard/DeactiveCard";
 @import "./components/CardSingle//card-single";
@@ -43,6 +43,22 @@ body {
   background-color: #f6f6f8;
 }
 
+/**
+ * SCSS class for a container element.
+ *
+ * This class sets the width to 100% and the maximum width to 1350px.
+ * It also adds padding of 0 20px and centers the container horizontally using auto margins.
+ *
+ * Example usage:
+ * ```
+ * .container {
+ *   width: 100% !important;
+ *   max-width: 1350px !important;
+ *   padding: 0 20px !important;
+ *   margin: 0 auto !important;
+ * }
+ * ```
+ */
 .container {
   width: 100% !important;
   max-width: 1350px !important;
