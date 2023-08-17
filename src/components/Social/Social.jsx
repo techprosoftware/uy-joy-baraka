@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import LogoSocial from "@images/logo-social.svg";
 // import "./social.scss";
 // import { Link } from "react-router-dom";
@@ -22,7 +23,7 @@ export const Social = () => {
           </div>
           <ul className="social__list">
             <li className="social__item">
-              <a
+              <a target="_blank"
                 href="https://www.youtube.com/@UyjoyBaraka"
                 className="social__link"
               >
@@ -36,7 +37,7 @@ export const Social = () => {
               </a>
             </li>
             <li className="social__item">
-              <a
+              <a target="_blank"
                 href="https://www.instagram.com/uyjoy_baraka/"
                 className="social__link"
               >
@@ -50,7 +51,7 @@ export const Social = () => {
               </a>
             </li>
             <li className="social__item">
-              <a href="https://t.me/uy_joybarakabor" className="social__link">
+              <a target="_blank" href="https://t.me/uy_joybarakabor" className="social__link">
                 <img
                   className="social__icon"
                   src={TelegramIcon}

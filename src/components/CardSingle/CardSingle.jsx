@@ -67,6 +67,7 @@ export const CardSingle = () => {
     setCard({ isLoading: true, data: [] });
     try {
       const response = await CardService.getByCard(id);
+      console.log(response);
       
       setAnId(response.data.post.announcement_id);
       setUserId(response.data.post?.user_id);
@@ -86,7 +87,7 @@ export const CardSingle = () => {
 
   const data = card.data.post;
   const user = card.user;
-  const time = data?.updatedAt.split("-");
+  const time = data?.updatedAt?.split("-");
   const customPrice = data?.price
     .toString()
     .replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, "$1 ");

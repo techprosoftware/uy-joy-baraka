@@ -54,7 +54,6 @@ export const Card = (card) => {
     }
   }
 
-  console.log(favorite);
 
   return (
     <>
