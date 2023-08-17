@@ -12,7 +12,7 @@ import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilon
 import arrow from "../../../public/assets/images/left-arrow.svg";
 import MessagingService from "../../Api/messaging.service";
 import DoubleCheck from "../../../public/assets/images/double-check_message.svg";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ProfileService from "../../Api/profile.service";
 import NoData from "../../../public/assets/images/no-data.svg";
 import ChatMessaging from "../../../public/assets/images/messaging-chat.svg";
@@ -26,6 +26,7 @@ export const Messaging = () => {
   const [update, setUpdate] = useState(false);
   const [showFullTitle, setShowFullTitle] = useState(false);
 
+  console.log(chats, 'set chat');
   // console.log(chatId);
   const { t } = useTranslation();
 
@@ -46,9 +47,9 @@ export const Messaging = () => {
       }
     };
 
-    getAllMessage()
+    getAllMessage();
     setInterval(() => {
-      getAllMessage()
+      getAllMessage();
     }, 6000);
   }, [activeChatId, update]);
 
@@ -63,7 +64,7 @@ export const Messaging = () => {
       );
       message.current.value = "";
       setUpdate(true);
-      getMessageById(localStorage.getItem('chatId'));
+      getMessageById(localStorage.getItem("chatId"));
     } catch (error) {
       console.log(error);
     }
@@ -81,7 +82,6 @@ export const Messaging = () => {
         try {
           await MessagingService.DeleteChat(i);
           setUpdate(true);
-          location.reload()
         } catch (error) {
           console.log(error);
         }
@@ -128,7 +128,7 @@ export const Messaging = () => {
 
   //* Handle chat bar active
   const handleChatBarActive = (id) => {
-    localStorage.setItem('chatId', id)
+    localStorage.setItem("chatId", id);
     getMessageById(id);
     setActiveChatId((prevActiveChatId) => (prevActiveChatId == id ? id : id));
   };
@@ -287,9 +287,7 @@ export const Messaging = () => {
                         </div>
                         <div className="trash-inner">
                           <button
-                            onClick={() =>
-                              deleteChat(selectedChat?.members?.chat_id)
-                            }
+                            onClick={() => deleteChat(selectedChat?.chat_id)}
                           >
                             <img src={TrashIcon} alt="trash icon" />
                           </button>
@@ -339,19 +337,26 @@ export const Messaging = () => {
                       </div>
 
                       {meData?.length
-                        ? 
-                        meData?.map((item) => (
-                          <><div className={`chat-wrapper__bar ${item.sender_id === userData.data.user?.user_id ? "self-ms" : "client-ms"}`}>
-                          <span className="text__msg">
-                            {item?.content}
-                          </span>
-                          <img
-                            className="double-check"
-                            src={DoubleCheck}
-                            alt=""
-                          />
-                        </div></>
-                        ))
+                        ? meData?.map((item) => (
+                            <>
+                              <div
+                                className={`chat-wrapper__bar ${
+                                  item.sender_id === userData.data.user?.user_id
+                                    ? "self-ms"
+                                    : "client-ms"
+                                }`}
+                              >
+                                <span className="text__msg">
+                                  {item?.content}
+                                </span>
+                                <img
+                                  className="double-check"
+                                  src={DoubleCheck}
+                                  alt=""
+                                />
+                              </div>
+                            </>
+                          ))
                         : ""}
 
                       {/* Chat messaged mock */}
