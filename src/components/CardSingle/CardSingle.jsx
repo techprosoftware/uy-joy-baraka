@@ -64,7 +64,7 @@ export const CardSingle = () => {
   });
 
   const fetcher = async () => {
-    setCard({ isLoading: true, data: [] });
+    setCard({ isLoading: true, data: {} });
     try {
       const response = await CardService.getByCard(id);
       
@@ -85,13 +85,12 @@ export const CardSingle = () => {
   }, [id]);
 
   const data = card.data.post;
-  const user = card.user;
-  const time = data?.updatedAt.split("-");
+  const time = data?.updatedAt?.split("-");
   const customPrice = data?.price
     .toString()
     .replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, "$1 ");
   const currentUrl = window.location.href;
-  console.log(card);
+  console.log(data);
   return (
     <>
       <main>
@@ -285,7 +284,7 @@ export const CardSingle = () => {
                   <div className="d-flex justify-content-between mt-3 card-single__btns">
                     <a
                       className="card-single__call-btn"
-                      href={"tel:+" + user?.phone}
+                      href={"tel:+" + data?.phone}
                     >
                       {t("singlepage.phone")}
                     </a>
