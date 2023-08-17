@@ -157,7 +157,15 @@ export const lang = {
     chat : {
       arxiv: "Xabarlar arxivi",
       more: "Batafsil",
-      send: "sms yozish"
+      send: "sms yozish",
+      verify: "Iltimos tasdiqlang",
+      versms: "Rostdan ham bu chat-ni o'chirishni xohlaysizmi ?",
+      yes: "Ha",
+      no: "Yo'q",
+      nomessage: "Hali xabarlar yo'q",
+      desc: "Asosiy sahifaga o'tish va orzuingizdagi uy-ni topish orqali, suhbatni boshlashingiz mumkin",
+      back: "Asosiy sahifaga",
+      small: "Kichikroq"
     }
   },
 
@@ -320,7 +328,16 @@ export const lang = {
     chat : {
       arxiv: "Архив сообщений",
       more: "Более",
-      send: "написать смс"
+      send: "написать смс",
+      verify: "Пожалуйста подтвердите",
+      versms: "Вы уверены, что хотите удалить этот чат ?",
+      yes: "Да",
+      no: "Нет",
+      nomessage: "Сообщений пока нет",
+      desc: "Перейдя на главную страницу и найдя дом своей мечты, вы можете начать разговор",
+      back: "На главную страницу",
+      small: "Меньше"
+
     }
   },
 
