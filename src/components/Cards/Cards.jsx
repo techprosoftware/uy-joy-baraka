@@ -1,5 +1,5 @@
 // import "./card.scss"
-// import CardLikeIcon from "@images/card-like-icon.svg"
+import CardLikeIcon from "@images/card-like-icon.svg"
 import CardULikeIcon from "@images/card-ulike-icon.svg"
 import { useNavigate } from "react-router-dom"
 import { BASE_URL } from "@/Api/api"
@@ -18,6 +18,9 @@ export const Card = (card) => {
 
   const [like , setLike] = useState(false)
 
+  const [favorite, setFavorite] = useState({
+    data: []
+  })
   const handleClick = async (evt) => {
     const targetTag = evt.target.className
     const token = localStorage.getItem("token") || ""
@@ -32,6 +35,9 @@ export const Card = (card) => {
         const response = await CardService.likeCard(card?.card?.announcement_id)
         console.log(response)
         if (response?.status === 200) {
+          const res = (JSON.parse(response.config.data));
+          setFavorite({data:  [data, res]})
+          // localStorage.setItem('like', JSON.stringify(favorite))
           toast.success("Saqlanganlarga qo'shildi")
           return
         } else {
@@ -47,6 +53,9 @@ export const Card = (card) => {
       navigate(`/announcement/${card.card?.slug}`)
     }
   }
+
+  console.log(favorite);
+
   return (
     <>
       <li
