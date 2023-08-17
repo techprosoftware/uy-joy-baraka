@@ -34,22 +34,18 @@ export const Messaging = () => {
   const message = useRef(null);
 
   //* GET MESSAGING -- [GET REQUEST]
+  const getAllMessage = async () => {
+    try {
+      const data = await MessagingService.GetMessaging();
+      console.log("user", data);
+      setChats(data?.members);
+      setUpdate(false);
+    } catch (error) {
+      console.error("Error occurred while fetching user profile", error);
+    }
+  };
   useEffect(() => {
-    const getAllMessage = async () => {
-      try {
-        const data = await MessagingService.GetMessaging();
-        console.log("user", data);
-        setChats(data?.members);
-        setUpdate(false);
-      } catch (error) {
-        console.error("Error occurred while fetching user profile", error);
-      }
-    };
-
     getAllMessage()
-    setInterval(() => {
-      getAllMessage()
-    }, 6000);
   }, [activeChatId, update]);
 
   //* POST MESSAGE -- [POST REQUEST]
@@ -72,11 +68,11 @@ export const Messaging = () => {
   //* DELETE CHAT -- [DELETE REQUEST]
   const deleteChat = async (i) => {
     Modal.confirm({
-      title: "Iltimos tasdiqlang",
+      title: `${t("chat.verify")}`,
       icon: <ExclamationCircleOutlined />,
-      content: "Rostdan ham bu chat-ni o'chirishni xohlaysizmi?",
-      okText: "Ha",
-      cancelText: "Yo'q",
+      content: `${t("chat.versms")}`,
+      okText: `${t("chat.yes")}`,
+      cancelText: `${t("chat.no")}`,
       onOk: async () => {
         try {
           await MessagingService.DeleteChat(i);
@@ -143,8 +139,7 @@ export const Messaging = () => {
         <div className="container">
           <div className="backButton">
             <button onClick={() => navigate(-1)} className="customBack">
-              <img src={arrow} alt="arrow button" /> Orqaga
-            </button>
+              <img src={arrow} alt="arrow button" /> {t("backbtn")}  </button>
           </div>
           <div className="bar-wrapper">
             <div
@@ -160,19 +155,14 @@ export const Messaging = () => {
                     alt="messagin icon"
                     width={30}
                   />{" "}
-                  Xabarlar arxivi
+                  {t("chat.arxiv")}
                 </h3>
               </div>
               {/* Delete messaging */}
               <div className="bg-chat">
                 {chats?.length ? (
                   <div>
-                    <div className="delete-bar">
-                      <button className="trash-icon">
-                        <img src={TrashIcon} alt="trash icon" />
-                        <span className="trash-span">O'chirish</span>
-                      </button>
-                    </div>
+
                     {/* Chats */}
                     {chats?.map((info) => (
                       <div key={info.chat_id} className="chats-container">
@@ -223,13 +213,12 @@ export const Messaging = () => {
                       height={280}
                       alt="no message yet"
                     />
-                    <h3>Hali xabarlar yo'q</h3>
+                    <h3>{t("chat.nomessage")}</h3>
                     <p>
-                      Asosiy sahifaga o'tish va orzuingizdagi uy-ni topish
-                      orqali, suhbatni boshlashingiz mumkin
+                     {t("chat.desc")}
                     </p>
                     <button onClick={() => navigate("/")}>
-                      Asosiy sahifaga
+                      {t("chat.back")}
                     </button>
                   </div>
                 )}
@@ -319,7 +308,7 @@ export const Messaging = () => {
                                     setShowFullTitle(!showFullTitle)
                                   }
                                 >
-                                  {showFullTitle ? "Kichikroq" : "Batafsil"}
+                                  {showFullTitle ?`${t("chat.small")}` : `${t("chat.more")}`}
                                 </button>
                               </span>
                             </div>
@@ -355,12 +344,13 @@ export const Messaging = () => {
                         : ""}
 
                       {/* Chat messaged mock */}
-                      <form>
+                      <form className="message-form">
                         <input
                           autoFocus
                           type="text"
                           className="chatbar-input"
-                          placeholder="Sms yozish"
+                          placeholder={t("chat.send")}
+                          required
                           aria-label="Enter your message(Habaringizni kiriting)"
                           ref={message}
                         />

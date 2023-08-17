@@ -25,6 +25,17 @@
 @import "./pages/Announ/Announ";
 @import "./pages/404/404";
 
+
+::-webkit-scrollbar {
+	width: 9px;
+	/* background-color: #7e8681; */
+}
+
+::-webkit-scrollbar-thumb {
+	background: linear-gradient(45deg, #6fe22d, #61e000);
+	border-radius: 4px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -58,30 +69,24 @@ a {
   text-decoration: none !important;
 }
 
-//* Scroll top button
-:where(.css-dev-only-do-not-override-byeoj0).ant-back-top
-  .ant-back-top-content {
-  background-color: #008b51;
-  position: absolute;
-  top: -55px;
-  left: 70px;
-}
-
-:where(.css-dev-only-do-not-override-1m62vyb).ant-back-top
-  .ant-back-top-content {
-  width: 50px;
-  height: 50px;
-
-  &:hover {
-    background-color: rgb(1, 173, 101);
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  :where(.css-dev-only-do-not-override-byeoj0).ant-back-top
-    .ant-back-top-content {
-    left: -10px;
-  }
+:where(.css-dev-only-do-not-override-fpg3f5).ant-back-top {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 14px;
+  line-height: 1.5714285714285714;
+  list-style: none;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+  position: fixed;
+  inset-inline-end: 100px;
+  inset-block-end: 50px;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  right: 35px;
+  cursor: pointer;
+  bottom: 94px;
 }
 
 //******************//
@@ -92,4 +97,36 @@ a {
   .container {
     padding: 0 16px !important;
   }
+}
+
+
+.back-to-top {
+	position: fixed;
+	visibility: hidden;
+	opacity: 0;
+	right: 125px;
+	bottom: 55px;
+	z-index: 99999;
+	background: #eb251e;
+	width: 35px;
+	height: 35px;
+	border-radius: 50px;
+	transition: all 0.4s;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.back-to-top i {
+	font-size: 24px;
+	color: #fff;
+	line-height: 0;
+}
+
+.back-to-top:hover {
+	background: rgb(218, 76, 11);
+	color: #fff;
+}
+
+.back-to-top.active {
+	visibility: visible;
+	opacity: 1;
 }

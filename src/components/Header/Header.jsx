@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import { useEffect, useRef, useState } from "react";
 import "./_header.scss";
 import { Link } from "react-router-dom";
@@ -54,9 +55,6 @@ export const Header = () => {
 
   const [langLabel, setLangLabel] = useState(options[0].label);
 
-  const [course, setCourse] = useState("Uzs");
-
-  const [flag, setFlag] = useState(localStorage.getItem("uz") || 0);
 
   function handlclick(n) {
     setLangLabel(options[n].label);
@@ -496,27 +494,19 @@ export const Header = () => {
               <div className="modal__items">
                 <ul className="modal__list social_links">
                   <li>
-                    <a href="https://t.me/uyjoybaraka">
+                    <a target="_blank" href="https://www.instagram.com/uyjoy_baraka/">
                       <img src={TelegramIcon} alt="Telegram icon" />
                     </a>
                   </li>
                   <li>
-                    <a href="https://instagram.com">
+                    <a target="_blank" href="https://www.instagram.com/uyjoy_baraka/">
                       <img src={InstagramIcon} alt="Instagram icon" />
                     </a>
                   </li>
+                 
+                 
                   <li>
-                    <a href="https://facebook.com">
-                      <img src={FacebookIcon} alt="Facebook icon" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://twitter.com">
-                      <img src={TwitterIcon} alt="Twitter icon" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://youtube.com">
+                    <a target="_blank" href="https://www.youtube.com/@UyjoyBaraka">
                       <img src={PlayButtonIcon} alt="YouTube icon" />
                     </a>
                   </li>

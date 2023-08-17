@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable no-unused-vars */
 
 import React from "react";
@@ -89,7 +90,7 @@ export const Footer = () => {
               <ul className="footer__list social_links">
                 <li>
                   <a
-                    href="https://t.me/uy_joybarakabor"
+                    href="https://www.instagram.com/uyjoy_baraka/"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -102,7 +103,7 @@ export const Footer = () => {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <img src={InstagramIcon} alt="Instagram icon" />
+                    <img target="_blank" src={InstagramIcon} alt="Instagram icon" />
                   </a>
                 </li>
                 {/* <li>
@@ -116,7 +117,7 @@ export const Footer = () => {
                   </a>
                 </li> */}
                 <li>
-                  <a href="https://www.youtube.com/@UyjoyBaraka">
+                  <a target="_blank" href="https://www.youtube.com/@UyjoyBaraka">
                     <img src={YouTubeIcon} alt="YouTube icon" />
                   </a>
                 </li>

@@ -42,7 +42,7 @@ function App() {
         <Route path="/sms" element={<SmsPage />} />
       </Routes>
      
-      <div className="back">
+      <div  className="back">
         <BackTop />
       </div>
       <ToastContainer
