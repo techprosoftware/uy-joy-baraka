@@ -8,9 +8,9 @@ export const NotFoundError = () => {
   const { t } = useTranslation();
 
   return (
-    <div>
+    <div className="mb-4">
       <img className="error__img" src={imgerr} alt="" />
-      <h3 className="title__error mb-2">{t("notfound.errortitle")}</h3>
+      <h3 className="title__error ">{t("notfound.errortitle")}</h3>
       <Link to={'/'} className="d-block text-center h5 text-success m-auto">{t("notfound.errorbtn")}</Link>
     </div>
   );
