@@ -16,6 +16,7 @@ import {  useNavigate } from "react-router-dom";
 import ProfileService from "../../Api/profile.service";
 import NoData from "../../../public/assets/images/no-data.svg";
 import ChatMessaging from "../../../public/assets/images/messaging-chat.svg";
+import { useTranslation } from "react-i18next";
 
 export const Messaging = () => {
   const [isActive, setIsActive] = useState(false);
@@ -26,6 +27,7 @@ export const Messaging = () => {
   const [showFullTitle, setShowFullTitle] = useState(false);
 
   // console.log(chatId);
+  const { t } = useTranslation();
 
   //* Additional things
   const navigate = useNavigate();
@@ -355,6 +357,7 @@ export const Messaging = () => {
                       {/* Chat messaged mock */}
                       <form>
                         <input
+                          autoFocus
                           type="text"
                           className="chatbar-input"
                           placeholder="Sms yozish"

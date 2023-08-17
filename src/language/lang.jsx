@@ -153,6 +153,11 @@ export const lang = {
     notfound: {
       errortitle: "Sahifa topilmadi",
       errorbtn: "Asosiy sahifaga qaytish"
+    },
+    chat : {
+      arxiv: "Xabarlar arxivi",
+      more: "Batafsil",
+      send: "sms yozish"
     }
   },
 
@@ -311,6 +316,11 @@ export const lang = {
     notfound: {
       errortitle: "Страница не найдена",
       errorbtn: "Вернуться на главную"
+    },
+    chat : {
+      arxiv: "Архив сообщений",
+      more: "Более",
+      send: "написать смс"
     }
   },
 
