@@ -67,6 +67,7 @@ export const Messaging = () => {
 
   //* DELETE CHAT -- [DELETE REQUEST]
   const deleteChat = async (i) => {
+    console.log(i);
     Modal.confirm({
       title: `${t("chat.verify")}`,
       icon: <ExclamationCircleOutlined />,
@@ -77,7 +78,7 @@ export const Messaging = () => {
         try {
           await MessagingService.DeleteChat(i);
           setUpdate(true);
-          location.reload()
+          setIsBarActive(false)
         } catch (error) {
           console.log(error);
         }
@@ -130,6 +131,8 @@ export const Messaging = () => {
   };
 
   const selectedChat = chats?.find((chat) => chat.chat_id == activeChatId);
+
+  console.log(selectedChat);
   // console.log(selectedChat);
   return (
     <>
@@ -277,7 +280,7 @@ export const Messaging = () => {
                         <div className="trash-inner">
                           <button
                             onClick={() =>
-                              deleteChat(selectedChat?.members?.chat_id)
+                              deleteChat(selectedChat?.chat_id)
                             }
                           >
                             <img src={TrashIcon} alt="trash icon" />

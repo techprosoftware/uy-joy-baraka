@@ -116,33 +116,3 @@ a {
 }
 
 
-.back-to-top {
-	position: fixed;
-	visibility: hidden;
-	opacity: 0;
-	right: 125px;
-	bottom: 55px;
-	z-index: 99999;
-	background: #eb251e;
-	width: 35px;
-	height: 35px;
-	border-radius: 50px;
-	transition: all 0.4s;
-	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-
-.back-to-top i {
-	font-size: 24px;
-	color: #fff;
-	line-height: 0;
-}
-
-.back-to-top:hover {
-	background: rgb(218, 76, 11);
-	color: #fff;
-}
-
-.back-to-top.active {
-	visibility: visible;
-	opacity: 1;
-}
