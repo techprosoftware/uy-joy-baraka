@@ -4,15 +4,15 @@
 import React from "react";
 // import "./footer.scss";
 // Store links
-import AppStorePic from "../../../public/assets/images/footer_store-link_iphone.svg";
-import PlayStorePic from "../../../public/assets/images/footer_store-link_android.svg";
-import Logo from "../../../public/assets/images/logo.svg";
+import AppStorePic from "@images/footer_store-link_iphone.svg";
+import PlayStorePic from "@images/footer_store-link_android.svg";
+import Logo from "@images/logo.svg";
 // Footer icons
-import TelegramIcon from "../../../public/assets/images/tg-icon.svg";
-import InstagramIcon from "../../../public/assets/images/insta-icon.svg";
-import FacebookIcon from "../../../public/assets/images/facebook-icon.svg";
-import TwitterIcon from "../../../public/assets/images/twitter-icon.svg";
-import YouTubeIcon from "../../../public/assets/images/youtube-icon.svg";
+import TelegramIcon from "@images/tg-icon.svg";
+import InstagramIcon from "@images/insta-icon.svg";
+// import FacebookIcon from "@images/facebook-icon.svg";
+// import TwitterIcon from "@images/twitter-icon.svg";
+import YouTubeIcon from "@images/youtube-icon.svg";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -28,7 +28,7 @@ export const Footer = () => {
             <div className="pre-footer__inner">
               <img
                 className="pre-footer__bg"
-                src="../../../public/assets/images/footer_bg-phone.png"
+                src="@images/footer_bg-phone.png"
                 alt=""
               />
             </div>

@@ -1,5 +1,6 @@
 .home-banner {
-  background-image: url("../../../../public/assets/images/home-banner.webp");
+  // best practice
+  background-image: url("@images/home-banner.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -134,7 +135,7 @@
 
 .carousel-control-prev:hover {
   border-radius: 55%;
-  width: 2rem !important; 
+  width: 2rem !important;
   padding: 5px;
   height: 2rem !important;
   top: 56% !important;
@@ -227,13 +228,11 @@
   .carousel-control-next {
     display: none;
   }
-  
+
   .carousel-control-prev {
     display: none;
   }
 }
-
-
 
 .carousel-inner {
   z-index: -1 !important;
