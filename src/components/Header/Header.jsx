@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import SiteLogo from "@images/logo.svg";
 import TelegramIcon from "@images/telegram.png";
 import InstagramIcon from "@images/instagram.png";
-import FacebookIcon from "@images/facebook.png";
-import TwitterIcon from "@images/twitter.png";
 import PlayButtonIcon from "@images/play-button.png";
 import { Dropdown, ButtonGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
@@ -82,9 +80,7 @@ export const Header = () => {
     getUser();
   }, []);
 
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
-  };
+ 
 
   return (
     <div className="site-header fixed-top ">
@@ -413,10 +409,10 @@ export const Header = () => {
                 </li>
                 <span className="close__line"></span>
                 <li className="nav__item heart-icon">
-                  <Link
+                  <a target="_blank"
                     onClick={() => setBurger(false)}
                     className="nav__link d-flex align-items-center gap-2"
-                    to={"#"}
+                    href={"https://t.me/uyjoybarakauz_bot"}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -434,7 +430,7 @@ export const Header = () => {
                       <line x1="12" y1="17" x2="12.01" y2="17"></line>
                     </svg>{" "}
                     <p>{t("header.callcenter")}</p>
-                  </Link>
+                  </a>
                 </li>
                 <li className="nav__item heart-icon">
                   <Link
@@ -494,7 +490,7 @@ export const Header = () => {
               <div className="modal__items">
                 <ul className="modal__list social_links">
                   <li>
-                    <a target="_blank" href="https://www.instagram.com/uyjoy_baraka/">
+                    <a target="_blank" href="https://t.me/uy_joybarakabor">
                       <img src={TelegramIcon} alt="Telegram icon" />
                     </a>
                   </li>
