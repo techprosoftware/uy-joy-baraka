@@ -90,7 +90,7 @@ export const Footer = () => {
               <ul className="footer__list social_links">
                 <li>
                   <a
-                    href="https://www.instagram.com/uyjoy_baraka/"
+                    href="https://t.me/uy_joybarakabor"
                     target="_blank"
                     rel="noreferrer"
                   >

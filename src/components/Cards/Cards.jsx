@@ -54,6 +54,7 @@ export const Card = (card) => {
     }
   }
 
+
   return (
     <>
       <li
