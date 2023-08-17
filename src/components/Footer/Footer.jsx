@@ -12,6 +12,7 @@ import InstagramIcon from "@images/insta-icon.svg"
 // import FacebookIcon from "@images/facebook-icon.svg";
 // import TwitterIcon from "@images/twitter-icon.svg";
 import YouTubeIcon from "@images/youtube-icon.svg"
+import BgImagePhone from "@images/footer_bg-phone.png"
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 
@@ -27,7 +28,7 @@ export const Footer = () => {
             <div className="pre-footer__inner">
               <img
                 className="pre-footer__bg"
-                src="@images/footer_bg-phone.png"
+                src={BgImagePhone}
                 alt=""
               />
             </div>
