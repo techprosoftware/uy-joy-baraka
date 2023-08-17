@@ -94,15 +94,15 @@ a {
   line-height: 1.5714285714285714;
   list-style: none;
   font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
-  position: fixed;
-  inset-inline-end: 100px;
-  inset-block-end: 50px;
-  z-index: 10;
-  width: 40px;
-  height: 40px;
-  right: 35px;
-  cursor: pointer;
-  bottom: 94px;
+  position: fixed !important;
+  inset-inline-end: 100px !important;
+  inset-block-end: 50px !important;
+  z-index: 10 !important;
+  width: 40px !important;
+  height: 40px !important;
+  right: 35px !important;
+  cursor: pointer !important;
+  bottom: 94px !important;
 }
 
 //******************//
