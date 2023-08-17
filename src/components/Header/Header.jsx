@@ -111,6 +111,7 @@ export const Header = () => {
           </Link>
           <nav className="nav d-flex align-items-center">
             <ul className="nav__list">
+              
               <li className="nav__item new-poster">
                 {token ? (
                   <Link className="nav__link" to={"/upload"}>
@@ -122,7 +123,46 @@ export const Header = () => {
                   </Link>
                 )}
               </li>
+              <li className="nav__item lang-icon">
+                <div className="lang__select">
+                  
+                  {/* <p>{lang}</p> */}
+                  <Dropdown className="shadow-none" as={ButtonGroup}>
+                    <Dropdown.Toggle
+                      className="lang__btn  shadow-none"
+                      id="lng-dropdown"
+                    >
+                      {langLabel}
+                    </Dropdown.Toggle>
 
+                    <Dropdown.Menu style={{transform: "none"}}
+                      
+                      defaultValue={i18n.language}
+                    >
+                      <Dropdown.Item
+                        onClick={() => {
+                          localStorage.setItem("lang", "Uz");
+                          i18n.changeLanguage("Uz");
+                          localStorage.setItem("uz", 0);
+                          handlclick(localStorage.getItem("uz") || 0);
+                        }}
+                      >
+                        {options[0].value}
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => {
+                          localStorage.setItem("lang", "Ru");
+                          i18n.changeLanguage("Ru");
+                          localStorage.setItem("uz", 1);
+                          handlclick(localStorage.getItem("uz") || 1);
+                        }}
+                      >
+                        {options[1].value}
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+              </li>
               <li className="nav__item chat-icon">
                 <Link className="nav__link" to={"/messaging"}>
                   <svg
@@ -177,46 +217,7 @@ export const Header = () => {
                   </Link>
                 )}
               </li>
-              <li className="nav__item lang-icon">
-                <div className="lang__select">
-                  
-                  {/* <p>{lang}</p> */}
-                  <Dropdown className="shadow-none" as={ButtonGroup}>
-                    <Dropdown.Toggle
-                      className="lang__btn  shadow-none"
-                      id="lng-dropdown"
-                    >
-                      {langLabel}
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu style={{transform: "none"}}
-                      
-                      defaultValue={i18n.language}
-                    >
-                      <Dropdown.Item
-                        onClick={() => {
-                          localStorage.setItem("lang", "Uz");
-                          i18n.changeLanguage("Uz");
-                          localStorage.setItem("uz", 0);
-                          handlclick(localStorage.getItem("uz") || 0);
-                        }}
-                      >
-                        {options[0].value}
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => {
-                          localStorage.setItem("lang", "Ru");
-                          i18n.changeLanguage("Ru");
-                          localStorage.setItem("uz", 1);
-                          handlclick(localStorage.getItem("uz") || 1);
-                        }}
-                      >
-                        {options[1].value}
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </div>
-              </li>
+              
               {!token ? (
                 <li className="nav__item user-icon">
                   <Link className="nav__link" to={"/login"}>

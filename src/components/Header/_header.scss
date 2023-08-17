@@ -582,9 +582,7 @@
 }
 
 @media only screen and (max-width: 769px) {
-  .heart-icon {
-    display: none;
-  }
+ 
 
   .site-logo {
     width: 77px;
@@ -648,6 +646,10 @@
   }
 
   .chat-icon {
+    display: none;
+  }
+
+  .heart-icon {
     display: none;
   }
 

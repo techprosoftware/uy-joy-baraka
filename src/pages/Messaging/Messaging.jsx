@@ -44,6 +44,7 @@ export const Messaging = () => {
       }
     };
 
+    getAllMessage()
     setInterval(() => {
       getAllMessage()
     }, 6000);
@@ -60,6 +61,7 @@ export const Messaging = () => {
       );
       message.current.value = "";
       setUpdate(true);
+      getMessageById(localStorage.getItem('chatId'));
     } catch (error) {
       console.log(error);
     }
@@ -77,6 +79,7 @@ export const Messaging = () => {
         try {
           await MessagingService.DeleteChat(i);
           setUpdate(true);
+          location.reload()
         } catch (error) {
           console.log(error);
         }
@@ -123,6 +126,7 @@ export const Messaging = () => {
 
   //* Handle chat bar active
   const handleChatBarActive = (id) => {
+    localStorage.setItem('chatId', id)
     getMessageById(id);
     setActiveChatId((prevActiveChatId) => (prevActiveChatId == id ? id : id));
   };
