@@ -1,43 +1,44 @@
 // import "./card-single.scss"
-import { BackButton } from "@components/BackButton/BackButton";
-import  CardList  from "@components/CardList/CardList";
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { BASE_URL } from "@api/api";
-import { Link, useParams } from "react-router-dom";
-import CardService from "@/Api/card.service.jsx";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { toast } from "react-toastify";
-import LoadingIcon from "@images/card-single-loading.svg";
-import TelegramIcon from "@images/telegram-icon.svg";
-import WhatsappIcon from "@images/whatsapp-icon.svg";
-import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll";
-import { useTranslation } from "react-i18next";
-import MessagingService from "../../Api/messaging.service";
-import { useDispatch } from "react-redux";
-import { chatId } from "../../redux/chatId/chatdAction";
+import { BackButton } from "@components/BackButton/BackButton"
+import CardList from "@components/CardList/CardList"
+import { useEffect, useRef, useState } from "react"
+import { motion } from "framer-motion"
+import { BASE_URL } from "@api/api"
+import { Link, useParams } from "react-router-dom"
+import CardService from "@/Api/card.service.jsx"
+import { CopyToClipboard } from "react-copy-to-clipboard"
+import { toast } from "react-toastify"
+import LoadingIcon from "@images/card-single-loading.svg"
+import TelegramIcon from "@images/telegram-icon.svg"
+import WhatsappIcon from "@images/whatsapp-icon.svg"
+import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll"
+import { useTranslation } from "react-i18next"
+import MessagingService from "../../Api/messaging.service"
+import { useDispatch } from "react-redux"
+import { chatId } from "@redux/chatId/chatdAction"
+import { Image } from "antd"
 
 export const CardSingle = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token")
 
-  const dispatch = useDispatch();
-  const [userId, setUserId] = useState();
-  const [anId, setAnId] = useState();
+  const dispatch = useDispatch()
+  const [userId, setUserId] = useState()
+  const [anId, setAnId] = useState()
 
-  const userMessage = useRef();
+  const userMessage = useRef()
 
   const postMessage = async (body, idx) => {
-    const data = await MessagingService.PostMessage(body, idx);
-    console.log(data.messageItem?.chat_id);
-    dispatch(chatId(data.messageItem?.chat_id));
+    const data = await MessagingService.PostMessage(body, idx)
+    console.log(data.messageItem?.chat_id)
+    dispatch(chatId(data.messageItem?.chat_id))
 
     if (data.ok === true) {
-      toast.success("Xabar yuborildi");
+      toast.success("Xabar yuborildi")
     }
     // console.log(data);
-  };
+  }
 
   useEffect(() => {
     postMessage()
@@ -47,54 +48,56 @@ export const CardSingle = () => {
     const data = {
       message: userMessage.current?.value,
       announcement_id: anId,
-    };
-    console.log(data);
-    postMessage(data, userId);
-  };
+    }
 
-  let [imgId, setImgId] = useState(0);
-  let [modal, setModal] = useState(false);
-  const [card, setCard] = useState({ isLoading: true, data: {} });
-  const { id } = useParams();
+    postMessage(data, userId)
+  }
+
+  let [imgId, setImgId] = useState(0)
+  let [modal, setModal] = useState(false)
+  const [card, setCard] = useState({ isLoading: true, data: {} })
+  const { id } = useParams()
 
   window.addEventListener("keydown", (evt) => {
     if (evt.key === "Escape") {
-      setModal(false);
+      setModal(false)
     }
-  });
+  })
 
   const fetcher = async () => {
-    setCard({ isLoading: true, data: {} });
+    setCard({ isLoading: true, data: {} })
     try {
-      const response = await CardService.getByCard(id);
-      console.log(response);
-      
-      setAnId(response.data.post.announcement_id);
-      setUserId(response.data.post?.user_id);
+      const response = await CardService.getByCard(id)
+      console.log(response)
+
+      setAnId(response.data.post.announcement_id)
+      setUserId(response.data.post?.user_id)
 
       if (response.status === 200) {
-        setCard({ isLoading: false, data: response.data });
+        setCard({ isLoading: false, data: response.data })
       }
     } catch (error) {
-      setCard({ isLoading: false, data: [] });
-      console.log("Error fetching card data: ", error);
+      setCard({ isLoading: false, data: [] })
+      console.log("Error fetching card data: ", error)
     }
-  };
+  }
 
   useEffect(() => {
-    fetcher();
-  }, [id]);
+    fetcher()
+  }, [id])
 
-  const data = card.data.post;
+  const data = card.data.post
 
-  const user = card.user;
-
-  const time = data?.updatedAt?.split("-");
+  const time = data?.updatedAt?.split("-")
   const customPrice = data?.price
     .toString()
-    .replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, "$1 ");
-  const currentUrl = window.location.href;
-  console.log(data);
+    .replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, "$1 ")
+  const currentUrl = window.location.href
+  const images = data?.thumb?.map((element) => {
+    console.log(BASE_URL)
+    console.log(element)
+    return BASE_URL + element
+  })
   return (
     <>
       <main>
@@ -125,33 +128,35 @@ export const CardSingle = () => {
                 }}
               >
                 <div className="card-single__pics">
-                  <div className="img-select">
-                    {data?.thumb?.slice(0, 4).map((img, idx) => (
-                      <img
-                        onClick={() => setImgId(idx)}
-                        className={`img-item card-single__img-${idx}`}
-                        key={idx}
-                        src={BASE_URL + img}
-                        alt={img}
-                        width={120}
-                        height={120}
-                        data-id={idx}
-                      />
-                    ))}
-                  </div>
-
-                  <div className="img-display">
-                    <div className="img-showcase">
-                      <img
-                        className="show-image"
-                        width={466}
-                        height={525}
-                        src={BASE_URL + data?.thumb[imgId]}
-                        alt="Home images"
-                        aria-label="Home images"
-                      />
+                  <Image.PreviewGroup items={images}>
+                    <div className="img-select">
+                      {data?.thumb?.slice(0, 4).map((img, idx) => (
+                        <img
+                          onClick={() => setImgId(idx)}
+                          className={`img-item card-single__img-${idx}`}
+                          key={idx}
+                          src={BASE_URL + img}
+                          alt={img}
+                          width={120}
+                          height={120}
+                          data-id={idx}
+                        />
+                      ))}
                     </div>
-                  </div>
+
+                    <div className="img-display">
+                      <div className="img-showcase">
+                        <Image
+                          className="show-image"
+                          width={466}
+                          height={525}
+                          src={BASE_URL + data?.thumb[imgId]}
+                          alt="Home images"
+                          aria-label="Home images"
+                        />
+                      </div>
+                    </div>
+                  </Image.PreviewGroup>
                 </div>
                 <div className="card-single__content">
                   <div className="card-single__top">
@@ -302,7 +307,7 @@ export const CardSingle = () => {
                     ) : (
                       <Link
                         className="card-single__send-btn"
-                        to={'/login'}
+                        to={"/login"}
                       >
                         {t("singlepage.sendsms")}
                       </Link>
@@ -316,11 +321,14 @@ export const CardSingle = () => {
         <section className="suggestion">
           <div className="container">
             <h2 className="suggestion__title"> {t("singlepage.recomended")}</h2>
-            <CardList page={1} count={12} />
+            <CardList
+              page={1}
+              count={12}
+            />
           </div>
         </section>
         <InfiniteScroll page={2} />
       </main>
     </>
-  );
-};
+  )
+}
