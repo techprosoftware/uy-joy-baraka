@@ -14,7 +14,7 @@ export const Ads = () => {
         <div className="ads__title">
           <h2>{t("homecard.adstitle")}</h2>
         </div>
-        <a href="tel:+998 91 599-99-47">
+        <a href="tel:+998 99 243-55-77">
           <button className="banner-btn ads__btn" href="#">
             <img
               width={25}
