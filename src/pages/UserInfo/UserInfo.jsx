@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Skeleton from "react-loading-skeleton";
 // import "./UserInfo.scss";
-import { Header } from "../../components/Header/Header";
+import { BASE_URL } from "@/Api/api"
 import { BackButton } from "../../components/BackButton/BackButton";
 import { useTranslation } from "react-i18next";
 
@@ -176,7 +176,7 @@ export const UserInfo = () => {
                 <div>
                   <img
                     className="user-current__image"
-                    src={`http://Test.uyjoybaraka.uz/${userData.user?.avatar}`}
+                    src={BASE_URL+userData.user?.avatar}
                     alt="user-current-image"
                     width={149}
                     height={149}
@@ -220,7 +220,7 @@ export const UserInfo = () => {
                           <div className="fileWrapper">
                             <img
                               className="fileInputIcon"
-                              src={`http://Test.uyjoybaraka.uz/${userData.user?.avatar}`}
+                              src={BASE_URL+ userData.user?.avatar}
                               alt="edit pen"
                               width={130}
                               height={120}

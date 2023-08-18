@@ -30,6 +30,7 @@ const provinceData = [
 ];
 const cityData = {
   Toshkent: [
+    "Toshkent",
     "Bektemir ",
     "Chilonzor ",
     "Mirzo Ulug'bek ",
@@ -59,7 +60,7 @@ const cityData = {
     "Zangiota ",
   ],
   Andijon: [
-    "Andijon shahri",
+    "Andijon",
     "Asaka ",
     "Baliqchi ",
     "Boz suv ",
@@ -76,11 +77,11 @@ const cityData = {
     "Qorasuv ",
   ],
   Namangan: [
+    "Namangan",
     "Chortoq ",
     "Chust ",
     "Kasansay ",
     "Mingbuloq ",
-    "Namangan shahri",
     "Norin ",
     "Pop ",
     "To'rakurgon ",
@@ -90,11 +91,10 @@ const cityData = {
     "Yangiobod ",
   ],
   Fargona: [
+    "Farg'ona",
     "Bog'dod ",
     "Beshariq ",
     "Dangara ",
-    "Farg'ona shahri",
-    "Farg'ona ",
     "Furqat ",
     "Quva ",
     "Qo'shtepa ",
@@ -105,20 +105,20 @@ const cityData = {
     "Yozyovon ",
   ],
   Sirdaryo: [
+    "Sirdaryo",
     "Akaltyn ",
     "Bayavut ",
     "Boyovut ",
-    "Guliston shahri",
     "Guliston ",
     "Mirzaobod ",
     "Ohangaron ",
     "Oqoltin ",
     "Sardoba ",
-    "Shirin shahri",
-    "Sirdaryo ",
+    "Shirin",
     "Xovos ",
   ],
   Jizzax: [
+    "Jizzax",
     "Arnasoy ",
     "Baxmal ",
     "Do'stlik ",
@@ -133,6 +133,7 @@ const cityData = {
     "Zomin ",
   ],
   Samarqand: [
+    "Samarqand",
     "Bulung'ur ",
     "Ishtixon ",
     "Jomboy ",
@@ -143,12 +144,12 @@ const cityData = {
     "Oqdaryo ",
     "Pastdarg'om ",
     "Payariq ",
-    "Samarqand shahri",
     "Toyloq ",
     "Urgut ",
     "Xo'jaobod ",
   ],
   Qashqadaryo: [
+    "Qarshi",
     "Chiroqchi ",
     "Dehqonobod ",
     "G'uzor ",
@@ -159,14 +160,13 @@ const cityData = {
     "Muborak ",
     "Nishon ",
     "Qamashi ",
-    "Qarshi shahri",
-    "Qarshi ",
     "Shakhrisabz ",
     "Yakkabog' ",
     "Yarimobod ",
     "Zomin ",
   ],
   Surxondaryo: [
+    "Termiz",
     "Angor ",
     "Boysun ",
     "Denov ",
@@ -176,18 +176,15 @@ const cityData = {
     "Sherobod ",
     "Sho'rchi ",
     "Muzrabot ",
-    "Termiz shahri",
-    "Termiz ",
     "Uzun ",
     "Sariosiyo ",
   ],
   Navoiy: [
+    "Navoiy",
     "Karmana ",
     "Khatirchi ",
     "Konimex ",
     "Navbahor ",
-    "Navoiy shahri",
-    "Navoiy ",
     "Nurota ",
     "Qiziltepa ",
     "Tomdi ",
@@ -197,7 +194,6 @@ const cityData = {
   ],
   Buxoro: [
     "Buxoro shahri",
-    "Buxoro ",
     "G'ijduvon ",
     "Jondor ",
     "Kogon ",
@@ -210,26 +206,24 @@ const cityData = {
     "Yangiobod ",
   ],
   Xorazm: [
+    "Xorazm ",
     "Bog'ot ",
     "Gurlan ",
     "Hazorasp ",
-    "Khiva shahri",
+    "Khiva",
     "Shovot ",
-    "Urganch shahri",
-    "Urganch ",
+    "Urganch",
     "Xonqa ",
-    "Xorazm ",
     "Yangibozor ",
   ],
   Qoraqalpogiston: [
+    "Nukus shahri",
     "Amudaryo ",
     "Beruniy ",
     "Chimboy ",
     "Ellikqal'a ",
     "Kegeyli ",
     "Mo'ynoq ",
-    "Nukus shahri",
-    "Nukus ",
     "Qanliko'l ",
     "Qo'ng'irot ",
     "Qorao'zak ",
@@ -431,7 +425,7 @@ export const Upload = () => {
         >
           <div className="d-flex flex-wrap gap-3 justify-content-center img__wrapper">
             {urls?.map((image, index) => (
-              <div className="position-relative " key={index}>
+              <div className="position-relative" key={index}>
                 <img
                   className="rounded-2 img__item"
                   src={image}

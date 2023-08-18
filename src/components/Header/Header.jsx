@@ -327,6 +327,42 @@ export const Header = () => {
                 </div>
               </div>
               <ul className="nav__list">
+              <li className="nav__item lang-icon">
+                  <div className="lang__select">
+                    <Dropdown className="shadow-none" as={ButtonGroup}>
+                      <Dropdown.Toggle
+                        className="lang__btn  shadow-none"
+                        id="lng-dropdown"
+                      >
+                        {langLabel}
+                      </Dropdown.Toggle>
+
+                      <Dropdown.Menu>
+                        <Dropdown.Item
+                          onClick={() => {
+                            localStorage.setItem("lang", "Uz");
+                            i18n.changeLanguage("Uz");
+                            localStorage.setItem("uz", 0);
+                            handlclick(localStorage.getItem("uz") || 0);
+                          }}
+                        >
+                          {options[0].value}
+                        </Dropdown.Item>
+                        <Dropdown.Item
+                          onClick={() => {
+                            localStorage.setItem("lang", "Ru");
+                            i18n.changeLanguage("Ru");
+                            localStorage.setItem("uz", 1);
+                            handlclick(localStorage.getItem("uz") || 1);
+                          }}
+                        >
+                          {options[1].value}
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                    {/* <p className="ms-2">{lang}</p> */}
+                  </div>
+                </li>
                 <li className="nav__item chat-icon">
                   <Link
                     onClick={() => setBurger(false)}
@@ -371,42 +407,7 @@ export const Header = () => {
                     <p>{t("header.sorted")}</p>
                   </Link>
                 </li>
-                <li className="nav__item lang-icon">
-                  <div className="lang__select">
-                    <Dropdown className="shadow-none" as={ButtonGroup}>
-                      <Dropdown.Toggle
-                        className="lang__btn  shadow-none"
-                        id="lng-dropdown"
-                      >
-                        {langLabel}
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item
-                          onClick={() => {
-                            localStorage.setItem("lang", "Uz");
-                            i18n.changeLanguage("Uz");
-                            localStorage.setItem("uz", 0);
-                            handlclick(localStorage.getItem("uz") || 0);
-                          }}
-                        >
-                          {options[0].value}
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          onClick={() => {
-                            localStorage.setItem("lang", "Ru");
-                            i18n.changeLanguage("Ru");
-                            localStorage.setItem("uz", 1);
-                            handlclick(localStorage.getItem("uz") || 1);
-                          }}
-                        >
-                          {options[1].value}
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    <p className="ms-2">{lang}</p>
-                  </div>
-                </li>
+              
                 <span className="close__line"></span>
                 <li className="nav__item heart-icon">
                   <a target="_blank"
