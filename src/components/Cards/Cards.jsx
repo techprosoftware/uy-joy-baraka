@@ -16,27 +16,26 @@ export const Card = (card) => {
   // const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon)
   const data = card.card?.createdAt.toString().slice(0, 10)
 
-  const [like , setLike] = useState(false)
+  const [like, setLike] = useState(false)
 
-  // const [favorite, setFavorite] = useState({
-  //   data: []
-  // })
+  const [favorite, setFavorite] = useState({
+    data: []
+  })
   const handleClick = async (evt) => {
     const targetTag = evt.target.className
     const token = localStorage.getItem("token") || ""
 
-  
     if (targetTag === "card__like" || targetTag === "card__like-img") {
       if (!token) {
         navigate("/login")
       } else {
-        console.log(evt.target.src);
+        console.log(evt.target.src)
         setLike(!like)
         const response = await CardService.likeCard(card?.card?.announcement_id)
         console.log(response)
         if (response?.status === 200) {
           const res = (JSON.parse(response.config.data));
-          // setFavorite({data:  [data, res]})
+          setFavorite({data:  [data, res]})
           // localStorage.setItem('like', JSON.stringify(favorite))
           toast.success("Saqlanganlarga qo'shildi")
           return
@@ -46,14 +45,13 @@ export const Card = (card) => {
           toast.success("Saqlanganlardan chiqarildi")
         }
       }
-  
-      
     } else {
       window.scroll(0, 0)
       navigate(`/announcement/${card.card?.slug}`)
     }
   }
 
+  console.log(favorite);
 
   return (
     <>
@@ -74,10 +72,12 @@ export const Card = (card) => {
             </span>
             <div className="card__right">
               <span className="card__view me-2">{card.card?.viewCount}</span>
-              <button className="card__like">
+              <button 
+              onClick={() => card.handleLiked()}
+              className="card__like">
                 <img
                   className="card__like-img"
-                  src={CardULikeIcon}
+                  src={card.card.isLiked ? CardLikeIcon : CardULikeIcon}
                   width={17}
                   height={16}
                   alt="Card like button image"
@@ -95,7 +95,6 @@ export const Card = (card) => {
             {customPrice} {card.card?.price_type === "dollar" ? "$" : "s'om"}
           </p>
         </div>
-     
       </li>
     </>
   )
