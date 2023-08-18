@@ -45,7 +45,7 @@ export const HomeBanner = () => {
                   <div className="banner-wrapper">
                     <h1 className="banner-title">{t("homebanner.title")}</h1>
 
-                    <a href="tel:+998 91 599-99-47">
+                    <a href="tel:+998 99 243-55-77">
                       <button className="banner-btn" href="#">
                         <img src={buttonPhone} alt="buton-phone" />
                         {t("homebanner.callbtn")}
