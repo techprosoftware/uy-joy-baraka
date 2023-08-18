@@ -57,7 +57,6 @@ export const Register = () => {
         phone: "998" + values.phone,
       });
       dispatch(setPhoneId(userPhone?.data?.codeValidationId));
-      alert(userPhone?.data?.code);
       navigate("/sms");
     } else if (data?.response?.status === 401) {
       toast.warning(`${t("register.errorPhone")}`);

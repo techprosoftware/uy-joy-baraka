@@ -42,9 +42,9 @@ function App() {
         <Route path="/sms" element={<SmsPage />} />
       </Routes>
      
-      <div className="back">
-        <BackTop />
-      </div>
+      <a href="#"  className="back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000000b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 12l-4-4-4 4M12 16V9"/></svg>
+      </a>
       <ToastContainer
           position="bottom-center"
           autoClose={3000}

@@ -12,7 +12,7 @@ import noData from "@images/no-data.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Switch } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "@/Api/api";
 import cardService from "@/Api/card.service.jsx";
 import { useTranslation } from "react-i18next";
@@ -32,7 +32,7 @@ export const ActiveCard = () => {
     const token = localStorage.getItem("token");
 
     const data = await AnnounService.getActiveCard(token);
-    console.log(data);
+
     if (data.status == 200) {
       setActiveCard({
         isLoading: false,
@@ -79,14 +79,14 @@ export const ActiveCard = () => {
       navigate("/register");
     }
 
-    if (targetTag != "de_active__btn") {
+    if (targetTag == "de_active__btn") {
+      evt.preventDefault()
+
       if (targetTag === "card__like" || targetTag === "card__like-img") {
+        evt.preventDefault()
         const response = await cardService.likeCard(id);
         console.log("like: ", response);
-      } else {
-        window.scroll(0, 0);
-        navigate(`/announcement/${slug}`);
-      }
+      } 
     }
   };
 
@@ -99,74 +99,46 @@ export const ActiveCard = () => {
           ) : newData?.length ? (
             newData?.map((item) => (
               <>
-                <li
+                <Link
+                key={item.announcement_id}
+                to={`/announcement/${item?.slug}`}
                   name={item.slug}
                   id={item.announcement_id}
                   onClick={handleClick}
                   className="card"
                 >
                   <img
-                    name={item.slug}
-                    id={item.announcement_id}
+                   
                     className="card__img mb-3"
                     src={BASE_URL + item?.thumb[0]}
                     height={222}
                   />
                   <div
-                    name={item.slug}
-                    id={item.announcement_id}
+                   
                     className="card__wrap"
                   >
                     <div
-                      name={item.slug}
-                      id={item.announcement_id}
+                     
                       className="card__inner"
                     >
                       <span
-                        name={item.slug}
-                        id={item.announcement_id}
+                      
                         className="card__city"
                       >
                         {item.city}
                       </span>
                       <div
-                        name={item.slug}
-                        id={item.announcement_id}
+                      
                         className="card__right"
                       >
                         <span
-                          name={item.slug}
-                          id={item.announcement_id}
+                        
                           className="card__view me-2"
                         >
                           {item.viewCount}
                         </span>
-                        <button
-                          name={item.slug}
-                          id={item.announcement_id}
-                          className="card__like"
-                        >
-                          <img
-                            className="card__like-img"
-                            src={CardULikeIcon}
-                            width={17}
-                            height={16}
-                            alt="Card like button image"
-                          />
-                        </button>
-                        <span
-                          name={item.slug}
-                          id={item.announcement_id}
-                          className="me-1"
-                          style={{
-                            fontSize: "12px",
-                            color: "#666666",
-                            lineHeight: "14px",
-                          }}
-                        >
-                          {" "}
-                          {item?.likeCount}
-                        </span>
+                        
+                        
                       </div>
                     </div>
                     <h3
@@ -201,25 +173,14 @@ export const ActiveCard = () => {
                       {item.price_type == "sum" ? "so'm" : "$"}
                     </p>
                   </div>
-                </li>
+                </Link>
               </>
             ))
           ) : (
             <img className="img-fluid" width={500} src={noData} />
           )}
         </ul>
-        <ToastContainer
-          position="bottom-center"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
+       
       </div>
     </>
   );

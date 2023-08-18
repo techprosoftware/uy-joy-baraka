@@ -1,6 +1,10 @@
 @import "fonts";
 @import "./components/Header/header";
 @import "./pages/Home/HomeBanner/HomeBanner";
+@import "./pages/Home/HomeCards/HomeCard";
+@import "./components/HomeSearch/search";
+@import "./components/HomeSearch/HomeSearch";
+@import "./components/Footer/footer";
 @import "./pages/Favorite/Favorite";
 @import "./components/Cards/card";
 @import "./pages/UserInfo/UserInfo";
@@ -10,12 +14,8 @@
 @import "./pages/Public/Public";
 @import "./pages/Messaging/Messaging";
 @import "./pages/Login/Login";
-@import "./pages/Home/HomeCards/HomeCard";
 @import "./components//Ads/ads";
-@import "./components/Footer/footer";
 @import "./components/Social/social";
-@import "./components/HomeSearch/search";
-@import "./components/HomeSearch/HomeSearch";
 @import "./components/ActiveCard/ActiveCard";
 @import "./components/DeactiveCard/DeactiveCard";
 @import "./components/CardSingle//card-single";
@@ -25,6 +25,17 @@
 @import "./pages/Announ/Announ";
 @import "./pages/404/404";
 
+
+::-webkit-scrollbar {
+	width: 5px;
+	/* background-color: #7e8681; */
+}
+
+::-webkit-scrollbar-thumb {
+	background: #008b51;
+	border-radius: 4px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -32,6 +43,22 @@ body {
   background-color: #f6f6f8;
 }
 
+/**
+ * SCSS class for a container element.
+ *
+ * This class sets the width to 100% and the maximum width to 1350px.
+ * It also adds padding of 0 20px and centers the container horizontally using auto margins.
+ *
+ * Example usage:
+ * ```
+ * .container {
+ *   width: 100% !important;
+ *   max-width: 1350px !important;
+ *   padding: 0 20px !important;
+ *   margin: 0 auto !important;
+ * }
+ * ```
+ */
 .container {
   width: 100% !important;
   max-width: 1350px !important;
@@ -58,30 +85,24 @@ a {
   text-decoration: none !important;
 }
 
-//* Scroll top button
-:where(.css-dev-only-do-not-override-byeoj0).ant-back-top
-  .ant-back-top-content {
-  background-color: #008b51;
-  position: absolute;
-  top: -55px;
-  left: 70px;
-}
-
-:where(.css-dev-only-do-not-override-1m62vyb).ant-back-top
-  .ant-back-top-content {
-  width: 50px;
-  height: 50px;
-
-  &:hover {
-    background-color: rgb(1, 173, 101);
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  :where(.css-dev-only-do-not-override-byeoj0).ant-back-top
-    .ant-back-top-content {
-    left: -10px;
-  }
+.back {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(161, 155, 155, 0.375);
+  font-size: 14px;
+  line-height: 1.5714285714285714;
+  list-style: none;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+  position: fixed !important;
+  inset-inline-end: 100px !important;
+  inset-block-end: 50px !important;
+  z-index: 10 !important;
+  width: 40px !important;
+  height: 40px !important;
+  right: 35px !important;
+  cursor: pointer !important;
+  bottom: 100px !important;
 }
 
 //******************//
@@ -93,3 +114,5 @@ a {
     padding: 0 16px !important;
   }
 }
+
+
