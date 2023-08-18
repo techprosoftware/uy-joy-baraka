@@ -18,7 +18,7 @@ export const SmsPage = () => {
 
   const navigate = useNavigate();
 
-  const [time, setTime] = useState(59);
+  const [time, setTime] = useState(120);
 
   const phoneId = useSelector((item) => item.phoneId.phoneId);
 
