@@ -125,6 +125,16 @@ border-color: #fff !important;
   border:none !important;
 }
 
+:where(.css-dev-only-do-not-override-fpg3f5).ant-select-single.ant-select-lg.ant-select-show-arrow .ant-select-selection-item, :where(.css-dev-only-do-not-override-fpg3f5).ant-select-single.ant-select-lg.ant-select-show-arrow .ant-select-selection-placeholder {
+  padding-inline-end: 20px;
+  color: black;
+}
+
+:where(.css-dev-only-do-not-override-fpg3f5).ant-input-number-affix-wrapper input.ant-input-number-input {
+  padding: 4px 0;
+  font-size: 14px;
+}
+
 .address__input {
   width: 100%;
   border: none;
