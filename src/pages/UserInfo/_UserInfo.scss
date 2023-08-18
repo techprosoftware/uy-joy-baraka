@@ -112,8 +112,8 @@
       padding: 4px;
       // Margin, paddings
 
-      width: 130px;
-      height: 120px;
+      width: 90px;
+      height: 90px;
 
       border-radius: 20px;
       object-fit: cover;
@@ -224,7 +224,9 @@
           margin-right: auto;
         }
       }
-      display: block;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
       .user-edit__input {
         // Margin, paddings
         margin-top: 30px;
@@ -240,6 +242,22 @@
       margin-bottom: 20px;
     }
   }
+
+  .user-edit__title {
+  display: none;
+  }
+}
+
+@media only screen and (max-width: 695px) {
+  .user-edit__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .user-info__inner .user-edit__wrapper .user-edit__input {
+    margin: 10px 0;
+  }
+  
 }
 
 // ✅429px
@@ -281,6 +299,14 @@
       margin-bottom: 20px;
     }
   }
+
+  .user-info__inner .user-edit__wrapper .user-edit__input {
+    margin: 10px 0;
+  }
+
+  .user-info__inner {
+    margin-top: 0px;
+  }
 }
 
 :where(
@@ -295,7 +321,7 @@
   height: 120px;
   display: flex;
   justify-content: center;
-  border: 3px solid white;
+  border: 0 !important;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 20px;
 }
@@ -304,7 +330,7 @@
     .css-dev-only-do-not-override-1m62vyb
   ).ant-upload-wrapper.ant-upload-picture-card-wrapper
   .ant-upload.ant-upload-select:not(.ant-upload-disabled):hover {
-  border-color: #ccc;
+  border-color: none !important;
 }
 
 :where(.css-dev-only-do-not-override-1m62vyb).ant-upload-wrapper
