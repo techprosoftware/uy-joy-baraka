@@ -86,15 +86,15 @@ export const Footer = () => {
               </Link>
               <ul className="footer__list links">
                 <li>
-                  <a href="https://t.me/uy_joybarakabor">
+                  <a target="_blank" href="https://t.me/uy_joybarakabor">
                     {t("footer.partners")}
                   </a>
                 </li>
                 <li>
-                  <a href="https://t.me/uy_joybarakabor">{t("footer.ads")}</a>
+                  <a target="_blank" href="https://t.me/uy_joybarakabor">{t("footer.ads")}</a>
                 </li>
                 <li>
-                  <a href="tel:+998 91 599-99-47">{t("footer.callme")}</a>
+                  <a target="_blank" href="https://t.me/uyjoybarakauz_bot">{t("footer.callme")}</a>
                 </li>
               </ul>
             </div>
@@ -125,16 +125,7 @@ export const Footer = () => {
                     />
                   </a>
                 </li>
-                {/* <li>
-                  <a href="https://facebook.com">
-                    <img src={FacebookIcon} alt="Facebook icon" />
-                  </a>
-                </li> */}
-                {/* <li>
-                  <a href="https://twitter.com">
-                    <img src={TwitterIcon} alt="Twitter icon" />
-                  </a>
-                </li> */}
+         
                 <li>
                   <a
                     target="_blank"
