@@ -7,11 +7,13 @@ import React, { useEffect, useRef, useState } from "react"
 import close from "../../../public/assets/images/close.png";
 import ImageCompressor from "image-compressor.js";
 import { BackButton } from "@components/BackButton/BackButton";
-import { Button, Form, InputNumber, Select, Space } from "antd";
+import { Button, Form, Input, InputNumber, Select, Space } from "antd";
 import AnnounService from "../../Api/announ.service";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
+import TextArea from "antd/es/input/TextArea";
+import { PlusOutlined } from '@ant-design/icons';
 
 const provinceData = [
   "Toshkent",
@@ -442,13 +444,12 @@ export const Upload = () => {
         <BackButton />
         <h2 className="upload__title">{t("addannoun.annountitle")}</h2>
 
-        <Form  form={form}
-              name="register"
-              onFinish={onFinish}
-             
-              
-              scrollToFirstError
-              autoComplete="off"
+        <Form
+          form={form}
+          name="register"
+          onFinish={onFinish}
+          scrollToFirstError
+          autoComplete="off"
           className="upload__form"
         >
           <div className="d-flex flex-wrap gap-3 justify-content-center img__wrapper">
@@ -530,27 +531,23 @@ export const Upload = () => {
         </Form.Item> */}
           <div className="upload__wrap">
             <p>{t("addannoun.selectcity")}:</p>
-            <Space wrap>
-           
-              <Select 
-              size="large"
+
+            <Form.Item>
+              <Select
+                size="large"
                 placeholder={t("addannoun.selectcity")}
                 style={{
                   width: 120,
                 }}
-                rules={[
-                  {
-                    required: true,
-                    message: `${t("addannoun.selectcity")}`,
-                  },
-                ]}
                 onChange={handleProvinceChange}
                 options={provinceData.map((province) => ({
                   label: province,
                   value: province,
                 }))}
               />
-             
+            </Form.Item>
+
+            <Form.Item>
               <Select
                 size="large"
                 placeholder={t("addannoun.selectdistrict")}
@@ -570,11 +567,11 @@ export const Upload = () => {
           <div className="upload__wrap">
             <p>{t("addannoun.address")}:</p>
             <Form.Item
-              name="note"
+              name="address"
               rules={[
                 {
                   required: true,
-                  message: `* ${t("addannoun.address")} kiriting`
+                  message: `* ${t("addannoun.address")}`,
                 },
               ]}
             >
@@ -588,36 +585,43 @@ export const Upload = () => {
               type="text"
               ref={address}
               placeholder="Chilonzor metorining yonida"
-            />
-            <Select
-             size="large"
-              defaultValue={t("addannoun.type")}
-              style={{
-                width: 200,
-              }}
-              onChange={handleChange}
-              options={[
-                {
-                  label: `${t("addannoun.type")}`,
-                  options: [
-                    {
-                      label: `${t("addannoun.rent")}`,
-                      value: "rent",
-                    },
-                    {
-                      label: `${t("addannoun.sale")}`,
-                      value: "sale",
-                    },
-                  ],
-                },
-              ]}
-            />
+            /> */}
+            <Form.Item>
+              <Select
+                size="large"
+                placeholder={t("addannoun.type")}
+                style={{
+                  width: 200,
+                }}
+                onChange={handleChange}
+                options={[
+                  {
+                    label: `${t("addannoun.type")}`,
+                    options: [
+                      {
+                        label: `${t("addannoun.rent")}`,
+                        value: "rent",
+                      },
+                      {
+                        label: `${t("addannoun.sale")}`,
+                        value: "sale",
+                      },
+                    ],
+                  },
+                ]}
+              />
+            </Form.Item>
           </div>
 
           <div className="upload__wrap">
             <p>{t("addannoun.title")}</p>
-            <Form.Item>
-              <TextArea rows={4} />
+            <Form.Item name="title" rules={[
+                {
+                  required: true,
+                  message: `* ${t("addannoun.title")}`,
+                },
+              ]}>
+              <TextArea placeholder="Masalan: Faqat oilaga beriladi" rows={4} />
             </Form.Item>
             {/* <textarea
               ref={title}
@@ -629,7 +633,12 @@ export const Upload = () => {
 
           <div className="upload__wrap">
             <p>{t("addannoun.desc")}</p>
-            <Form.Item>
+            <Form.Item name="desc" rules={[
+                {
+                  required: true,
+                  message: `* ${t("addannoun.desc")}`,
+                },
+              ]}>
               <TextArea rows={4} />
             </Form.Item>
             {/* <textarea
@@ -644,41 +653,38 @@ export const Upload = () => {
             <p>{t("addannoun.price")}</p>
             <div className="upload__price">
               <Form.Item
-                  name="phone"
-                  rules={[
-                    {
-                      required: true,
-                      type: "regexp",
-                      pattern: new RegExp(/\d+/g),
-                      message: "Telefon raqam kiriting!",
-                    },
-                  ]}
-                >
-                  <InputNumber
-                    ref={phone}
-                    placeholder="2 000 000"
-                   
-                    size="large"
-                    style={{
-                      width: "100%",
-                    }}
-                  />
-                </Form.Item>
-                {/* <input
+                name="phone"
+                rules={[
+                  {
+                    required: true,
+                    type: "regexp",
+                    pattern: new RegExp(/\d+/g),
+                    message: "Telefon raqam kiriting!",
+                  },
+                ]}
+              >
+                <InputNumber
+                  ref={phone}
+                  placeholder="2 000 000"
+                  size="large"
+                  style={{
+                    width: "100%",
+                  }}
+                />
+              </Form.Item>
+              {/* <input
                   required
                   ref={price}
                   id="phone"
                   className="price__input"
                   type="number"
                   placeholder="2 000 000"
-                />
-              </div>
-              <Select
-               size="large"
-                defaultValue={t("addannoun.course")}
-                style={{
-                  width: 200,
-                }}
+                /> */}
+             <Form.Item>
+             <Select
+                size="large"
+                placeholder={t("addannoun.course")}
+               
                 onChange={handleChange1}
                 options={[
                   {
