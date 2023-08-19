@@ -2,16 +2,16 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react"
 // import "./Upload.scss";
-import close from "../../../public/assets/images/close.png";
-import ImageCompressor from "image-compressor.js";
-import { BackButton } from "@components/BackButton/BackButton";
-import { Button, Form, InputNumber, Select, Space } from "antd";
-import AnnounService from "../../Api/announ.service";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useTranslation } from "react-i18next";
+import close from "../../../public/assets/images/close.png"
+import ImageCompressor from "image-compressor.js"
+import { BackButton } from "@components/BackButton/BackButton"
+import { Button, Form, InputNumber, Select, Space } from "antd"
+import AnnounService from "../../Api/announ.service"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import { useTranslation } from "react-i18next"
 
 const provinceData = [
   "Toshkent",
@@ -27,7 +27,7 @@ const provinceData = [
   "Samarqand",
   "Sirdaryo",
   "Surxondaryo",
-];
+]
 const cityData = {
   Toshkent: [
     "Toshkent shahri",
@@ -76,8 +76,8 @@ const cityData = {
     "Shahrixon tumani",
     "Ulug'nor tumani",
     "Xo'jaobod tumani",
-    "Xonobod shahri"
-],
+    "Xonobod shahri",
+  ],
   Namangan: [
     "Namangan shahri",
     "Namangan tumani",
@@ -90,8 +90,8 @@ const cityData = {
     "To'raqo'rg'on tumani",
     "Uchqo'rg'on tumani",
     "Uychi tumani",
-    "Yangiqo'rgon tumani"
-],
+    "Yangiqo'rgon tumani",
+  ],
   Fargona: [
     "Farg'ona shahri",
     "Farg'ona tumani",
@@ -111,8 +111,8 @@ const cityData = {
     "So'x tumani",
     "Toshloq tumani",
     "Uchko'prik tumani",
-    "Yozyovon tumani"
-],
+    "Yozyovon tumani",
+  ],
   Sirdaryo: [
     "Sirdaryo shari",
     "Boyovut tumani",
@@ -124,9 +124,9 @@ const cityData = {
     "Shirin shahri",
     "Sirdaryo tumani",
     "Xovos tumani",
-    "Yangiyer shahri"
-],
-Jizzax:[
+    "Yangiyer shahri",
+  ],
+  Jizzax: [
     "Jizzax shahri",
     "Jizzax tumani",
     "Arnasoy tumani",
@@ -139,9 +139,9 @@ Jizzax:[
     "Yangiobod tumani",
     "Zafarobod tumani",
     "Zarband tumani",
-    "Zomin tumani"
-],
-  Samarqand:  [
+    "Zomin tumani",
+  ],
+  Samarqand: [
     "Samarqand shahri",
     "Samarqand tumani",
     "Bulung'ur tumani",
@@ -157,9 +157,9 @@ Jizzax:[
     "Poyariq tumani",
     "Qo'shrabot tumani",
     "Toyloq tumani",
-    "Urgut tumani"
+    "Urgut tumani",
   ],
-  Qashqadaryo:  [
+  Qashqadaryo: [
     "Qarshi shahri",
     "Chiroqchi tumani",
     "Dehqonobod tumani",
@@ -173,11 +173,11 @@ Jizzax:[
     "Qamashi tumani",
     "Qarshi tumani",
     "Shahrisabz shahri",
-    "Yakkabog' tumani"
-],
-Surxondaryo: [
-  "Termiz shahri",
-  "Angor tumani",
+    "Yakkabog' tumani",
+  ],
+  Surxondaryo: [
+    "Termiz shahri",
+    "Angor tumani",
     "Bandixon tumani",
     "Boysun tumani",
     "Denov tumani",
@@ -190,8 +190,8 @@ Surxondaryo: [
     "Sherobod tumani",
     "Sho'rchi tumani",
     "Termiz tumani",
-    "Uzun tumani"
-],
+    "Uzun tumani",
+  ],
   Navoiy: [
     "Navoiy shahri",
     "Karmana tumani",
@@ -202,8 +202,8 @@ Surxondaryo: [
     "Tomdi tumani",
     "Uchquduq tumani",
     "Xatirchi tumani",
-    "Zarafshon shahri"
-],
+    "Zarafshon shahri",
+  ],
   Buxoro: [
     "Buxoro shahri",
     "Buxoro tumani",
@@ -217,8 +217,8 @@ Surxondaryo: [
     "Qorovulbozor tumani",
     "Romitan tumani",
     "Shofirkon tumani",
-    "Vobkent tumani"
-],
+    "Vobkent tumani",
+  ],
   Xorazm: [
     "Bog'ot tumani",
     "Gurlan tumani",
@@ -230,9 +230,9 @@ Surxondaryo: [
     "Xiva tumani",
     "Xonqa tumani",
     "Yangiariq tumani",
-    "Yangibozor tumani"
-],
-  Qoraqalpogiston:  [
+    "Yangibozor tumani",
+  ],
+  Qoraqalpogiston: [
     "Amudaryo tumani",
     "Beruniy tumani",
     "Chimboy tumani",
@@ -248,187 +248,197 @@ Surxondaryo: [
     "Taxiatosh shahri",
     "Taxtako'pir tumani",
     "To'rtko'l tumani",
-    "Xo'jayli tumani"
-],
-};
-export const Upload = () => {
-  const [selectedImages, setSelectedImages] = useState([]);
+    "Xo'jayli tumani",
+  ],
+}
+const Upload = () => {
+  const [selectedImages, setSelectedImages] = useState([])
 
-  const [city, setCity] = useState();
-  const [district, setDistrict] = useState();
-  const [type, setType] = useState();
-  const [price_type, setPrice_type] = useState();
+  const [city, setCity] = useState()
+  const [district, setDistrict] = useState()
+  const [type, setType] = useState()
+  const [price_type, setPrice_type] = useState()
 
-  const [cities, setCities] = useState(cityData[provinceData[0]]);
-  const [secondCity, setSecondCity] = useState();
+  const [cities, setCities] = useState(cityData[provinceData[0]])
+  const [secondCity, setSecondCity] = useState()
   const handleProvinceChange = (value) => {
-    setCities(cityData[value]);
-    setSecondCity(cityData[value][0]);
-    setCity(value);
-    console.log(value);
-  };
+    setCities(cityData[value])
+    setSecondCity(cityData[value][0])
+    setCity(value)
+    console.log(value)
+  }
   const onSecondCityChange = (value) => {
-    setSecondCity(value);
-    setDistrict(value);
-    console.log(value);
-  };
+    setSecondCity(value)
+    setDistrict(value)
+    console.log(value)
+  }
 
   const handleChange = (value) => {
-    console.log(`selected ${value}`);
-    setType(value);
-  };
+    console.log(`selected ${value}`)
+    setType(value)
+  }
 
   const handleChange1 = (value) => {
-    setPrice_type(value);
-  };
+    setPrice_type(value)
+  }
 
-  const [urls, setUrls] = useState();
+  const [urls, setUrls] = useState()
 
   const handleImageChange = async (evt) => {
-    const maxAllowedImages = 4;
-    const maxTotalSize = 6 * 1024 * 1024; // 4 MB in bytes
-    const files = Array.from(evt.target.files);
-    const imageFiles = files.filter((file) => file.type.startsWith("image/"));
+    const maxAllowedImages = 4
+    const maxTotalSize = 6 * 1024 * 1024 // 4 MB in bytes
+    const files = Array.from(evt.target.files)
+    const imageFiles = files.filter((file) => file.type.startsWith("image/"))
 
     if (imageFiles.length > maxAllowedImages) {
       toast.error(
         `${t("addannoun.max")} ${maxAllowedImages} ${t("addannoun.imgSize")}`
-      );
-      return;
+      )
+      return
     }
 
-    let totalSize = 0;
-    const compressedImages = [];
+    let totalSize = 0
+    const compressedImages = []
 
     const imagePromises = imageFiles.map((file) => {
       return new Promise((resolve, reject) => {
-        const compressor = new ImageCompressor();
+        const compressor = new ImageCompressor()
         compressor.compress(file, {
           quality: 0.3,
           success(result) {
-            const reader = new FileReader();
+            const reader = new FileReader()
             reader.onload = () => {
-              resolve(reader.result);
-            };
-            reader.onerror = reject;
-            reader.readAsDataURL(result);
+              resolve(reader.result)
+            }
+            reader.onerror = reject
+            reader.readAsDataURL(result)
           },
           error(error) {
-            reject(error);
+            reject(error)
           },
-        });
-      });
-    });
+        })
+      })
+    })
 
     try {
-      const compressedResults = await Promise.all(imagePromises);
+      const compressedResults = await Promise.all(imagePromises)
       const compressedFiles = compressedResults.map((result, index) => {
-        const compressedImage = dataURLtoFile(result, imageFiles[index].name);
-        return compressedImage;
-      });
-      const filteredResults = compressedResults.filter(Boolean);
+        const compressedImage = dataURLtoFile(result, imageFiles[index].name)
+        return compressedImage
+      })
+      const filteredResults = compressedResults.filter(Boolean)
       const compressedImageUrls = filteredResults.map((image) =>
         typeof image === "string" ? image : URL.createObjectURL(image)
-      );
+      )
 
-      totalSize = compressedFiles.reduce((acc, file) => acc + file.size, 0);
+      totalSize = compressedFiles.reduce((acc, file) => acc + file.size, 0)
 
       if (totalSize > maxTotalSize) {
-        toast.error(`${t("addannoun.errorSize")}`);
-        return;
+        toast.error(`${t("addannoun.errorSize")}`)
+        return
       }
-      setUrls(compressedImageUrls);
-      setSelectedImages(compressedFiles);
+      setUrls(compressedImageUrls)
+      setSelectedImages(compressedFiles)
     } catch (error) {
-      console.error("Rasmni kichraytirishda xatolik:", error);
+      console.error("Rasmni kichraytirishda xatolik:", error)
     }
 
-    console.log("Umumiy rasmlar hajmi:", totalSize, "bayt");
-  };
+    console.log("Umumiy rasmlar hajmi:", totalSize, "bayt")
+  }
 
   const dataURLtoFile = (dataURL, fileName) => {
-    const arr = dataURL.split(",");
-    const mime = arr[0].match(/:(.*?);/)[1];
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
+    const arr = dataURL.split(",")
+    const mime = arr[0].match(/:(.*?);/)[1]
+    const bstr = atob(arr[1])
+    let n = bstr.length
+    const u8arr = new Uint8Array(n)
     while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
+      u8arr[n] = bstr.charCodeAt(n)
     }
-    return new File([u8arr], fileName, { type: mime });
-  };
+    return new File([u8arr], fileName, { type: mime })
+  }
 
   const removeImage = (index) => {
-    const updatedImages = [...urls];
-    updatedImages.splice(index, 1);
-    setUrls(updatedImages);
-  };
+    const updatedImages = [...urls]
+    updatedImages.splice(index, 1)
+    setUrls(updatedImages)
+  }
 
-  const title = useRef();
-  const address = useRef();
-  const description = useRef();
-  const price = useRef();
-  const phone = useRef();
+  const title = useRef()
+  const address = useRef()
+  const description = useRef()
+  const price = useRef()
+  const phone = useRef()
 
-  const [files, setFiles] = useState();
+  const [files, setFiles] = useState()
 
   const sendAnnoun = async (body) => {
-    const token = localStorage.getItem("token");
-    const data = await AnnounService.CreateAnnoun(body, token);
+    const token = localStorage.getItem("token")
+    const data = await AnnounService.CreateAnnoun(body, token)
     if (data?.status === 201) {
-      toast.success(`${t("addannoun.success")}`);
+      toast.success(`${t("addannoun.success")}`)
     } else {
-      toast.error(`${t("addannoun.error")}`);
+      toast.error(`${t("addannoun.error")}`)
     }
-  };
+  }
 
-  const [loadings, setLoadings] = useState([]);
+  const [loadings, setLoadings] = useState([])
   const enterLoading = (index) => {
     setLoadings((prevLoadings) => {
-      const newLoadings = [...prevLoadings];
-      newLoadings[index] = true;
-      return newLoadings;
-    });
+      const newLoadings = [...prevLoadings]
+      newLoadings[index] = true
+      return newLoadings
+    })
     setTimeout(() => {
       setLoadings((prevLoadings) => {
-        const newLoadings = [...prevLoadings];
-        newLoadings[index] = false;
-        return newLoadings;
-      });
-    }, 6000);
-  };
+        const newLoadings = [...prevLoadings]
+        newLoadings[index] = false
+        return newLoadings
+      })
+    }, 6000)
+  }
 
   const handleSubmit = (e) => {
-    enterLoading(0);
-    e.preventDefault();
-    const formData = new FormData();
+    enterLoading(0)
+    e.preventDefault()
+    const formData = new FormData()
     // console.log(fullPhone);
-    const fullPhone = "998" + phone.current.value;
+    const fullPhone = "998" + phone.current.value
 
-    console.log(phone.current.value);
-    if (phone.current.value == undefined || fullPhone==undefined || title.current.value == undefined || address.current.value== undefined || description.current.value == undefined || price.current.value ==undefined || city ==undefined || price_type ==undefined || type ==undefined || district == undefined) {
-      toast.error(`${t("addannoun.error")}`);
-      
-    }else {
-      formData.append("phone", fullPhone);
-      formData.append("title", title.current.value);
-      formData.append("address", address.current.value);
-      formData.append("description", description.current.value);
-      formData.append("price", price.current.value);
-      formData.append("city", city);
-      formData.append("district", district);
-      formData.append("type", type);
-      formData.append("price_type", price_type);
+    console.log(phone.current.value)
+    if (
+      phone.current.value == undefined ||
+      fullPhone == undefined ||
+      title.current.value == undefined ||
+      address.current.value == undefined ||
+      description.current.value == undefined ||
+      price.current.value == undefined ||
+      city == undefined ||
+      price_type == undefined ||
+      type == undefined ||
+      district == undefined
+    ) {
+      toast.error(`${t("addannoun.error")}`)
+    } else {
+      formData.append("phone", fullPhone)
+      formData.append("title", title.current.value)
+      formData.append("address", address.current.value)
+      formData.append("description", description.current.value)
+      formData.append("price", price.current.value)
+      formData.append("city", city)
+      formData.append("district", district)
+      formData.append("type", type)
+      formData.append("price_type", price_type)
       for (let i = 0; i < selectedImages?.length; i++) {
-        formData.append(`images`, selectedImages[i]);
+        formData.append(`images`, selectedImages[i])
       }
-  
-      sendAnnoun(formData);
+
+      sendAnnoun(formData)
     }
-    
+
     // console.log(formData);
-  };
-  const { t } = useTranslation();
+  }
+  const { t } = useTranslation()
 
   return (
     <div className="upload__inner">
@@ -443,7 +453,10 @@ export const Upload = () => {
         >
           <div className="d-flex flex-wrap gap-3 justify-content-center img__wrapper">
             {urls?.map((image, index) => (
-              <div className="position-relative" key={index}>
+              <div
+                className="position-relative"
+                key={index}
+              >
                 <img
                   className="rounded-2 img__item"
                   src={image}
@@ -460,7 +473,10 @@ export const Upload = () => {
 
           <div className="upload__wrap">
             <p>{t("addannoun.addimg")}:</p>
-            <label className="upload__img" htmlFor="upload">
+            <label
+              className="upload__img"
+              htmlFor="upload"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
@@ -472,8 +488,18 @@ export const Upload = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <line
+                  x1="12"
+                  y1="5"
+                  x2="12"
+                  y2="19"
+                ></line>
+                <line
+                  x1="5"
+                  y1="12"
+                  x2="19"
+                  y2="12"
+                ></line>
               </svg>{" "}
               {t("addannoun.imgtitle")}
               <input
@@ -492,9 +518,8 @@ export const Upload = () => {
           <div className="upload__wrap">
             <p>{t("addannoun.selectcity")}:</p>
             <Space wrap>
-           
-              <Select 
-              size="large"
+              <Select
+                size="large"
                 placeholder={t("addannoun.selectcity")}
                 style={{
                   width: 120,
@@ -505,9 +530,9 @@ export const Upload = () => {
                   value: province,
                 }))}
               />
-             
+
               <Select
-               size="large"
+                size="large"
                 placeholder={t("addannoun.selectdistrict")}
                 style={{
                   width: 120,
@@ -531,7 +556,7 @@ export const Upload = () => {
               placeholder="Chilonzor metorining yonida"
             />
             <Select
-             size="large"
+              size="large"
               defaultValue={t("addannoun.type")}
               style={{
                 width: 200,
@@ -589,7 +614,7 @@ export const Upload = () => {
                 />
               </div>
               <Select
-               size="large"
+                size="large"
                 defaultValue={t("addannoun.course")}
                 style={{
                   width: 200,
@@ -655,7 +680,8 @@ export const Upload = () => {
           </Button>
         </form>
       </div>
-    
     </div>
-  );
-};
+  )
+}
+
+export default Upload

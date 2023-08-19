@@ -16,7 +16,7 @@ import BgImagePhone from "@images/footer_bg-phone.png"
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 
-export const Footer = () => {
+const Footer = () => {
   const { t } = useTranslation()
 
   return (
@@ -155,3 +155,5 @@ export const Footer = () => {
     </>
   )
 }
+
+export default Footer

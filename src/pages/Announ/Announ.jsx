@@ -7,7 +7,7 @@ import { ActiveCard } from "../../components/ActiveCard/ActiveCard";
 import { DeactiveCard } from "../../components/DeactiveCard/DeactiveCard";
 import { useTranslation } from 'react-i18next';
 
-export const Announ = () => {
+const Announ = () => {
   const { t, i18n } = useTranslation();
 
   return (
@@ -43,3 +43,5 @@ export const Announ = () => {
     </div>
   );
 };
+
+export default Announ

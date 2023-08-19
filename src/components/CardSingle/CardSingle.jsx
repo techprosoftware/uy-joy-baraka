@@ -1,7 +1,7 @@
 // import "./card-single.scss"
 import { BackButton } from "@components/BackButton/BackButton"
-import CardList from "@components/CardList/CardList"
-import { useEffect, useRef, useState } from "react"
+// import CardList from "@components/CardList/CardList"
+import { lazy, useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { BASE_URL } from "@api/api"
 import { Link, useParams } from "react-router-dom"
@@ -11,14 +11,18 @@ import { toast } from "react-toastify"
 import LoadingIcon from "@images/card-single-loading.svg"
 import TelegramIcon from "@images/telegram-icon.svg"
 import WhatsappIcon from "@images/whatsapp-icon.svg"
-import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll"
+// import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll"
 import { useTranslation } from "react-i18next"
 import MessagingService from "../../Api/messaging.service"
 import { useDispatch } from "react-redux"
 import { chatId } from "@redux/chatId/chatdAction"
 import { Image } from "antd"
+const InfiniteScroll = lazy(() =>
+  import("@components/InfiniteScroll/InfiniteScroll")
+)
+const CardList = lazy(() => import("@components/CardList/CardList"))
 
-export const CardSingle = () => {
+const CardSingle = () => {
   const { t } = useTranslation()
 
   const token = localStorage.getItem("token")
@@ -332,3 +336,5 @@ export const CardSingle = () => {
     </>
   )
 }
+
+export default CardSingle

@@ -4,7 +4,7 @@ import imgerr from "../../../public/assets/images/404.svg";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-export const NotFoundError = () => {
+const NotFoundError = () => {
   const { t } = useTranslation();
 
   return (
@@ -15,3 +15,5 @@ export const NotFoundError = () => {
     </div>
   );
 };
+
+export default NotFoundError

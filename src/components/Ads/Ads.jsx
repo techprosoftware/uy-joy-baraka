@@ -3,10 +3,10 @@ import React from "react"
 import ButtonPhoneIcon from "@images/home-phone.svg"
 // import AdsBgi from "@images/12.png"
 // import "./ads.scss"
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
-export const Ads = () => {
-  const { t, i18n } = useTranslation();
+const Ads = () => {
+  const { t, i18n } = useTranslation()
 
   return (
     <div className="ads mb-4">
@@ -15,7 +15,10 @@ export const Ads = () => {
           <h2>{t("homecard.adstitle")}</h2>
         </div>
         <a href="tel:+998 99 243-55-77">
-          <button className="banner-btn ads__btn" href="#">
+          <button
+            className="banner-btn ads__btn"
+            href="#"
+          >
             <img
               width={25}
               height={25}
@@ -27,5 +30,7 @@ export const Ads = () => {
         </a>
       </div>
     </div>
-  );
-};
+  )
+}
+
+export default Ads

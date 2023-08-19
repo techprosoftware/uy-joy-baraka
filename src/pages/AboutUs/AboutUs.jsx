@@ -1,10 +1,10 @@
 import { BackButton } from "@components/BackButton/BackButton"
 import { Social } from "@components/Social/Social"
 // import "./about-as.scss"
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
-export const AboutUs = () => {
-  const { t } = useTranslation();
+const AboutUs = () => {
+  const { t } = useTranslation()
 
   return (
     <>
@@ -56,3 +56,5 @@ export const AboutUs = () => {
     </>
   )
 }
+
+export default AboutUs
