@@ -1,11 +1,10 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect } from "react";
 import { useRef } from "react";
-//* Ant design
 import { Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-//* Icons
 import TrashIcon from "../../../public/assets/images/messaging-delete-icon.svg";
 import ChatsendIcon from "../../../public/assets/images/chatbar-send-icon.svg";
 import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilonzor.webp";
@@ -26,8 +25,6 @@ export const Messaging = () => {
   const [update, setUpdate] = useState(false);
   const [showFullTitle, setShowFullTitle] = useState(false);
 
-  console.log(chats, 'set chat');
-  // console.log(chatId);
   const { t } = useTranslation();
 
   //* Additional things
@@ -35,18 +32,7 @@ export const Messaging = () => {
   const message = useRef(null);
 
   //* GET MESSAGING -- [GET REQUEST]
-  const getAllMessage = async () => {
-    try {
-      const data = await MessagingService.GetMessaging();
-      console.log("user", data);
-      setChats(data?.members);
-      setUpdate(false);
-    } catch (error) {
-      console.error("Error occurred while fetching user profile", error);
-    }
-  };
   useEffect(() => {
-
     const getAllMessage = async () => {
       try {
         const data = await MessagingService.GetMessaging();
@@ -59,10 +45,7 @@ export const Messaging = () => {
     };
 
     getAllMessage();
-    setInterval(() => {
-      getAllMessage();
-    }, 6000);
-    getAllMessage()
+    
   }, [activeChatId, update]);
 
   //* POST MESSAGE -- [POST REQUEST]
@@ -119,9 +102,6 @@ export const Messaging = () => {
   }, []);
 
   //* Handle button active state change
-  const handleButtonClick = () => {
-    setIsActive(!isActive);
-  };
 
   const handleBarActive = () => {
     setIsBarActive(!isBarActive);
@@ -133,12 +113,6 @@ export const Messaging = () => {
     setMeData(data.data?.messages);
     return data;
   };
-  console.log(meData);
-  console.log(userData);
-
-  //
-  // console.log('me',resultMeData);
-  // console.log('you',resultYouData);
 
   //* Handle chat bar active
   const handleChatBarActive = (id) => {
@@ -149,8 +123,6 @@ export const Messaging = () => {
 
   const selectedChat = chats?.find((chat) => chat.chat_id == activeChatId);
 
-  console.log(selectedChat);
-  // console.log(selectedChat);
   return (
     <>
       {/* Header component */}
@@ -297,9 +269,7 @@ export const Messaging = () => {
                         <div className="trash-inner">
                           <button
                             onClick={() => deleteChat(selectedChat?.chat_id)}
-                            onClick={() =>
-                              deleteChat(selectedChat?.chat_id)
-                            }
+                           
                           >
                             <img src={TrashIcon} alt="trash icon" />
                           </button>
