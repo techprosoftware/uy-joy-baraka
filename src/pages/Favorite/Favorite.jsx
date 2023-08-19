@@ -1,45 +1,45 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 // import "./Favorite.scss";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { CardSkeleton } from "@components/Cards/CardSkeleton";
-import { BASE_URL } from "@/Api/api";
-import CardLikeIcon from "@images/card-like-icon.svg";
-import CardULikeIcon from "@images/card-ulike-icon.svg";
-import CardService from "../../Api/card.service";
-import "react-toastify/dist/ReactToastify.css";
-import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
+import { CardSkeleton } from "@components/Cards/CardSkeleton"
+import { BASE_URL } from "@/Api/api"
+import CardLikeIcon from "@images/card-like-icon.svg"
+import CardULikeIcon from "@images/card-ulike-icon.svg"
+import CardService from "../../Api/card.service"
+import "react-toastify/dist/ReactToastify.css"
+import { useTranslation } from "react-i18next"
 
-export const Favorite = () => {
-  const { t } = useTranslation();
+const Favorite = () => {
+  const { t } = useTranslation()
 
-  const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon);
+  const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon)
 
   const [activeCard, setActiveCard] = useState({
     isLoading: true,
     data: [],
-  });
+  })
 
   const getSearchCard = async () => {
-    const data = await CardService.getLike();
-    console.log(data);
+    const data = await CardService.getLike()
+    console.log(data)
     if (data?.status === 200) {
-      setLikeImgSrc(CardLikeIcon);
+      setLikeImgSrc(CardLikeIcon)
       setActiveCard({
         isLoading: false,
         data: data.data,
-      });
+      })
     }
-  };
+  }
 
   useEffect(() => {
-    getSearchCard();
-  }, []);
+    getSearchCard()
+  }, [])
 
-  const [count, setCount] = useState();
-  const newData = activeCard?.data?.posts;
+  const [count, setCount] = useState()
+  const newData = activeCard?.data?.posts
   const mappedData = newData?.map((item) => ({
     likeId: item.like_id,
 
@@ -90,26 +90,26 @@ export const Favorite = () => {
 
       updatedAt: item["announcement.updatedAt"],
     },
-  }));
+  }))
 
-  const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const navigate = useNavigate();
+  const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  const navigate = useNavigate()
 
   const handleClick = async (event) => {
-    const targetElement = event.target.closest(".card__like");
+    const targetElement = event.target.closest(".card__like")
 
     if (targetElement) {
-      event.preventDefault();
+      event.preventDefault()
 
-      const data = await CardService.unLikeCard(event.target.id);
-      toast.success(`${t("favorite.close")}`);
+      const data = await CardService.unLikeCard(event.target.id)
+      toast.success(`${t("favorite.close")}`)
 
-      console.log(data);
-      getSearchCard();
-      event.preventDefault();
-      return data;
+      console.log(data)
+      getSearchCard()
+      event.preventDefault()
+      return data
     }
-  };
+  }
 
   return (
     <div className="container">
@@ -201,5 +201,7 @@ export const Favorite = () => {
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
+
+export default Favorite

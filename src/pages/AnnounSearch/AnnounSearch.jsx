@@ -1,32 +1,32 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react"
 // import "./AnnounSearch.scss";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import AnnounService from "../../Api/announ.service";
-import { CardSkeleton } from "@components/Cards/CardSkeleton";
-import { BASE_URL } from "@/Api/api";
-import CardLikeIcon from "@images/card-like-icon.svg";
-import CardULikeIcon from "@images/card-ulike-icon.svg";
-import SearchService from "../../Api/search.service";
-import { useTranslation } from "react-i18next";
-import CardService from "../../Api/card.service";
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify"
+import AnnounService from "../../Api/announ.service"
+import { CardSkeleton } from "@components/Cards/CardSkeleton"
+import { BASE_URL } from "@/Api/api"
+import CardLikeIcon from "@images/card-like-icon.svg"
+import CardULikeIcon from "@images/card-ulike-icon.svg"
+import SearchService from "../../Api/search.service"
+import { useTranslation } from "react-i18next"
+import CardService from "../../Api/card.service"
 
-export const AnnounSearch = () => {
-  const { t } = useTranslation();
+const AnnounSearch = () => {
+  const { t } = useTranslation()
 
-  const cityName = localStorage.getItem("searchCity");
-  const city = localStorage.getItem("city");
-  const type = localStorage.getItem("type");
-  const price_type = localStorage.getItem("price_type");
+  const cityName = localStorage.getItem("searchCity")
+  const city = localStorage.getItem("city")
+  const type = localStorage.getItem("type")
+  const price_type = localStorage.getItem("price_type")
 
-  console.log(cityName);
+  console.log(cityName)
 
   const [activeCard, setActiveCard] = useState({
     isLoading: true,
     data: [],
-  });
+  })
 
   const getSearchCard = async () => {
     const data = await SearchService.searchOnInput(
@@ -34,61 +34,60 @@ export const AnnounSearch = () => {
       city,
       type,
       price_type
-    );
+    )
     // console.log(data);
     try {
       if (data?.status === 200) {
         setActiveCard({
           isLoading: false,
           data: data.data,
-        });
+        })
       }
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message)
     }
-  };
+  }
 
   useEffect(() => {
-    getSearchCard();
-  }, []);
+    getSearchCard()
+  }, [])
 
-  const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon);
+  const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon)
 
-  console.log(activeCard);
-  const newData = activeCard?.data?.posts;
+  console.log(activeCard)
+  const newData = activeCard?.data?.posts
 
-  const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const handleClick = async (evt) => {
-    const slug = evt.target.name;
-    const id = evt.target.id;
-    const targetTag = evt.target.className;
+    const slug = evt.target.name
+    const id = evt.target.id
+    const targetTag = evt.target.className
 
-    console.log(id);
+    console.log(id)
 
-
-    const token = localStorage.getItem("token") || "";
+    const token = localStorage.getItem("token") || ""
 
     if (targetTag != "de_active__btn") {
       if (targetTag === "card__like" || targetTag === "card__like-img") {
         evt.preventDefault()
-        const response = await CardService.likeCard(id);
-        console.log(response);
+        const response = await CardService.likeCard(id)
+        console.log(response)
         if (response?.status === 200) {
-          toast.success("Saqlanganlarga qo'shildi");
-          return;
+          toast.success("Saqlanganlarga qo'shildi")
+          return
         } else {
-          const data = await CardService.unLikeCard(id);
-          console.log(data);
-          toast.success("Saqlanganlardan chiqarildi");
+          const data = await CardService.unLikeCard(id)
+          console.log(data)
+          toast.success("Saqlanganlardan chiqarildi")
         }
         if (!token) {
-          navigate("/login");
+          navigate("/login")
         }
       }
     }
-  };
+  }
 
   return (
     <div className="container">
@@ -123,8 +122,12 @@ export const AnnounSearch = () => {
                         <span className="card__view me-2">
                           {item.viewCount}
                         </span>
-                        <button id={item?.announcement_id} className="card__like">
-                          <img id={item?.announcement_id}
+                        <button
+                          id={item?.announcement_id}
+                          className="card__like"
+                        >
+                          <img
+                            id={item?.announcement_id}
                             className="card__like-img"
                             src={CardULikeIcon}
                             width={17}
@@ -169,7 +172,10 @@ export const AnnounSearch = () => {
           ) : (
             <div className="py-5 d-flex flex-column align-items-center">
               <p>
-                <Link className="heart__desc-link" to={"/"}>
+                <Link
+                  className="heart__desc-link"
+                  to={"/"}
+                >
                   {t("search.empty1")}{" "}
                 </Link>
                 <span className=" heart__desc">{t("search.empty2")} </span>{" "}
@@ -180,5 +186,7 @@ export const AnnounSearch = () => {
         </ul>
       </div>
     </div>
-  );
-};
+  )
+}
+
+export default AnnounSearch

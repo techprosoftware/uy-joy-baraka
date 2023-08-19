@@ -1,33 +1,54 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from "react";
-import { HomeBanner } from "./HomeBanner/HomeBanner";
-import { HomeCards } from "./HomeCards/HomeCards";
-import { Ads } from "@components/Ads/Ads";
-import { Social } from "@components/Social/Social";
-import { useDispatch, useSelector } from "react-redux";
-import { setPage } from "@/redux/page/pageAction.js";
-import  CardList  from "@components/CardList/CardList";
-import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll"
+import { Suspense, lazy, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { setPage } from "@/redux/page/pageAction"
+const HomeBanner = lazy(() => import("./HomeBanner/HomeBanner"))
+const HomeCards = lazy(() => import("./HomeCards/HomeCards"))
+const Ads = lazy(() => import("@components/Ads/Ads"))
+const Social = lazy(() => import("@components/Social/Social"))
+const CardList = lazy(() => import("@components/CardList/CardList"))
+const InfiniteScroll = lazy(() =>
+  import("@components/InfiniteScroll/InfiniteScroll")
+)
+import LoadingImg from "@images/card-single-loading.svg"
 
-export const Home = () => {
-  const page = useSelector((state) => state.page.page);
-  const dispatch = useDispatch();
+const Home = () => {
+  const page = useSelector((state) => state.page.page)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(setPage(3));
-  }, []);
-//51b9fddd-96c9-41c8-97eb-c372b153569c
+    dispatch(setPage(3))
+  }, [])
+
   return (
     <>
-      <HomeBanner />
-      <HomeCards />
-      <Ads />
-      <div className="container">
-        <CardList page={2} />
-      </div>
-      <Social />
-      <InfiniteScroll page={3} />
-      {/* <MoreBtn /> */}
+      <Suspense
+        fallback={
+          <>
+            <div className="container w-100 h-100">
+              <img
+                className="d-block mx-auto"
+                src={LoadingImg}
+                width={200}
+                height={200}
+                style={{ background: "none" }}
+              />
+            </div>
+          </>
+        }
+      >
+        <HomeBanner />
+        <HomeCards />
+        <Ads />
+        <div className="container">
+          <CardList page={2} />
+        </div>
+        <Social />
+        <InfiniteScroll page={3} />
+        {/* <MoreBtn /> */}
+      </Suspense>
     </>
-  );
-};
+  )
+}
+
+export default Home

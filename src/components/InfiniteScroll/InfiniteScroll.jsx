@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { incPage } from "@/redux/page/pageAction.js"
 import { useTranslation } from "react-i18next"
 
-export const InfiniteScroll = () => {
+const InfiniteScroll = () => {
   let pageCount = useSelector((state) => state.page.page)
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -36,8 +36,8 @@ export const InfiniteScroll = () => {
     }, 1500)
   }
 
-  console.log(fetcher.data);
-  
+  console.log(fetcher.data)
+
   const loader = (
     <>
       <div className="container">
@@ -84,3 +84,5 @@ export const InfiniteScroll = () => {
     </InfiniteScrollReact>
   )
 }
+
+export default InfiniteScroll
