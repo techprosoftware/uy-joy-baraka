@@ -37,7 +37,7 @@ const CardList = ({ page }) => {
     fetchCardData()
   }, [])
 
-  console.log(likedCardList)
+  // console.log(likedCardList)
 
   return (
     <ul className="card-list">
