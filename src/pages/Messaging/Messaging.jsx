@@ -18,6 +18,7 @@ import ProfileService from "../../Api/profile.service"
 import NoData from "../../../public/assets/images/no-data.svg"
 import ChatMessaging from "../../../public/assets/images/messaging-chat.svg"
 import { useTranslation } from "react-i18next"
+import { BASE_URL } from "../../Api/api"
 
 const Messaging = () => {
   const [isActive, setIsActive] = useState(false)
@@ -50,7 +51,7 @@ const Messaging = () => {
     const getAllMessage = async () => {
       try {
         const data = await MessagingService.GetMessaging()
-        console.log("user", data)
+        console.log("user", data.members?.length)
         setChats(data?.members)
         setUpdate(false)
       } catch (error) {
@@ -59,10 +60,7 @@ const Messaging = () => {
     }
 
     getAllMessage()
-    setInterval(() => {
-      getAllMessage()
-    }, 6000)
-    getAllMessage()
+  
   }, [activeChatId, update])
 
   //* POST MESSAGE -- [POST REQUEST]
@@ -207,7 +205,7 @@ const Messaging = () => {
                         >
                           <div className="chat-inner">
                             <img
-                              src={`http://test.uyjoybaraka.uz/${info?.user?.avatar}`}
+                              src={BASE_URL+info?.user?.avatar}
                               width={100}
                               alt="user image"
                               className="member-img"
@@ -277,7 +275,7 @@ const Messaging = () => {
                             }}
                           >
                             <img
-                              src={`http://test.uyjoybaraka.uz/${info?.user?.avatar}`}
+                              src={BASE_URL+info?.user?.avatar}
                               width={50}
                               height={50}
                               alt="user image"
@@ -297,7 +295,7 @@ const Messaging = () => {
                       <div className="user-selected">
                         <div className="user-inner">
                           <img
-                            src={`http://test.uyjoybaraka.uz/${selectedChat?.user?.avatar}`}
+                            src={BASE_URL+selectedChat?.user?.avatar}
                             alt="selected user image"
                             width={100}
                           />
