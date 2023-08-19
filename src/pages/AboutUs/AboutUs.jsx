@@ -1,5 +1,7 @@
 import { BackButton } from "@components/BackButton/BackButton"
-import { Social } from "@components/Social/Social"
+import { lazy } from "react"
+const Social = lazy(() => import("@components/Social/Social"))
+
 // import "./about-as.scss"
 import { useTranslation } from "react-i18next"
 
