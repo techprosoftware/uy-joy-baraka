@@ -1,13 +1,12 @@
-
 /* eslint-disable no-unused-vars */
 
-import React from "react";
+import React from "react"
 // import "./HomeCard.scss";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 
-import  CardList  from "@components/CardList/CardList";
-export const HomeCards = () => {
-  const { t } = useTranslation();
+import CardList from "@components/CardList/CardList"
+const HomeCards = () => {
+  const { t } = useTranslation()
 
   return (
     <>
@@ -18,5 +17,7 @@ export const HomeCards = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
+
+export default HomeCards

@@ -50,6 +50,5 @@
     "redux-devtools-extension": "^2.13.9",
     "sass-loader": "^13.3.2",
     "vite": "^4.3.9"
-
   }
 }

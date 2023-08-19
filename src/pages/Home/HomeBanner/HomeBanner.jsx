@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
-import buttonPhone from "../../../../public/assets/images/home-phone.svg";
+import React, { lazy, useState } from "react"
+import buttonPhone from "../../../../public/assets/images/home-phone.svg"
 // import "./HomeBanner.scss";
-import { HomeSearch } from "../../../components/HomeSearch/HomeSearch";
-import { useTranslation } from "react-i18next";
+const HomeSearch = lazy(() => import("@components/HomeSearch/HomeSearch"))
+import { useTranslation } from "react-i18next"
 
-export const HomeBanner = () => {
-  const { t, i18n } = useTranslation();
+const HomeBanner = () => {
+  const { t, i18n } = useTranslation()
   return (
     <>
       <HomeSearch />{" "}
@@ -46,8 +46,14 @@ export const HomeBanner = () => {
                     <h1 className="banner-title">{t("homebanner.title")}</h1>
 
                     <a href="tel:+998 99 243-55-77">
-                      <button className="banner-btn" href="#">
-                        <img src={buttonPhone} alt="buton-phone" />
+                      <button
+                        className="banner-btn"
+                        href="#"
+                      >
+                        <img
+                          src={buttonPhone}
+                          alt="buton-phone"
+                        />
                         {t("homebanner.callbtn")}
                       </button>
                     </a>
@@ -64,8 +70,14 @@ export const HomeBanner = () => {
                     <h1 className="banner-title">{t("homebanner.title")} </h1>
 
                     <a href="tel:+998 91 599-99-47">
-                      <button className="banner-btn" href="#">
-                        <img src={buttonPhone} alt="buton-phone" />
+                      <button
+                        className="banner-btn"
+                        href="#"
+                      >
+                        <img
+                          src={buttonPhone}
+                          alt="buton-phone"
+                        />
                         {t("homebanner.callbtn")}
                       </button>
                     </a>
@@ -82,8 +94,14 @@ export const HomeBanner = () => {
                     <h1 className="banner-title">{t("homebanner.title")}</h1>
 
                     <a href="tel:+998 91 599-99-47">
-                      <button className="banner-btn" href="#">
-                        <img src={buttonPhone} alt="buton-phone" />
+                      <button
+                        className="banner-btn"
+                        href="#"
+                      >
+                        <img
+                          src={buttonPhone}
+                          alt="buton-phone"
+                        />
                         {t("homebanner.callbtn")}
                       </button>
                     </a>
@@ -99,7 +117,10 @@ export const HomeBanner = () => {
           data-mdb-target="#carouselExampleIndicators"
           data-mdb-slide="prev"
         >
-          <span className="carousel-control-prev-icon" aria-hidden="true" />
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          />
           <span className="visually-hidden">Previous</span>
         </button>
         <button
@@ -108,10 +129,15 @@ export const HomeBanner = () => {
           data-mdb-target="#carouselExampleIndicators"
           data-mdb-slide="next"
         >
-          <span className="carousel-control-next-icon" aria-hidden="true" />
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          />
           <span className="visually-hidden">Next</span>
         </button>
       </div>
     </>
-  );
-};
+  )
+}
+
+export default HomeBanner

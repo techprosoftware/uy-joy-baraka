@@ -18,9 +18,9 @@ export const Card = (card) => {
 
   const [like, setLike] = useState(false)
 
-  const [favorite, setFavorite] = useState({
-    data: []
-  })
+  // const [favorite, setFavorite] = useState({
+  //   data: []
+  // })
   const handleClick = async (evt) => {
     const targetTag = evt.target.className
     const token = localStorage.getItem("token") || ""
@@ -35,7 +35,7 @@ export const Card = (card) => {
         console.log(response)
         if (response?.status === 200) {
           const res = (JSON.parse(response.config.data));
-          setFavorite({data:  [data, res]})
+          // setFavorite({data:  [data, res]})
           // localStorage.setItem('like', JSON.stringify(favorite))
           toast.success("Saqlanganlarga qo'shildi")
           return
@@ -50,8 +50,6 @@ export const Card = (card) => {
       navigate(`/announcement/${card.card?.slug}`)
     }
   }
-
-  console.log(favorite);
 
   return (
     <>
