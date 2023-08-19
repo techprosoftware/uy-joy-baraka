@@ -60,7 +60,7 @@ export const lang = {
       sum: "So'm",
       usd: "Dollar",
       success: "E'lon muvaffaqqiyatli qo'shildi.",
-      error: "Maydonni to'liq to'ldiring.",
+      error: "Maydonni to'liq to'ldiring yoki telefon raqamni to'g'ri kiriting.",
       errorSize: "Umumiy hajm 6 MB dan oshdi. Iltimos, kichik hajmdagi rasmlar yuklang.",
       max: "Maksimum,",
       imgSize: "ta rasm yuklash mumkin."
@@ -91,7 +91,7 @@ export const lang = {
       phone: "Qo'ng'iroq qilish",
       sendsms: "Xabar yuborish",
       share: "Ulashish",
-      recomended: "Siz uchun taklif",
+      recomended: "Ko'p ko'rilgan uylar",
     },
     login: {
       title: "Kirish",
@@ -230,7 +230,7 @@ export const lang = {
       sum: "сум",
       usd: "доллар",
       success: "Объявление успешно добавлено.",
-      error: "Заполните поле полностью.",
+      error: "Заполните поле полностью или введите номер телефона правильно.",
       errorSize: "Общий размер превысил 6 МБ. Пожалуйста, загрузите маленькие изображения.",
       max: "Максимум,",
       imgSize: "Можно загрузить изображение."
@@ -262,7 +262,7 @@ export const lang = {
       phone: "Позвонить",
       sendsms: "сообщение",
       share: "Поделиться",
-      recomended: "Предложение для вас",
+      recomended: "Самые просматриваемые дома",
     },
     login: {
       title: "Войти",
