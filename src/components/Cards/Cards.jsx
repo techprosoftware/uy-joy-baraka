@@ -18,9 +18,9 @@ export const Card = (card) => {
 
   const [like, setLike] = useState(false)
 
-  // const [favorite, setFavorite] = useState({
-  //   data: []
-  // })
+  const [favorite, setFavorite] = useState({
+    data: null
+  })
   const handleClick = async (evt) => {
     const targetTag = evt.target.className
     const token = localStorage.getItem("token") || ""
@@ -35,8 +35,10 @@ export const Card = (card) => {
         console.log(response)
         if (response?.status === 200) {
           const res = (JSON.parse(response.config.data));
-          // setFavorite({data:  [data, res]})
-          // localStorage.setItem('like', JSON.stringify(favorite))
+          // console.log(res);
+          console.log(favorite);
+          setFavorite({data:  res})
+          localStorage.setItem('like', JSON.stringify(favorite))
           toast.success("Saqlanganlarga qo'shildi")
           return
         } else {
@@ -75,7 +77,7 @@ export const Card = (card) => {
               className="card__like">
                 <img
                   className="card__like-img"
-                  src={card.card.isLiked ? CardLikeIcon : CardULikeIcon}
+                  src={like ? CardLikeIcon : CardULikeIcon}
                   width={17}
                   height={16}
                   alt="Card like button image"
