@@ -1,22 +1,23 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
-import { useState, useEffect } from "react"
-import { useRef } from "react"
+import { useState, useEffect } from "react";
+import { useRef } from "react";
 //* Ant design
-import { Modal } from "antd"
-import { ExclamationCircleOutlined } from "@ant-design/icons"
+import { Modal } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 //* Icons
-import TrashIcon from "@images/messaging-delete-icon.svg"
-import ChatsendIcon from "@images/chatbar-send-icon.svg"
-import SelectedChatImg from "@images/chat-icon-home-chilonzor.webp"
-import arrow from "@images/left-arrow.svg"
-import MessagingService from "../../Api/messaging.service"
-import DoubleCheck from "@images/double-check_message.svg"
-import { useNavigate } from "react-router-dom"
-import ProfileService from "../../Api/profile.service"
-import NoData from "@images/no-data.svg"
-import ChatMessaging from "@images/messaging-chat.svg"
-import { useTranslation } from "react-i18next"
+import TrashIcon from "../../../public/assets/images/messaging-delete-icon.svg";
+import ChatsendIcon from "../../../public/assets/images/chatbar-send-icon.svg";
+import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilonzor.webp";
+import arrow from "../../../public/assets/images/left-arrow.svg";
+import MessagingService from "../../Api/messaging.service";
+import DoubleCheck from "../../../public/assets/images/double-check_message.svg";
+import { useNavigate } from "react-router-dom";
+import ProfileService from "../../Api/profile.service";
+import NoData from "../../../public/assets/images/no-data.svg";
+import ChatMessaging from "../../../public/assets/images/messaging-chat.svg";
+import { useTranslation } from "react-i18next";
 
 const Messaging = () => {
   const [isActive, setIsActive] = useState(false)
@@ -26,9 +27,9 @@ const Messaging = () => {
   const [update, setUpdate] = useState(false)
   const [showFullTitle, setShowFullTitle] = useState(false)
 
-  console.log(chats, "set chat")
+  console.log(chats, 'set chat');
   // console.log(chatId);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   //* Additional things
   const navigate = useNavigate()
@@ -37,14 +38,14 @@ const Messaging = () => {
   //* GET MESSAGING -- [GET REQUEST]
   const getAllMessage = async () => {
     try {
-      const data = await MessagingService.GetMessaging()
-      console.log("user", data)
-      setChats(data?.members)
-      setUpdate(false)
+      const data = await MessagingService.GetMessaging();
+      console.log("user", data);
+      setChats(data?.members);
+      setUpdate(false);
     } catch (error) {
-      console.error("Error occurred while fetching user profile", error)
+      console.error("Error occurred while fetching user profile", error);
     }
-  }
+  };
   useEffect(() => {
     const getAllMessage = async () => {
       try {
@@ -57,12 +58,12 @@ const Messaging = () => {
       }
     }
 
-    getAllMessage()
+    getAllMessage();
     setInterval(() => {
-      getAllMessage()
-    }, 6000)
+      getAllMessage();
+    }, 6000);
     getAllMessage()
-  }, [activeChatId, update])
+  }, [activeChatId, update]);
 
   //* POST MESSAGE -- [POST REQUEST]
   const sendMessage = async (e) => {
@@ -119,8 +120,8 @@ const Messaging = () => {
 
   //* Handle button active state change
   const handleButtonClick = () => {
-    setIsActive(!isActive)
-  }
+    setIsActive(!isActive);
+  };
 
   const handleBarActive = () => {
     setIsBarActive(!isBarActive)
@@ -128,12 +129,12 @@ const Messaging = () => {
 
   const [meData, setMeData] = useState()
   const getMessageById = async (chat_id) => {
-    const data = await MessagingService.GetMessageById(chat_id)
-    setMeData(data.data?.messages)
-    return data
-  }
-  console.log(meData)
-  console.log(userData)
+    const data = await MessagingService.GetMessageById(chat_id);
+    setMeData(data.data?.messages);
+    return data;
+  };
+  console.log(meData);
+  console.log(userData);
 
   //
   // console.log('me',resultMeData);
@@ -148,7 +149,7 @@ const Messaging = () => {
 
   const selectedChat = chats?.find((chat) => chat.chat_id == activeChatId)
 
-  console.log(selectedChat)
+  console.log(selectedChat);
   // console.log(selectedChat);
   return (
     <>
@@ -307,7 +308,9 @@ const Messaging = () => {
                         <div className="trash-inner">
                           <button
                             onClick={() => deleteChat(selectedChat?.chat_id)}
-                            onClick={() => deleteChat(selectedChat?.chat_id)}
+                            onClick={() =>
+                              deleteChat(selectedChat?.chat_id)
+                            }
                           >
                             <img
                               src={TrashIcon}

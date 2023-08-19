@@ -4,14 +4,14 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react"
 // import "./Upload.scss";
-import close from "../../../public/assets/images/close.png"
-import ImageCompressor from "image-compressor.js"
-import { BackButton } from "@components/BackButton/BackButton"
-import { Button, Form, InputNumber, Select, Space } from "antd"
-import AnnounService from "../../Api/announ.service"
-import { ToastContainer, toast } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
-import { useTranslation } from "react-i18next"
+import close from "../../../public/assets/images/close.png";
+import ImageCompressor from "image-compressor.js";
+import { BackButton } from "@components/BackButton/BackButton";
+import { Button, Form, InputNumber, Select, Space } from "antd";
+import AnnounService from "../../Api/announ.service";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
 
 const provinceData = [
   "Toshkent",
@@ -248,11 +248,11 @@ const cityData = {
     "Taxiatosh shahri",
     "Taxtako'pir tumani",
     "To'rtko'l tumani",
-    "Xo'jayli tumani",
-  ],
-}
-const Upload = () => {
-  const [selectedImages, setSelectedImages] = useState([])
+    "Xo'jayli tumani"
+],
+};
+export const Upload = () => {
+  const [selectedImages, setSelectedImages] = useState([]);
 
   const [city, setCity] = useState()
   const [district, setDistrict] = useState()
@@ -282,8 +282,9 @@ const Upload = () => {
     setPrice_type(value)
   }
 
-  const [urls, setUrls] = useState()
+  const [urls, setUrls] = useState();
 
+  // console.log(normFile());
   const handleImageChange = async (evt) => {
     const maxAllowedImages = 4
     const maxTotalSize = 6 * 1024 * 1024 // 4 MB in bytes
@@ -403,52 +404,51 @@ const Upload = () => {
     e.preventDefault()
     const formData = new FormData()
     // console.log(fullPhone);
-    const fullPhone = "998" + phone.current.value
+    const fullPhone = "998" + phone.current.value;
 
-    console.log(phone.current.value)
-    if (
-      phone.current.value == undefined ||
-      fullPhone == undefined ||
-      title.current.value == undefined ||
-      address.current.value == undefined ||
-      description.current.value == undefined ||
-      price.current.value == undefined ||
-      city == undefined ||
-      price_type == undefined ||
-      type == undefined ||
-      district == undefined
-    ) {
-      toast.error(`${t("addannoun.error")}`)
-    } else {
-      formData.append("phone", fullPhone)
-      formData.append("title", title.current.value)
-      formData.append("address", address.current.value)
-      formData.append("description", description.current.value)
-      formData.append("price", price.current.value)
-      formData.append("city", city)
-      formData.append("district", district)
-      formData.append("type", type)
-      formData.append("price_type", price_type)
+    console.log(phone.current.value);
+    if (phone.current.value == undefined || fullPhone==undefined || title.current.value == undefined || address.current.value== undefined || description.current.value == undefined || price.current.value ==undefined || city ==undefined || price_type ==undefined || type ==undefined || district == undefined) {
+      toast.error(`${t("addannoun.error")}`);
+      
+    }else {
+      formData.append("phone", fullPhone);
+      formData.append("title", title.current.value);
+      formData.append("address", address.current.value);
+      formData.append("description", description.current.value);
+      formData.append("price", price.current.value);
+      formData.append("city", city);
+      formData.append("district", district);
+      formData.append("type", type);
+      formData.append("price_type", price_type);
       for (let i = 0; i < selectedImages?.length; i++) {
         formData.append(`images`, selectedImages[i])
       }
-
-      sendAnnoun(formData)
+  
+      sendAnnoun(formData);
     }
 
     // console.log(formData);
   }
   const { t } = useTranslation()
 
+  const [form] = Form.useForm();
+
+  const onFinish = (values) => {
+    console.log(values);
+  };
   return (
     <div className="upload__inner">
       <div className="container">
         <BackButton />
         <h2 className="upload__title">{t("addannoun.annountitle")}</h2>
 
-        <form
-          onSubmit={handleSubmit}
-          autoComplete="off"
+        <Form  form={form}
+              name="register"
+              onFinish={onFinish}
+             
+              
+              scrollToFirstError
+              autoComplete="off"
           className="upload__form"
         >
           <div className="d-flex flex-wrap gap-3 justify-content-center img__wrapper">
@@ -514,23 +514,43 @@ const Upload = () => {
               />
             </label>
           </div>
-
+          {/* <Form.Item label="Upload" valuePropName="fileList" getValueFromEvent={normFile}>
+          <Upload action="/upload.do" listType="picture-card">
+            <div>
+              <PlusOutlined />
+              <div
+                style={{
+                  marginTop: 8,
+                }}
+              >
+                Upload
+              </div>
+            </div>
+          </Upload>
+        </Form.Item> */}
           <div className="upload__wrap">
             <p>{t("addannoun.selectcity")}:</p>
             <Space wrap>
-              <Select
-                size="large"
+           
+              <Select 
+              size="large"
                 placeholder={t("addannoun.selectcity")}
                 style={{
                   width: 120,
                 }}
+                rules={[
+                  {
+                    required: true,
+                    message: `${t("addannoun.selectcity")}`,
+                  },
+                ]}
                 onChange={handleProvinceChange}
                 options={provinceData.map((province) => ({
                   label: province,
                   value: province,
                 }))}
               />
-
+             
               <Select
                 size="large"
                 placeholder={t("addannoun.selectdistrict")}
@@ -544,19 +564,33 @@ const Upload = () => {
                   value: city,
                 }))}
               />
-            </Space>
+            </Form.Item>
           </div>
 
           <div className="upload__wrap">
             <p>{t("addannoun.address")}:</p>
-            <input
+            <Form.Item
+              name="note"
+              rules={[
+                {
+                  required: true,
+                  message: `* ${t("addannoun.address")} kiriting`
+                },
+              ]}
+            >
+              <Input
+                size="large"
+                placeholder="Masalan: Chilonzor metorining yonida"
+              />
+            </Form.Item>
+            {/* <input
               className="address__input mb-2"
               type="text"
               ref={address}
               placeholder="Chilonzor metorining yonida"
             />
             <Select
-              size="large"
+             size="large"
               defaultValue={t("addannoun.type")}
               style={{
                 width: 200,
@@ -582,29 +616,55 @@ const Upload = () => {
 
           <div className="upload__wrap">
             <p>{t("addannoun.title")}</p>
-            <textarea
+            <Form.Item>
+              <TextArea rows={4} />
+            </Form.Item>
+            {/* <textarea
               ref={title}
               className="upload__title__area"
               placeholder="Faqat oilaga beriladi"
               rows="5"
-            ></textarea>
+            ></textarea> */}
           </div>
 
           <div className="upload__wrap">
             <p>{t("addannoun.desc")}</p>
-            <textarea
+            <Form.Item>
+              <TextArea rows={4} />
+            </Form.Item>
+            {/* <textarea
               ref={description}
               className="upload__title__area"
               placeholder="Uy yaxshi hamma sharoiti bor"
               rows="6"
-            ></textarea>
+            ></textarea> */}
           </div>
 
           <div className="upload__wrap ">
             <p>{t("addannoun.price")}</p>
             <div className="upload__price">
-              <div className="upload__phone">
-                <input
+              <Form.Item
+                  name="phone"
+                  rules={[
+                    {
+                      required: true,
+                      type: "regexp",
+                      pattern: new RegExp(/\d+/g),
+                      message: "Telefon raqam kiriting!",
+                    },
+                  ]}
+                >
+                  <InputNumber
+                    ref={phone}
+                    placeholder="2 000 000"
+                   
+                    size="large"
+                    style={{
+                      width: "100%",
+                    }}
+                  />
+                </Form.Item>
+                {/* <input
                   required
                   ref={price}
                   id="phone"
@@ -614,7 +674,7 @@ const Upload = () => {
                 />
               </div>
               <Select
-                size="large"
+               size="large"
                 defaultValue={t("addannoun.course")}
                 style={{
                   width: 200,
@@ -636,6 +696,7 @@ const Upload = () => {
                   },
                 ]}
               />
+             </Form.Item>
             </div>
           </div>
 
@@ -678,7 +739,7 @@ const Upload = () => {
           >
             {t("addannoun.send")}
           </Button>
-        </form>
+        </Form>
       </div>
     </div>
   )
