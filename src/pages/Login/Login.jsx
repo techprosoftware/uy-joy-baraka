@@ -116,7 +116,10 @@ export const Login = () => {
               <Button className="form__button" size="large" loading={loadings[0]} onClick={enterLoading} htmlType="submit">{t("login.title")}</Button>
 
 
-              <Link to="/register">{t("login.isRegister")}</Link>
+              <div className="sms__forward">
+                <Link to="/register">{t("login.isRegister")}</Link>
+                <Link to="/edit">Parol esdan chiqdimi ?</Link>
+              </div>
             </Form>
           </div>
         </div>

@@ -1,0 +1,82 @@
+.ant-input-number-handler-wrap {
+  display: none !important; 
+}
+
+.login__inner {
+padding: 100px 0;
+}
+
+.login__wrapper {
+width: 100%;
+max-width: 600px;
+display: block;
+margin: 0 auto;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+background-color: #fff;
+border-radius: 10px;
+padding: 30px;
+}
+
+.login__wrapper h3 {
+margin: 0;
+font-family: "Gilroy";
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 40px;
+color: #000000;
+}
+
+.login__wrapper p {
+margin: 0;
+margin-bottom: 31px;
+font-family: "Gilroy";
+font-style: normal;
+font-weight: 300;
+font-size: 14px;
+line-height: 17px;
+color: #000000;
+}
+
+
+
+.form__button {
+  background: #008b51;
+  border-radius: 9px;
+  outline: none;
+  width: 100%;
+  border: none;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+}
+
+.form__button:focus {
+  color: #fff !important;
+}
+
+.form__button:hover {
+color: #fff !important;
+}
+
+
+.login__form a {
+text-align: end;
+margin-top: 20px;
+display: block;
+}
+
+.login__label {
+display: flex !important;
+margin-bottom: 15px 10px;
+font-weight: 500;
+margin-bottom: 5px;
+font-family: "Inter" serif;
+}
+
+
+
+
