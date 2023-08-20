@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 // import "./search.scss"
-import { BASE_URL } from "@api/api"
+import { BASE_URL } from "@api/api";
 
 export const Search = ({ data }) => {
   return (
@@ -10,22 +10,23 @@ export const Search = ({ data }) => {
         <>
           <Link
             to={`/announcement/${item.slug}`}
-            className="d-block bg-white border-bottom p-3 text-success"
+            className="wrapper-box d-block bg-white border-bottom text-success"
           >
-            <div className="d-flex">
+            <div className="wrapper">
               <img
-                className="rounded"
+                className="rounded-img"
                 src={BASE_URL + item.thumb[0]}
                 width={40}
                 height={40}
               />
-              <div className="mx-3">
-                <span>
+              <div className="wrapper-box__texts mx-3">
+                <span className="wrapper-box__city">
                   {item.city}
                   {item.district ? ", " : ""}
                 </span>
                 <span>{item.district}</span>
-                <p>
+                <div className="line"></div>
+                <p className="description">
                   {item?.description?.length > 150
                     ? `${item?.description?.substring(0, 50)}...`
                     : item?.description}
@@ -35,6 +36,14 @@ export const Search = ({ data }) => {
           </Link>
         </>
       ))}
+      {data?.length > 0 && <div className="additional__line"></div>}
+      {data?.length > 0 && (
+        <div className="view__more-wrapper">
+          <a className="view__more" href="#top">
+            Yana ko'rish
+          </a>
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};

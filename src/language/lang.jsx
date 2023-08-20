@@ -27,7 +27,7 @@ export const lang = {
       callbtn: "Biz bilan aloqa",
     },
     homecard: {
-      title: "Sizga mos keladigan uylar",
+      title: "TOP",
       adstitle: "REKLAMANGIZ UCHUN JOY",
       socialtitle: "Bizni ijtimoiy tarmoqlarda kuzating",
       morebtn: "Ko'proq ko'rish",
@@ -198,7 +198,7 @@ export const lang = {
       callbtn: "Связаться с нами",
     },
     homecard: {
-      title: "Дома, которые вам подходят",
+      title: "ТОП",
       adstitle: "МЕСТО ДЛЯ ВАШЕЙ РЕКЛАМЫ",
       socialtitle: "Следите за нами в социальных сетях",
       morebtn: "Узнать больше",
