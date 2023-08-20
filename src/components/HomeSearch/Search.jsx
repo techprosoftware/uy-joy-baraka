@@ -40,7 +40,7 @@ export const Search = ({ data }) => {
       {data?.length > 0 && (
         <div className="view__more-wrapper">
           <a className="view__more" href="#top">
-            Yana ko'rish
+            Davom eting ↓
           </a>
         </div>
       )}
