@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import { BASE_URL } from "@api/api"
 
 export const Search = ({ data }) => {
-  console.log(data)
   return (
     <div className="search-result">
       {data?.map((item) => (

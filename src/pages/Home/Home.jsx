@@ -11,13 +11,26 @@ const InfiniteScroll = lazy(() =>
   import("@components/InfiniteScroll/InfiniteScroll")
 )
 import LoadingImg from "@images/card-single-loading.svg"
+import CardService from "@api/card.service"
 
 const Home = () => {
   const page = useSelector((state) => state.page.page)
   const dispatch = useDispatch()
 
+  const fetcherLikedCards = async () => {
+    const response = await CardService.getLike()
+    console.log(response)
+    if (response?.status == 200) {
+      localStorage.setItem(
+        "likedCardList",
+        JSON.stringify(response?.data?.posts)
+      )
+    }
+  }
+
   useEffect(() => {
     dispatch(setPage(3))
+    fetcherLikedCards()
   }, [])
 
   return (

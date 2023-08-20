@@ -15,12 +15,10 @@ export const Card = (card) => {
   const navigate = useNavigate()
   // const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon)
   const data = card.card?.createdAt.toString().slice(0, 10)
+  const likedCardList = JSON.parse(localStorage.getItem("likedCardList")) || []
 
   const [like, setLike] = useState(false)
 
-  const [favorite, setFavorite] = useState({
-    data: null
-  })
   const handleClick = async (evt) => {
     const targetTag = evt.target.className
     const token = localStorage.getItem("token") || ""
@@ -29,16 +27,9 @@ export const Card = (card) => {
       if (!token) {
         navigate("/login")
       } else {
-        console.log(evt.target.src)
         setLike(!like)
         const response = await CardService.likeCard(card?.card?.announcement_id)
-        console.log(response)
         if (response?.status === 200) {
-          const res = (JSON.parse(response.config.data));
-          // console.log(res);
-          console.log(favorite);
-          setFavorite({data:  res})
-          localStorage.setItem('like', JSON.stringify(favorite))
           toast.success("Saqlanganlarga qo'shildi")
           return
         } else {
@@ -50,6 +41,24 @@ export const Card = (card) => {
     } else {
       window.scroll(0, 0)
       navigate(`/announcement/${card.card?.slug}`)
+    }
+  }
+
+  const handleLiked = () => {
+    const index = likedCardList.findIndex(
+      (item) => item.announcement_id === card.card.announcement_id
+    )
+
+    if (index !== -1) {
+      card.card.isLiked = false
+      likedCardList.splice(index, 1)
+      localStorage.setItem("likedCardList", JSON.stringify(likedCardList))
+    } else {
+      localStorage.setItem(
+        "likedCardList",
+        JSON.stringify([...likedCardList, card.card])
+      )
+      card.card.isLiked = true
     }
   }
 
@@ -72,12 +81,13 @@ export const Card = (card) => {
             </span>
             <div className="card__right">
               <span className="card__view me-2">{card.card?.viewCount}</span>
-              <button 
-              onClick={() => card.handleLiked()}
-              className="card__like">
+              <button
+                onClick={() => handleLiked()}
+                className="card__like"
+              >
                 <img
                   className="card__like-img"
-                  src={like ? CardLikeIcon : CardULikeIcon}
+                  src={card.card?.isLiked ? CardLikeIcon : CardULikeIcon}
                   width={17}
                   height={16}
                   alt="Card like button image"
