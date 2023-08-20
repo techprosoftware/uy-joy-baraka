@@ -12,6 +12,7 @@ import CardULikeIcon from "@images/card-ulike-icon.svg"
 import SearchService from "../../Api/search.service"
 import { useTranslation } from "react-i18next"
 import CardService from "../../Api/card.service"
+import { Card } from "@components/Cards/Cards"
 
 const AnnounSearch = () => {
   const { t } = useTranslation()
@@ -57,7 +58,7 @@ const AnnounSearch = () => {
   console.log(activeCard)
   const newData = activeCard?.data?.posts
 
-  const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
   const navigate = useNavigate()
   const handleClick = async (evt) => {
@@ -102,7 +103,34 @@ const AnnounSearch = () => {
             mockData.map((moc) => <CardSkeleton key={moc} />)
           ) : newData?.length ? (
             newData.map((item) => (
-              <>
+              <Card
+                key={item.slug}
+                card={item}
+              />
+            ))
+          ) : (
+            <div className="py-5 d-flex flex-column align-items-center">
+              <p>
+                <Link
+                  className="heart__desc-link"
+                  to={"/"}
+                >
+                  {t("search.empty1")}{" "}
+                </Link>
+                <span className=" heart__desc">{t("search.empty2")} </span>{" "}
+              </p>
+            </div>
+          )}
+          {/* {activeCard?.data?.totalCount != 0 ?  <MoreBtn/> : ""} */}
+        </ul>
+      </div>
+    </div>
+  )
+}
+
+export default AnnounSearch
+/**
+ * <>
                 <Link
                   key={item?.announcement_id}
                   id={item?.announcement_id}
@@ -168,25 +196,4 @@ const AnnounSearch = () => {
                   </div>
                 </Link>
               </>
-            ))
-          ) : (
-            <div className="py-5 d-flex flex-column align-items-center">
-              <p>
-                <Link
-                  className="heart__desc-link"
-                  to={"/"}
-                >
-                  {t("search.empty1")}{" "}
-                </Link>
-                <span className=" heart__desc">{t("search.empty2")} </span>{" "}
-              </p>
-            </div>
-          )}
-          {/* {activeCard?.data?.totalCount != 0 ?  <MoreBtn/> : ""} */}
-        </ul>
-      </div>
-    </div>
-  )
-}
-
-export default AnnounSearch
+ */

@@ -87,14 +87,14 @@ const HomeSearch = () => {
       if (currentValue !== "" && currentValue.trim()) {
         try {
           const response = await SearchService.searchOnInput(currentValue)
-          console.log(response)
+          // console.log(response)
 
           //* Searchs the latin or crylic text
           const searchTermLatin = transliterate(currentValue)
           const responseLatin = await SearchService.searchOnInput(
             searchTermLatin
           )
-          console.log(responseLatin)
+          // console.log(responseLatin)
 
           //* Collect as a combined posts(texts)
           const combinedPosts = [
