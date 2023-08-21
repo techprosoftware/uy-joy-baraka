@@ -45,9 +45,9 @@ const CardSingle = () => {
     dispatch(chatId(data.messageItem?.chat_id));
 
     if (data.ok === true) {
-      navigate("/messaging");
       toast.success("Xabar yuborildi");
       notificationSound.play();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
     // console.log(data);
   };
