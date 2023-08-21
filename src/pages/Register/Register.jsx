@@ -39,8 +39,6 @@ export const Register = () => {
   };
 
   const dispatch = useDispatch();
-
-
   const [form] = Form.useForm();
   const onFinish = async (values) => {
     enterLoading(0)
