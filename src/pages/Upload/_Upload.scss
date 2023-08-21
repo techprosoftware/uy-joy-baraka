@@ -125,8 +125,9 @@
 :where(.css-dev-only-do-not-override-fpg3f5).ant-input-number-affix-wrapper input.ant-input-number-input {
   padding:3px 0 4px 0;
   font-size: 14px;
-}:where(.css-dev-only-do-not-override-fpg3f5).ant-form input[type="file"] {
-  display: none;
+}
+ input[type="file"] {
+  display: none !important;
 }
 
 .address__input {
