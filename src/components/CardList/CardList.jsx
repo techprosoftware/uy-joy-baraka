@@ -17,13 +17,15 @@ const CardList = ({ page }) => {
   const dispatch = useDispatch()
   const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   const [data, setData] = useState([])
-  const likedCardList = useSelector((state) => state.liked.liked)
+  // const likedCardList = useSelector((state) => state.liked.liked)
+  const likedCardList = JSON.parse(localStorage.getItem("likedCardList")) || []
+  // console.log(likedCardList);
 
   useEffect(() => {
     async function fetchCardData() {
       try {
         const response = await CardService.getByPage(page)
-        console.log(response)
+        // console.log(response)
         if (response.status === 200) {
           setIsLoading(false)
           const data = response.data.posts
@@ -37,26 +39,16 @@ const CardList = ({ page }) => {
     fetchCardData()
   }, [])
 
-  // console.log(likedCardList)
-
   return (
     <ul className="card-list">
       {isLoading
         ? mockData.map((moc) => <CardSkeleton key={moc} />)
         : data?.map((card) => {
-            const foundedCard = likedCardList.includes(card.slug)
-            const handleLiked = () => {
-              if (foundedCard) {
-                const index = likedCardList.indexOf(card.slug)
-                const newCards = likedCardList.slice(index, 1)
-                dispatch(setLikedCard(newCards))
-              } else {
-                dispatch(setLikedCard([...likedCardList, card.slug]))
-                card.isLiked = true
-              }
-            }
+            const foundedCard = likedCardList.findIndex(
+              (item) => item.announcement_id === card.announcement_id
+            )
 
-            if (foundedCard) {
+            if (foundedCard !== -1) {
               card.isLiked = true
             }
 
@@ -64,7 +56,6 @@ const CardList = ({ page }) => {
               <Card
                 key={card.announcement_id}
                 card={card}
-                handleLiked={handleLiked}
               />
             )
           })}

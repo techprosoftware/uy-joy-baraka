@@ -36,8 +36,6 @@ const InfiniteScroll = () => {
     }, 1500)
   }
 
-  console.log(fetcher.data)
-
   const loader = (
     <>
       <div className="container">
