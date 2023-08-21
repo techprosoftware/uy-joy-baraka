@@ -25,7 +25,7 @@ const CardList = ({ page }) => {
     async function fetchCardData() {
       try {
         const response = await CardService.getByPage(page)
-        // console.log(response)
+        console.log(response)
         if (response.status === 200) {
           setIsLoading(false)
           const data = response.data.posts

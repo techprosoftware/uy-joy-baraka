@@ -334,7 +334,7 @@ export const Upload = () => {
       );
 
       totalSize = compressedFiles.reduce((acc, file) => acc + file.size, 0);
-console.log(totalSize);
+      console.log(totalSize);
       if (totalSize > maxTotalSize) {
         toast.error(`${t("addannoun.errorSize")}`);
         return;
@@ -436,6 +436,7 @@ console.log(totalSize);
       values.price_type = "";
     }
   };
+
   return (
     <div className="upload__inner">
       <div className="container">
@@ -655,13 +656,24 @@ console.log(totalSize);
                 ]}
               >
                 <InputNumber
+                  placeholder="2 000 000"
+                  formatter={(value) =>
+                    `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  }
+                  parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+                  size="large"
+                  style={{
+                    width: "100%",
+                  }}
+                />
+                {/* <InputNumber
                   ref={phone}
                   placeholder="2 000 000"
                   size="large"
                   style={{
                     width: "100%",
                   }}
-                />
+                /> */}
               </Form.Item>
 
               <Form.Item

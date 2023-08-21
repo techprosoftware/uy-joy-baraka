@@ -36,8 +36,9 @@
   position: relative;
 }
 
-.upload__wrap + .upload__wrap {
-  // margin-top: 40px;
+.upload__wrap p {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .upload__img {

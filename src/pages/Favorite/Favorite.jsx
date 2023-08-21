@@ -11,6 +11,7 @@ import CardULikeIcon from "@images/card-ulike-icon.svg";
 import CardService from "../../Api/card.service";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
+import noData from "@images/no-data.svg";
 
 const Favorite = () => {
   const { t } = useTranslation();
@@ -191,6 +192,7 @@ const Favorite = () => {
             ))
           ) : (
             <div className="py-5 d-flex flex-column align-items-center">
+              <img className="img-fluid" width={500} src={noData} />
               <p>
                 <span className="favorite__desc">{t("favorite.empty")}</span>{" "}
               </p>

@@ -257,3 +257,13 @@
     text-decoration: none;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .input__sale {
+    padding: 2px 0 4px 4px;
+  }
+
+  .input__sale::placeholder {
+    font-size: 15px;
+  }
+}
