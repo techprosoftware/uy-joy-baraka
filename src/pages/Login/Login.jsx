@@ -118,7 +118,7 @@ export const Login = () => {
 
               <div className="sms__forward">
                 <Link to="/register">{t("login.isRegister")}</Link>
-                <Link to="/edit">Parol esdan chiqdimi ?</Link>
+                <Link to="/edit">{t("login.notmemorypass")} ?</Link>
               </div>
             </Form>
           </div>

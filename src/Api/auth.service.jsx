@@ -18,10 +18,20 @@ const AuthService = {
   },
 
   SendCode: async (body) => {
-    console.log('send', body);
     try {
       const data = await axios
       .post("/api/users/send-code", body)
+      .catch((err) => console.log(err));
+    return data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  },
+
+  VerifyPhone: async (body) => {
+    try {
+      const data = await axios
+      .post("/api/users/check-phone", body)
       .catch((err) => console.log(err));
     return data;
     } catch (error) {

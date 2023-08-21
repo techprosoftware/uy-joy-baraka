@@ -50,6 +50,18 @@ const ProfileService = {
     //* If success, return true and continue to next;
     return data;
   },
+
+  EditPassword: async (body) => {
+    //* WATCH full phone and update asynchronously
+    const data = await axios.patch("/api/users/edit-password", body, {
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
+
+    //* If success, return true and continue to next;
+    return data;
+  },
 };
 
 export default ProfileService;

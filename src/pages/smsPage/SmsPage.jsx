@@ -13,7 +13,6 @@ export const SmsPage = () => {
 
   const { t, i18n } = useTranslation();
 
-
   const phone = localStorage.getItem("phone");
 
   const navigate = useNavigate();
