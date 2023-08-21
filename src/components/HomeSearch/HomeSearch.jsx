@@ -23,30 +23,14 @@ const HomeSearch = () => {
     data: [],
   });
 
-  const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOustside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setOpenSelect(false);
-      }
-    };
-
-    document.addEventListener("click", handleClickOustside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOustside);
-    };
-  }, []);
-
   const { t, i18n } = useTranslation();
   const search = useRef();
   const dispatch = useDispatch();
   const [openSelect, setOpenSelect] = useState(false);
 
-  // const handleSelect = () => {
-  //   setOpenSelect(!openSelect);
-  // };
+  const handleSelect = () => {
+    setOpenSelect(!openSelect);
+  };
 
   const navigate = useNavigate();
 
@@ -144,12 +128,7 @@ const HomeSearch = () => {
       <div className="container">
         <div className="search__wrap">
           <div className="search__select">
-            <a
-              ref={dropdownRef}
-              className="dropdown__btn "
-              href="#"
-              onClick={() => setOpenSelect(!openSelect)}
-            >
+            <a className="dropdown__btn " href="#" onClick={handleSelect}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
