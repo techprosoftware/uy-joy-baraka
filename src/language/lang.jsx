@@ -80,7 +80,7 @@ export const lang = {
 
     searchpage: {
       filter: "Filter",
-      search: "Mavjud uylarni qidirish: Chilonzor 2-xonalik kv",
+      search: "Qidirish: Chilonzor 2-xonalik kv",
       search_btn: "Izlash",
       sale: "Ijara yoki sotuv",
       type: "Valyuta kursi",
@@ -262,7 +262,7 @@ export const lang = {
 
     searchpage: {
       filter: "Фильтр",
-      search: "Искать свободные дома: Чиланзар 2-комн.кв.",
+      search: "Искать: Чиланзар 2-комн.кв.",
       search_btn: "Поиск",
       sale: "Аренда или продажа",
       type: "курс валюта",

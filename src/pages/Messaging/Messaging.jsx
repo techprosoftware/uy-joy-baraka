@@ -48,19 +48,7 @@ const Messaging = () => {
     }
   }
   useEffect(() => {
-    const getAllMessage = async () => {
-      try {
-        const data = await MessagingService.GetMessaging()
-        console.log("user", data.members?.length)
-        setChats(data?.members)
-        setUpdate(false)
-      } catch (error) {
-        console.error("Error occurred while fetching user profile", error)
-      }
-    }
-
     getAllMessage()
-  
   }, [activeChatId, update])
 
   //* POST MESSAGE -- [POST REQUEST]
