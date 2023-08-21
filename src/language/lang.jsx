@@ -102,6 +102,8 @@ export const lang = {
       requiredPhone: "Telefon raqam kiriting!",
       requierdPassword: "Parol kiriting!",
       error: "Raqam yoki parol xato",
+      notmemorypass: "Parol esdan chiqdimi"
+
     },
     register: {
       title: "Ro’yxatdan o’tish",
@@ -113,7 +115,7 @@ export const lang = {
       isLogin: "Ro’yxatdan o’tganmisiz?",
       requiredName: "Ism kiriting!",
       requiredPhone: "Telefon raqam kiriting!",
-      requierdPassword2: "Takroriy parolni kiriting!",
+      requierdPassword2: "Parolni takror kiriting!",
       requierdPassword: "Parol kiriting!",
       errorPhone: "Bu raqam  ro'yxatdan o'tgan",
       error: "Nimadir xato, qayta urinib ko'ring",
@@ -166,6 +168,16 @@ export const lang = {
       desc: "Asosiy sahifaga o'tish va orzuingizdagi uy-ni topish orqali, suhbatni boshlashingiz mumkin",
       back: "Asosiy sahifaga",
       small: "Kichikroq"
+    },
+    password: {
+      newpass: "Yangi parol kiriting",
+      verify : "Tasdiqlash"
+    },
+    passwordsms: {
+      title: "Telefon raqam kiriting",
+      desc: "Parolni tiklash uchun kiritishingiz kerak biz u raqamga sms kod yuboramiz",
+      send: "Yuborish",
+      errphone: "Bu raqam ro'yxatdan o'tmagan"
     }
   },
 
@@ -177,15 +189,15 @@ export const lang = {
       chat: "Онлайн чат",
       sorted: "Избранные",
       callcenter: "Связаться с нами",
-      aboutme: "о нас",
+      aboutme: "О нас",
       apps: " Скачать приложение",
       login: "Войти",
-      register: "регистрация",
+      register: "Регистрация",
     },
     profile: {
       userinfo: "Моя информация",
       posts: "Мои объявления",
-      aboutme: "о нас",
+      aboutme: "О нас",
       exit: "Выход",
     },
     homebanner: {
@@ -208,7 +220,7 @@ export const lang = {
       appstitle: "Всегда будьте в курсе Скачать приложение 'Uy-joy baraka'",
       partners: "Партнеры",
       ads: "Реклама",
-      callme: "применять",
+      callme: "Применять",
     },
     addannoun: {
       annountitle: "Добавить объявление",
@@ -219,7 +231,7 @@ export const lang = {
       address: "Адрес",
       type: "Аренда или продажа",
       title: "Укажите название:",
-      addtitle: "название",
+      addtitle: "Название",
       desc: "Описание:",
       price: "Введите цену:",
       course: "Валюта",
@@ -227,8 +239,8 @@ export const lang = {
       send: "сохранить",
       rent: "Арендa",
       sale: "Распродажа",
-      sum: "сум",
-      usd: "доллар",
+      sum: "Сум",
+      usd: "Доллар",
       success: "Объявление успешно добавлено.",
       error: "Заполните поле полностью или введите номер телефона правильно.",
       errorSize: "Общий размер превысил 6 МБ. Пожалуйста, загрузите маленькие изображения.",
@@ -260,24 +272,26 @@ export const lang = {
 
     singlepage: {
       phone: "Позвонить",
-      sendsms: "сообщение",
+      sendsms: "Сообщение",
       share: "Поделиться",
       recomended: "Самые просматриваемые дома",
     },
     login: {
       title: "Войти",
       desc: "Введите свой номер и пароль для доступа к нашему сайту",
-      phone: "номер телефона",
+      phone: "Номер телефона",
       password: "Пароль",
       isRegister: "Не зарегистрирован?",
       requiredPhone: "Введите номер телефона!",
       requierdPassword: "Введите пароль!",
       error: "Номер или пароль неверный",
+      notmemorypass: "Забыли пароль"
+
     },
     register: {
       title: "Регистрация",
       desc: "Пожалуйста, зарегистрируйтесь сначала, чтобы использовать наш сайт",
-      phone: "номер телефона",
+      phone: "Номер телефона",
       password: "Пароль",
       password2: "Повторите пароль",
       name: "Имя",
@@ -288,30 +302,31 @@ export const lang = {
       requierdPassword: "Введите пароль!",
       errorPhone: "Этот номер зарегистрирован",
       error: "Что-то пошло не так. Пожалуйста, попробуйте еще раз",
+
     },
     sms : {
-      title: "введите код",
+      title: "Введите код",
       desc: "Код отправлен на номер телефона указанный ниже",
       code: "Код",
       verify: "Подтверждение",
       changePhone: "Изменить номер телефона?",
       isLogin: "Вы зарегистрированы?",
-      requiredCode: "введите смс код!",
-      errorCode: "неверный код!"   
+      requiredCode: "Введите смс код!",
+      errorCode: "Неверный код!"   
     },
     account: {
       img: "Фото",
       name: "Имя",
-      nomer: "номер телефона",
+      nomer: "Номер телефона",
       change :"Изменения успешно внесены, изменения могут занять некоторое время!",
-      send: "сохранить"
+      send: "Сохранить"
     },
     about : {
-      aboutme: "о нас"
+      aboutme: "О нас"
     },
     favorite: {
       save: "Сохранено",
-      count:"объявлений не найдено",
+      count:"Объявлений не найдено",
       close: "Удалено из сохраненных",
       empty: "Нет объявлений, которые вам понравились!"
     },
@@ -319,7 +334,7 @@ export const lang = {
       save: "Категория",
       count:"объявлений не найдено",
       empty1: "Отсюда",
-      empty2: "вы можете найти больше объявлений."
+      empty2: "Вы можете найти больше объявлений."
     },
     notfound: {
       errortitle: "Страница не найдена",
@@ -328,7 +343,7 @@ export const lang = {
     chat : {
       arxiv: "Архив сообщений",
       more: "Более",
-      send: "написать смс",
+      send: "Написать смс",
       verify: "Пожалуйста подтвердите",
       versms: "Вы уверены, что хотите удалить этот чат ?",
       yes: "Да",
@@ -338,6 +353,16 @@ export const lang = {
       back: "На главную страницу",
       small: "Меньше"
 
+    },
+    password: {
+      newpass: "Введите новый пароль",
+      verify : "Подтверждение"
+    },
+    passwordsms: {
+      title: "Введите номер телефона",
+      desc: "Для сброса пароля необходимо его ввести, на этот номер мы отправим SMS с кодом",
+      send: "Oтправлять",
+      errphone: "Этот номер не зарегистрирован"
     }
   },
 

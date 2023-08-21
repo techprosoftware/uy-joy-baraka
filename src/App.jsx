@@ -12,6 +12,9 @@ import i18n from 'i18next';
 import { initReactI18next } from "react-i18next";
 import { lang } from "./language/lang";
 import { ToastContainer } from "react-toastify";
+import { Edit } from "./pages/Edit/Edit";
+import { EditSms } from "./pages/EditSms/EditSms";
+import { EditPassword } from "./pages/EditPassword/EditPassword";
 
 function App() {
 
@@ -37,6 +40,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sms" element={<SmsPage />} />
+        <Route path="/edit" element={<Edit/>} />
+        <Route path="/edit-sms" element={<EditSms/>} />
+        <Route path="/edit-password" element={<EditPassword/>} />
       </Routes>
      
       <a href="#"  className="back">
