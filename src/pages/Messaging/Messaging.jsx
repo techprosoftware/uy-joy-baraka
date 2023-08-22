@@ -1,76 +1,79 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
-import { useState, useEffect } from "react"
-import { useRef } from "react"
+import { useState, useEffect } from "react";
+import { useRef } from "react";
 //* Ant design
-import { Modal } from "antd"
-import { ExclamationCircleOutlined } from "@ant-design/icons"
+import { Modal } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 //* Icons
-import TrashIcon from "../../../public/assets/images/messaging-delete-icon.svg"
-import ChatsendIcon from "../../../public/assets/images/chatbar-send-icon.svg"
-import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilonzor.webp"
-import arrow from "../../../public/assets/images/left-arrow.svg"
-import MessagingService from "../../Api/messaging.service"
-import DoubleCheck from "../../../public/assets/images/double-check_message.svg"
-import { useNavigate } from "react-router-dom"
-import ProfileService from "../../Api/profile.service"
-import NoData from "../../../public/assets/images/no-data.svg"
-import ChatMessaging from "../../../public/assets/images/messaging-chat.svg"
-import { useTranslation } from "react-i18next"
-import { BASE_URL } from "../../Api/api"
+import TrashIcon from "../../../public/assets/images/messaging-delete-icon.svg";
+import ChatsendIcon from "../../../public/assets/images/chatbar-send-icon.svg";
+import SelectedChatImg from "../../../public/assets/images/chat-icon-home-chilonzor.webp";
+import arrow from "../../../public/assets/images/left-arrow.svg";
+import MessagingService from "../../Api/messaging.service";
+import DoubleCheck from "../../../public/assets/images/double-check_message.svg";
+import { useNavigate } from "react-router-dom";
+import ProfileService from "../../Api/profile.service";
+import NoData from "../../../public/assets/images/no-data.svg";
+import ChatMessaging from "../../../public/assets/images/messaging-chat.svg";
+import { useTranslation } from "react-i18next";
+import { BASE_URL } from "../../Api/api";
+// Notification sound sent message
+import NotificationSound from "../../../public/assets/music/Text Message Sent - Iphone.mp3";
 
 const Messaging = () => {
-  const [isActive, setIsActive] = useState(false)
-  const [isBarActive, setIsBarActive] = useState()
-  const [chats, setChats] = useState(null)
-  const [activeChatId, setActiveChatId] = useState(null)
-  const [update, setUpdate] = useState(false)
-  const [showFullTitle, setShowFullTitle] = useState(false)
+  const [isActive, setIsActive] = useState(false);
+  const [isBarActive, setIsBarActive] = useState();
+  const [chats, setChats] = useState(null);
+  const [activeChatId, setActiveChatId] = useState(null);
+  const [update, setUpdate] = useState(false);
+  const [showFullTitle, setShowFullTitle] = useState(false);
 
-  console.log(chats, "set chat")
-  // console.log(chatId);
-  const { t } = useTranslation()
+  // Notification sound
+  const notificationSound = new Audio(NotificationSound);
+  const { t } = useTranslation();
 
   //* Additional things
-  const navigate = useNavigate()
-  const message = useRef(null)
+  const navigate = useNavigate();
+  const message = useRef(null);
 
   //* GET MESSAGING -- [GET REQUEST]
   const getAllMessage = async () => {
     try {
-      const data = await MessagingService.GetMessaging()
-      console.log("user", data)
-      setChats(data?.members)
-      setUpdate(false)
+      const data = await MessagingService.GetMessaging();
+      console.log("user", data);
+      setChats(data?.members);
+      setUpdate(false);
     } catch (error) {
-      console.error("Error occurred while fetching user profile", error)
+      console.error("Error occurred while fetching user profile", error);
     }
-  }
+  };
   useEffect(() => {
-    getAllMessage()
-  }, [activeChatId, update])
+    getAllMessage();
+  }, [activeChatId, update]);
 
   //* POST MESSAGE -- [POST REQUEST]
   const sendMessage = async (e) => {
-    e.preventDefault()
-    if (!message.current.value) return alert("Message value required")
+    e.preventDefault();
+    if (!message.current.value) return alert("Message value required");
     try {
       await MessagingService.SendMessage(
         { message: message.current.value },
         activeChatId
-      )
-      message.current.value = ""
-      setUpdate(true)
-      getMessageById(localStorage.getItem("chatId"))
+      );
+      message.current.value = "";
+      setUpdate(true);
+      notificationSound.play();
+      getMessageById(localStorage.getItem("chatId"));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   //* DELETE CHAT -- [DELETE REQUEST]
   const deleteChat = async (i) => {
-    console.log(i)
+    console.log(i);
     Modal.confirm({
       title: `${t("chat.verify")}`,
       icon: <ExclamationCircleOutlined />,
@@ -79,63 +82,59 @@ const Messaging = () => {
       cancelText: `${t("chat.no")}`,
       onOk: async () => {
         try {
-          await MessagingService.DeleteChat(i)
-          setUpdate(true)
-          setIsBarActive(false)
+          await MessagingService.DeleteChat(i);
+          setUpdate(true);
+          setIsBarActive(false);
         } catch (error) {
-          console.log(error)
+          console.log(error);
         }
       },
-    })
-  }
+    });
+  };
 
-  const [userData, setUserData] = useState([])
+  const [userData, setUserData] = useState([]);
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await ProfileService.GetProfile()
-        console.log(response)
-        setUserData(response)
+        const response = await ProfileService.GetProfile();
+        console.log(response);
+        setUserData(response);
       } catch (error) {
-        console.error("Error occurred while fetching user profile", error)
+        console.error("Error occurred while fetching user profile", error);
       }
-    }
+    };
 
-    fetchUserProfile()
-  }, [])
+    fetchUserProfile();
+  }, []);
 
   //* Handle button active state change
   const handleButtonClick = () => {
-    setIsActive(!isActive)
-  }
+    setIsActive(!isActive);
+  };
 
   const handleBarActive = () => {
-    setIsBarActive(!isBarActive)
-  }
+    setIsBarActive(!isBarActive);
+  };
 
-  const [meData, setMeData] = useState()
+  const [meData, setMeData] = useState();
   const getMessageById = async (chat_id) => {
-    const data = await MessagingService.GetMessageById(chat_id)
-    setMeData(data.data?.messages)
-    return data
-  }
-  console.log(meData)
-  console.log(userData)
-
-  //
-  // console.log('me',resultMeData);
-  // console.log('you',resultYouData);
+    const data = await MessagingService.GetMessageById(chat_id);
+    setMeData(data.data?.messages);
+    return data;
+  };
+  console.log(meData);
+  console.log(userData);
 
   //* Handle chat bar active
   const handleChatBarActive = (id) => {
-    localStorage.setItem("chatId", id)
-    getMessageById(id)
-    setActiveChatId((prevActiveChatId) => (prevActiveChatId == id ? id : id))
-  }
+    localStorage.setItem("chatId", id);
+    getMessageById(id);
+    setActiveChatId((prevActiveChatId) => (prevActiveChatId == id ? id : id));
+  };
 
-  const selectedChat = chats?.find((chat) => chat.chat_id == activeChatId)
+  const selectedChat = chats?.find((chat) => chat.chat_id == activeChatId);
 
-  console.log(selectedChat)
+  console.log(selectedChat);
   // console.log(selectedChat);
   return (
     <>
@@ -144,15 +143,8 @@ const Messaging = () => {
       <div className="users-bar">
         <div className="container">
           <div className="backButton">
-            <button
-              onClick={() => navigate(-1)}
-              className="customBack"
-            >
-              <img
-                src={arrow}
-                alt="arrow button"
-              />{" "}
-              {t("backbtn")}{" "}
+            <button onClick={() => navigate(-1)} className="customBack">
+              <img src={arrow} alt="arrow button" /> {t("backbtn")}{" "}
             </button>
           </div>
           <div className="bar-wrapper">
@@ -178,22 +170,19 @@ const Messaging = () => {
                   <div>
                     {/* Chats */}
                     {chats?.map((info) => (
-                      <div
-                        key={info.chat_id}
-                        className="chats-container"
-                      >
+                      <div key={info.chat_id} className="chats-container">
                         <div
                           className={`chat-wrapper ${
                             info.chat_id === activeChatId ? "chatActive" : ""
                           }`}
                           onClick={() => {
-                            handleChatBarActive(info?.chat_id)
-                            handleBarActive()
+                            handleChatBarActive(info?.chat_id);
+                            handleBarActive();
                           }}
                         >
                           <div className="chat-inner">
                             <img
-                              src={BASE_URL+info?.user?.avatar}
+                              src={BASE_URL + info?.user?.avatar}
                               width={100}
                               alt="user image"
                               className="member-img"
@@ -205,10 +194,7 @@ const Messaging = () => {
                                 {info?.user?.full_name}
                               </span>
                               <button onClick={() => deleteChat(info?.chat_id)}>
-                                <img
-                                  src={TrashIcon}
-                                  alt="delete chat icon"
-                                />
+                                <img src={TrashIcon} alt="delete chat icon" />
                               </button>
                             </div>
                             <p className="chat-user__ad">
@@ -258,12 +244,12 @@ const Messaging = () => {
                               info?.chat_id === activeChatId ? "active" : ""
                             }`}
                             onClick={() => {
-                              handleChatBarActive(info?.chat_id)
-                              setIsBarActive(true)
+                              handleChatBarActive(info?.chat_id);
+                              setIsBarActive(true);
                             }}
                           >
                             <img
-                              src={BASE_URL+info?.user?.avatar}
+                              src={BASE_URL + info?.user?.avatar}
                               width={50}
                               height={50}
                               alt="user image"
@@ -283,7 +269,7 @@ const Messaging = () => {
                       <div className="user-selected">
                         <div className="user-inner">
                           <img
-                            src={BASE_URL+selectedChat?.user?.avatar}
+                            src={BASE_URL + selectedChat?.user?.avatar}
                             alt="selected user image"
                             width={100}
                           />
@@ -295,10 +281,7 @@ const Messaging = () => {
                           <button
                             onClick={() => deleteChat(selectedChat?.chat_id)}
                           >
-                            <img
-                              src={TrashIcon}
-                              alt="trash icon"
-                            />
+                            <img src={TrashIcon} alt="trash icon" />
                           </button>
                         </div>
                       </div>
@@ -313,10 +296,7 @@ const Messaging = () => {
                                 : ""
                             }`}
                           >
-                            <img
-                              src={SelectedChatImg}
-                              alt="selected chat"
-                            />
+                            <img src={SelectedChatImg} alt="selected chat" />
                             <div>
                               <span className="selected-ad">
                                 {showFullTitle
@@ -407,7 +387,7 @@ const Messaging = () => {
       {/* Footer component */}
       {/* <Footer /> */}
     </>
-  )
-}
+  );
+};
 
-export default Messaging
+export default Messaging;
