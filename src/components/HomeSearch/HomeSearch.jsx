@@ -262,6 +262,7 @@ const HomeSearch = () => {
           <div className="search__btn">
             <Link to={"announsearch"} onClick={handleSubmitSearch} href="#">
               {t("homebanner.searchbtn")}
+              
             </Link>
           </div>
         </div>
