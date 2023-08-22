@@ -2,7 +2,7 @@
   position: absolute;
   z-index: 10;
   width: 100%;
-  max-width: 100vh;
+  // max-width: 10;
   max-height: 600px;
 
   overflow-y: scroll;
@@ -73,10 +73,12 @@
   }
 }
 
+
 // ✅584px
 //* RESPONSIVENESS
 @media only screen and (max-width: 584px) {
   .search-result {
+  // min-width: 300px !important;
   }
 
   .wrapper-box {
@@ -93,6 +95,14 @@
 
   .wrapper {
     display: block;
+  }
+
+  .wrapper img {
+    display: none;
+    width: 100%;
+    min-width: 35px;
+    max-width: 35px;
+    height: 35px;
   }
 
   .rounded-img {
