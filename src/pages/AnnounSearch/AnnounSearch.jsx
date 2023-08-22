@@ -13,6 +13,7 @@ import SearchService from "../../Api/search.service"
 import { useTranslation } from "react-i18next"
 import CardService from "../../Api/card.service"
 import { Card } from "@components/Cards/Cards"
+import noData from "@images/no-data.svg";
 
 const AnnounSearch = () => {
   const { t } = useTranslation()
@@ -109,15 +110,17 @@ const AnnounSearch = () => {
               />
             ))
           ) : (
-            <div className="py-5 d-flex flex-column align-items-center">
+            <div className="py-5 d-flex flex-column align-items-center text-center">
+                            <img className="img-fluid" width={500} src={noData} />
+
               <p>
                 <Link
-                  className="heart__desc-link"
+                  className="search__desc-link"
                   to={"/"}
                 >
                   {t("search.empty1")}{" "}
                 </Link>
-                <span className=" heart__desc">{t("search.empty2")} </span>{" "}
+                <span className="search__desc">{t("search.empty2")} </span>{" "}
               </p>
             </div>
           )}

@@ -296,7 +296,7 @@ const Messaging = () => {
                                 : ""
                             }`}
                           >
-                            <img src={SelectedChatImg} alt="selected chat" />
+                            {/* <img src={SelectedChatImg} alt="selected chat" /> */}
                             <div>
                               <span className="selected-ad">
                                 {showFullTitle
@@ -355,7 +355,7 @@ const Messaging = () => {
 
                       {/* Chat messaged mock */}
                       <form className="message-form">
-                        <input
+                        <textarea
                           autoFocus
                           type="text"
                           className="chatbar-input"

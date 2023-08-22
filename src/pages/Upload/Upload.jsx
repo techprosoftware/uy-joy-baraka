@@ -565,7 +565,7 @@ export const Upload = () => {
                 },
               ]}
             >
-              <Input
+              <TextArea
                 size="large"
                 placeholder="Masalan: Chilonzor metorining yonida"
               />
