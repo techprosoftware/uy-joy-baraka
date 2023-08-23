@@ -52,78 +52,19 @@
   padding: 16px 9px 16px 18px;
 }
 
-.carousel {
-  position: relative;
-  z-index: 0;
+.swiper-button-next::after {
+  display: none;
 }
 
-// .carousel-indicators {
-//   position: absolute !important;
-//   left: 50% !important;
-//   bottom: 20px !important;
-//   transform: translate(-50%, -50%) !important;
-//   z-index: 2;
-//   display: flex;
-//   justify-content: center !important;
-//   padding: 0;
-//   margin-right: 0 !important;
-//   margin-bottom: 0 !important;
-//   margin-left: 0 !important;
-// }
-
-.carousel-indicators [data-bs-target] {
-  width: 20px !important;
-  background: #ffffff !important;
-  border-radius: 50% !important;
-  opacity: 1 !important;
+.swiper-button-prev::after {
+  display: none;
 }
 
-
-.carousel-control-prev-icon:after {
-  content: "" !important;
-}
-.carousel-control-next-icon:after {
-  content: "" !important;
-}
-
-
-.carousel-control-next {
+.swiper-pagination-bullet {
   background-color: #008b51 !important;
-  border-radius: 50% !important;
-  width: 2rem !important;
-  padding: 5px !important;
-  height: 2rem !important;
-  top: 66% !important;
-  right: 6% !important;
+  width: 12px !important;
+  height: 12px !important;
 }
-
-.carousel-control-prev {
-  background-color: #008b51 !important;
-  border-radius: 55% !important;
-  width: 2rem !important;
-  padding: 5px !important;
-  height: 2rem !important;
-  top: 66% !important;
-  left: 6% !important;
-}
-
-// .carousel-control-next:hover {
-//   border-radius: 50%;
-//   width: 2rem !important;
-//   padding: 5px;
-//   height: 2rem !important;
-//   top: 56% !important;
-//   right: 5%;
-// }
-
-// .carousel-control-prev:hover {
-//   border-radius: 55%;
-//   width: 2rem !important;
-//   padding: 5px;
-//   height: 2rem !important;
-//   top: 56% !important;
-//   left: 5%;
-// }
 
 @media only screen and (max-width: 993px) {
   .home-banner-wrap {
@@ -212,29 +153,8 @@
     line-height: 36px;
   }
 
-  .carousel-control-next {
-    display: none;
-  }
-
-  .carousel-control-prev {
-    display: none;
-  }
-
-  .carousel-control-next {
-    width: 1.5rem !important;
-    padding: 5px !important;
-    height: 1.5rem !important;
-  }
-
-  .carousel-control-prev {
-    width: 1.5rem !important;
-    padding: 5px !important;
-    height: 1.5rem !important;
-  }
 }
 
-.carousel-inner {
-  z-index: -1 !important;
-}
+
 
 

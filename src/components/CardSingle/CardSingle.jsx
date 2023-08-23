@@ -108,7 +108,7 @@ const CardSingle = () => {
   });
   return (
     <>
-      <main>
+      <main className="favorite-inner">
         <section>
           <div className="container">
             <div className="pt-3">
