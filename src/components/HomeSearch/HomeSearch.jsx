@@ -124,7 +124,8 @@ const HomeSearch = () => {
   ).current;
 
   return (
-    <div className="search__inner">
+    <div className="bg-white fixed-top home-search">
+      <div className="search__inner">
       <div className="container">
         <div className="search__wrap">
           <div className="search__select">
@@ -267,6 +268,7 @@ const HomeSearch = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

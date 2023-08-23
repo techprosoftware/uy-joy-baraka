@@ -1,10 +1,19 @@
 .search__inner {
   padding: 10px 0 10px 0;
+  // position: fixed;
+}
+
+.home-search {
+  margin-top: 70px;
 }
 
 @media only screen and (max-width: 769px) {
   .search__inner {
     padding: 10px 0 10px 0;
+  }
+
+  .home-search {
+    margin-top: 55px;
   }
 }
 
@@ -169,9 +178,9 @@
   background: #fff;
   padding: 15px;
   transition: all ease 0.51;
-  top: 140px;
+  top: 62px;
   position: absolute;
-  z-index: 999;
+  z-index: 9;
   border-radius: 5px;
 }
 
@@ -205,7 +214,7 @@
 @media only screen and (max-width: 779px) {
   .filter__select {
 
-    top: 120px;
+    top: 60px;
 
   }
 }
@@ -220,7 +229,7 @@
   }
   .filter__select {
 
-    top: 110px;
+    top: 59px;
 
   }
   .search__select {
@@ -267,5 +276,9 @@
 
   .input__sale::placeholder {
     font-size: 15px;
+  }
+
+  .home-search {
+    margin-top: 50px;
   }
 }

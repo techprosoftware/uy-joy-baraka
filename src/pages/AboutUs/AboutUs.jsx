@@ -10,7 +10,7 @@ const AboutUs = () => {
 
   return (
     <>
-      <main>
+      <main className="favorite-inner">
         <div className="about">
           <div className="container">
             <div className="back-btn">

@@ -26,7 +26,7 @@ export const Search = ({ data }) => {
                 </span>
                 <span>{item.district}</span>
                 <div className="line"></div>
-                <p className="description">
+                <p className="description text-black">
                   {item?.description?.length > 150
                     ? `${item?.description?.substring(0, 50)}...`
                     : item?.description}

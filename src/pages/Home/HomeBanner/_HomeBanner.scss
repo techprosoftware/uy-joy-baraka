@@ -21,6 +21,9 @@
   max-width: 25px;
 }
 
+.home-banner-inner {
+  padding-top:130px;
+}
 .banner-title {
   font-family: "Gilroy";
   font-style: normal;
@@ -155,6 +158,10 @@
     margin-bottom: 0px;
   }
 
+  .home-banner-inner {
+    padding-top:105px;
+  }
+
   .banner-btn {
     display: block;
     padding: 8px 13px;
@@ -229,3 +236,5 @@
 .carousel-inner {
   z-index: -1 !important;
 }
+
+
