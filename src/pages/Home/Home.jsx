@@ -10,7 +10,7 @@ const CardList = lazy(() => import("@components/CardList/CardList"))
 const InfiniteScroll = lazy(() =>
   import("@components/InfiniteScroll/InfiniteScroll")
 )
-import LoadingImg from "@images/card-single-loading.svg"
+import LoadingImg from "@images/loader.svg"
 import CardService from "@api/card.service"
 
 const Home = () => {
@@ -39,10 +39,9 @@ const Home = () => {
           <>
             <div className="container w-100 h-100">
               <img
-                className="d-block mx-auto"
+                className="d-block mx-auto loader-img"
                 src={LoadingImg}
-                width={200}
-                height={200}
+              
                 style={{ background: "none" }}
               />
             </div>
