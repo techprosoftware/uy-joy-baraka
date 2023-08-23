@@ -101,10 +101,6 @@ throw new Error(error)      }
   }, []);
 
   //* Handle button active state change
-  const handleButtonClick = () => {
-    setIsActive(!isActive);
-  };
-
   const handleBarActive = () => {
     setIsBarActive(!isBarActive);
   };

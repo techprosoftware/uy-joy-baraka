@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-no-target-blank */
 import { useEffect, useRef, useState } from "react"
-import "./_header.scss"
 import { Link, useNavigate } from "react-router-dom"
 import SiteLogo from "@images/logo.svg"
 import TelegramIcon from "@images/telegram.png"
@@ -71,9 +70,9 @@ const Header = () => {
     setLang(options[n].value)
   }
 
-  useEffect(() => {
-    handlclick(localStorage.getItem("uz") || 0)
-  }, [])
+  // useEffect(() => {
+  //   handlclick(localStorage.getItem("uz") || 0)
+  // }, [])
 
   const handleLogout = () => {
     localStorage.removeItem("token")
@@ -87,7 +86,6 @@ const Header = () => {
     setUSer(data)
   }
 
-  // console.log(user);
 
   useEffect(() => {
     getUser()

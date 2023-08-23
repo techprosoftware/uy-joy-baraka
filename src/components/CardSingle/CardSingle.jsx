@@ -26,11 +26,7 @@ const CardList = lazy(() => import("@components/CardList/CardList"));
 
 const CardSingle = () => {
   const notificationSound = new Audio(NotificationSound);
-
-  const navigate = useNavigate();
-
   const { t } = useTranslation();
-
   const token = localStorage.getItem("token");
 
   const dispatch = useDispatch();
@@ -48,14 +44,9 @@ const CardSingle = () => {
       notificationSound.play();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-    // console.log(data);
   };
 
-  useEffect(() => {
-    postMessage();
-  }, []);
-
-  const handleMessage = () => {
+   const handleMessage = () => {
     const data = {
       message: userMessage.current?.value,
       announcement_id: anId,
@@ -88,7 +79,7 @@ const CardSingle = () => {
       }
     } catch (error) {
       setCard({ isLoading: false, data: [] });
-      throw new Error(error)
+      throw new Error(error);
     }
   };
 
