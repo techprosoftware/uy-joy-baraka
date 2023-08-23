@@ -48,12 +48,10 @@ export const Login = () => {
       password: values.password,
     };
     users(value);
-    console.log(value);
 
-    console.log("Success:", values);
   };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+  const onFinishFailed = () => {
+    console.log("Failed:");
   };
 
   return (

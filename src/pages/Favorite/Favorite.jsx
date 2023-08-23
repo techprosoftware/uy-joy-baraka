@@ -24,7 +24,6 @@ const Favorite = () => {
 
   const getSearchCard = async () => {
     const data = await CardService.getLike();
-    console.log("like", data);
     if (data?.status === 200) {
       setLikeImgSrc(CardLikeIcon);
       setActiveCard({
@@ -93,7 +92,6 @@ const Favorite = () => {
   }));
 
   const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const navigate = useNavigate();
 
   const handleClick = async (event) => {
     const targetElement = event.target.closest(".card__like");
@@ -104,7 +102,6 @@ const Favorite = () => {
       const data = await CardService.unLikeCard(event.target.id);
       toast.success(`${t("favorite.close")}`);
 
-      console.log(data);
       getSearchCard();
       event.preventDefault();
       return data;

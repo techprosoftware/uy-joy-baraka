@@ -23,8 +23,6 @@ const AnnounSearch = () => {
   const type = localStorage.getItem("type")
   const price_type = localStorage.getItem("price_type")
 
-  console.log(cityName)
-
   const [activeCard, setActiveCard] = useState({
     isLoading: true,
     data: [],
@@ -46,7 +44,7 @@ const AnnounSearch = () => {
         })
       }
     } catch (error) {
-      console.log(error.message)
+      throw new Error(error)
     }
   }
 
@@ -54,9 +52,7 @@ const AnnounSearch = () => {
     getSearchCard()
   }, [])
 
-  const [likeImgSrc, setLikeImgSrc] = useState(CardULikeIcon)
 
-  console.log(activeCard)
   const newData = activeCard?.data?.posts
 
   const mockData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -67,7 +63,6 @@ const AnnounSearch = () => {
     const id = evt.target.id
     const targetTag = evt.target.className
 
-    console.log(id)
 
     const token = localStorage.getItem("token") || ""
 
@@ -75,13 +70,11 @@ const AnnounSearch = () => {
       if (targetTag === "card__like" || targetTag === "card__like-img") {
         evt.preventDefault()
         const response = await CardService.likeCard(id)
-        console.log(response)
         if (response?.status === 200) {
           toast.success("Saqlanganlarga qo'shildi")
           return
         } else {
           const data = await CardService.unLikeCard(id)
-          console.log(data)
           toast.success("Saqlanganlardan chiqarildi")
         }
         if (!token) {

@@ -41,7 +41,6 @@ const CardSingle = () => {
 
   const postMessage = async (body, idx) => {
     const data = await MessagingService.PostMessage(body, idx);
-    console.log(data.messageItem?.chat_id);
     dispatch(chatId(data.messageItem?.chat_id));
 
     if (data.ok === true) {
@@ -80,7 +79,6 @@ const CardSingle = () => {
     setCard({ isLoading: true, data: {} });
     try {
       const response = await CardService.getByCard(id);
-      console.log(response);
 
       setAnId(response.data.post.announcement_id);
       setUserId(response.data.post?.user_id);
@@ -90,7 +88,7 @@ const CardSingle = () => {
       }
     } catch (error) {
       setCard({ isLoading: false, data: [] });
-      console.log("Error fetching card data: ", error);
+      throw new Error(error)
     }
   };
 
@@ -106,8 +104,6 @@ const CardSingle = () => {
     .replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, "$1 ");
   const currentUrl = window.location.href;
   const images = data?.thumb?.map((element) => {
-    console.log(BASE_URL);
-    console.log(element);
     return BASE_URL + element;
   });
   return (

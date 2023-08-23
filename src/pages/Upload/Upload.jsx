@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
 import TextArea from "antd/es/input/TextArea";
 import { PlusOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 const provinceData = [
   "Toshkent",
@@ -256,33 +257,18 @@ const cityData = {
 export const Upload = () => {
   const [selectedImages, setSelectedImages] = useState([]);
 
-  const [city, setCity] = useState();
-  const [district, setDistrict] = useState();
-  const [type, setType] = useState();
-  const [price_type, setPrice_type] = useState();
-
   const [cities, setCities] = useState(cityData[provinceData[0]]);
   const [secondCity, setSecondCity] = useState();
   const handleProvinceChange = (value) => {
     setCities(cityData[value]);
     setSecondCity(cityData[value][0]);
-    setCity(value);
-    console.log(value);
   };
   const onSecondCityChange = (value) => {
     setSecondCity(value);
-    setDistrict(value);
-    console.log(value);
   };
 
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
-    setType(value);
-  };
+  
 
-  const handleChange1 = (value) => {
-    setPrice_type(value);
-  };
 
   const [urls, setUrls] = useState();
 
@@ -334,7 +320,6 @@ export const Upload = () => {
       );
 
       totalSize = compressedFiles.reduce((acc, file) => acc + file.size, 0);
-      console.log(totalSize);
       if (totalSize > maxTotalSize) {
         toast.error(`${t("addannoun.errorSize")}`);
         return;
@@ -342,10 +327,9 @@ export const Upload = () => {
       setUrls(compressedImageUrls);
       setSelectedImages(compressedFiles);
     } catch (error) {
-      console.error("Rasmni kichraytirishda xatolik:", error);
+      throw new Error(error)
     }
 
-    console.log("Umumiy rasmlar hajmi:", totalSize, "bayt");
   };
 
   const dataURLtoFile = (dataURL, fileName) => {
@@ -367,15 +351,14 @@ export const Upload = () => {
   };
 
   const phone = useRef();
-
-  const [check, setCheck] = useState(false);
+  const navigate = useNavigate()
 
   const sendAnnoun = async (body) => {
     const token = localStorage.getItem("token");
     const data = await AnnounService.CreateAnnoun(body, token);
     if (data?.status === 201) {
+      navigate('/')
       toast.success(`${t("addannoun.success")}`);
-      setCheck(true);
     } else {
       toast.error(`${t("addannoun.error")}`);
     }
@@ -403,10 +386,8 @@ export const Upload = () => {
 
   const onFinish = async (values) => {
     enterLoading(0);
-    console.log(values.phone);
 
     const formData = new FormData();
-    // console.log(fullPhone);
     const fullPhone = "998" + values.phone;
 
     formData.append("phone", fullPhone);
@@ -423,19 +404,7 @@ export const Upload = () => {
     }
 
     sendAnnoun(formData);
-
-    if (check) {
-      values.phone = "";
-      values.title = "";
-      values.address = "";
-      values.description = "";
-      values.price = "";
-      values.city = "";
-      values.district = "";
-      values.type = "";
-      values.price_type = "";
-    }
-  };
+      };
 
   return (
     <div className="upload__inner">
@@ -588,7 +557,6 @@ export const Upload = () => {
                 style={{
                   width: 200,
                 }}
-                onChange={handleChange}
                 options={[
                   {
                     label: `${t("addannoun.type")}`,
@@ -690,7 +658,6 @@ export const Upload = () => {
                 <Select
                   size="large"
                   placeholder={t("addannoun.course")}
-                  onChange={handleChange1}
                   options={[
                     {
                       label: `${t("addannoun.course")}`,
@@ -750,15 +717,7 @@ export const Upload = () => {
           >
             {t("addannoun.send")}
           </Button>
-          {/* <Button
-            className="upload__button"
-            size="large"
-            loading={loadings[0]}
-            onClick={enterLoading}
-            htmlType="submit"
-          >
-            {t("addannoun.send")}
-          </Button> */}
+       
         </Form>
       </div>
     </div>

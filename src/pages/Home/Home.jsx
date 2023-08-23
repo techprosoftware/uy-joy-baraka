@@ -19,7 +19,6 @@ const Home = () => {
 
   const fetcherLikedCards = async () => {
     const response = await CardService.getLike()
-    console.log(response)
     if (response?.status == 200) {
       localStorage.setItem(
         "likedCardList",

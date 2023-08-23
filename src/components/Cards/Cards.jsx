@@ -34,7 +34,6 @@ export const Card = (card) => {
           return
         } else {
           const data = await CardService.unLikeCard(card?.card?.announcement_id)
-          console.log(data)
           toast.success("Saqlanganlardan chiqarildi")
         }
       }

@@ -27,7 +27,6 @@ export const EditSms = () => {
     const data = await AuthService.VerifyCode(phoneCode, phoneId);
     // console.log(data);
     if (data?.data?.ok == true) {
-      console.log("access");
       localStorage.setItem("token", data?.data?.token);
       navigate("/edit-password");
       location.reload()

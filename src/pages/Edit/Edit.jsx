@@ -37,12 +37,9 @@ export const Edit = () => {
   const onFinish = async (values) => {
     enterLoading(0);
 
-    console.log(values.phone);
-
     const data = await AuthService.VerifyPhone({
       phone: "998" + values.phone,
     });
-    console.log(data?.data);
     if (data?.data?.exists == true) {
       const userPhone = await AuthService.SendCode({
         phone: "998" + values.phone,

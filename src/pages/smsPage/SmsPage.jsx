@@ -27,7 +27,6 @@ export const SmsPage = () => {
     const data = await AuthService.VerifyCode(phoneCode, phoneId);
     // console.log(data);
     if (data?.data?.ok == true) {
-      console.log("access");
       localStorage.setItem("token", data?.data?.token);
       navigate("/");
       location.reload()
@@ -70,8 +69,6 @@ export const SmsPage = () => {
   const [form] = Form.useForm();
   const onFinish = async (values) => {
     enterLoading(0);
-
-    console.log(values.code);
     phoneIdFunc(values.code);
   };
 

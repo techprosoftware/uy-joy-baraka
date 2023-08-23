@@ -49,7 +49,6 @@ export const Register = () => {
     };
 
     const data = await AuthService.userRegister(value);
-    console.log(data);
     if (data?.status === 201) {
       const userPhone = await AuthService.SendCode({
         phone: "998" + values.phone,
