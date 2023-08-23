@@ -124,12 +124,16 @@ const HomeSearch = () => {
   ).current;
 
   return (
-    <div className="bg-white fixed-top home-search">
+    <div className="home-search">
       <div className="search__inner">
         <div className="container">
           <div className="search__wrap">
             <div className="search__select">
-              <a className="dropdown__btn " style={{cursor: "pointer"}} onClick={handleSelect}>
+              <a
+                className="dropdown__btn "
+                style={{ cursor: "pointer" }}
+                onClick={handleSelect}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -160,7 +164,7 @@ const HomeSearch = () => {
                 }`}
               >
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item">
                     <Select
                       prefixCls="ant-select-bootstrap"
                       defaultValue={t("searchpage.sale")}
@@ -187,7 +191,7 @@ const HomeSearch = () => {
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item bootstrap-dropdown mt-2" href="#">
+                  <a className="dropdown-item bootstrap-dropdown mt-2">
                     <Select
                       prefixCls="ant-select-bootstrap"
                       defaultValue={t("searchpage.type")}
@@ -215,7 +219,7 @@ const HomeSearch = () => {
                 </li>
 
                 <li>
-                  <a className="dropdown-item mt-2" href="#">
+                  <a className="dropdown-item mt-2">
                     <Select
                       prefixCls="ant-select-bootstrap"
                       defaultValue={t("searchpage.region")}

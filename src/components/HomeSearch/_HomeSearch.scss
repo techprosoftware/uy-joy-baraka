@@ -1,10 +1,17 @@
 .search__inner {
   padding: 10px 0 10px 0;
   // position: fixed;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .home-search {
+  position: fixed;
+  padding-top: 3px;
   margin-top: 68px;
+  width: 100%;
+  z-index: 99;
+
+  background-color: #fff;
 }
 
 @media only screen and (max-width: 769px) {
@@ -181,6 +188,7 @@
   position: absolute;
   // z-index: 9;
   border-radius: 5px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 @media only screen and (max-width: 993px) {
