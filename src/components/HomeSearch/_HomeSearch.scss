@@ -4,7 +4,7 @@
 }
 
 .home-search {
-  margin-top: 70px;
+  margin-top: 68px;
 }
 
 @media only screen and (max-width: 769px) {
@@ -13,7 +13,7 @@
   }
 
   .home-search {
-    margin-top: 55px;
+    margin-top: 48px;
   }
 }
 
@@ -138,7 +138,6 @@
 .dropdown-menu .show {
   position: relative !important;
   transform: translate3d(-120px, 32px, 0px) !important;
-
 }
 
 .send__button {
@@ -180,7 +179,7 @@
   transition: all ease 0.51;
   top: 62px;
   position: absolute;
-  z-index: 9;
+  // z-index: 9;
   border-radius: 5px;
 }
 
@@ -207,30 +206,22 @@
   .input__sale::placeholder {
     font-size: 18px;
   }
-
- 
 }
 
 @media only screen and (max-width: 779px) {
   .filter__select {
-
     top: 60px;
-
   }
 }
 
 @media only screen and (max-width: 600px) {
   .search__btn a {
-    
-      font-size: 15px;
-      line-height: 32px;
-      padding: 7px 7px;
-  
+    font-size: 15px;
+    line-height: 32px;
+    padding: 7px 12px;
   }
   .filter__select {
-
     top: 59px;
-
   }
   .search__select {
     gap: 5px;
@@ -279,6 +270,6 @@
   }
 
   .home-search {
-    margin-top: 50px;
+    margin-top: 48px;
   }
 }
