@@ -140,7 +140,7 @@ const Messaging = () => {
     <>
       {/* Header component */}
       {/* Users bar */}
-      <div className="users-bar">
+      <div className="users-bar favorite-inner">
         <div className="container">
           <div className="backButton">
             <button onClick={() => navigate(-1)} className="customBack">

@@ -12,7 +12,7 @@ const HomeBanner = () => {
       <HomeSearch />{" "}
       <div
         id="carouselExampleIndicators"
-        className="carousel slide"
+        className="carousel slide home-banner-inner"
         data-mdb-ride="carousel"
       >
         <div className="carousel-indicators">

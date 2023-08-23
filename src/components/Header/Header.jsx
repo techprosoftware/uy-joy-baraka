@@ -94,7 +94,7 @@ const Header = () => {
   }, [])
 
   return (
-    <div className="site-header ">
+    <div className="site-header fixed-top">
       <div className="container">
         <div className="site-haeder__inner">
           <button

@@ -93,7 +93,7 @@ const AnnounSearch = () => {
 
   return (
     <div className="container">
-      <div style={{ paddingTop: "20px" }}>
+      <div className="favorite-inner">
         <h3 className="heart__title">{t("search.save")}</h3>
         <hr />
         <h3 className="heart__desc mb-2">
