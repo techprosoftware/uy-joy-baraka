@@ -12,17 +12,15 @@ const AboutUs = lazy(() => import("@pages/AboutUs/AboutUs"))
 const UserInfo = lazy(() => import("@pages/UserInfo/UserInfo"))
 const AnnounSearch = lazy(() => import("@pages/AnnounSearch/AnnounSearch"))
 const Favorite = lazy(() => import("@pages/Favorite/Favorite"))
-import LoadingImg from "@images/card-single-loading.svg"
+import LoadingImg from "@images/loader.svg"
 
 export const Public = () => {
   return <>
     <Suspense fallback={<>
         <div className="container w-100 h-100">
           <img
-            className="d-block mx-auto"
+            className="d-block mx-auto loader-img"
             src={LoadingImg}
-            width={200}
-            height={200}
             style={{ background: "none" }}
           />
         </div>
