@@ -70,9 +70,9 @@ const Header = () => {
     setLang(options[n].value)
   }
 
-  // useEffect(() => {
-  //   handlclick(localStorage.getItem("uz") || 0)
-  // }, [])
+  useEffect(() => {
+    handlclick(localStorage.getItem("uz") || 0)
+  }, [])
 
   const handleLogout = () => {
     localStorage.removeItem("token")
