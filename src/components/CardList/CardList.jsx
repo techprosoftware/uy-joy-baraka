@@ -25,14 +25,13 @@ const CardList = ({ page }) => {
     async function fetchCardData() {
       try {
         const response = await CardService.getByPage(page)
-        console.log(response)
         if (response.status === 200) {
           setIsLoading(false)
           const data = response.data.posts
           setData(data)
         }
       } catch (error) {
-        console.error("Error fetching card data:", error)
+        throw new Error(error)
       }
     }
 

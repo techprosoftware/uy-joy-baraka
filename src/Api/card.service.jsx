@@ -15,11 +15,10 @@ const CardService = {
           headers: { authorization: token },
         }
       );
-      console.log(data);
 
       return data;
-    } catch (err) {
-      console.log(err.message);
+    } catch (error) {
+      throw new Error(error)
     }
   },
   unLikeCard: async (id) => {

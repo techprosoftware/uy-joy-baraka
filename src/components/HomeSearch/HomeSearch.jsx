@@ -25,7 +25,6 @@ const HomeSearch = () => {
 
   const { t, i18n } = useTranslation();
   const search = useRef();
-  const dispatch = useDispatch();
   const [openSelect, setOpenSelect] = useState(false);
 
   const handleSelect = () => {
@@ -66,8 +65,6 @@ const HomeSearch = () => {
     if (!search.current.value.trim() == "") {
       localStorage.setItem("searchCity", search.current.value);
       navigate("/card-search");
-    } else {
-      console.log("dsd");
     }
   };
 
@@ -87,9 +84,7 @@ const HomeSearch = () => {
       if (currentValue !== "" && currentValue.trim()) {
         try {
           const response = await SearchService.searchOnInput(currentValue);
-          // console.log(response)
-
-          //* Searchs the latin or crylic text
+          
           const searchTermLatin = transliterate(currentValue);
           const responseLatin = await SearchService.searchOnInput(
             searchTermLatin
@@ -114,7 +109,6 @@ const HomeSearch = () => {
           );
           setSearchResult({ isLoading: false, data: combinedPosts });
         } catch (error) {
-          console.error("Error searching:", error);
           setSearchResult({ isLoading: false, data: [] });
         }
       } else {

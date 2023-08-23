@@ -48,7 +48,6 @@ export const DeactiveCard = () => {
     try {
       const token = localStorage.getItem("token");
       const data = await AnnounService.setActiveCard(id, token);
-      console.log(data);
       if (data.status === 200) {
         toast.success(`${t("announ.succannoun")}`);
       }
@@ -69,20 +68,16 @@ export const DeactiveCard = () => {
       }
       getActives();
 
-      console.log(data);
     } catch (error) {
-      console.log(error.message);
+      throw new Error(error)
     }
   };
 
   const navigate = useNavigate();
 
   const handleClick = async (evt) => {
-    const slug = evt.target.name;
     const id = evt.target.id;
-    // const slug = evt.target
     const targetTag = evt.target.className;
-    const targetElement = evt.target.closest(".card__like");
     const token = localStorage.getItem("token") || "";
 
     if (!token) {
@@ -95,7 +90,6 @@ export const DeactiveCard = () => {
       if (targetTag === "card__like" || targetTag === "card__like-img") {
         evt.preventDefault();
         const response = await cardService.likeCard(id);
-        console.log("like: ", response);
       }
     }
   };

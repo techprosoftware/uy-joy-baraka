@@ -19,7 +19,6 @@ const InfiniteScroll = () => {
   })
 
   const fetchMoreData = async () => {
-    console.log(fetcher.data.length < (pageCount - 3) * 12)
     if (fetcher.data.length < (pageCount - 3) * 12) {
       setFetcher({ hasMore: false, data: [...fetcher.data] })
       return

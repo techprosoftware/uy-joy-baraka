@@ -40,12 +40,10 @@ const UserInfo = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await ProfileService.GetProfile()
-        console.log(response)
         setUserData(response.data)
         setIsLoading(false)
         getterStSet(false)
       } catch (error) {
-        console.error("Error occurred while fetching user profile", error)
         setIsLoading(false)
       }
     }
@@ -82,7 +80,7 @@ const UserInfo = () => {
         }
         getterStSet(true)
       } catch (error) {
-        console.error("Error editing full name", error)
+        throw new Error(error)
       }
     }
     await editProfileName() //* Call the function to perform the relevant actions
@@ -96,7 +94,7 @@ const UserInfo = () => {
         }
         getterStSet(true)
       } catch (error) {
-        console.error("Error editing phone", error)
+        throw new Error(error)
       }
     }
     await editPhone()
@@ -115,7 +113,7 @@ const UserInfo = () => {
           getterStSet(true)
         }
       } catch (error) {
-        console.error("Error editing avatar", error)
+        throw new Error(error)
       }
     }
     await editAvatar()

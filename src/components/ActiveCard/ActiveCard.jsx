@@ -25,8 +25,6 @@ export const ActiveCard = () => {
     data: [],
   });
 
-  const [check, setCheck] = useState(true);
-  const checkInput = useRef();
 
   const getActives = async () => {
     const token = localStorage.getItem("token");
@@ -50,7 +48,6 @@ export const ActiveCard = () => {
 
   const handleChange = async (evt) => {
     let id = evt.target.id;
-    console.log(evt.target.checked);
 
     try {
       const token = localStorage.getItem("token");
@@ -60,9 +57,8 @@ export const ActiveCard = () => {
       }
       getActives();
 
-      console.log(data);
     } catch (error) {
-      console.log(error.message);
+      throw new Error(error)
     }
   };
 
@@ -85,7 +81,6 @@ export const ActiveCard = () => {
       if (targetTag === "card__like" || targetTag === "card__like-img") {
         evt.preventDefault()
         const response = await cardService.likeCard(id);
-        console.log("like: ", response);
       } 
     }
   };

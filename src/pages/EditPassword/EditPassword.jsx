@@ -40,12 +40,10 @@ export const EditPassword = () => {
   const [form] = Form.useForm();
   const onFinish = async (values) => {
     enterLoading(0);
-    console.log(values.password);
     const data = await ProfileService.EditPassword({
       password: values.password,
     });
 
-    console.log(data);
     if(data.data.ok == true) {
       navigate('/login')
     }

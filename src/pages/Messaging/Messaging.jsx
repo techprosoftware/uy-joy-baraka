@@ -42,12 +42,10 @@ const Messaging = () => {
   const getAllMessage = async () => {
     try {
       const data = await MessagingService.GetMessaging();
-      console.log("user", data);
       setChats(data?.members);
       setUpdate(false);
     } catch (error) {
-      console.error("Error occurred while fetching user profile", error);
-    }
+throw new Error(error)    }
   };
   useEffect(() => {
     getAllMessage();
@@ -67,13 +65,11 @@ const Messaging = () => {
       notificationSound.play();
       getMessageById(localStorage.getItem("chatId"));
     } catch (error) {
-      console.log(error);
-    }
+throw new Error(error)    }
   };
 
   //* DELETE CHAT -- [DELETE REQUEST]
   const deleteChat = async (i) => {
-    console.log(i);
     Modal.confirm({
       title: `${t("chat.verify")}`,
       icon: <ExclamationCircleOutlined />,
@@ -86,8 +82,7 @@ const Messaging = () => {
           setUpdate(true);
           setIsBarActive(false);
         } catch (error) {
-          console.log(error);
-        }
+throw new Error(error)        }
       },
     });
   };
@@ -97,11 +92,9 @@ const Messaging = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await ProfileService.GetProfile();
-        console.log(response);
         setUserData(response);
       } catch (error) {
-        console.error("Error occurred while fetching user profile", error);
-      }
+throw new Error(error)      }
     };
 
     fetchUserProfile();
@@ -122,8 +115,7 @@ const Messaging = () => {
     setMeData(data.data?.messages);
     return data;
   };
-  console.log(meData);
-  console.log(userData);
+  
 
   //* Handle chat bar active
   const handleChatBarActive = (id) => {
@@ -134,12 +126,9 @@ const Messaging = () => {
 
   const selectedChat = chats?.find((chat) => chat.chat_id == activeChatId);
 
-  console.log(selectedChat);
-  // console.log(selectedChat);
   return (
     <>
-      {/* Header component */}
-      {/* Users bar */}
+    
       <div className="users-bar favorite-inner">
         <div className="container">
           <div className="backButton">

@@ -24,7 +24,7 @@ const AuthService = {
       .catch((err) => console.log(err));
     return data;
     } catch (error) {
-      console.log(error.message);
+      throw new Error(error)
     }
   },
 
@@ -35,23 +35,21 @@ const AuthService = {
       .catch((err) => console.log(err));
     return data;
     } catch (error) {
-      console.log(error.message);
+      throw new Error(error)
     }
   },
 
   VerifyCode: async (phoneCode, phoneId) => {
-    console.log(phoneCode);
-    console.log(phoneId);
+    
     try {
       const data = await axios.post("/api/users/validate-code", phoneCode, {
         headers: {
           "code-validation-id": `${phoneId}`,
         },
       });
-      console.log('api',data);
       return data;
     } catch (error) {
-      console.log(error?.response?.data?.message);
+      throw new Error(error)
     }
   },
 };

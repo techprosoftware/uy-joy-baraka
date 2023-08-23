@@ -20,10 +20,9 @@ const SearchService = {
     params.p_page = 50;
     try {
       const data = await axios.get("/api/search?", { params });
-      console.log(data);
       return data;
     } catch (error) {
-      console.log(error.message);
+      throw new Error(error)
     }
   },
   
