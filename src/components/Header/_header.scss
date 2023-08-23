@@ -247,8 +247,6 @@
   position: absolute;
 }
 
-
-
 .model__inner {
   transform: translateX(-400%);
   transition: all 0.4s ease;
@@ -563,7 +561,6 @@
     }
   }
 
-
   .model-open {
     .new-poster {
       margin-right: 20px;
@@ -583,8 +580,6 @@
 }
 
 @media only screen and (max-width: 769px) {
- 
-
   .site-logo {
     width: 77px;
     height: 36px;
@@ -746,6 +741,3 @@
   inset: 0px !important;
   transform: translate3d(-99px, 26px, 0px) !important;
 }
-
-
-
