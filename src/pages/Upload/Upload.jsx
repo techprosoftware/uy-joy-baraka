@@ -407,7 +407,7 @@ export const Upload = () => {
       };
 
   return (
-    <div className="upload__inner">
+    <div className="upload__inner favorite-inner">
       <div className="container">
         <BackButton />
         <h2 className="upload__title">{t("addannoun.annountitle")}</h2>

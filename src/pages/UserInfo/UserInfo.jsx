@@ -144,7 +144,7 @@ const UserInfo = () => {
     <>
       {contextHolder}
       {/* <Button onClick={success}>Success</Button> */}
-      <div className="user-info">
+      <div className="user-info favorite-inner">
         <div className="container">
           <div className="backButton">
             <BackButton />
