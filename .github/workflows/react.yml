@@ -28,16 +28,22 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+
     steps:
-      - name: Deploy React app
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy via SSH React App
         uses: appleboy/ssh-action@v0.1.2
         with:
-          host: ${{secrets.SSH_HOST}} # IP address of the server you wish to ssh into
-          key: ${{secrets.SSH_KEY}} # Private or public key of the server
-          username: ${{ secrets.SSH_USERNAME }} # User of the server you want to ssh into
-     
+          host: ${{ secrets.SSH_HOST }}  # Remote server's IP/hostname
+          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Private key with passphrase (if applicable)
+          username: ${{ secrets.SSH_USERNAME }}  # Remote server username
+          port: 22  # SSH port
           script: |
             cd ~/uy-joy-baraka
             git pull
+            npm install
             npm run build
-            cp -rf ~/uy-joy-baraka/dist/* /var/www/uyjoybaraka.uz
+            cp -rf ~/uy-joy-baraka/dist/* /var/www/uyjoybaraka.uz 
+  
