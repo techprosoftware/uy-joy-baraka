@@ -37,7 +37,7 @@ jobs:
         uses: appleboy/ssh-action@v0.1.2
         with:
           host: ${{ secrets.SSH_HOST }}  # Remote server's IP/hostname
-          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Private key with passphrase (if applicable)
+          key: ${{ secrets.SSH_KEY }}  # Private key with passphrase (if applicable)
           username: ${{ secrets.SSH_USERNAME }}  # Remote server username
           script: |
             cd /root/uy-joy-baraka
