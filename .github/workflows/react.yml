@@ -41,7 +41,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}  # Remote server username
           port: 22  # SSH port
           script: |
-            cd ~/uy-joy-baraka
+            cd /root/uy-joy-baraka
             git pull
             npm install
             npm run build
