@@ -39,6 +39,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}  # Remote server's IP/hostname
           key: ${{ secrets.SSH_KEY }}  # Private key with passphrase (if applicable)
           username: ${{ secrets.SSH_USERNAME }}  # Remote server username
+          # deploy scripts
           script: |
             cd /root/uy-joy-baraka
             git pull
