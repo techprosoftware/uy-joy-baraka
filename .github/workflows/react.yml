@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Deploy via SSH React App
-        uses: appleboy/ssh-action@v0.1.2
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}  # Remote server's IP/hostname
           key: ${{ secrets.SSH_KEY }}  # Private key with passphrase (if applicable)
