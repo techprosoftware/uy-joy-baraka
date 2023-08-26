@@ -33,6 +33,7 @@ const AuthService = {
       const data = await axios
       .post("/api/users/check-phone", body)
       .catch((err) => console.log(err));
+      console.log(data);
     return data;
     } catch (error) {
       throw new Error(error)
@@ -47,6 +48,7 @@ const AuthService = {
           "code-validation-id": `${phoneId}`,
         },
       });
+      console.log(data);
       return data;
     } catch (error) {
       throw new Error(error)

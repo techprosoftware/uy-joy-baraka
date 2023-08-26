@@ -6,7 +6,6 @@ const HomeSearch = lazy(() => import("@components/HomeSearch/HomeSearch"));
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";

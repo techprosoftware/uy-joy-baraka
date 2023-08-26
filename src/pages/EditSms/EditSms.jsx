@@ -25,11 +25,10 @@ export const EditSms = () => {
     const phoneCode = { code: code.toString() };
     // console.log(phoneCode);
     const data = await AuthService.VerifyCode(phoneCode, phoneId);
-    // console.log(data);
+    console.log(data);
     if (data?.data?.ok == true) {
       localStorage.setItem("token", data?.data?.token);
       navigate("/edit-password");
-      location.reload()
     }
     else {
       toast.error(`${t("sms.errorCode")}`)

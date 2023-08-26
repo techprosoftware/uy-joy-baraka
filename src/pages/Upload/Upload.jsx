@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-undef */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/no-unescaped-entities */
@@ -13,8 +14,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
 import TextArea from "antd/es/input/TextArea";
-import { PlusOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { IsAuthentication } from "../../authentication/isAuthentication";
 
 const provinceData = [
   "Toshkent",
@@ -254,7 +255,7 @@ const cityData = {
     "Xo'jayli tumani",
   ],
 };
-export const Upload = () => {
+ const Upload = () => {
   const [selectedImages, setSelectedImages] = useState([]);
 
   const [cities, setCities] = useState(cityData[provinceData[0]]);
@@ -267,12 +268,8 @@ export const Upload = () => {
     setSecondCity(value);
   };
 
-  
-
-
   const [urls, setUrls] = useState();
 
-  // console.log(normFile());
   const handleImageChange = async (evt) => {
     const maxAllowedImages = 4;
     const maxTotalSize = 6 * 1024 * 1024; // 4 MB in bytes
@@ -724,4 +721,4 @@ export const Upload = () => {
   );
 };
 
-export default Upload;
+export default IsAuthentication(Upload);
