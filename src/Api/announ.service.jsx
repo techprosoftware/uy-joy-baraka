@@ -1,7 +1,9 @@
+import { Navigate } from "react-router";
 import axios from "./api";
 
 const AnnounService = {
   getActiveCard: async (token) => {
+
     const data = await axios.get(`/api/announcements/active?p_page=50`, {
       headers: { authorization: token },
     });
@@ -14,6 +16,17 @@ const AnnounService = {
     }),
 
   setActiveCard: async (id, token) => {
+    axios.interceptors.response.use(
+      (res) => {
+        console.log(res);
+        return res;
+      },
+      (err) => {
+        if (axios.AxiosError(err)) {
+          console.log("dsad");
+        }
+      }
+    );
     const data = await axios.patch(
       `/api/announcements/activation/${id}`,
       {},
@@ -41,7 +54,7 @@ const AnnounService = {
       console.log(data);
       return data;
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   },
 };

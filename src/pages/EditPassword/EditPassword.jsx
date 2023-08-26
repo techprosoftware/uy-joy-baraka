@@ -43,7 +43,7 @@ export const EditPassword = () => {
     const data = await ProfileService.EditPassword({
       password: values.password,
     });
-
+console.log(data);
     if(data.data.ok == true) {
       navigate('/login')
     }

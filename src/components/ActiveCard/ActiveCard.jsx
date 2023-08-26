@@ -30,13 +30,15 @@ export const ActiveCard = () => {
     const token = localStorage.getItem("token");
 
     const data = await AnnounService.getActiveCard(token);
+    
 
-    if (data.status == 200) {
+    if (data?.status == 200) {
       setActiveCard({
         isLoading: false,
         data: data?.data,
       });
     }
+  
   };
 
   useEffect(() => {
@@ -52,13 +54,14 @@ export const ActiveCard = () => {
     try {
       const token = localStorage.getItem("token");
       const data = await AnnounService.setActiveCard(id, token);
-      if (data.status === 200) {
+      if (data?.status === 200) {
         toast.success(`${t("announ.errannoun")}`);
       }
       getActives();
 
     } catch (error) {
-      throw new Error(error)
+      localStorage.removeItem('token')
+    navigate('/login')
     }
   };
 
@@ -72,7 +75,7 @@ export const ActiveCard = () => {
     const token = localStorage.getItem("token") || "";
 
     if (!token) {
-      navigate("/register");
+      navigate("/login");
     }
 
     if (targetTag == "de_active__btn") {

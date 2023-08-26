@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
@@ -11,6 +12,7 @@ import CardService from "../../Api/card.service";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
 import noData from "@images/no-data.svg";
+import { IsAuthentication } from "../../authentication/isAuthentication";
 
 const Favorite = () => {
   const { t } = useTranslation();
@@ -22,6 +24,7 @@ const Favorite = () => {
     data: [],
   });
 
+  const navigate = useNavigate()
   const getSearchCard = async () => {
     const data = await CardService.getLike();
     if (data?.status === 200) {
@@ -30,6 +33,9 @@ const Favorite = () => {
         isLoading: false,
         data: data.data,
       });
+    }else {
+      localStorage.removeItem('token')
+      navigate('/login')
     }
   };
 
@@ -200,4 +206,4 @@ const Favorite = () => {
   );
 };
 
-export default Favorite;
+export default IsAuthentication(Favorite);

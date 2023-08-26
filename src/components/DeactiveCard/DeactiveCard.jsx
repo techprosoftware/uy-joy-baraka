@@ -48,8 +48,11 @@ export const DeactiveCard = () => {
     try {
       const token = localStorage.getItem("token");
       const data = await AnnounService.setActiveCard(id, token);
-      if (data.status === 200) {
+      if (data?.status === 200) {
         toast.success(`${t("announ.succannoun")}`);
+      }else {
+        localStorage.removeItem('token')
+        navigate('/login')
       }
       getActives();
     } catch (error) {
@@ -81,7 +84,7 @@ export const DeactiveCard = () => {
     const token = localStorage.getItem("token") || "";
 
     if (!token) {
-      navigate("/register");
+      navigate("/login");
     }
 
     if (targetTag == "active__btn" || targetTag == "delete__img") {
