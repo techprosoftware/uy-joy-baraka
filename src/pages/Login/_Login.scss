@@ -78,5 +78,15 @@
 }
 
 
+@media only screen and (max-width: 420px) {
+  .sms__forward {
+    display: block;
+  }
+  .login__form a {
+    text-align: end;
+    margin-top: 10px !important;
+    display: block;
+  }
+}
 
 
