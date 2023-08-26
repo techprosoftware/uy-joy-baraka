@@ -1,17 +1,14 @@
-// import "./card-single.scss"
 import { BackButton } from "@components/BackButton/BackButton";
-// import CardList from "@components/CardList/CardList"
 import { lazy, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { BASE_URL } from "@api/api";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CardService from "@/Api/card.service.jsx";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 import LoadingIcon from "@images/card-single-loading.svg";
 import TelegramIcon from "@images/telegram-icon.svg";
 import WhatsappIcon from "@images/whatsapp-icon.svg";
-// import { InfiniteScroll } from "@components/InfiniteScroll/InfiniteScroll"
 import { useTranslation } from "react-i18next";
 import MessagingService from "../../Api/messaging.service";
 import { useDispatch } from "react-redux";
@@ -70,7 +67,6 @@ const CardSingle = () => {
     setCard({ isLoading: true, data: {} });
     try {
       const response = await CardService.getByCard(id);
-
       setAnId(response.data.post.announcement_id);
       setUserId(response.data.post?.user_id);
 
@@ -158,8 +154,8 @@ const CardSingle = () => {
                   </Image.PreviewGroup>
                 </div>
                 <div className="card-single__content">
-                  <div className="card-single__top">
-                    <div className="d-flex card-single__date">
+                  <div className="card-single__top align-items-center">
+                    <div className="d-flex   card-single__date">
                       <time className="card-single__time">{`${
                         time?.length
                           ? `${time[2]?.slice(0, 2)}.${time[1]}.${time[0]}`
@@ -169,6 +165,7 @@ const CardSingle = () => {
                         {data?.viewCount}
                       </span>
                     </div>
+                    <span className="ms-5 bg-danger text-white rounded-3 px-2 py-0">{data.type == 'rent' ? `${t("addannoun.rent")}` : `${t("addannoun.sale")}`}</span>
                     <button
                       onClick={() => setModal(!modal)}
                       className="card-single__share-btn"
