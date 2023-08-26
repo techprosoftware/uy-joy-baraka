@@ -35,10 +35,11 @@ function App() {
     };
   }, []);
 
- useEffect(() => {
+
   i18n.use(initReactI18next).init({
     debug: true,
     fallbackLng: localStorage.getItem("lang") || "Uz",
+    defaultLocale: 'Uz',
 
     resources: {
       Uz: {
@@ -49,7 +50,7 @@ function App() {
       },
     },
   });
- }, [lang])
+ 
 
   return (
     <>

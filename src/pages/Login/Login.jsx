@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 
 export const Login = () => {
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const users = async (value) => {
     const data = await AuthService.userLogin(value);
