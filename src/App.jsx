@@ -35,7 +35,6 @@ function App() {
     };
   }, []);
 
-
   i18n.use(initReactI18next).init({
     debug: true,
     fallbackLng: localStorage.getItem("lang") || "Uz",
