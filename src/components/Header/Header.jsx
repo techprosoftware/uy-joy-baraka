@@ -1,95 +1,102 @@
 /* eslint-disable react/jsx-no-target-blank */
-import { useEffect, useRef, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import SiteLogo from "@images/logo.svg"
-import TelegramIcon from "@images/telegram.png"
-import InstagramIcon from "@images/instagram.png"
-import PlayButtonIcon from "@images/play-button.png"
-import { Dropdown, ButtonGroup } from "react-bootstrap"
-import "bootstrap/dist/css/bootstrap.css"
-import uzflag from "@images/flag_uz.png"
-import ruflag from "@images/flag_ru.png"
-import ProfileService from "../../Api/profile.service"
-import { useTranslation } from "react-i18next"
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import SiteLogo from "@images/logo.svg";
+import TelegramIcon from "@images/telegram.png";
+import InstagramIcon from "@images/instagram.png";
+import PlayButtonIcon from "@images/play-button.png";
+import { Dropdown, ButtonGroup } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
+import uzflag from "@images/flag_uz.png";
+import ruflag from "@images/flag_ru.png";
+import ProfileService from "../../Api/profile.service";
+import { useTranslation } from "react-i18next";
+import MessagingService from "../../Api/messaging.service";
+// Messaging context
+// import { useMessageContext } from "../../context/Message";
 
 const Header = () => {
-  const [drop, setDrop] = useState(false)
-  const [burger, setBurger] = useState(false)
-  const navigate = useNavigate()
+  const [drop, setDrop] = useState(false);
+  const [burger, setBurger] = useState(false);
+  // const { chats } = useMessageContext();
+  // console.log(chats);
+  const [chatMessage, setChatMessage] = useState([]);
+  const navigate = useNavigate();
 
   // const [changeLang, setChangeLang] = useState('uz')
 
-  const dropdownRef = useRef(null)
+  const dropdownRef = useRef(null);
+
+  const chat = async () => {
+    try {
+      const data = await MessagingService.GetMessaging();
+      console.log(data);
+      setChatMessage(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    chat();
+  }, [chatMessage]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDrop(false)
+        setDrop(false);
       }
-    }
+    };
 
-    document.addEventListener("click", handleClickOutside)
+    document.addEventListener("click", handleClickOutside);
 
     return () => {
-      document.removeEventListener("click", handleClickOutside)
-    }
-  }, [])
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
-  const { t, i18n } = useTranslation()
+  const { t, i18n } = useTranslation();
 
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
 
   const options = [
     {
       value: "O'zbekcha",
-      label: (
-        <img
-          src={uzflag}
-          width="30"
-          alt=""
-        />
-      ),
+      label: <img src={uzflag} width="30" alt="" />,
     },
     {
       value: "Русский",
-      label: (
-        <img
-          src={ruflag}
-          width="30"
-          alt=""
-        />
-      ),
+      label: <img src={ruflag} width="30" alt="" />,
     },
-  ]
-  const [lang, setLang] = useState("Uz")
+  ];
+  const [lang, setLang] = useState("Uz");
 
-  const [langLabel, setLangLabel] = useState(options[0].label)
+  const [langLabel, setLangLabel] = useState(options[0].label);
 
   function handlclick(n) {
-    setLangLabel(options[n].label)
-    setLang(options[n].value)
+    setLangLabel(options[n].label);
+    setLang(options[n].value);
   }
 
   useEffect(() => {
-    handlclick(localStorage.getItem("uz") || 0)
-  }, [])
+    handlclick(localStorage.getItem("uz") || 0);
+  }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token")
-    navigate('/')
-  }
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
-  const [user, setUSer] = useState()
+  const [user, setUSer] = useState();
 
   const getUser = async () => {
-    const data = await ProfileService.GetProfile()
-    setUSer(data)
-  }
-
+    const data = await ProfileService.GetProfile();
+    setUSer(data);
+  };
 
   useEffect(() => {
-    getUser()
-  }, [])
+    getUser();
+  }, []);
 
   return (
     <div className="site-header fixed-top">
@@ -115,22 +122,14 @@ const Header = () => {
           <nav className="nav d-flex align-items-center">
             <ul className="nav__list">
               <li className="nav__item new-poster">
-                
-                  <Link
-                    className="nav__link"
-                    to={"/upload"}
-                  >
-                    + {t("header.addpost")}
-                  </Link>
-               
+                <Link className="nav__link" to={"/upload"}>
+                  + {t("header.addpost")}
+                </Link>
               </li>
               <li className="nav__item lang-icon">
                 <div className="lang__select">
                   {/* <p>{lang}</p> */}
-                  <Dropdown
-                    className="shadow-none"
-                    as={ButtonGroup}
-                  >
+                  <Dropdown className="shadow-none" as={ButtonGroup}>
                     <Dropdown.Toggle
                       className="lang__btn  shadow-none"
                       id="lng-dropdown"
@@ -144,20 +143,20 @@ const Header = () => {
                     >
                       <Dropdown.Item
                         onClick={() => {
-                          localStorage.setItem("lang", "Uz")
-                          i18n.changeLanguage("Uz")
-                          localStorage.setItem("uz", 0)
-                          handlclick(localStorage.getItem("uz") || 0)
+                          localStorage.setItem("lang", "Uz");
+                          i18n.changeLanguage("Uz");
+                          localStorage.setItem("uz", 0);
+                          handlclick(localStorage.getItem("uz") || 0);
                         }}
                       >
                         {options[0].value}
                       </Dropdown.Item>
                       <Dropdown.Item
                         onClick={() => {
-                          localStorage.setItem("lang", "Ru")
-                          i18n.changeLanguage("Ru")
-                          localStorage.setItem("uz", 1)
-                          handlclick(localStorage.getItem("uz") || 1)
+                          localStorage.setItem("lang", "Ru");
+                          i18n.changeLanguage("Ru");
+                          localStorage.setItem("uz", 1);
+                          handlclick(localStorage.getItem("uz") || 1);
                         }}
                       >
                         {options[1].value}
@@ -167,48 +166,48 @@ const Header = () => {
                 </div>
               </li>
               <li className="nav__item chat-icon">
-                {token ? <Link
-                  className="nav__link"
-                  to={"/messaging"}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#fefefe"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                  </svg>
-                </Link> : <Link
-                  className="nav__link"
-                  to={"/login"}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#fefefe"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                  </svg>
-                </Link>}
+                {token ? (
+                  <Link className="nav__link" to={"/messaging"}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#fefefe"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                  </Link>
+                ) : (
+                  <Link className="nav__link" to={"/login"}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#fefefe"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                    </svg>
+                  </Link>
+                )}
+                {chatMessage.members?.length ? (
+                  <span className="chat-icon__hasNotification">
+                    {chatMessage.members?.length}
+                  </span>
+                ) : null}
               </li>
               <li className="nav__item heart-icon">
                 {token ? (
-                  <Link
-                    className="nav__link"
-                    to={"/favorite"}
-                  >
+                  <Link className="nav__link" to={"/favorite"}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="23"
@@ -225,10 +224,7 @@ const Header = () => {
                     {/* <AiFillHeart /> */}
                   </Link>
                 ) : (
-                  <Link
-                    className="nav__link"
-                    to={"/login"}
-                  >
+                  <Link className="nav__link" to={"/login"}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="23"
@@ -249,10 +245,7 @@ const Header = () => {
 
               {!token ? (
                 <li className="nav__item user-icon">
-                  <Link
-                    className="nav__link"
-                    to={"/login"}
-                  >
+                  <Link className="nav__link" to={"/login"}>
                     {" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -266,11 +259,7 @@ const Header = () => {
                       strokeLinejoin="round"
                     >
                       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                      <circle
-                        cx="12"
-                        cy="7"
-                        r="4"
-                      ></circle>
+                      <circle cx="12" cy="7" r="4"></circle>
                     </svg>
                   </Link>
                 </li>
@@ -292,37 +281,24 @@ const Header = () => {
                     strokeLinejoin="round"
                   >
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle
-                      cx="12"
-                      cy="7"
-                      r="4"
-                    ></circle>
+                    <circle cx="12" cy="7" r="4"></circle>
                   </svg>
 
                   <div className={`drop ${drop ? "" : "visually-hidden"}`}>
                     <p className="drop__info">{user?.data?.user?.full_name}</p>
                     <ul className="drop__list">
                       <li className="drop__item">
-                        <Link
-                          className="drop__link"
-                          to={"/userinfo"}
-                        >
+                        <Link className="drop__link" to={"/userinfo"}>
                           {t("profile.userinfo")}
                         </Link>
                       </li>
                       <li className="drop__item">
-                        <Link
-                          className="drop__link"
-                          to={"/announ/active"}
-                        >
+                        <Link className="drop__link" to={"/announ/active"}>
                           {t("profile.posts")}{" "}
                         </Link>
                       </li>
                       <li className="drop__item">
-                        <Link
-                          className="drop__link"
-                          to={"/aboutus"}
-                        >
+                        <Link className="drop__link" to={"/aboutus"}>
                           {t("profile.aboutme")}
                         </Link>
                       </li>
@@ -369,11 +345,7 @@ const Header = () => {
                         strokeLinejoin="round"
                       >
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle
-                          cx="12"
-                          cy="7"
-                          r="4"
-                        ></circle>
+                        <circle cx="12" cy="7" r="4"></circle>
                       </svg>{" "}
                       <p>{user?.data?.user?.full_name}</p>
                     </div>
@@ -388,10 +360,7 @@ const Header = () => {
               <ul className="nav__list">
                 <li className="nav__item lang-icon">
                   <div className="lang__select">
-                    <Dropdown
-                      className="shadow-none"
-                      as={ButtonGroup}
-                    >
+                    <Dropdown className="shadow-none" as={ButtonGroup}>
                       <Dropdown.Toggle
                         className="lang__btn  shadow-none"
                         id="lng-dropdown"
@@ -402,20 +371,20 @@ const Header = () => {
                       <Dropdown.Menu>
                         <Dropdown.Item
                           onClick={() => {
-                            localStorage.setItem("lang", "Uz")
-                            i18n.changeLanguage("Uz")
-                            localStorage.setItem("uz", 0)
-                            handlclick(localStorage.getItem("uz") || 0)
+                            localStorage.setItem("lang", "Uz");
+                            i18n.changeLanguage("Uz");
+                            localStorage.setItem("uz", 0);
+                            handlclick(localStorage.getItem("uz") || 0);
                           }}
                         >
                           {options[0].value}
                         </Dropdown.Item>
                         <Dropdown.Item
                           onClick={() => {
-                            localStorage.setItem("lang", "Ru")
-                            i18n.changeLanguage("Ru")
-                            localStorage.setItem("uz", 1)
-                            handlclick(localStorage.getItem("uz") || 1)
+                            localStorage.setItem("lang", "Ru");
+                            i18n.changeLanguage("Ru");
+                            localStorage.setItem("uz", 1);
+                            handlclick(localStorage.getItem("uz") || 1);
                           }}
                         >
                           {options[1].value}
@@ -489,18 +458,9 @@ const Header = () => {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
-                      <circle
-                        cx="12"
-                        cy="12"
-                        r="10"
-                      ></circle>
+                      <circle cx="12" cy="12" r="10"></circle>
                       <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                      <line
-                        x1="12"
-                        y1="17"
-                        x2="12.01"
-                        y2="17"
-                      ></line>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
                     </svg>{" "}
                     <p>{t("header.callcenter")}</p>
                   </a>
@@ -522,23 +482,9 @@ const Header = () => {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     >
-                      <circle
-                        cx="12"
-                        cy="12"
-                        r="10"
-                      ></circle>
-                      <line
-                        x1="12"
-                        y1="16"
-                        x2="12"
-                        y2="12"
-                      ></line>
-                      <line
-                        x1="12"
-                        y1="8"
-                        x2="12.01"
-                        y2="8"
-                      ></line>
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="16" x2="12" y2="12"></line>
+                      <line x1="12" y1="8" x2="12.01" y2="8"></line>
                     </svg>
                     <p>{t("header.aboutme")}</p>
                   </Link>
@@ -568,12 +514,7 @@ const Header = () => {
                         rx="2"
                         ry="2"
                       ></rect>
-                      <line
-                        x1="12"
-                        y1="18"
-                        x2="12.01"
-                        y2="18"
-                      ></line>
+                      <line x1="12" y1="18" x2="12.01" y2="18"></line>
                     </svg>
                   </Link>
                   <p>{t("header.apps")}</p>
@@ -582,14 +523,8 @@ const Header = () => {
               <div className="modal__items">
                 <ul className="modal__list social_links">
                   <li>
-                    <a
-                      target="_blank"
-                      href="https://t.me/uy_joybarakabor"
-                    >
-                      <img
-                        src={TelegramIcon}
-                        alt="Telegram icon"
-                      />
+                    <a target="_blank" href="https://t.me/uy_joybarakabor">
+                      <img src={TelegramIcon} alt="Telegram icon" />
                     </a>
                   </li>
                   <li>
@@ -597,10 +532,7 @@ const Header = () => {
                       target="_blank"
                       href="https://www.instagram.com/uyjoy_baraka/"
                     >
-                      <img
-                        src={InstagramIcon}
-                        alt="Instagram icon"
-                      />
+                      <img src={InstagramIcon} alt="Instagram icon" />
                     </a>
                   </li>
 
@@ -609,10 +541,7 @@ const Header = () => {
                       target="_blank"
                       href="https://www.youtube.com/@UyjoyBaraka"
                     >
-                      <img
-                        src={PlayButtonIcon}
-                        alt="YouTube icon"
-                      />
+                      <img src={PlayButtonIcon} alt="YouTube icon" />
                     </a>
                   </li>
                 </ul>
@@ -622,7 +551,7 @@ const Header = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
