@@ -381,4 +381,4 @@ const Messaging = () => {
   );
 };
 
-export default IsAuthentication(Messaging);
+export default (Messaging);

@@ -122,9 +122,21 @@ const Header = () => {
           <nav className="nav d-flex align-items-center">
             <ul className="nav__list">
               <li className="nav__item new-poster">
-                <Link className="nav__link" to={"/upload"}>
-                  + {t("header.addpost")}
-                </Link>
+
+                
+                  {token ? <Link
+                    className="nav__link"
+                    to={"/upload"}
+                  >
+                    + {t("header.addpost")}
+                  </Link> : <Link
+                    className="nav__link"
+                    to={"/login"}
+                  >
+                    + {t("header.addpost")}
+                  </Link>}
+               
+
               </li>
               <li className="nav__item lang-icon">
                 <div className="lang__select">

@@ -721,4 +721,4 @@ const cityData = {
   );
 };
 
-export default IsAuthentication(Upload);
+export default (Upload);

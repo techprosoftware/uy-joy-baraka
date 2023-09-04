@@ -313,4 +313,4 @@ const navigate = useNavigate()
   )
 }
 
-export default IsAuthentication(UserInfo)
+export default (UserInfo)
