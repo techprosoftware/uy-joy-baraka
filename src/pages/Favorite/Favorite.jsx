@@ -206,4 +206,4 @@ const Favorite = () => {
   );
 };
 
-export default IsAuthentication(Favorite);
+export default (Favorite);

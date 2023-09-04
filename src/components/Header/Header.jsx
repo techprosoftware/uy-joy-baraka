@@ -116,12 +116,17 @@ const Header = () => {
             <ul className="nav__list">
               <li className="nav__item new-poster">
                 
-                  <Link
+                  {token ? <Link
                     className="nav__link"
                     to={"/upload"}
                   >
                     + {t("header.addpost")}
-                  </Link>
+                  </Link> : <Link
+                    className="nav__link"
+                    to={"/login"}
+                  >
+                    + {t("header.addpost")}
+                  </Link>}
                
               </li>
               <li className="nav__item lang-icon">
