@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
@@ -21,6 +22,7 @@ import { useTranslation } from "react-i18next";
 import { BASE_URL } from "../../Api/api";
 // Notification sound sent message
 import NotificationSound from "../../../public/assets/music/Text Message Sent - Iphone.mp3";
+import { IsAuthentication } from "../../authentication/isAuthentication";
 
 const Messaging = () => {
   const [isActive, setIsActive] = useState(false);
@@ -45,7 +47,9 @@ const Messaging = () => {
       setChats(data?.members);
       setUpdate(false);
     } catch (error) {
-throw new Error(error)    }
+      localStorage.removeItem("token");
+      navigate("/login");
+    }
   };
   useEffect(() => {
     getAllMessage();
@@ -65,7 +69,9 @@ throw new Error(error)    }
       notificationSound.play();
       getMessageById(localStorage.getItem("chatId"));
     } catch (error) {
-throw new Error(error)    }
+      localStorage.removeItem("token");
+      navigate("/login");
+    }
   };
 
   //* DELETE CHAT -- [DELETE REQUEST]
@@ -82,7 +88,9 @@ throw new Error(error)    }
           setUpdate(true);
           setIsBarActive(false);
         } catch (error) {
-throw new Error(error)        }
+          localStorage.removeItem("token");
+          navigate("/login");
+        }
       },
     });
   };
@@ -94,7 +102,9 @@ throw new Error(error)        }
         const response = await ProfileService.GetProfile();
         setUserData(response);
       } catch (error) {
-throw new Error(error)      }
+        localStorage.removeItem("token");
+        navigate("/login");
+      }
     };
 
     fetchUserProfile();
@@ -111,7 +121,6 @@ throw new Error(error)      }
     setMeData(data.data?.messages);
     return data;
   };
-  
 
   //* Handle chat bar active
   const handleChatBarActive = (id) => {
@@ -124,7 +133,6 @@ throw new Error(error)      }
 
   return (
     <>
-    
       <div className="users-bar favorite-inner">
         <div className="container">
           <div className="backButton">
@@ -369,10 +377,8 @@ throw new Error(error)      }
           </div>
         </div>
       </div>
-      {/* Footer component */}
-      {/* <Footer /> */}
     </>
   );
 };
 
-export default Messaging;
+export default (Messaging);

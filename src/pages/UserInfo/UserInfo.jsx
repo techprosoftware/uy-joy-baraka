@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useState, useEffect, useRef } from "react"
 import Skeleton from "react-loading-skeleton"
 // import "./UserInfo.scss";
@@ -13,6 +14,8 @@ import { message } from "antd"
 
 //* Utils
 import { formatPhoneNumber } from "../../utils/RegEx.utils"
+import { IsAuthentication } from "../../authentication/isAuthentication"
+import { useNavigate } from "react-router"
 
 const UserInfo = () => {
   const { t } = useTranslation()
@@ -34,7 +37,7 @@ const UserInfo = () => {
   //* REF VALUES
   const fullnameValue = useRef()
   const phoneValue = useRef()
-
+const navigate = useNavigate()
   //* GET REQUEST | FETCH
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -45,6 +48,8 @@ const UserInfo = () => {
         getterStSet(false)
       } catch (error) {
         setIsLoading(false)
+        localStorage.removeItem('token')
+        navigate('/login')
       }
     }
 
@@ -308,4 +313,4 @@ const UserInfo = () => {
   )
 }
 
-export default UserInfo
+export default (UserInfo)

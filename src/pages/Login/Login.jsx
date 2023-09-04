@@ -9,9 +9,7 @@ import { useTranslation } from "react-i18next";
 
 export const Login = () => {
 
-  const { t } = useTranslation();
-
-
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const users = async (value) => {
     const data = await AuthService.userLogin(value);
@@ -108,7 +106,7 @@ export const Login = () => {
                   },
                 ]}
               >
-                <Input.Password placeholder="********" size="large" />
+                <Input.Password minLength="8" placeholder="********" size="large" />
               </Form.Item>
 
               <Button className="form__button" size="large" loading={loadings[0]} onClick={enterLoading} htmlType="submit">{t("login.title")}</Button>

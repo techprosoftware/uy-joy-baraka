@@ -160,7 +160,7 @@ export const Register = () => {
                 ]}
                 hasFeedback
               >
-                <Input.Password minLength="4" placeholder="********" size="large" />
+                <Input.Password minLength="8" placeholder="********" size="large" />
               </Form.Item>
               <label className="register__label" htmlFor="pass2">
               {t("register.requierdPassword2")}
@@ -187,7 +187,7 @@ export const Register = () => {
                   }),
                 ]}
               >
-                <Input.Password minLength="4" placeholder="********" size="large" />
+                <Input.Password minLength="8" placeholder="********" size="large" />
               </Form.Item>
 
               <Button size="large" loading={loadings[0]} onClick={enterLoading} htmlType="submit">{t("register.title")}</Button>

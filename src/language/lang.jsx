@@ -159,9 +159,9 @@ export const lang = {
     chat : {
       arxiv: "Xabarlar arxivi",
       more: "Batafsil",
-      send: "sms yozish",
+      send: "Sms yozish",
       verify: "Iltimos tasdiqlang",
-      versms: "Rostdan ham bu chat-ni o'chirishni xohlaysizmi ?",
+      versms: "Rostdan ham bu chat-ni o'chirishni xohlaysizmi?",
       yes: "Ha",
       no: "Yo'q",
       nomessage: "Hali xabarlar yo'q",
