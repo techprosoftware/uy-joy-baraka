@@ -236,15 +236,15 @@
 
         font-size: 17px;
       }
+
+      .user-edit__title {
+        font-size: 20px;
+      }
     }
     .user-edit__submit {
       margin-top: 40px;
       margin-bottom: 20px;
     }
-  }
-
-  .user-edit__title {
-  display: none;
   }
 }
 
@@ -257,7 +257,6 @@
   .user-info__inner .user-edit__wrapper .user-edit__input {
     margin: 10px 0;
   }
-  
 }
 
 // ✅429px
