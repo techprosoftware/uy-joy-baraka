@@ -15,7 +15,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
 import TextArea from "antd/es/input/TextArea";
 import { useNavigate } from "react-router-dom";
-import { IsAuthentication } from "../../authentication/isAuthentication";
 
 const provinceData = [
   "Toshkent",
@@ -255,7 +254,7 @@ const cityData = {
     "Xo'jayli tumani",
   ],
 };
- const Upload = () => {
+const Upload = () => {
   const [selectedImages, setSelectedImages] = useState([]);
 
   const [cities, setCities] = useState(cityData[provinceData[0]]);
@@ -324,9 +323,8 @@ const cityData = {
       setUrls(compressedImageUrls);
       setSelectedImages(compressedFiles);
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
-
   };
 
   const dataURLtoFile = (dataURL, fileName) => {
@@ -348,13 +346,13 @@ const cityData = {
   };
 
   const phone = useRef();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const sendAnnoun = async (body) => {
     const token = localStorage.getItem("token");
     const data = await AnnounService.CreateAnnoun(body, token);
     if (data?.status === 201) {
-      navigate('/')
+      navigate("/");
       toast.success(`${t("addannoun.success")}`);
     } else {
       toast.error(`${t("addannoun.error")}`);
@@ -401,7 +399,7 @@ const cityData = {
     }
 
     sendAnnoun(formData);
-      };
+  };
 
   return (
     <div className="upload__inner favorite-inner">
@@ -714,11 +712,10 @@ const cityData = {
           >
             {t("addannoun.send")}
           </Button>
-       
         </Form>
       </div>
     </div>
   );
 };
 
-export default (Upload);
+export default Upload;

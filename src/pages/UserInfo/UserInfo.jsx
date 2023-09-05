@@ -14,7 +14,6 @@ import { message } from "antd"
 
 //* Utils
 import { formatPhoneNumber } from "../../utils/RegEx.utils"
-import { IsAuthentication } from "../../authentication/isAuthentication"
 import { useNavigate } from "react-router"
 
 const UserInfo = () => {
