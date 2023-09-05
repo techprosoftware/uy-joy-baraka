@@ -22,7 +22,6 @@ import { useTranslation } from "react-i18next";
 import { BASE_URL } from "../../Api/api";
 // Notification sound sent message
 import NotificationSound from "../../../public/assets/music/Text Message Sent - Iphone.mp3";
-import { IsAuthentication } from "../../authentication/isAuthentication";
 
 const Messaging = () => {
   const [isActive, setIsActive] = useState(false);

@@ -12,7 +12,6 @@ import CardService from "../../Api/card.service";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
 import noData from "@images/no-data.svg";
-import { IsAuthentication } from "../../authentication/isAuthentication";
 
 const Favorite = () => {
   const { t } = useTranslation();
