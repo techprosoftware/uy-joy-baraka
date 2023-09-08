@@ -351,6 +351,7 @@ const Upload = () => {
   const sendAnnoun = async (body) => {
     const token = localStorage.getItem("token");
     const data = await AnnounService.CreateAnnoun(body, token);
+    console.log(data);
     if (data?.status === 201) {
       navigate("/");
       toast.success(`${t("addannoun.success")}`);

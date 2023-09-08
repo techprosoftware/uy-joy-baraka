@@ -54,6 +54,7 @@ const AnnounService = {
       console.log(data);
       return data;
     } catch (error) {
+      console.log(error);
       throw new Error(error);
     }
   },

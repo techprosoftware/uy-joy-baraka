@@ -27,19 +27,19 @@ const Header = () => {
 
   const dropdownRef = useRef(null);
 
-  const chat = async () => {
-    try {
-      const data = await MessagingService.GetMessaging();
-      console.log(data);
-      setChatMessage(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const chat = async () => {
+  //   try {
+  //     const data = await MessagingService.GetMessaging();
+  //     console.log(data);
+  //     setChatMessage(data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    chat();
-  }, [chatMessage]);
+  // useEffect(() => {
+  //   chat();
+  // }, [chatMessage]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
