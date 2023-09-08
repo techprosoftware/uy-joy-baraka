@@ -1,5 +1,5 @@
 import axios from "axios";
-export const BASE_URL = 'http://13.49.225.157/'
+export const BASE_URL = 'https://api.uyjoybaraka.uz/'
 axios.defaults.baseURL = BASE_URL;
 
 axios.interceptors.request.use({
