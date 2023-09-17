@@ -1,12 +1,13 @@
-import { BackButton } from "@components/BackButton/BackButton"
-import { lazy } from "react"
-const Social = lazy(() => import("@components/Social/Social"))
+/* eslint-disable react/no-unescaped-entities */
+import { BackButton } from "@components/BackButton/BackButton";
+import { lazy } from "react";
+const Social = lazy(() => import("@components/Social/Social"));
 
 // import "./about-as.scss"
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next";
 
 const AboutUs = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <>
@@ -19,44 +20,41 @@ const AboutUs = () => {
             <h2 className="about__title">{t("about.aboutme")}</h2>
             <div className="about__text">
               <p>
-                Друзья, наш сайт был специально создан для розничной и оптовой
-                продажи интерьерного освещения на территории России. Мы
-                сотрудничаем с ведущими производителями светотехнического
-                оборудования, которые зарекомендовали себя на мировом рынке.
-                Поэтому не стоит сомневаться в надёжном качестве продукции,
-                представленной на страницах сайта. Интернет-магазин - это
-                полноценный online-shop. Мы работаем без выходных, 24 часа в
-                сутки и непрерывно расширяем и обновляем ассортимент товаров,
-                чтобы каждый покупатель мог подобрать светотехнику,
-                соответствующую его нуждам и желаниям. Наш магазин работает с
-                большим количеством производителей, что позволяет найти
-                светильник на самый утонченный .{" "}
+                Toshkent, Samarqand, Andijon yoki boshqa shu kabi shaharlarda
+                kvartira, uy yoki ofis sotib olish yoki sotishni istaysizmi? Siz
+                to'g'ri manzildasiz! Bu yerda O'zbekistonning eng yaxshi
+                agentliklarini va ko'plab potentsial sotuvchilarni ko'rish
+                mumkin. Biz sizning didingizdagi uy-joylarni topishga yoki
+                sizning uyingizni muvaffaqiyatli sotishingizda yordam bera
+                olishimiz mumkin. Biz mijozlarimizni qadrlaymiz. Bizning
+                adminstratorlarimiz platformamiz yoki joylashtirilgan e'lonlar
+                haqida savollaringizga javob berishadi. Biz o'zimizni qidiruvni
+                qulaylashtiradigan tanlov kriteriyalarini taqdim etamiz, shunda
+                siz qidirayotgan narsani va qidirayotgan joyda topishingiz
+                mumkin. Siz telefon orqali yoki e'lon joylashtirgan sotuvchi
+                bilan to'g'ridan-to'g'ri bog'lanishingiz mumkin. Biz sizning
+                xohishlarizni topishning tez, tashkil etilgan va samarali
+                usulini taqdim etishga harakat qilamiz.
               </p>
             </div>
             <Social />
             <div className="about__text bottom-text">
               <p>
-                Интернет-магазин «Ваша Лампа» - это полноценный online-shop. Мы
-                работаем без выходных, 24 часа в сутки и непрерывно расширяем и
-                обновляем ассортимент товаров, чтобы каждый покупатель мог
-                подобрать светотехнику, соответствующую его нуждам и желаниям.
-                Друзья, наш сайт был специально создан для розничной и оптовой
-                продажи интерьерного освещения на территории России. Мы
-                сотрудничаем с ведущими производителями светотехнического
-                оборудования, которые зарекомендовали себя на мировом рынке.
-                Поэтому не стоит сомневаться в надёжном качестве продукции,
-                представленной на страницах сайта. Интернет-магазин это
-                полноценный online-shop. Мы работаем без выходных, 24 часа в
-                сутки и непрерывно расширяем и обновляем ассортимент товаров,
-                чтобы каждый покупатель мог подобрать светотехнику,
-                соответствующую его нуждам и желаниям
+                Bizning platformada e'lon joylashtirish tezkor va qulay. Siz bir
+                necha daqiqada e'lon joylashtirishingiz mumkin, tasvirlarni
+                qo'shishingiz va potentsial sotuvchilar uchun qulayliklarni
+                ko'rsatishingiz mumkin. Siz o'z profilni boshqarishingiz va
+                O'zbekistondagi ko'plab potentsial sotuvchilarga kirishga ega
+                bo'lishingiz mumkin. Nima uchun kutmoqdasiz? Qo'shiling! 
+                
               </p>
+                <span className="fw-bold mt -3 d-block">Hurmat bilan, <a href="https://uyjoybaraka.uz/">uyjoybaraka.uz</a> jamoasi</span>
             </div>
           </div>
         </div>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default AboutUs
+export default AboutUs;

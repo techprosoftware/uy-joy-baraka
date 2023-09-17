@@ -57,7 +57,7 @@ const HomeBanner = () => {
           {ads?.ads?.length
             ? ads?.ads?.map((item) => (
                 <>
-                  <SwiperSlide>
+                  <SwiperSlide key={item?.id}>
                     <div className="container">
                       <div className="home-banner-wrap1">
                         <a href={item?.link} target="_blank">
