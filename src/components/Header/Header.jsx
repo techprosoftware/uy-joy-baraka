@@ -11,35 +11,16 @@ import uzflag from "@images/flag_uz.png";
 import ruflag from "@images/flag_ru.png";
 import ProfileService from "../../Api/profile.service";
 import { useTranslation } from "react-i18next";
-import MessagingService from "../../Api/messaging.service";
-// Messaging context
-// import { useMessageContext } from "../../context/Message";
+
 
 const Header = () => {
   const [drop, setDrop] = useState(false);
   const [burger, setBurger] = useState(false);
-  // const { chats } = useMessageContext();
-  // console.log(chats);
+
   const [chatMessage, setChatMessage] = useState([]);
   const navigate = useNavigate();
 
-  // const [changeLang, setChangeLang] = useState('uz')
-
   const dropdownRef = useRef(null);
-
-  // const chat = async () => {
-  //   try {
-  //     const data = await MessagingService.GetMessaging();
-  //     console.log(data);
-  //     setChatMessage(data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   chat();
-  // }, [chatMessage]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

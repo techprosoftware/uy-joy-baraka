@@ -11,6 +11,7 @@ import ProfileService from "../../Api/profile.service"
 
 //* Ant design packs
 import { message } from "antd"
+import {  toast } from "react-toastify";
 
 //* Utils
 import { formatPhoneNumber } from "../../utils/RegEx.utils"
@@ -79,7 +80,8 @@ const navigate = useNavigate()
     const editProfileName = async () => {
       try {
         const edit = await ProfileService.EditFullname(fullnameUserData)
-        if (edit) {
+        if (edit?.data.status == 200) {
+          // console.log(edit);
           message.success(`${t("account.change")}`)
         }
         getterStSet(true)
