@@ -70,6 +70,7 @@ const InfiniteScroll = () => {
               ? fetcher?.data?.map((item, idx) => (
                   <>
                     <Card key={idx} card={item} />
+                    <Ads/>
                   </>
                 ))
                 : ""}

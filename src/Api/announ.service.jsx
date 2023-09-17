@@ -1,9 +1,7 @@
 import axios from "./api";
 
 const AnnounService = {
-
   getAds: async (token) => {
-
     const data = await axios.get(`/ads/site`, {
       headers: { authorization: token },
     });
@@ -11,7 +9,6 @@ const AnnounService = {
   },
 
   getActiveCard: async (token) => {
-
     const data = await axios.get(`/api/announcements/active?p_page=50`, {
       headers: { authorization: token },
     });

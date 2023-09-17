@@ -33,7 +33,6 @@ const HomeBanner = () => {
     getAdsFunc();
   }, []);
 
-  console.log(ads?.ads);
 
   return (
     <>
@@ -53,7 +52,7 @@ const HomeBanner = () => {
           modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper"
         >
-        
+         
 
           {ads?.ads?.length
             ? ads?.ads?.map((item) => (
@@ -73,7 +72,24 @@ const HomeBanner = () => {
                   </SwiperSlide>
                 </>
               ))
-            : ""}
+            :  <SwiperSlide>
+            <div className="container">
+              <div className="home-banner">
+                <div className="home-banner-wrap">
+                  <div className="banner-wrapper">
+                    <h1 className="banner-title">{t("homebanner.title")}</h1>
+
+                    <a href="tel:+998 99 243-55-77">
+                      <button className="banner-btn" href="#">
+                        <img src={buttonPhone} alt="buton-phone" />
+                        {t("homebanner.callbtn")}
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>}
         </Swiper>
       </div>
     </>
