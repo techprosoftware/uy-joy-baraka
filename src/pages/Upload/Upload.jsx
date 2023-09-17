@@ -10,7 +10,7 @@ import ImageCompressor from "image-compressor.js";
 import { BackButton } from "@components/BackButton/BackButton";
 import { Button, Form, Input, InputNumber, Select, Space } from "antd";
 import AnnounService from "../../Api/announ.service";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
 import TextArea from "antd/es/input/TextArea";
@@ -288,7 +288,7 @@ const Upload = () => {
       return new Promise((resolve, reject) => {
         const compressor = new ImageCompressor();
         compressor.compress(file, {
-          quality: 0.3,
+          quality: 1,
           success(result) {
             const reader = new FileReader();
             reader.onload = () => {
@@ -353,7 +353,7 @@ const Upload = () => {
     const data = await AnnounService.CreateAnnoun(body, token);
     console.log(data);
     if (data?.status === 201) {
-      navigate("/");
+      // navigate("/upload");
       toast.success(`${t("addannoun.success")}`);
     } else {
       toast.error(`${t("addannoun.error")}`);
@@ -382,7 +382,7 @@ const Upload = () => {
 
   const onFinish = async (values) => {
     enterLoading(0);
-
+    
     const formData = new FormData();
     const fullPhone = "998" + values.phone;
 

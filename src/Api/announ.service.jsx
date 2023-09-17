@@ -1,7 +1,15 @@
-import { Navigate } from "react-router";
 import axios from "./api";
 
 const AnnounService = {
+
+  getAds: async (token) => {
+
+    const data = await axios.get(`/ads/site`, {
+      headers: { authorization: token },
+    });
+    return data;
+  },
+
   getActiveCard: async (token) => {
 
     const data = await axios.get(`/api/announcements/active?p_page=50`, {
@@ -51,10 +59,8 @@ const AnnounService = {
       const data = await axios.post(`/api/announcements/create`, body, {
         headers: { authorization: token },
       });
-      console.log(data);
       return data;
     } catch (error) {
-      console.log(error);
       throw new Error(error);
     }
   },

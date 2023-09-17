@@ -21,6 +21,7 @@ const ProfileService = {
         Authorization: `${token}`,
       },
     });
+    // console.log(data);
 
     //* If success, return true and continue to next;
     return data;
@@ -33,6 +34,7 @@ const ProfileService = {
         Authorization: `${token}`,
       },
     });
+    console.log(data);
 
     //* If success, return true and continue to next;
     return data;
@@ -46,6 +48,7 @@ const ProfileService = {
         Authorization: `${token}`,
       },
     });
+    console.log(data);
 
     //* If success, return true and continue to next;
     return data;

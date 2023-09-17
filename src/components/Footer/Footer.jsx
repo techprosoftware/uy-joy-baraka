@@ -52,7 +52,7 @@ const Footer = () => {
               <div className="pre-footer__links">
                 <a
                   className="pre-footer__button"
-                  href="https://play.google.com/store/games?pli=1"
+                  href="https://play.google.com/store/apps/details?id=com.myapp.uy_joy_baraka&pcampaignid=web_share&pli=1"
                 >
                   <img
                     src={PlayStorePic}
