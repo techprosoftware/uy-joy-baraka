@@ -38,7 +38,7 @@ const Footer = () => {
             <div className="pre-footer__inner">
               {/* Pre links [1] */}
               <div className="pre-footer__links">
-                <a
+                <a target="_blank"
                   className="pre-footer__button"
                   href="https://www.apple.com/uz/app-store/"
                 >
@@ -50,7 +50,7 @@ const Footer = () => {
               </div>
               {/* Pre links [2] */}
               <div className="pre-footer__links">
-                <a
+                <a target="_blank"
                   className="pre-footer__button"
                   href="https://play.google.com/store/apps/details?id=com.myapp.uy_joy_baraka&pcampaignid=web_share&pli=1"
                 >

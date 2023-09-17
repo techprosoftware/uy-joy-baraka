@@ -98,9 +98,7 @@ const CardSingle = () => {
       <main className="favorite-inner">
         <section>
           <div className="container">
-            <div className="pt-3">
-              <BackButton />
-            </div>
+         
             {card.isLoading ? (
               <img
                 className={
