@@ -40,10 +40,12 @@ export const Edit = () => {
     const data = await AuthService.VerifyPhone({
       phone: "998" + values.phone,
     });
+    console.log('me', data);
     if (data?.data?.exists == true) {
       const userPhone = await AuthService.SendCode({
         phone: "998" + values.phone,
       });
+      console.log(userPhone);
       dispatch(setPhoneId(userPhone?.data?.codeValidationId));
       navigate("/edit-sms");
     } else {
