@@ -265,6 +265,7 @@ const navigate = useNavigate()
                       ref={fullnameValue}
                       type="text"
                       placeholder={userData.user?.full_name}
+                      value={userData.user?.full_name}
                       name="name"
                       autoFocus={true}
                     />
@@ -285,7 +286,7 @@ const navigate = useNavigate()
                       placeholder={userData.user?.phone}
                       name="number"
                       maxLength={20}
-                      value={phoneNumber}
+                      value={userData.user?.phone}
                       onChange={handleChange}
                     />
                   )}

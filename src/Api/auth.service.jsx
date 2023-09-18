@@ -6,7 +6,7 @@ const AuthService = {
       const data = await axios.post("/api/users/signup", body);
       return data;
     } catch (error) {
-    return error
+      return error;
     }
   },
 
@@ -19,29 +19,30 @@ const AuthService = {
 
   SendCode: async (body) => {
     try {
+      console.log('code',body);
       const data = await axios
-      .post("/api/users/send-code", body)
-      .catch((err) => console.log(err));
-    return data;
+        .post("/api/users/send-code", body)
+        .catch((err) => console.log(err));
+      // console.log(data);
+      return data;
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   },
 
   VerifyPhone: async (body) => {
     try {
       const data = await axios
-      .post("/api/users/check-phone", body)
-      .catch((err) => console.log(err));
+        .post("/api/users/check-phone", body)
+        .catch((err) => console.log(err));
       console.log(data);
-    return data;
+      return data;
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   },
 
   VerifyCode: async (phoneCode, phoneId) => {
-    
     try {
       const data = await axios.post("/api/users/validate-code", phoneCode, {
         headers: {
@@ -51,7 +52,7 @@ const AuthService = {
       console.log(data);
       return data;
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   },
 };

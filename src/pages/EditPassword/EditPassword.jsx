@@ -36,16 +36,15 @@ export const EditPassword = () => {
     }, 6000);
   };
 
-
   const [form] = Form.useForm();
   const onFinish = async (values) => {
     enterLoading(0);
     const data = await ProfileService.EditPassword({
       password: values.password,
     });
-console.log(data);
-    if(data.data.ok == true) {
-      navigate('/login')
+    console.log(data);
+    if (data.data.ok == true) {
+      navigate("/login");
     }
   };
 
@@ -71,7 +70,7 @@ console.log(data);
               className="register__form"
             >
               <label className="register__label" htmlFor="password">
-              {t("password.newpass")}
+                {t("password.newpass")}
               </label>
 
               <Form.Item
@@ -128,7 +127,8 @@ console.log(data);
                 onClick={enterLoading}
                 htmlType="submit"
               >
-{t("password.verify")}              </Button>
+                {t("password.verify")}{" "}
+              </Button>
             </Form>
           </div>
         </div>
