@@ -49,7 +49,7 @@ export const DeactiveCard = () => {
       const token = localStorage.getItem("token");
       const data = await AnnounService.setActiveCard(id, token);
       if (data?.status === 200) {
-        toast.success(`${t("announ.succannoun")}`);
+        toast.success(`${t("announ.activeannoun")}`);
       }else {
         localStorage.removeItem('token')
         navigate('/login')

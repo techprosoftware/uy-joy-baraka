@@ -17,29 +17,13 @@ import { EditSms } from "./pages/EditSms/EditSms";
 import { EditPassword } from "./pages/EditPassword/EditPassword";
 
 function App() {
-  const [showBackTop, setShowBackTop] = useState(false);
+  let langs = localStorage.getItem("lang") || "Uz";
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setShowBackTop(true);
-      } else {
-        setShowBackTop(false);
-      }
-    };
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-useEffect(() => {
   i18n.use(initReactI18next).init({
     debug: true,
-    fallbackLng: localStorage.getItem("lang") || "Uz",
-    defaultLocale: 'Uz',
+    fallbackLng: langs,
+    defaultLocale: "Uz",
 
     resources: {
       Uz: {
@@ -50,7 +34,6 @@ useEffect(() => {
       },
     },
   });
-},[])
  
 
   return (
@@ -65,7 +48,7 @@ useEffect(() => {
         <Route path="/edit-password" element={<EditPassword />} />
       </Routes>
 
-      {showBackTop && (
+      {
         <a href="#" className="back">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +65,7 @@ useEffect(() => {
             <path d="M16 12l-4-4-4 4M12 16V9" />
           </svg>
         </a>
-      )}
+      }
 
       <ToastContainer
         position="bottom-center"
