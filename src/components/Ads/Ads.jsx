@@ -8,44 +8,40 @@ import { BASE_URL } from "../../Api/api";
 const Ads = () => {
   const { t } = useTranslation();
 
-  const [ads, setAds] = useState([]);
+  const [ads, setAds] = useState();
+
+  const [checkAsd, setCheckAds] = useState(true)
+
   const getAdsFunc = async () => {
     try {
-      const response = await AnnounService.getAds();
+      const response = await AnnounService.getAdsMin();
+      console.log(response);
       if (response.status === 200) {
-        setAds(response.data?.ads || []);
+        setAds(response.data?.ads);
+      }else {
+        setCheckAds(false)
       }
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
-  const [randomNumber, setRandomNumber] = useState(0);
 
-  const generateRandomNumber = () => {
-    const min = 0;
-    const max = ads.length > 0 ? ads.length - 1 : 0;
-    const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
-    setRandomNumber(randomNum);
-  };
 
   useEffect(() => {
     getAdsFunc();
   }, []);
 
-  useEffect(() => {
-    const intervalId = setInterval(generateRandomNumber, 15000);
-    return () => clearInterval(intervalId);
-  }, [ads]);
+
 
   return (
     <div className="container">
-      {ads.length ? (
+      {checkAsd ? (
         <div className=" mb-4">
-          <a target="_blank" href={ads[randomNumber]?.link}>
+          <a target="_blank" href={ads?.link}>
             <img
               className="ads__img mt-4"
-              src={BASE_URL + ads[randomNumber]?.img_web}
+              src={BASE_URL + ads?.img_web}
               alt="button-phone"
             />
           </a>
