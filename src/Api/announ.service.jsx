@@ -7,6 +7,12 @@ const AnnounService = {
     });
     return data;
   },
+  getAdsMin: async (token) => {
+    const data = await axios.get(`/ads/min-site`, {
+      headers: { authorization: token },
+    });
+    return data;
+  },
 
   getActiveCard: async (token) => {
     const data = await axios.get(`/api/announcements/active?p_page=50`, {
